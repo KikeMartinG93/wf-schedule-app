@@ -119,6 +119,11 @@ private struct MainTabView: View {
             showingLogin = false
             Task { try? await ScheduleSyncCoordinator.runSync(force: true) }
         }
+        // When in Rainbow theme, morph the background gradient and accents into
+        // a different combination of 3 colors on every tab change.
+        .onChange(of: selectedTab) { _, _ in
+            ThemeManager.shared.advanceRainbowCombo()
+        }
         // Breaks has no tab of its own: it opens from the countdown pill during a
         // shift, and from tapping a break widget or Live Activity.
         .sheet(isPresented: $showingBreaks) {

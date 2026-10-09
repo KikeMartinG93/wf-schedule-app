@@ -39,7 +39,60 @@ extension AppColorTheme {
     )
 }
 
+/// A coordinated combination of 3 rainbow colors for the dynamic Rainbow theme:
+/// as the user switches tabs, the background gradient and accents smoothly morph
+/// to the next triad across the color wheel.
+struct RainbowTriad: Equatable {
+    let name: String
+    let c1: Color
+    let c2: Color
+    let c3: Color
+}
+
 enum AppColorThemes {
+    /// Rotating 3-color triads for the Rainbow theme. Each tab switch advances
+    /// to the next triad with a smooth fluid animation, morphing the background
+    /// gradient into a fresh combination of 3 vibrant colors.
+    static let rainbowPalettes: [RainbowTriad] = [
+        RainbowTriad(
+            name: "Sunset Blaze",
+            c1: Color(red: 0.95, green: 0.22, blue: 0.32), // Crimson Rose
+            c2: Color(red: 1.00, green: 0.52, blue: 0.12), // Warm Tangerine
+            c3: Color(red: 1.00, green: 0.82, blue: 0.16)  // Sun Gold
+        ),
+        RainbowTriad(
+            name: "Citrus Aurora",
+            c1: Color(red: 1.00, green: 0.74, blue: 0.12), // Golden Yellow
+            c2: Color(red: 0.30, green: 0.86, blue: 0.28), // Electric Lime
+            c3: Color(red: 0.05, green: 0.80, blue: 0.65)  // Mint Emerald
+        ),
+        RainbowTriad(
+            name: "Ocean Breeze",
+            c1: Color(red: 0.08, green: 0.76, blue: 0.72), // Turquoise Jade
+            c2: Color(red: 0.16, green: 0.66, blue: 0.96), // Sky Cyan
+            c3: Color(red: 0.26, green: 0.38, blue: 0.94)  // Royal Cobalt
+        ),
+        RainbowTriad(
+            name: "Neon Twilight",
+            c1: Color(red: 0.20, green: 0.46, blue: 0.98), // Electric Blue
+            c2: Color(red: 0.46, green: 0.28, blue: 0.96), // Royal Indigo
+            c3: Color(red: 0.74, green: 0.25, blue: 0.95)  // Vivid Purple
+        ),
+        RainbowTriad(
+            name: "Cosmic Berry",
+            c1: Color(red: 0.68, green: 0.24, blue: 0.95), // Electric Violet
+            c2: Color(red: 0.98, green: 0.18, blue: 0.60), // Hot Magenta
+            c3: Color(red: 1.00, green: 0.36, blue: 0.56)  // Radiant Pink
+        ),
+        RainbowTriad(
+            name: "Prism Flare",
+            c1: Color(red: 1.00, green: 0.22, blue: 0.42), // Neon Coral
+            c2: Color(red: 1.00, green: 0.52, blue: 0.15), // Blaze Orange
+            c3: Color(red: 0.36, green: 0.88, blue: 0.26)  // Vivid Lime
+        ),
+    ]
+
+
     /// "Green" is the app's original fixed palette; "Blue" was pulled from a
     /// user-supplied wallpaper (a deep navy with a steel/cyan-blue glow,
     /// ~205-215° hue). The rest fill out a spread across the color wheel so
@@ -109,6 +162,15 @@ enum AppColorThemes {
             cashOfficeAccentOverride: Color(red: 0xF0 / 255, green: 0x60 / 255, blue: 0x9E / 255), // pink
             supervisorAccentOverride: Color(red: 0xA6 / 255, green: 0xB1 / 255, blue: 0xE1 / 255) // lavender
         ),
+        // Rainbow theme: on every tab change, the background gradient and accents
+        // morph into a different combination of 3 colors.
+        AppColorTheme(
+            id: "rainbow", name: "Rainbow",
+            backgroundTint: Color(red: 0.95, green: 0.22, blue: 0.32),
+            accent: Color(red: 1.00, green: 0.52, blue: 0.12),
+            holidayPay: Color(red: 1.00, green: 0.82, blue: 0.16)
+        ),
+
     ]
 
     static let `default` = all[0]
@@ -147,9 +209,35 @@ final class ThemeManager: ObservableObject {
         }
     }
 
-    /// What every screen draws with: the picked theme, or the monochrome one.
+    /// The active 3-color palette combination index for Rainbow theme.
+    @Published var rainbowComboIndex: Int = 0
+
+    /// Advances to the next 3-color combination when the active tab changes.
+    func advanceRainbowCombo() {
+        guard selected.id == "rainbow" else { return }
+        withAnimation(.easeInOut(duration: 1.4)) {
+            rainbowComboIndex = (rainbowComboIndex + 1) % AppColorThemes.rainbowPalettes.count
+        }
+    }
+
+    /// What every screen draws with: the picked theme, the dynamic rainbow combination, or monochrome.
     var current: AppColorTheme {
-        get { highContrast ? .monochrome : selected }
+        get {
+            if highContrast { return .monochrome }
+            if selected.id == "rainbow" {
+                let triad = AppColorThemes.rainbowPalettes[rainbowComboIndex % AppColorThemes.rainbowPalettes.count]
+                return AppColorTheme(
+                    id: "rainbow",
+                    name: "Rainbow",
+                    backgroundTint: triad.c1,
+                    accent: triad.c2,
+                    holidayPay: triad.c3,
+                    cashOfficeAccentOverride: triad.c2,
+                    supervisorAccentOverride: triad.c3
+                )
+            }
+            return selected
+        }
         set { selected = newValue }
     }
 

@@ -1690,6 +1690,17 @@
         }
       }
     },
+    "Rainbow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arcoíris"
+          }
+        }
+      }
+    },
     "Rose" : {
       "extractionState" : "manual",
       "localizations" : {

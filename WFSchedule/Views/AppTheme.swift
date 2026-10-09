@@ -159,6 +159,9 @@ struct AppBackground: View {
     }
 
     private var orb2Color: Color {
+        if theme.current.id == "rainbow" {
+            return theme.current.accent.opacity(effectiveOpacity * 0.85)
+        }
         if let custom = theme.current.cashOfficeAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
@@ -166,6 +169,9 @@ struct AppBackground: View {
     }
 
     private var orb3Color: Color {
+        if theme.current.id == "rainbow" {
+            return theme.current.holidayPay.opacity(effectiveOpacity * 0.85)
+        }
         if let custom = theme.current.supervisorAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
@@ -173,6 +179,9 @@ struct AppBackground: View {
     }
 
     private var orb4Color: Color {
+        if theme.current.id == "rainbow" {
+            return theme.current.accent.opacity(effectiveOpacity * 0.80)
+        }
         if theme.current.id == "colorful" {
             return theme.current.accent.opacity(effectiveOpacity * 0.65)
         }

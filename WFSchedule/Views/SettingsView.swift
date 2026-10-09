@@ -322,18 +322,47 @@ private struct ThemePicker: View {
                     theme.current = candidate
                 } label: {
                     VStack(spacing: 6) {
-                        Circle()
-                            .fill(candidate.accent)
-                            .frame(width: 32, height: 32)
-                            .overlay {
-                                // A checkmark, not just a ring, so the selection
-                                // doesn't depend on telling colors apart.
-                                if candidate.id == theme.current.id {
-                                    Image(systemName: "checkmark")
-                                        .font(.footnote.weight(.bold))
-                                        .foregroundStyle(Color.onFill(candidate.accent))
+                        if candidate.id == "rainbow" {
+                            Circle()
+                                .fill(
+                                    AngularGradient(
+                                        gradient: Gradient(colors: [
+                                            Color(red: 0.95, green: 0.22, blue: 0.32),
+                                            Color(red: 1.00, green: 0.52, blue: 0.12),
+                                            Color(red: 1.00, green: 0.82, blue: 0.16),
+                                            Color(red: 0.30, green: 0.86, blue: 0.28),
+                                            Color(red: 0.08, green: 0.76, blue: 0.72),
+                                            Color(red: 0.16, green: 0.66, blue: 0.96),
+                                            Color(red: 0.72, green: 0.25, blue: 0.95),
+                                            Color(red: 0.98, green: 0.18, blue: 0.60),
+                                            Color(red: 0.95, green: 0.22, blue: 0.32)
+                                        ]),
+                                        center: .center
+                                    )
+                                )
+                                .frame(width: 32, height: 32)
+                                .overlay {
+                                    if candidate.id == theme.current.id {
+                                        Image(systemName: "checkmark")
+                                            .font(.footnote.weight(.bold))
+                                            .foregroundStyle(.white)
+                                            .shadow(color: .black.opacity(0.6), radius: 2)
+                                    }
                                 }
-                            }
+                        } else {
+                            Circle()
+                                .fill(candidate.accent)
+                                .frame(width: 32, height: 32)
+                                .overlay {
+                                    // A checkmark, not just a ring, so the selection
+                                    // doesn't depend on telling colors apart.
+                                    if candidate.id == theme.current.id {
+                                        Image(systemName: "checkmark")
+                                            .font(.footnote.weight(.bold))
+                                            .foregroundStyle(Color.onFill(candidate.accent))
+                                    }
+                                }
+                        }
                         Text(LocalizedStringKey(candidate.name))
                             .font(.caption)
                             .foregroundStyle(.secondary)

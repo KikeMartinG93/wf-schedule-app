@@ -27,7 +27,9 @@ enum AppIconManager {
     }
 
     private static func themeIconName(_ themeID: String) -> String? {
-        themeID == "green" ? nil : "AppIcon-\(themeID)"
+        if themeID == "green" { return nil }
+        if themeID == "rainbow" { return "AppIcon-colorful" }
+        return "AppIcon-\(themeID)"
     }
 
     @MainActor
