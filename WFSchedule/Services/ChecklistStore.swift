@@ -40,6 +40,10 @@ final class ChecklistStore {
             tasks = decoded
         }
 
+        if tasks.isEmpty && DemoMode.isEnabled {
+            tasks = Self.demoTasks
+        }
+
         cacheLock.lock()
         cachedTasks = tasks
         cacheLock.unlock()
@@ -158,6 +162,11 @@ final class ChecklistStore {
             cachedSelection = selection
             cacheLock.unlock()
         }
+
+        if selection.selectedCategories.isEmpty && DemoMode.isEnabled {
+            selection.selectedCategories = [.cashOffice, .opener]
+        }
+
         return selection
     }
 
@@ -173,5 +182,21 @@ final class ChecklistStore {
         cacheLock.unlock()
         guard let data = try? JSONEncoder().encode(selection) else { return }
         try? data.write(to: selectionURL, options: .atomic)
+    }
+
+    // MARK: - Demo Sample Tasks
+
+    private static var demoTasks: [ChecklistTask] {
+        [
+            ChecklistTask(category: .cashOffice, title: "Count safe & verify opening change", dueHour: 8, dueMinute: 0, sortOrder: 0),
+            ChecklistTask(category: .cashOffice, title: "Audit cashier tills & pickups", dueHour: 13, dueMinute: 0, sortOrder: 1),
+            ChecklistTask(category: .cashOffice, title: "Prepare daily bank deposit bag", dueHour: 17, dueMinute: 0, sortOrder: 2),
+            ChecklistTask(category: .opener, title: "Turn on registers & receipt printers", dueHour: 7, dueMinute: 0, sortOrder: 0),
+            ChecklistTask(category: .opener, title: "Inspect refrigeration temperature logs", dueHour: 7, dueMinute: 30, sortOrder: 1),
+            ChecklistTask(category: .mid, title: "Mid-day break & meal coverage rotation", dueHour: 12, dueMinute: 30, sortOrder: 0),
+            ChecklistTask(category: .mid, title: "Restock register paper & customer supplies", dueHour: 14, dueMinute: 30, sortOrder: 1),
+            ChecklistTask(category: .closer, title: "Collect all tills and lock safe", dueHour: 21, dueMinute: 0, sortOrder: 0),
+            ChecklistTask(category: .closer, title: "Perform final store security & exit check", dueHour: 21, dueMinute: 30, sortOrder: 1),
+        ]
     }
 }

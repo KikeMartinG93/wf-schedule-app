@@ -67,6 +67,23 @@ struct WelcomeView: View {
             .padding(.bottom, 24)
         }
         .scrollBounceBehavior(.basedOnSize)
+        .overlay(alignment: .topTrailing) {
+            Menu {
+                Button {
+                    DemoMode.set(true)
+                    onContinue()
+                } label: {
+                    Label("Demo Mode", systemImage: "sparkles")
+                }
+            } label: {
+                Image(systemName: "ellipsis.circle")
+                    .font(.title2)
+                    .foregroundStyle(.secondary)
+                    .padding(20)
+                    .contentShape(Rectangle())
+            }
+            .accessibilityLabel("Options")
+        }
         .safeAreaBar(edge: .bottom) {
             VStack(spacing: 10) {
                 Text("Your schedule is stored only on this device.")
@@ -81,6 +98,17 @@ struct WelcomeView: View {
                 .buttonStyle(.glassProminent)
                 .tint(theme.current.buttonFill)
                 .controlSize(.large)
+
+                Button {
+                    DemoMode.set(true)
+                    onContinue()
+                } label: {
+                    Label("Explore Demo Mode", systemImage: "sparkles")
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(theme.current.readableAccent)
+                }
+                .buttonStyle(.plain)
+                .padding(.top, 2)
             }
             .padding(.horizontal, 28)
             .padding(.top, 12)

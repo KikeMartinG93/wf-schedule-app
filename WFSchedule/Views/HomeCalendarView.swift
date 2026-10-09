@@ -116,6 +116,25 @@ struct HomeCalendarView: View {
                     .allowsHitTesting(false)
 
                     signInOverlay
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                        .overlay(alignment: .topTrailing) {
+                            Menu {
+                                Button {
+                                    DemoMode.set(true)
+                                } label: {
+                                    Label("Demo Mode", systemImage: "sparkles")
+                                }
+                            } label: {
+                                Image(systemName: "ellipsis.circle")
+                                    .font(.title2)
+                                    .foregroundStyle(Color.primary.opacity(0.75))
+                                    .frame(width: 44, height: 44)
+                                    .background(.ultraThinMaterial, in: Circle())
+                            }
+                            .accessibilityLabel("Options")
+                            .padding(.trailing, 20)
+                            .padding(.top, 16)
+                        }
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
@@ -202,6 +221,27 @@ struct HomeCalendarView: View {
         VStack(spacing: 14) {
             loginButton(.innerview, title: "Innerview Login")
             loginButton(.ukg, title: "Amazon Login")
+
+            Menu {
+                Button {
+                    DemoMode.set(true)
+                } label: {
+                    Label("Demo Mode", systemImage: "sparkles")
+                }
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "sparkles")
+                    Text("Demo Mode")
+                    Image(systemName: "ellipsis")
+                        .font(.caption2)
+                }
+                .font(.subheadline.weight(.medium))
+                .foregroundStyle(.secondary)
+                .padding(.horizontal, 14)
+                .padding(.vertical, 8)
+                .background(.ultraThinMaterial, in: Capsule())
+            }
+            .padding(.top, 4)
         }
     }
 
@@ -708,6 +748,16 @@ private struct DayEventRow: View {
                     .font(.headline)
                 if let location = shift.location {
                     Label(location, systemImage: "mappin.and.ellipse")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                if let payCode = shift.payCode {
+                    Text(payCode)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(theme.current.readableAccent)
+                }
+                if let notes = shift.notes {
+                    Text(notes)
                         .font(.caption)
                         .foregroundStyle(.secondary)
                 }

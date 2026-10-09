@@ -49,6 +49,20 @@ struct LoginView: View {
                 ToolbarItem(placement: .cancellationAction) {
                     Button("Cancel") { dismiss() }
                 }
+                ToolbarItem(placement: .primaryAction) {
+                    Menu {
+                        Button {
+                            DemoMode.set(true)
+                            dismiss()
+                        } label: {
+                            Label("Demo Mode", systemImage: "sparkles")
+                        }
+                    } label: {
+                        Image(systemName: "ellipsis.circle")
+                            .font(.body.weight(.medium))
+                            .accessibilityLabel("Options")
+                    }
+                }
             }
         }
     }

@@ -8,6 +8,8 @@ struct SettingsView: View {
     @State private var showingBackupSignIn = false
     @State private var showingWelcome = false
     @State private var showingWhatsNew = false
+    @State private var showingBreaks = false
+    @State private var showingChecklist = false
     @AppStorage(DemoMode.storageKey) private var demoMode = false
     @ObservedObject private var theme = ThemeManager.shared
     @State private var versionTaps = 0
@@ -87,6 +89,24 @@ struct SettingsView: View {
                             Text("Display")
                         } footer: {
                             Text("High contrast turns the app, widgets and Live Activity plain black, white and gray. Some items, like dates and notifications, update after you restart the app.")
+                        }
+
+                        // Tools
+                        Section {
+                            Button {
+                                showingBreaks = true
+                            } label: {
+                                row("Breaks & Calculator", "cup.and.saucer")
+                            }
+                            Button {
+                                showingChecklist = true
+                            } label: {
+                                row("Daily Role Checklist", "checklist")
+                            }
+                        } header: {
+                            Text("Tools")
+                        } footer: {
+                            Text("Plan break countdowns or track daily operational duties.")
                         }
 
                         Section {
@@ -176,6 +196,16 @@ struct SettingsView: View {
             }
             .sheet(isPresented: $showingBackupSignIn) {
                 UKGLoginView()
+                    .tint(theme.current.readableAccent)
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showingBreaks) {
+                BreaksView()
+                    .tint(theme.current.readableAccent)
+                    .presentationDragIndicator(.visible)
+            }
+            .sheet(isPresented: $showingChecklist) {
+                ChecklistView()
                     .tint(theme.current.readableAccent)
                     .presentationDragIndicator(.visible)
             }

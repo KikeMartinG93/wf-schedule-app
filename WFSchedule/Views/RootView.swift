@@ -73,7 +73,7 @@ private struct MainTabView: View {
     /// sign-in page, so it's only for someone whose session is a UKG one —
     /// Innerview Login resumes through `SessionManager.attemptCookieRestore`.
     private var shouldProbeForSession: Bool {
-        !isAuthenticated && SessionManager.hasSignedInBefore && !showingLogin
+        !isAuthenticated && !DemoMode.isEnabled && SessionManager.hasSignedInBefore && !showingLogin
             && SessionManager.preferredBackend == .ukg
     }
 

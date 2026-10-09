@@ -108,9 +108,22 @@ enum BreakStore {
     static var rawJSON: String? { defaults?.string(forKey: key) }
 
     static func load() -> BreakPlan {
-        guard let json = rawJSON, let data = json.data(using: .utf8),
-              let plan = try? JSONDecoder().decode(BreakPlan.self, from: data) else { return BreakPlan() }
-        return plan
+        if let json = rawJSON, let data = json.data(using: .utf8),
+           let plan = try? JSONDecoder().decode(BreakPlan.self, from: data),
+           !plan.slots.isEmpty {
+            return plan
+        }
+        if UserDefaults.standard.bool(forKey: "demoModeEnabled") {
+            let calendar = Calendar.current
+            let now = Date()
+            let minuteOfDay = calendar.component(.hour, from: now) * 60 + calendar.component(.minute, from: now)
+            return BreakPlan(slots: [
+                BreakSlot(minutesFromMidnight: min(minuteOfDay + 35, 1420), durationMinutes: 15),
+                BreakSlot(minutesFromMidnight: min(minuteOfDay + 120, 1425), durationMinutes: 30),
+                BreakSlot(minutesFromMidnight: min(minuteOfDay + 240, 1430), durationMinutes: 15)
+            ])
+        }
+        return BreakPlan()
     }
 
     /// Callers that save repeatedly (a time-picker wheel) pass `reloadWidgets: false`

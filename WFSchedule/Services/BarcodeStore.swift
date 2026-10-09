@@ -14,10 +14,15 @@ enum BarcodeStore {
             if let secure = SecureTMID.value { return secure }
             let legacy = UserDefaults(suiteName: legacyGroup)?.string(forKey: legacyKey)
                 ?? UserDefaults.standard.string(forKey: legacyKey)
-            guard let legacy, !legacy.isEmpty else { return nil }
-            SecureTMID.value = legacy
-            clearLegacy()
-            return legacy
+            if let legacy, !legacy.isEmpty {
+                SecureTMID.value = legacy
+                clearLegacy()
+                return legacy
+            }
+            if UserDefaults.standard.bool(forKey: "demoModeEnabled") {
+                return "1234567"
+            }
+            return nil
         }
         set {
             SecureTMID.value = newValue

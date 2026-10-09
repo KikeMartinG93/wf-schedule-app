@@ -516,6 +516,17 @@
         }
       }
     },
+    "Breaks & Calculator" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breaks y calculadora"
+          }
+        }
+      }
+    },
     "Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -662,6 +673,17 @@
         }
       }
     },
+    "Daily Role Checklist" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lista de tareas del día"
+          }
+        }
+      }
+    },
     "Day" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -686,6 +708,9 @@
           }
         }
       }
+    },
+    "Demo Mode" : {
+
     },
     "Demo mode · sample data" : {
       "extractionState" : "manual",
@@ -786,6 +811,17 @@
     },
     "Explore demo mode" : {
       "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explorar el modo demo"
+          }
+        }
+      }
+    },
+    "Explore Demo Mode" : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
@@ -1508,6 +1544,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Elige un tema de color en Ajustes y toda la app lo sigue."
+          }
+        }
+      }
+    },
+    "Plan break countdowns or track daily operational duties." : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifica descansos o lleva el control de tareas operativas."
           }
         }
       }
@@ -2342,6 +2388,16 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Mañana trabajas: %@."
+          }
+        }
+      }
+    },
+    "Tools" : {
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Herramientas"
           }
         }
       }

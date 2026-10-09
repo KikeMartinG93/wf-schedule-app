@@ -6,6 +6,7 @@ import SwiftUI
 /// one role — and both the selection and task completion reset automatically
 /// each new day (see ChecklistStore).
 struct ChecklistView: View {
+    @Environment(\.dismiss) private var dismiss
     @State private var selectedCategories: Set<ChecklistCategory> = []
     @State private var tasksByCategory: [ChecklistCategory: [ChecklistTask]] = [:]
     @State private var completedIDs: Set<UUID> = []
@@ -54,6 +55,10 @@ struct ChecklistView: View {
             Text("Checklist")
                 .font(.largeTitle.bold())
             Spacer()
+            Button("Done") { dismiss() }
+                .font(.headline)
+                .buttonStyle(.plain)
+                .foregroundStyle(ThemeManager.shared.current.readableAccent)
         }
     }
 
