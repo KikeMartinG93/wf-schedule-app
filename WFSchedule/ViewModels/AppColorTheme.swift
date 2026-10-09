@@ -189,6 +189,22 @@ final class ThemeManager: ObservableObject {
     static let shared = ThemeManager()
 
     private static let storageKey = "selectedColorThemeID"
+    private static let vibrancyKey = "gradientVibrancy"
+
+    /// The gradient vibrancy from 0.0 (minimal 10% visibility with 90% white/black overlay)
+    /// to 1.0 (super colorful with 0% overlay).
+    @Published var gradientVibrancy: Double {
+        didSet {
+            UserDefaults.standard.set(gradientVibrancy, forKey: Self.vibrancyKey)
+        }
+    }
+
+    /// The opacity of the white/black overlay applied on top of the background gradients.
+    /// At 100% (1.0), opacity is 0.0 (0 overlay). At 0% (0.0), opacity is 0.90 (10% visibility).
+    var backgroundOverlayOpacity: Double {
+        let clamped = max(0.0, min(1.0, gradientVibrancy))
+        return (1.0 - clamped) * 0.90
+    }
 
     /// The theme the user picked. Kept even while high contrast is on, so turning
     /// it off brings their colors back.
@@ -244,6 +260,11 @@ final class ThemeManager: ObservableObject {
     private init() {
         let savedID = UserDefaults.standard.string(forKey: Self.storageKey)
         selected = AppColorThemes.theme(id: savedID ?? AppColorThemes.default.id)
+        if UserDefaults.standard.object(forKey: Self.vibrancyKey) != nil {
+            gradientVibrancy = max(0.0, min(1.0, UserDefaults.standard.double(forKey: Self.vibrancyKey)))
+        } else {
+            gradientVibrancy = 1.0
+        }
         let enabled = FontPreference.store.bool(forKey: ContrastPreference.key)
             || UserDefaults.standard.bool(forKey: ContrastPreference.key)
         highContrast = enabled

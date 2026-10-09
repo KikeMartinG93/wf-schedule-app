@@ -60,9 +60,27 @@ struct SettingsView: View {
                                     .foregroundStyle(.secondary)
                             } else {
                                 ThemePicker()
+
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        row("Gradient vibrancy", "slider.horizontal.3")
+                                        Spacer()
+                                        Text("\(Int(round(theme.gradientVibrancy * 100)))%")
+                                            .font(.subheadline.monospacedDigit())
+                                            .foregroundStyle(.secondary)
+                                    }
+
+                                    Slider(value: $theme.gradientVibrancy, in: 0.0...1.0)
+                                        .tint(theme.current.readableAccent)
+                                }
+                                .padding(.top, 4)
                             }
                         } header: {
                             Text("Appearance")
+                        } footer: {
+                            if !theme.highContrast {
+                                Text("Gradient vibrancy controls the background overlay for accessibility. At 100%, the animated gradient is fully colorful with 0% overlay. At 0%, a white or black overlay leaves minimal 10% visibility.")
+                            }
                         }
 
                         Section {

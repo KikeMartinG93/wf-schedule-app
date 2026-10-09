@@ -62,6 +62,9 @@
         }
       }
     },
+    "%@%%" : {
+
+    },
     "%lld changed" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -933,6 +936,28 @@
         }
       }
     },
+    "Gradient vibrancy" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vivacidad del degradado"
+          }
+        }
+      }
+    },
+    "Gradient vibrancy controls the background overlay for accessibility. At 100%, the animated gradient is fully colorful with 0% overlay. At 0%, a white or black overlay leaves minimal 10% visibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vivacidad del degradado controla la superposición del fondo para accesibilidad. Al 100%, el degradado animado es totalmente colorido sin superposición. Al 0%, una superposición blanca o negra deja un 10% mínimo de visibilidad."
+          }
+        }
+      }
+    },
     "Green" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1654,6 +1679,17 @@
         }
       }
     },
+    "Rainbow" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Arcoíris"
+          }
+        }
+      }
+    },
     "Readability" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1705,17 +1741,6 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Descanso"
-          }
-        }
-      }
-    },
-    "Rainbow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arcoíris"
           }
         }
       }

@@ -65,7 +65,8 @@ struct AppBackground: View {
     /// so text contrast remains compliant and crisp.
     private var strength: Double {
         if contrast == .increased || reduceTransparency { return 0.25 }
-        return colorScheme == .light ? 0.70 : 1.0
+        let lightBase = 0.70 + 0.30 * theme.gradientVibrancy
+        return colorScheme == .light ? lightBase : 1.0
     }
 
     private var effectiveOpacity: Double {
@@ -145,9 +146,11 @@ struct AppBackground: View {
                 }
                 .ignoresSafeArea()
 
-                // Subtle uniform ambient surface scrim ensuring crisp readability everywhere
-                Color(.systemBackground)
-                    .opacity(colorScheme == .dark ? 0.32 : 0.42)
+                // White/black accessibility overlay controlled by the settings bar adjuster.
+                // At 100% full: 0 overlay (super colorful).
+                // At 0% full: 90% overlay (gradient minimal 10% visibility).
+                Color(colorScheme == .dark ? .black : .white)
+                    .opacity(theme.backgroundOverlayOpacity)
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
