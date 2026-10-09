@@ -131,7 +131,7 @@ struct SettingsView: View {
                         } header: {
                             Text("Display & Accessibility")
                         } footer: {
-                            Text("High contrast switches all screens and widgets to high-legibility monochrome.")
+                            Text("High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.")
                         }
 
                         // 5. Tools & Quick Actions

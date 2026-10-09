@@ -4,6 +4,7 @@ import SwiftUI
 struct WFScheduleApp: App {
     @StateObject private var sessionManager = SessionManager.shared
     @AppStorage(AppLanguage.storageKey) private var languageCode: String = AppLanguage.system.rawValue
+    @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont: Bool = true
 
     init() {
         BackgroundRefreshManager.register()
@@ -19,6 +20,7 @@ struct WFScheduleApp: App {
             RootView()
                 .environmentObject(sessionManager)
                 .environment(\.locale, activeLocale)
+                .fontDesign(roundedFont ? .rounded : .default)
                 .id(languageCode)
                 .task {
                     // Bootstrap runs once per app launch (only if welcome was seen).

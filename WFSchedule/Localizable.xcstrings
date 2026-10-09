@@ -956,17 +956,6 @@
         }
       }
     },
-    "High contrast switches all screens and widgets to high-legibility monochrome.": {
-      "extractionState": "manual",
-      "localizations": {
-        "es": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "El alto contraste cambia todas las pantallas y widgets a monocromo de alta legibilidad."
-          }
-        }
-      }
-    },
     "High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice.": {
       "extractionState": "manual",
       "localizations": {
@@ -2949,6 +2938,17 @@
           "stringUnit": {
             "state": "translated",
             "value": "Las actualizaciones en la pestaña Cambios ahora muestran tiempos de detección relativos como ahora, hace 5 minutos o hace 2 días."
+          }
+        }
+      }
+    },
+    "High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El alto contraste cambia todas las pantallas y widgets a monocromático. Desactiva Fuente redondeada para usar la fuente estándar del sistema."
           }
         }
       }
