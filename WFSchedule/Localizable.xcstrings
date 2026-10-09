@@ -239,6 +239,17 @@
     "Account" : {
 
     },
+    "Add Next Shift or Discount Barcode to your Home Screen, Lock Screen, or Apple Watch face." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade Próximo turno o Código de descuento a tu pantalla de inicio, bloqueo o Apple Watch."
+          }
+        }
+      }
+    },
     "Add note" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -316,8 +327,16 @@
         }
       }
     },
-    "Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in keeps your UKG username and password in this device's Keychain so the app can sign back in on its own. Off by default." : {
-
+    "Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El inicio con Amazon es un respaldo si Innerview Login no funciona. El inicio automático guarda credenciales de forma segura en el llavero."
+          }
+        }
+      }
     },
     "Amber" : {
       "extractionState" : "manual",
@@ -341,61 +360,6 @@
         }
       }
     },
-    "Appearance Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de apariencia"
-          }
-        }
-      }
-    },
-    "Light Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo claro"
-          }
-        }
-      }
-    },
-    "Dark Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo oscuro"
-          }
-        }
-      }
-    },
-    "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
-          }
-        }
-      }
-    },
-    "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
-          }
-        }
-      }
-    },
     "Appearance" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -403,6 +367,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apariencia"
+          }
+        }
+      }
+    },
+    "Appearance Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo de apariencia"
           }
         }
       }
@@ -753,6 +728,28 @@
         }
       }
     },
+    "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personaliza la paleta y vivacidad para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
+          }
+        }
+      }
+    },
+    "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Personaliza la paleta y vivacidad para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
+          }
+        }
+      }
+    },
     "Daily Role Checklist" : {
       "extractionState" : "stale",
       "localizations" : {
@@ -760,6 +757,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Lista de tareas del día"
+          }
+        }
+      }
+    },
+    "Dark Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo oscuro"
           }
         }
       }
@@ -774,9 +782,6 @@
           }
         }
       }
-    },
-    "Demo" : {
-
     },
     "Demo mode" : {
       "extractionState" : "manual",
@@ -803,6 +808,17 @@
         }
       }
     },
+    "Demo mode is currently active with sample data." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El modo demo está activo con datos de ejemplo."
+          }
+        }
+      }
+    },
     "Discount Barcode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -825,8 +841,16 @@
         }
       }
     },
-    "Display" : {
-
+    "Display & Accessibility" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pantalla y accesibilidad"
+          }
+        }
+      }
     },
     "Done" : {
       "extractionState" : "manual",
@@ -932,9 +956,6 @@
           }
         }
       }
-    },
-    "Explore every feature with sample data. Nothing real is changed." : {
-
     },
     "Faster and smoother" : {
       "extractionState" : "manual",
@@ -1046,6 +1067,17 @@
         }
       }
     },
+    "High contrast switches all screens and widgets to high-legibility monochrome." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El alto contraste cambia todas las pantallas y widgets a monocromo de alta legibilidad."
+          }
+        }
+      }
+    },
     "High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1056,9 +1088,6 @@
           }
         }
       }
-    },
-    "High contrast turns the app, widgets and Live Activity plain black, white and gray. Some items, like dates and notifications, update after you restart the app." : {
-
     },
     "Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app." : {
       "extractionState" : "manual",
@@ -1217,9 +1246,6 @@
         }
       }
     },
-    "Kept in the secure Keychain and hidden once saved. Synced to your Apple Watch." : {
-
-    },
     "Kept in the secure Keychain on your devices and hidden once saved. Synced automatically to your Apple Watch so it shows up on the watch face and in the Watch app." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1260,6 +1286,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Última sincronización: %@"
+          }
+        }
+      }
+    },
+    "Light Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo claro"
           }
         }
       }
@@ -1318,9 +1355,6 @@
           }
         }
       }
-    },
-    "Long-press your Home Screen or Lock Screen, tap Add Widget, then search for WF Schedule. For the watch, edit a watch face and choose Discount Barcode. Previews use sample data." : {
-
     },
     "Lunch is over" : {
       "extractionState" : "manual",
@@ -1498,17 +1532,6 @@
         }
       }
     },
-    "now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ahora"
-          }
-        }
-      }
-    },
     "No Alerts" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -1596,6 +1619,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "No hay turnos próximos"
+          }
+        }
+      }
+    },
+    "now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ahora"
           }
         }
       }
@@ -1703,11 +1737,23 @@
       }
     },
     "Plan break countdowns or track daily operational duties." : {
+      "extractionState" : "stale",
       "localizations" : {
         "es" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Planifica descansos o lleva el control de tareas operativas."
+          }
+        }
+      }
+    },
+    "Plan break schedules or track shift duties and checklists." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Planifica horarios de descanso o consulta tareas de turno y listas de control."
           }
         }
       }
@@ -1931,6 +1977,28 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Selecciona este inicio de sesión"
+          }
+        }
+      }
+    },
+    "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
+          }
+        }
+      }
+    },
+    "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
           }
         }
       }
@@ -2290,6 +2358,17 @@
         }
       }
     },
+    "Stored in the secure Keychain and synced to your Apple Watch." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Guardado en el llavero seguro y sincronizado con tu Apple Watch."
+          }
+        }
+      }
+    },
     "Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -2429,6 +2508,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "La barra de pestañas ahora se contrae al desplazarte, con una cuenta regresiva al lado: el tiempo hasta tu próximo turno, o hasta que termine el turno en curso. Tócala durante un turno para abrir tus descansos, o en cualquier otro momento para ir a tu próximo turno. Descansos ya no tiene su propia pestaña."
+          }
+        }
+      }
+    },
+    "Theme & Appearance" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tema y apariencia"
           }
         }
       }

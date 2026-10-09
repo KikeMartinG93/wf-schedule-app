@@ -31,7 +31,7 @@ struct SettingsView: View {
                 // scrolls up under it and fades out softly instead of being cut off
                 // in a hard line.
                     Form {
-                        // Account
+                        // 1. Account & Security
                         Section {
                             if sessionManager.state == .authenticated {
                                 Button(role: .destructive) {
@@ -52,10 +52,19 @@ struct SettingsView: View {
                         } header: {
                             Text("Account")
                         } footer: {
-                            Text("Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in keeps your UKG username and password in this device's Keychain so the app can sign back in on its own. Off by default.")
+                            Text("Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed.")
                         }
 
-                        // Look and feel
+                        // 2. Discount Barcode
+                        Section {
+                            TMIDField()
+                        } header: {
+                            Text("Discount Barcode")
+                        } footer: {
+                            Text("Stored in the secure Keychain and synced to your Apple Watch.")
+                        }
+
+                        // 3. Theme & Appearance
                         Section {
                             if theme.highContrast {
                                 Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
@@ -91,15 +100,16 @@ struct SettingsView: View {
                                 .padding(.top, 4)
                             }
                         } header: {
-                            Text("Appearance")
+                            Text("Theme & Appearance")
                         } footer: {
                             if !theme.highContrast {
                                 Text(appearanceMode == .light
-                                     ? "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
-                                     : "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
+                                     ? "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
+                                     : "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
                             }
                         }
 
+                        // 4. Accessibility & Display
                         Section {
                             Toggle(isOn: $theme.highContrast) {
                                 row("High contrast", "circle.lefthalf.filled")
@@ -116,17 +126,15 @@ struct SettingsView: View {
                             } label: {
                                 row("Language", "globe")
                             }
-                            // A menu picker keeps the tint it was built with; without the
-                            // id it stays green after High contrast is switched on live.
                             .tint(theme.current.readableAccent)
                             .id(theme.highContrast)
                         } header: {
-                            Text("Display")
+                            Text("Display & Accessibility")
                         } footer: {
-                            Text("High contrast turns the app, widgets and Live Activity plain black, white and gray. Some items, like dates and notifications, update after you restart the app.")
+                            Text("High contrast switches all screens and widgets to high-legibility monochrome.")
                         }
 
-                        // Tools
+                        // 5. Tools & Quick Actions
                         Section {
                             Button {
                                 showingBreaks = true
@@ -141,17 +149,10 @@ struct SettingsView: View {
                         } header: {
                             Text("Tools")
                         } footer: {
-                            Text("Plan break countdowns or track daily operational duties.")
+                            Text("Plan break schedules or track shift duties and checklists.")
                         }
 
-                        Section {
-                            TMIDField()
-                        } header: {
-                            Text("Discount Barcode")
-                        } footer: {
-                            Text("Kept in the secure Keychain and hidden once saved. Synced to your Apple Watch.")
-                        }
-
+                        // 6. Widgets & Lock Screen
                         Section {
                             WidgetShowcase()
                                 .listRowInsets(EdgeInsets())
@@ -159,22 +160,10 @@ struct SettingsView: View {
                         } header: {
                             Text("Widgets")
                         } footer: {
-                            Text("Long-press your Home Screen or Lock Screen, tap Add Widget, then search for WF Schedule. For the watch, edit a watch face and choose Discount Barcode. Previews use sample data.")
+                            Text("Add Next Shift or Discount Barcode to your Home Screen, Lock Screen, or Apple Watch face.")
                         }
 
-                        // Extras
-                        Section {
-                            Toggle(isOn: demoBinding) {
-                                row("Demo mode", "sparkles")
-                            }
-                            .tint(theme.current.toggleTint)
-                        } header: {
-                            Text("Demo")
-                        } footer: {
-                            Text("Explore every feature with sample data. Nothing real is changed.")
-                        }
-
-                        // About
+                        // 7. About & Help
                         Section {
                             Button {
                                 showingWelcome = true
@@ -186,6 +175,11 @@ struct SettingsView: View {
                             } label: {
                                 row("What's new", "wand.and.stars")
                             }
+                            Toggle(isOn: demoBinding) {
+                                row("Demo mode", "sparkles")
+                            }
+                            .tint(theme.current.toggleTint)
+
                             HStack {
                                 row("Version", "info.circle")
                                 Spacer()
@@ -208,6 +202,10 @@ struct SettingsView: View {
                             }
                         } header: {
                             Text("About")
+                        } footer: {
+                            if demoMode {
+                                Text("Demo mode is currently active with sample data.")
+                            }
                         }
                     }
                     .scrollContentBackground(.hidden)
