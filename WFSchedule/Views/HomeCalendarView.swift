@@ -1,6 +1,36 @@
 import SwiftUI
 import UIKit
 
+/// A golden star icon with a sparkly highlight effect
+struct SparklyStar: View {
+    var size: CGFloat = 10
+
+    private static let goldGradient = LinearGradient(
+        colors: [
+            Color(red: 1.0, green: 0.95, blue: 0.5),
+            Color(red: 1.0, green: 0.82, blue: 0.1),
+            Color(red: 0.95, green: 0.62, blue: 0.0)
+        ],
+        startPoint: .topLeading,
+        endPoint: .bottomTrailing
+    )
+
+    var body: some View {
+        ZStack {
+            Image(systemName: "star.fill")
+                .font(.system(size: size, weight: .bold))
+                .foregroundStyle(Self.goldGradient)
+                .shadow(color: Color(red: 1.0, green: 0.82, blue: 0.1).opacity(0.6), radius: 1.5)
+
+            Image(systemName: "sparkle")
+                .font(.system(size: max(4, size * 0.65), weight: .black))
+                .foregroundStyle(.white)
+                .offset(x: size * 0.22, y: -size * 0.22)
+                .shadow(color: .white.opacity(0.8), radius: 1)
+        }
+    }
+}
+
 /// Month-grid calendar (styled after Apple Calendar's month view) with a
 /// selected-day event list below. Reads from the same locally-persisted
 /// schedule `ScheduleListView` syncs — this view doesn't trigger its own
@@ -113,14 +143,14 @@ struct HomeCalendarView: View {
             monthHeader
             weekdayHeader
             monthGrid
-                .padding(.top, 8)
+                .padding(.top, 4)
 
             legend
                 .padding(.horizontal)
-                .padding(.top, 12)
+                .padding(.top, 8)
 
             Divider()
-                .padding(.top, 14)
+                .padding(.top, 10)
 
             if demoMode {
                 demoBanner
@@ -232,15 +262,12 @@ struct HomeCalendarView: View {
     // MARK: - Header
 
     /// Two lines, big-title-then-small-caption — matching List's "My
-    /// Schedule" (big) + "Last synced …" (small) pattern. This is flipped
-    /// from the original year-above/month-below stack: the month is now the
-    /// big top line, so `.firstTextBaseline` (which aligns to each child's
-    /// FIRST line) lines this title's baseline up with the arrow buttons
-    /// using the big text, not the small one.
+    /// Schedule" (big) + "Last synced …" (small) pattern. Capitalized so
+    /// Spanish month titles ("Octubre", "Noviembre") match English behavior.
     private var monthHeader: some View {
         HStack(alignment: .firstTextBaseline) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(displayedMonth.formatted(.dateTime.month(.wide)))
+                Text(displayedMonth.formatted(.dateTime.month(.wide)).capitalized)
                     .font(.largeTitle.bold())
                     .lineLimit(1)
                     .minimumScaleFactor(0.6)
@@ -257,12 +284,6 @@ struct HomeCalendarView: View {
 
     private var weekdayHeader: some View {
         HStack(spacing: 0) {
-            // `id: \.self` breaks here: `veryShortWeekdaySymbols` for en_US is
-            // ["S","M","T","W","T","F","S"] — "T" (Tue/Thu) and "S" (Sun/Sat)
-            // collide, and SwiftUI explicitly warns duplicate IDs give
-            // "undefined results". Confirmed live via that exact warning in the
-            // device log. Index-based IDs are always unique regardless of what
-            // the locale's symbols look like.
             ForEach(Array(weekdaySymbols.enumerated()), id: \.offset) { _, symbol in
                 Text(symbol)
                     .font(.caption.weight(.semibold))
@@ -271,27 +292,20 @@ struct HomeCalendarView: View {
             }
         }
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
-        // No horizontal inset: the week rows below run edge to edge, and the
-        // letters have to sit over the same seven equal columns.
         .padding(.top, 8)
         .padding(.bottom, 6)
     }
 
     private var weekdaySymbols: [String] {
-        let symbols = calendar.veryShortWeekdaySymbols
+        let symbols = calendar.veryShortWeekdaySymbols.map { $0.capitalized }
         let firstIndex = calendar.firstWeekday - 1
         return Array(symbols[firstIndex...] + symbols[..<firstIndex])
     }
 
-    // MARK: - Grid
+    // MARK: - Adaptive Grid (Fixed 6-Row Canvas Space)
 
-    /// Height of one week row. Rows are split by full-width hairlines and the
-    /// day number sits at the top of its cell, like Apple Calendar's month view.
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
 
-    /// The month grid grows with Dynamic Type only up to a point — seven columns
-    /// have to keep fitting the screen width, so (like Apple Calendar) the day
-    /// numbers stop growing past xxxLarge while everything else keeps scaling.
     private var gridScale: CGFloat {
         switch dynamicTypeSize {
         case ...DynamicTypeSize.large: 1
@@ -301,18 +315,29 @@ struct HomeCalendarView: View {
         }
     }
 
-    private var weekRowHeight: CGFloat { 66 * gridScale }
+    /// Fixed row height: all months render in a fixed 6-row grid, ensuring that
+    /// every month takes up the EXACT same space on screen without layout jumps.
+    private var weekRowHeight: CGFloat { 54 * gridScale }
 
+    /// Always returns exactly 6 weeks (42 date slots). Trailing empty slots pad
+    /// out 4- or 5-week months so the grid container height remains static.
     private var weeks: [[Date?]] {
         var days = daysInGrid
-        while days.count % 7 != 0 { days.append(nil) }
-        return stride(from: 0, to: days.count, by: 7).map { Array(days[$0..<$0 + 7]) }
+        while days.count < 42 { days.append(nil) }
+        return stride(from: 0, to: 42, by: 7).map { Array(days[$0..<$0 + 7]) }
     }
 
     private var monthGrid: some View {
         VStack(spacing: 0) {
-            ForEach(Array(weeks.enumerated()), id: \.offset) { _, week in
-                Divider()
+            ForEach(Array(weeks.enumerated()), id: \.offset) { weekIndex, week in
+                let hasDaysInRow = week.contains { $0 != nil }
+                if weekIndex == 0 || hasDaysInRow {
+                    Divider()
+                } else {
+                    // Soft transparent divider placeholder to keep exact grid alignment
+                    Color.clear.frame(height: 1)
+                }
+
                 HStack(spacing: 0) {
                     ForEach(Array(week.enumerated()), id: \.offset) { _, day in
                         if let day {
@@ -354,60 +379,50 @@ struct HomeCalendarView: View {
         return days
     }
 
-    /// Key for what each circle/dot color on the grid means, as two rows: day
-    /// markers (Today / Selected / Holiday pay) on top, then the kinds of work.
-    /// Job entries come from the shifts actually pulled for this account in the
-    /// displayed month (so a Supervisor sees Supervisor, someone on Produce sees
-    /// Production TM / Floral TM, and nobody sees jobs they never work). "Holiday
-    /// pay" only appears when a holiday-pay day is in the displayed month.
+    /// Always shows all legend items: Today, Selected, Holiday pay (sparkly star),
+    /// and all job roles worked in the schedule (Supervisor, Cash Office, etc.)
     private var legend: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack(spacing: 16) {
-                // High contrast draws today as a ring, so its key has to be one too.
+        VStack(alignment: .leading, spacing: 6) {
+            FlowLayout(spacing: 14, rowSpacing: 6) {
                 legendItem(color: Color(.label), text: Text("Today"), ring: theme.highContrast)
                 legendItem(color: theme.current.accent, label: "Selected")
-                if hasHolidayPayInDisplayedMonth {
-                    HStack(spacing: 5) {
-                        Image(systemName: "star.fill")
-                            .font(.system(size: 9, weight: .bold))
-                            .foregroundStyle(Color.readable(theme.current.holidayPay, minimumContrast: 3))
-                        Text("Holiday pay")
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
-                            .lineLimit(1)
-                    }
+
+                // Golden Sparkly Star for Holiday Pay
+                HStack(spacing: 5) {
+                    SparklyStar(size: 11)
+                    Text("Holiday Pay")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
                 }
-            }
-            if !jobsInDisplayedMonth.isEmpty {
-                FlowLayout(spacing: 16, rowSpacing: 6) {
-                    ForEach(jobsInDisplayedMonth, id: \.self) { job in
-                        legendItem(color: Shift.accentColor(forJob: job, theme: theme.current), job: job)
-                    }
+
+                ForEach(allJobs, id: \.self) { job in
+                    legendItem(color: Shift.accentColor(forJob: job, theme: theme.current), job: job)
                 }
             }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    private var jobsInDisplayedMonth: [String] {
-        guard let interval = calendar.dateInterval(of: .month, for: displayedMonth) else { return [] }
+    /// All job titles across the user's entire schedule (or standard fallbacks if empty),
+    /// ensuring job legends (Supervisor, Cash Office, etc.) ALWAYS display.
+    private var allJobs: [String] {
+        let shifts = index.sortedByStart
+        if shifts.isEmpty {
+            return ["Supervisor", "Cash Office"]
+        }
         var seen = Set<String>()
         var jobs: [String] = []
-        for shift in index.sortedByStart where interval.contains(shift.date) {
+        for shift in shifts {
             if seen.insert(shift.job).inserted { jobs.append(shift.job) }
         }
         return jobs
-    }
-
-    private var hasHolidayPayInDisplayedMonth: Bool {
-        daysInGrid.contains { day in day.map(isHolidayPay) ?? false }
     }
 
     private func legendItem(color: Color, label: LocalizedStringKey) -> some View {
         legendItem(color: color, text: Text(label))
     }
 
-    /// Job names come straight from UKG, so they're shown as-is, never translated.
     private func legendItem(color: Color, job: String) -> some View {
         legendItem(color: color, text: Text(verbatim: job))
     }
@@ -426,14 +441,12 @@ struct HomeCalendarView: View {
         }
     }
 
-    /// Distinct job names that day, in shift order (used for VoiceOver).
     private func jobs(on day: Date) -> [String] {
         var seen = Set<String>()
         return index.shifts(on: day, calendar: calendar)
             .compactMap { seen.insert($0.job).inserted ? $0.job : nil }
     }
 
-    /// One color per distinct kind of work that day (at most three), in shift order.
     private func shiftColors(on day: Date) -> [Color] {
         var seenJobs = Set<String>()
         var colors: [Color] = []
@@ -458,19 +471,16 @@ struct HomeCalendarView: View {
 
     // MARK: - Day event list
 
-    /// The scrollable shift list for one arbitrary day (not necessarily
-    /// `selectedDate`) — `dayEventList` renders this twice during a push: once
-    /// for the outgoing day, once for the incoming one.
     private func dayContent(for date: Date) -> some View {
         ScrollView {
             VStack(alignment: .leading, spacing: 0) {
                 let dayShifts = index.shifts(on: date, calendar: calendar)
 
                 if dayShifts.isEmpty {
-                    Text("No shift on \(date.formatted(date: .abbreviated, time: .omitted))")
+                    Text("No shift on \(date.formatted(date: .abbreviated, time: .omitted).capitalized)")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
-                        .padding(.top, 24)
+                        .padding(.top, 16)
                 } else {
                     ForEach(Array(dayShifts.enumerated()), id: \.element.id) { index, shift in
                         DayEventRow(shift: shift)
@@ -480,16 +490,11 @@ struct HomeCalendarView: View {
                     }
                 }
             }
-            .padding()
+            .padding(.horizontal)
             .padding(.bottom, 60)
         }
     }
 
-    /// Renders the current day's content plus, while `pendingTargetDate` is
-    /// set, the target day's content positioned exactly one `pageWidth` to
-    /// whichever side it's entering from. Both share `pageOffset`, so as one
-    /// slides out the other slides in over the exact same motion — a real
-    /// push, not two separate animations handed off to each other.
     private var dayEventList: some View {
         GeometryReader { geo in
             ZStack {
@@ -504,35 +509,15 @@ struct HomeCalendarView: View {
             .onAppear { pageWidth = geo.size.width }
             .onChange(of: geo.size.width) { _, newValue in pageWidth = newValue }
         }
-        // Without this, whichever side is sliding out can briefly poke
-        // outside the list's own area (over the tab bar, etc.) mid-animation.
         .clipped()
     }
 
     // MARK: - Swipe between adjacent calendar days
 
-    /// Fast, slightly bouncy settle — matches the snappy, low-travel-time
-    /// feel of a native paging transition (Photos, Calendar's own day view)
-    /// rather than a fixed slower ease. Reused for a committed push, a
-    /// cancelled swipe's snap-back, and every non-gesture navigation (tap,
-    /// jump-to-today) so they all feel consistent.
     private var daySwipeAnimation: Animation {
         .spring(response: 0.28, dampingFraction: 0.86)
     }
 
-    /// Moves by plain adjacent calendar days, not just days with a posted
-    /// shift. The shift-days-only version confirmed live to trap you: once you
-    /// swiped past today onto a later shift day, swiping back could never land
-    /// back on today if today itself had no shift, since it was never a valid
-    /// stop.
-    ///
-    /// Tracks the finger live via `pageOffset` instead of only reacting on
-    /// release — the actual day change still only commits on release, but the
-    /// content visibly follows the drag the whole way, which is most of what
-    /// reads as "native" here. The release decision uses velocity as well as
-    /// distance, same as a native page swipe: a fast short flick commits just
-    /// like a slow long drag does, instead of requiring a fixed travel
-    /// distance regardless of how the gesture was actually thrown.
     private var swipeGesture: some Gesture {
         DragGesture(minimumDistance: 8)
             .onChanged { value in
@@ -564,9 +549,6 @@ struct HomeCalendarView: View {
             }
     }
 
-    /// Continues the SAME motion the rest of the way (rather than snapping)
-    /// so the finger lifting off doesn't visibly change the animation, then
-    /// commits `selectedDate` once the push has fully landed.
     private func commitPush(to target: Date) {
         withAnimation(daySwipeAnimation, completionCriteria: .removed) {
             pageOffset = pendingDirection > 0 ? -pageWidth : pageWidth
@@ -588,9 +570,6 @@ struct HomeCalendarView: View {
         }
     }
 
-    /// Programmatic equivalent of a completed swipe (tap on a day cell,
-    /// jump-to-today) — same dual-pane push, just driven by an immediate
-    /// animation instead of a drag.
     private func navigate(to target: Date) {
         guard !calendar.isDate(target, inSameDayAs: selectedDate), pendingTargetDate == nil else { return }
         pendingDirection = target >= selectedDate ? 1 : -1
@@ -641,23 +620,14 @@ private struct DayCell: View {
 
     @ObservedObject private var theme = ThemeManager.shared
 
-    private var circleSize: CGFloat { 38 * scale }
+    private var circleSize: CGFloat { 32 * scale }
 
     private var calendar: Calendar { Calendar.current }
 
-    /// Selected day always wins the accent-colored circle — including when
-    /// the selection IS today. Today falls back to a plain gray circle when some
-    /// OTHER day is selected — a quiet marker rather than competing with the
-    /// actual selection. A Whole Foods holiday-pay day gets a tiny star beside
-    /// its number instead of a fill.
-    ///
-    /// The circle is ONE constant size regardless of state, so moving the
-    /// selection never makes circles grow or shrink; only the fill changes.
-    /// Weekend numbers are dimmed, as in Apple Calendar.
     var body: some View {
-        VStack(spacing: 5) {
+        VStack(spacing: 3) {
             Text("\(calendar.component(.day, from: day))")
-                .font(.title3.weight(isToday || isSelected ? .bold : .medium))
+                .font(.subheadline.weight(isToday || isSelected ? .bold : .medium))
                 .minimumScaleFactor(0.7)
                 .foregroundStyle(numberStyle)
                 .frame(width: circleSize, height: circleSize)
@@ -665,8 +635,7 @@ private struct DayCell: View {
                     if isSelected {
                         Circle().fill(theme.current.accent)
                     } else if isToday && theme.highContrast {
-                        // Selected is a solid black/white disc, so today is a ring.
-                        Circle().strokeBorder(Color(.label), lineWidth: 2.5)
+                        Circle().strokeBorder(Color(.label), lineWidth: 2)
                     } else if isToday {
                         Circle().fill(Color(.label))
                     }
@@ -674,7 +643,7 @@ private struct DayCell: View {
 
             indicator
         }
-        .padding(.top, 6)
+        .padding(.top, 4)
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
         .dynamicTypeSize(...DynamicTypeSize.xxxLarge)
         .accessibilityElement(children: .ignore)
@@ -682,12 +651,10 @@ private struct DayCell: View {
         .accessibilityAddTraits(isSelected ? [.isButton, .isSelected] : .isButton)
     }
 
-    /// Color alone never carries the meaning: VoiceOver gets the full date,
-    /// what kind of work is scheduled, and the day's special status in words.
     private var accessibilityDescription: String {
-        var parts = [day.formatted(.dateTime.weekday(.wide).month(.wide).day())]
+        var parts = [day.formatted(.dateTime.weekday(.wide).month(.wide).day()).capitalized]
         if isToday { parts.append(String(localized: "Today")) }
-        if isHolidayPay { parts.append(String(localized: "Holiday pay")) }
+        if isHolidayPay { parts.append(String(localized: "Holiday Pay")) }
         parts.append(contentsOf: jobs)
         return parts.joined(separator: ", ")
     }
@@ -698,28 +665,14 @@ private struct DayCell: View {
         return isWeekend ? AnyShapeStyle(Color.primary.opacity(0.7)) : AnyShapeStyle(.primary)
     }
 
-    /// Under the number: a dot for one kind of work, a small multi-color pill when
-    /// there's more, and a tiny star for holiday pay. On a day with both, the star
-    /// sits beside the dot and turns white (red in high contrast) so it reads
-    /// against the work color rather than blending into it.
     private var indicator: some View {
         HStack(spacing: 4) {
             workMarker
             if isHolidayPay {
-                Image(systemName: "star.fill")
-                    .font(.system(size: 8, weight: .bold))
-                    .foregroundStyle(starColor)
+                SparklyStar(size: 8)
             }
         }
         .frame(height: 8)
-    }
-
-    private var starColor: Color {
-        let hasWork = !accentColors.isEmpty
-        if hasWork {
-            return theme.highContrast ? .red : .primary
-        }
-        return theme.highContrast ? Color.primary : Color.readable(theme.current.holidayPay, minimumContrast: 3)
     }
 
     @ViewBuilder
@@ -774,7 +727,6 @@ private struct DayEventRow: View {
     }
 }
 
-/// Left-to-right layout that wraps onto a new row when the next item won't fit.
 private struct FlowLayout: Layout {
     var spacing: CGFloat
     var rowSpacing: CGFloat

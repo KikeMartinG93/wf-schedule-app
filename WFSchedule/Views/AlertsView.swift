@@ -1,28 +1,76 @@
 import SwiftUI
 
-/// Change history for the schedule: every new, changed, or removed shift ever
-/// detected by a sync, newest first. UKG's data can't tell us "this was a
-/// swap, and with whom" — so each row has an optional free-text field for the
-/// user to fill that in themselves when they know it.
-///
-/// Unseen entries are shown in full above a collapsible "Viewed" section.
-/// Nothing has to be tapped to acknowledge them: they're already showing
-/// their full detail the moment this tab is open, and leaving the tab (see
-/// `isActive`) quietly marks whatever was showing as seen — the same "read
-/// on leaving the list" behavior as Mail or Messages. "Mark all as viewed"
-/// is still there for clearing the badge without switching tabs.
-struct AlertsView: View {
-    /// Whether this is the currently-selected tab. TabView keeps every tab's
-    /// view alive rather than tearing it down on switch (see `AppTheme`'s
-    /// `BackgroundPulse` for the same fact biting a different feature), so
-    /// `onDisappear` can't be trusted to fire on tab switches — this, passed
-    /// down from `MainTabView`'s own `selectedTab`, is what actually does.
-    var isActive: Bool = true
-    @State private var entries: [ChangeLogEntry] = ChangeLogStore.shared.load()
-    @State private var isViewedSectionExpanded = false
+enum AlertsFilter: Int, CaseIterable {
+    case unread = 0
+    case history30 = 30
+    case history60 = 60
+    case history90 = 90
 
-    private var unseenEntries: [ChangeLogEntry] { entries.filter { !$0.seen } }
-    private var seenEntries: [ChangeLogEntry] { entries.filter { $0.seen } }
+    var next: AlertsFilter {
+        switch self {
+        case .unread: return .history30
+        case .history30: return .history60
+        case .history60: return .history90
+        case .history90: return .unread
+        }
+    }
+}
+
+/// Change history for the schedule: every new, changed, or removed shift ever
+/// detected by a sync, newest first.
+struct AlertsView: View {
+    var isActive: Bool = true
+    @Binding var filter: AlertsFilter
+    @State private var entries: [ChangeLogEntry] = ChangeLogStore.shared.load()
+
+    init(isActive: Bool = true, filter: Binding<AlertsFilter> = .constant(.unread)) {
+        self.isActive = isActive
+        self._filter = filter
+    }
+
+    private var displayedEntries: [ChangeLogEntry] {
+        let now = Date()
+        let cutoff30 = now.addingTimeInterval(-30 * 86_400)
+        let cutoff60 = now.addingTimeInterval(-60 * 86_400)
+        let cutoff90 = now.addingTimeInterval(-90 * 86_400)
+
+        switch filter {
+        case .unread:
+            // Unread (all unread)
+            return entries.filter { !$0.seen }
+        case .history30:
+            // Last 30 days (Last 30 days read)
+            return entries.filter { $0.seen && $0.timestamp >= cutoff30 }
+        case .history60:
+            // Last 60 days (Last 60 days - anything already displayed on 30 days)
+            return entries.filter { $0.seen && $0.timestamp >= cutoff60 && $0.timestamp < cutoff30 }
+        case .history90:
+            // Last 90 days (Last 90 days minus anything already displayed on 60 and/or 30 days)
+            return entries.filter { $0.seen && $0.timestamp >= cutoff90 && $0.timestamp < cutoff60 }
+        }
+    }
+
+    private var headerSubtitle: String? {
+        switch filter {
+        case .unread: return nil
+        case .history30: return "Last 30 Days (Read)"
+        case .history60: return "30 – 60 Days Ago"
+        case .history90: return "60 – 90 Days Ago"
+        }
+    }
+
+    private var emptyStateDescription: String {
+        switch filter {
+        case .unread:
+            return ""
+        case .history30:
+            return "No read alerts in the last 30 days."
+        case .history60:
+            return "No read alerts between 30 and 60 days ago."
+        case .history90:
+            return "No read alerts between 60 and 90 days ago."
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -40,34 +88,41 @@ struct AlertsView: View {
                     } else {
                         ScrollView {
                             LazyVStack(alignment: .leading, spacing: 0) {
-                                if unseenEntries.isEmpty {
-                                    Text("You're all caught up")
-                                        .font(.subheadline)
-                                        .foregroundStyle(.secondary)
-                                        .padding(.top, 24)
+                                if displayedEntries.isEmpty {
+                                    VStack(spacing: 6) {
+                                        Text("No Alerts")
+                                            .font(.title3.bold())
+                                            .foregroundStyle(.secondary)
+
+                                        if filter != .unread {
+                                            Text(emptyStateDescription)
+                                                .font(.subheadline)
+                                                .foregroundStyle(.secondary.opacity(0.8))
+                                        }
+                                    }
+                                    .frame(maxWidth: .infinity, alignment: .center)
+                                    .padding(.top, 40)
+                                    .transition(.opacity.combined(with: .scale(scale: 0.95)))
                                 } else {
-                                    ForEach(Array(unseenEntries.enumerated()), id: \.element.id) { index, entry in
+                                    ForEach(Array(displayedEntries.enumerated()), id: \.element.id) { index, entry in
                                         ChangeLogRow(entry: entry) { note in
                                             ChangeLogStore.shared.updateNote(id: entry.id, note: note)
                                             entries = ChangeLogStore.shared.load()
                                         }
-                                        if index < unseenEntries.count - 1 {
+                                        .transition(.asymmetric(insertion: .push(from: .bottom), removal: .scale.combined(with: .opacity)))
+                                        if index < displayedEntries.count - 1 {
                                             Divider()
                                         }
                                     }
                                 }
 
-                                if !seenEntries.isEmpty {
-                                    viewedSection
-                                }
-
-                                Color.clear.frame(height: 40)
+                                Color.clear.frame(height: 64)
                             }
                             .padding(.horizontal)
                             .padding(.top, 4)
+                            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: filter)
+                            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: displayedEntries.count)
                         }
-                        // Nothing to scroll (or bounce) when it all fits — otherwise
-                        // dragging it moves the tab bar and shift bar out of step.
                         .scrollBounceBehavior(.basedOnSize)
                     }
                 }
@@ -108,57 +163,20 @@ struct AlertsView: View {
 
     private var header: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text("Alerts")
-                .font(.largeTitle.bold())
-                .foregroundStyle(Color(uiColor: .label))
-            Spacer()
-            if !unseenEntries.isEmpty {
-                Button("Mark all as viewed") {
-                    ChangeLogStore.shared.markAllSeen()
-                    entries = ChangeLogStore.shared.load()
-                }
-                .font(.subheadline)
-            }
-        }
-    }
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Alerts")
+                    .font(.largeTitle.bold())
+                    .foregroundStyle(Color(uiColor: .label))
 
-    /// Collapsed by default — past, already-acknowledged alerts shouldn't
-    /// compete for attention with anything still unseen.
-    private var viewedSection: some View {
-        VStack(alignment: .leading, spacing: 0) {
-            Button {
-                withAnimation(.easeInOut(duration: 0.2)) {
-                    isViewedSectionExpanded.toggle()
-                }
-            } label: {
-                HStack {
-                    Text("Viewed (\(seenEntries.count))")
-                        .font(.subheadline.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                    Spacer()
-                    Image(systemName: "chevron.right")
+                if let subtitle = headerSubtitle {
+                    Text(subtitle)
                         .font(.caption.weight(.semibold))
-                        .foregroundStyle(.secondary)
-                        .rotationEffect(.degrees(isViewedSectionExpanded ? 90 : 0))
-                }
-                .padding(.vertical, 10)
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-
-            if isViewedSectionExpanded {
-                ForEach(Array(seenEntries.enumerated()), id: \.element.id) { index, entry in
-                    ChangeLogRow(entry: entry) { note in
-                        ChangeLogStore.shared.updateNote(id: entry.id, note: note)
-                        entries = ChangeLogStore.shared.load()
-                    }
-                    if index < seenEntries.count - 1 {
-                        Divider()
-                    }
+                        .foregroundStyle(ThemeManager.shared.current.readableAccent)
+                        .transition(.opacity.combined(with: .move(edge: .top)))
                 }
             }
+            Spacer()
         }
-        .padding(.top, unseenEntries.isEmpty ? 0 : 8)
     }
 }
 
@@ -167,16 +185,7 @@ private struct ChangeLogRow: View {
     var onNoteChanged: (String) -> Void
 
     @State private var noteText: String
-    /// A removed shift is the closest thing to a real "swap" signal this data
-    /// has — a shift you had is just gone, plausibly because someone covered
-    /// it. New/changed shifts have no such implication, so the note field
-    /// stays tucked away for those unless the user explicitly asks for it by
-    /// tapping "Add note".
     @State private var isNoteExpanded: Bool
-    /// Seen entries (shown inside the collapsible "Viewed" section) default
-    /// to a compact one-line layout, but stay tappable back open — "viewed"
-    /// isn't "gone," just quieter. Unseen entries always show in full.
-    @State private var isExpanded: Bool
     @FocusState private var noteFocused: Bool
     @ObservedObject private var theme = ThemeManager.shared
 
@@ -185,93 +194,95 @@ private struct ChangeLogRow: View {
         self.onNoteChanged = onNoteChanged
         _noteText = State(initialValue: entry.swapNote ?? "")
         _isNoteExpanded = State(initialValue: entry.kind == .removed || entry.swapNote?.isEmpty == false)
-        _isExpanded = State(initialValue: !entry.seen)
     }
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
+            // Color status vertical indicator
             Rectangle()
                 .fill(kindColor)
                 .frame(width: 4)
                 .clipShape(.rect(cornerRadius: 2))
 
-            if isExpanded {
-                fullDetail
-            } else {
-                compactSummary
-            }
-        }
-        .padding(.vertical, isExpanded ? 12 : 8)
-        .contentShape(Rectangle())
-        .onTapGesture {
-            if entry.seen {
-                withAnimation(.easeInOut(duration: 0.15)) { isExpanded.toggle() }
-            }
-        }
-    }
+            VStack(alignment: .leading, spacing: 6) {
+                // Top line: Kind badge + Detection timestamp
+                HStack(alignment: .center) {
+                    Text(kindLabel)
+                        .font(.caption2.weight(.bold))
+                        .foregroundStyle(kindTextColor)
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2.5)
+                        .background(kindColor.opacity(0.12), in: RoundedRectangle(cornerRadius: 4, style: .continuous))
 
-    private var fullDetail: some View {
-        VStack(alignment: .leading, spacing: 6) {
-            HStack {
-                Text(kindLabel)
-                    .font(.caption.weight(.bold))
-                    .foregroundStyle(kindTextColor)
-                Spacer()
-                Text(entry.timestamp.formatted(date: .abbreviated, time: .shortened))
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-            }
+                    Spacer()
 
-            Text("\(entry.shift.job) — \(entry.shift.startTime.formatted(date: .abbreviated, time: .omitted))")
-                .font(.headline)
-
-            Text(entry.summary)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-
-            if isNoteExpanded {
-                HStack(spacing: 6) {
-                    Image(systemName: "person.2")
-                        .font(.caption)
+                    Text(entry.timestamp.formatted(date: .abbreviated, time: .shortened))
+                        .font(.caption2)
                         .foregroundStyle(.secondary)
-                    TextField("Swapped with? (optional)", text: $noteText)
+                }
+
+                // Title line: Job + Shift Date
+                HStack(alignment: .firstTextBaseline) {
+                    Text(entry.shift.job)
+                        .font(.headline.weight(.bold))
+                        .foregroundStyle(Color(uiColor: .label))
+
+                    Spacer()
+
+                    Text(entry.shift.startTime.formatted(date: .abbreviated, time: .omitted))
+                        .font(.subheadline.weight(.semibold))
+                        .foregroundStyle(.secondary)
+                }
+
+                // Detail line: Summary description & Shift time range
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(entry.summary)
                         .font(.subheadline)
-                        .focused($noteFocused)
+                        .foregroundStyle(Color(uiColor: .label).opacity(0.85))
+
+                    Text("\(entry.shift.startTime.formatted(date: .omitted, time: .shortened)) – \(entry.shift.endTime.formatted(date: .omitted, time: .shortened))")
+                        .font(.caption.weight(.medium))
+                        .foregroundStyle(.secondary)
                 }
-                .padding(.top, 2)
-                .onChange(of: noteFocused) { wasFocused, isFocused in
-                    if wasFocused && !isFocused {
-                        onNoteChanged(noteText)
+
+                // Swap Note section
+                if isNoteExpanded {
+                    HStack(spacing: 6) {
+                        Image(systemName: "person.2")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                        TextField("Swapped with? (optional)", text: $noteText)
+                            .font(.subheadline)
+                            .focused($noteFocused)
                     }
+                    .padding(.top, 4)
+                    .onChange(of: noteFocused) { wasFocused, isFocused in
+                        if wasFocused && !isFocused {
+                            onNoteChanged(noteText)
+                        }
+                    }
+                } else if let note = entry.swapNote, !note.isEmpty {
+                    HStack(spacing: 4) {
+                        Image(systemName: "person.2.fill")
+                            .font(.caption2)
+                            .foregroundStyle(theme.current.readableAccent)
+                        Text(note)
+                            .font(.caption.weight(.medium))
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.top, 2)
+                } else {
+                    Button("Add note") {
+                        withAnimation(.easeOut(duration: 0.2)) { isNoteExpanded = true }
+                    }
+                    .font(.caption.weight(.medium))
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 2)
                 }
-            } else {
-                Button("Add note") {
-                    isNoteExpanded = true
-                }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-                .padding(.top, 2)
             }
         }
-    }
-
-    /// One line: kind color already carries most of the meaning via the bar
-    /// on the left, so this only needs the job, the date, and a quiet
-    /// confirmation it's been seen.
-    private var compactSummary: some View {
-        HStack(spacing: 8) {
-            Text(entry.shift.job)
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .lineLimit(1)
-            Spacer()
-            Text(entry.timestamp.formatted(date: .numeric, time: .omitted))
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            Image(systemName: "checkmark")
-                .font(.caption)
-                .foregroundStyle(.secondary)
-        }
+        .padding(.vertical, 10)
+        .contentShape(Rectangle())
     }
 
     private var kindLabel: LocalizedStringKey {

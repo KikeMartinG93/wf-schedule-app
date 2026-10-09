@@ -47,7 +47,7 @@ struct RootView: View {
 }
 
 private enum AppTab: Hashable {
-    case home, list, alerts, settings
+    case home, timeline, alerts, settings
 }
 
 private struct MainTabView: View {
@@ -59,10 +59,9 @@ private struct MainTabView: View {
     @State private var showingBreaks = false
     @State private var homeJump: HomeJump?
     @State private var monthCommand: MonthCommand?
-    /// The system tab bar collapses into a round button while a list scrolls down;
-    /// this follows it so the shift bar can drop into the same row beside that
-    /// button, and float back up when the tab bar opens again.
-    @State private var barMinimized = false
+    @State private var timelineRefreshTrigger = 0
+    @State private var isSyncingTimeline = false
+    @State private var alertsFilter: AlertsFilter = .unread
     @ObservedObject private var theme = ThemeManager.shared
 
     private static let tabBarHeight: CGFloat = 49
@@ -86,19 +85,18 @@ private struct MainTabView: View {
                     showingLogin = true
                 }, jump: homeJump, monthCommand: monthCommand)
             }
-            Tab("List", systemImage: "list.bullet", value: AppTab.list) {
-                ScheduleListView()
+            Tab("Timeline", systemImage: "list.bullet", value: AppTab.timeline) {
+                ScheduleListView(refreshTrigger: timelineRefreshTrigger, isSyncing: $isSyncingTimeline)
             }
             Tab("Alerts", systemImage: "bell.fill", value: AppTab.alerts) {
-                AlertsView(isActive: selectedTab == .alerts)
+                AlertsView(isActive: selectedTab == .alerts, filter: $alertsFilter)
             }
             Tab("Settings", systemImage: "gearshape.fill", value: AppTab.settings) {
                 SettingsView()
             }
         }
-        // The system tab bar, like Gymship: it collapses into a round button when a
-        // list scrolls, leaving room for the shift countdown beside it.
-        .tabBarMinimizeBehavior(.onScrollDown)
+        // Keep the tab bar stable and fixed at the bottom while scrolling.
+        .tabBarMinimizeBehavior(.never)
         // `.tint()` on TabView is the standard way to color its selected-item
         // state; it also becomes the default tint for each tab's own content
         // (buttons, toggles, etc.) unless that view sets its own tint.
@@ -106,18 +104,12 @@ private struct MainTabView: View {
         // One bar shared by every tab (so it can morph between them), floated above
         // the tab bar. The lift is the floating tab bar's height.
         .overlay(alignment: .bottom) {
-            shiftBar(showsMonthArrows: selectedTab == .home && !barMinimized)
-                // Minimized: sit on the tab bar's own row, to the right of its round button.
-                .padding(.leading, barMinimized ? 62 : 0)
-                .padding(.bottom, barMinimized ? -11 : Self.tabBarHeight)
-                .animation(.spring(response: 0.28, dampingFraction: 0.85), value: barMinimized)
+            shiftBar(for: selectedTab)
+                .padding(.bottom, Self.tabBarHeight)
         }
-        // The tab bar's real state, read from UIKit: it also opens when its round
-        // button is tapped or a tab is picked, which no scroll tracking could see.
-        .background { TabBarMinimizedObserver(isMinimized: $barMinimized).allowsHitTesting(false) }
         // Home is the first tab, but the only sync trigger used to live in the
-        // List tab's own task, so a fresh install showed an empty Home calendar
-        // until List was opened. MainTabView only exists once authenticated, so
+        // Timeline tab's own task, so a fresh install showed an empty Home calendar
+        // until Timeline was opened. MainTabView only exists once authenticated, so
         // this can't burn the auto-sync throttle window before login.
         .task {
             if isAuthenticated { try? await ScheduleSyncCoordinator.runSync() }
@@ -149,9 +141,77 @@ private struct MainTabView: View {
         }
     }
 
-    /// The bar above the tab bar: three glass buttons on Home, one pill elsewhere.
-    private func shiftBar(showsMonthArrows: Bool) -> some View {
-        ShiftCountdownAccessory(
+    /// The bar above the tab bar: morphs between arrows, refresh, and check/history buttons.
+    private func shiftBar(for tab: AppTab) -> some View {
+        let prevAction: (() -> Void)? = (tab == .home) ? { monthCommand = MonthCommand(delta: -1) } : nil
+        let rightConfig: ShiftCountdownAccessory.RightButton?
+        switch tab {
+        case .home:
+            rightConfig = ShiftCountdownAccessory.RightButton(
+                symbol: "chevron.right",
+                label: "Next month",
+                action: { monthCommand = MonthCommand(delta: 1) }
+            )
+        case .timeline:
+            rightConfig = ShiftCountdownAccessory.RightButton(
+                symbol: "arrow.clockwise",
+                label: "Refresh",
+                action: { timelineRefreshTrigger += 1 },
+                isLoading: isSyncingTimeline,
+                isDisabled: isSyncingTimeline
+            )
+        case .alerts:
+            switch alertsFilter {
+            case .unread:
+                rightConfig = ShiftCountdownAccessory.RightButton(
+                    symbol: "checkmark",
+                    label: "Mark all as viewed",
+                    action: {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            ChangeLogStore.shared.markAllSeen()
+                            alertsFilter = .history30
+                        }
+                    }
+                )
+            case .history30:
+                rightConfig = ShiftCountdownAccessory.RightButton(
+                    symbol: "clock.arrow.circlepath",
+                    label: "30 days history",
+                    action: {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            alertsFilter = .history60
+                        }
+                    },
+                    badgeText: "30"
+                )
+            case .history60:
+                rightConfig = ShiftCountdownAccessory.RightButton(
+                    symbol: "clock.arrow.circlepath",
+                    label: "60 days history",
+                    action: {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            alertsFilter = .history90
+                        }
+                    },
+                    badgeText: "60"
+                )
+            case .history90:
+                rightConfig = ShiftCountdownAccessory.RightButton(
+                    symbol: "clock.arrow.circlepath",
+                    label: "90 days history",
+                    action: {
+                        withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
+                            alertsFilter = .unread
+                        }
+                    },
+                    badgeText: "90"
+                )
+            }
+        case .settings:
+            rightConfig = nil
+        }
+
+        return ShiftCountdownAccessory(
             onTap: { target in
                 switch target {
                 case .breaks:
@@ -161,8 +221,8 @@ private struct MainTabView: View {
                     homeJump = HomeJump(date: date)
                 }
             },
-            onPreviousMonth: showsMonthArrows ? { monthCommand = MonthCommand(delta: -1) } : nil,
-            onNextMonth: showsMonthArrows ? { monthCommand = MonthCommand(delta: 1) } : nil
+            onPreviousMonth: prevAction,
+            rightButton: rightConfig
         )
     }
 
@@ -183,62 +243,4 @@ private struct MainTabView: View {
             }
         )
     }
-}
-
-/// Reports whether the system tab bar is collapsed into its round button, by
-/// looking at which of the tab bar's platters is showing.
-private struct TabBarMinimizedObserver: UIViewRepresentable {
-    @Binding var isMinimized: Bool
-
-    func makeUIView(context: Context) -> UIView { UIView() }
-
-    func updateUIView(_ view: UIView, context: Context) {
-        context.coordinator.binding = $isMinimized
-        context.coordinator.start(from: view)
-    }
-
-    func makeCoordinator() -> Coordinator { Coordinator() }
-
-    final class Coordinator {
-        var binding: Binding<Bool>?
-        private var timer: Timer?
-        private weak var anchor: UIView?
-        func start(from view: UIView) {
-            anchor = view
-            guard timer == nil else { return }
-            // `.common`, not the default mode: the default one is paused while a
-            // scroll view is tracking, which is exactly when this needs to run.
-            let timer = Timer(timeInterval: 0.03, repeats: true) { [weak self] _ in
-                self?.poll()
-            }
-            RunLoop.main.add(timer, forMode: .common)
-            self.timer = timer
-        }
-
-        private func poll() {
-            guard let window = anchor?.window, let bar = Self.tabBar(in: window) else { return }
-            let platters = bar.allSubviews.filter { String(describing: type(of: $0)).contains("PlatterView") }
-            // Each direction is called by the platter that appears first: collapsing
-            // by the round one showing, opening by the full-width one showing (the
-            // round one lingers a moment while it opens, so it can't decide that).
-            let roundShowing = platters.contains { !$0.isHidden && $0.bounds.width < 100 }
-            let wideShowing = platters.contains { !$0.isHidden && $0.bounds.width > 100 }
-            var minimized = binding?.wrappedValue ?? false
-            if minimized, wideShowing { minimized = false }
-            else if !minimized, roundShowing { minimized = true }
-            if binding?.wrappedValue != minimized { binding?.wrappedValue = minimized }
-        }
-
-        private static func tabBar(in view: UIView) -> UITabBar? {
-            if let bar = view as? UITabBar { return bar }
-            for sub in view.subviews { if let bar = tabBar(in: sub) { return bar } }
-            return nil
-        }
-
-        deinit { timer?.invalidate() }
-    }
-}
-
-private extension UIView {
-    var allSubviews: [UIView] { subviews + subviews.flatMap(\.allSubviews) }
 }

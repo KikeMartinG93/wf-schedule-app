@@ -1,0 +1,9 @@
+{
+  "id" : "0bb0cfc8-94c4-4b37-88c7-3a0524eccc6a",
+  "targets" : [
+    {
+      "id" : "62f7642b-790a-49f4-b620-498c0adaf618",
+      "name" : "WFSchedule"
+    }
+  ]
+}

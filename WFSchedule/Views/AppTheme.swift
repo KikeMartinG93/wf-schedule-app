@@ -16,7 +16,9 @@ private final class BackgroundPulse: ObservableObject {
     @Published var breatheIn = false
 
     private init() {
-        updateAnimation()
+        Task { @MainActor in
+            self.updateAnimation()
+        }
         // The pulse is purely decorative, so it stands down for Reduce Motion and
         // Low Power Mode (a forever-running animation is a steady battery cost)
         // and comes back if either is switched off.
@@ -141,6 +143,9 @@ extension Shift {
         return Int(hash % UInt64(Int.max))
     }
 
+    private static var accentColorCache: [String: Color] = [:]
+    private static let cacheLock = NSLock()
+
     /// Supervisor and Cash Office get colors DERIVED from the active theme
     /// (a deep theme-tinted shade for Supervisor, the theme's accent itself
     /// for Cash Office — the same relationship those two fixed greens had to
@@ -153,25 +158,38 @@ extension Shift {
     /// can show what "Supervisor"/"Cash Office" look like without needing an
     /// actual `Shift` to ask.
     static func accentColor(forJob job: String, theme: AppColorTheme) -> Color {
-        // These color dots, bars and legend swatches — graphics that carry
-        // meaning — so each is nudged to at least 3:1 against the surface
-        // it's drawn on (Apple's / WCAG's bar for non-text elements).
-        // High contrast: no hue. Supervisor is solid black/white, everything
-        // else a mid gray, so the two kinds of work still read apart.
-        if ContrastPreference.high {
-            return job == "Supervisor" ? Color(.label) : Color(.systemGray)
+        let isHigh = ContrastPreference.high
+        let cacheKey = "\(job)_\(theme.id)_\(isHigh)"
+
+        cacheLock.lock()
+        if let cached = accentColorCache[cacheKey] {
+            cacheLock.unlock()
+            return cached
         }
-        let base: Color
-        switch job {
-        case "Supervisor":
-            base = theme.supervisorAccentOverride ?? theme.backgroundTint.mixed(with: theme.accent, amount: 0.35)
-        case "Cash Office":
-            base = theme.cashOfficeAccentOverride ?? theme.accent
-        default:
-            let palette = jobPalette(for: theme)
-            base = palette[Self.stableHash(job) % palette.count]
+        cacheLock.unlock()
+
+        let color: Color
+        if isHigh {
+            color = job == "Supervisor" ? Color(.label) : Color(.systemGray)
+        } else {
+            let base: Color
+            switch job {
+            case "Supervisor":
+                base = theme.supervisorAccentOverride ?? theme.backgroundTint.mixed(with: theme.accent, amount: 0.35)
+            case "Cash Office":
+                base = theme.cashOfficeAccentOverride ?? theme.accent
+            default:
+                let palette = jobPalette(for: theme)
+                base = palette[Self.stableHash(job) % palette.count]
+            }
+            color = Color.readable(base, minimumContrast: 3)
         }
-        return Color.readable(base, minimumContrast: 3)
+
+        cacheLock.lock()
+        accentColorCache[cacheKey] = color
+        cacheLock.unlock()
+
+        return color
     }
 
     func accentColor(theme: AppColorTheme) -> Color {

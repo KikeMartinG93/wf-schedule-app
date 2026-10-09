@@ -1,26 +1,59 @@
 import SwiftUI
 
 /// The row above the tab bar: a live countdown to the next shift (or, during a
-/// shift, to when it ends) between two month arrows that only show on Home. Each
-/// is its own glass button.
+/// shift, to when it ends) between optional action buttons (e.g. month navigation,
+/// timeline refresh, or marking alerts read). Each is its own glass button.
 struct ShiftCountdownAccessory: View {
-    /// What a tap should do: during a shift, open the break tools; otherwise
-    /// show the day of the next shift.
+    /// What a tap on the countdown pill should do: during a shift, open the break tools;
+    /// otherwise show the day of the next shift.
     enum Target {
         case breaks
         case shift(Date)
     }
 
+    struct RightButton {
+        let symbol: String
+        let label: LocalizedStringKey
+        let action: () -> Void
+        var badgeText: String? = nil
+        var isLoading: Bool = false
+        var isDisabled: Bool = false
+    }
+
     let onTap: (Target) -> Void
-    /// The month arrows on either side of the countdown. `nil` hides them — they're
-    /// only for the calendar on Home.
+    /// The month arrows or action buttons on either side of the countdown. `nil` hides them.
     var onPreviousMonth: (() -> Void)? = nil
-    var onNextMonth: (() -> Void)? = nil
-    /// Ties the three glass shapes together so they morph into each other rather
+    var rightButton: RightButton? = nil
+
+    /// Ties the glass shapes together so they morph into each other rather
     /// than fading in and out.
     @Namespace private var glass
     @State private var shifts: [Shift] = []
     @AppStorage(DemoMode.storageKey) private var demoMode = false
+
+    init(
+        onTap: @escaping (Target) -> Void,
+        onPreviousMonth: (() -> Void)? = nil,
+        rightButton: RightButton? = nil
+    ) {
+        self.onTap = onTap
+        self.onPreviousMonth = onPreviousMonth
+        self.rightButton = rightButton
+    }
+
+    init(
+        onTap: @escaping (Target) -> Void,
+        onPreviousMonth: (() -> Void)? = nil,
+        onNextMonth: (() -> Void)? = nil
+    ) {
+        self.onTap = onTap
+        self.onPreviousMonth = onPreviousMonth
+        if let onNextMonth {
+            self.rightButton = RightButton(symbol: "chevron.right", label: "Next month", action: onNextMonth)
+        } else {
+            self.rightButton = nil
+        }
+    }
 
     private enum Clock {
         case current(Shift)
@@ -29,10 +62,6 @@ struct ShiftCountdownAccessory: View {
     }
 
     var body: some View {
-        // ‹, the countdown and › are glass shapes in one container, each with its own
-        // id. On Home they're three buttons; on every other tab the arrows are
-        // absorbed into the countdown, which becomes one full-width pill — and they
-        // pour back out when Home returns.
         GlassEffectContainer(spacing: 6) {
             HStack(spacing: 8) {
                 if let onPreviousMonth {
@@ -47,15 +76,32 @@ struct ShiftCountdownAccessory: View {
                 .frame(height: Self.height)
                 .glassEffect(.regular.interactive(), in: .capsule)
                 .glassEffectID("countdown", in: glass)
-                if let onNextMonth {
-                    arrow("chevron.right", label: "Next month", action: onNextMonth)
-                        .glassEffectID("next", in: glass)
+
+                if let rightButton {
+                    rightButtonView(rightButton)
+                        .glassEffectID("rightButton", in: glass)
                 }
+            }
+        }
+        .overlay(alignment: .topTrailing) {
+            if let badge = rightButton?.badgeText {
+                Text(badge)
+                    .font(.system(size: 10, weight: .bold))
+                    .foregroundStyle(Color.onFill(ThemeManager.shared.current.accent))
+                    .padding(.horizontal, 5)
+                    .padding(.vertical, 2)
+                    .background(ThemeManager.shared.current.accent, in: Capsule())
+                    .offset(x: 4, y: -4)
+                    .allowsHitTesting(false)
+                    .transition(.scale.combined(with: .opacity))
             }
         }
         .padding(.horizontal, 21)
         .padding(.bottom, 6)
         .animation(.spring(response: 0.28, dampingFraction: 0.82), value: onPreviousMonth != nil)
+        .animation(.spring(response: 0.28, dampingFraction: 0.82), value: rightButton != nil)
+        .animation(.spring(response: 0.28, dampingFraction: 0.82), value: rightButton?.symbol)
+        .animation(.spring(response: 0.28, dampingFraction: 0.82), value: rightButton?.badgeText)
         .onAppear(perform: reload)
         .onReceive(NotificationCenter.default.publisher(for: ScheduleStore.didChangeNotification)) { _ in reload() }
         .onChange(of: demoMode) { reload() }
@@ -73,6 +119,24 @@ struct ShiftCountdownAccessory: View {
         .buttonStyle(.plain)
         .glassEffect(.regular.interactive(), in: .circle)
         .accessibilityLabel(label)
+    }
+
+    private func rightButtonView(_ config: RightButton) -> some View {
+        Button(action: config.action) {
+            if config.isLoading {
+                ProgressView()
+                    .frame(width: Self.height, height: Self.height)
+            } else {
+                Image(systemName: config.symbol)
+                    .font(.headline)
+                    .frame(width: Self.height, height: Self.height)
+                    .contentShape(Circle())
+            }
+        }
+        .buttonStyle(.plain)
+        .glassEffect(.regular.interactive(), in: .circle)
+        .disabled(config.isDisabled || config.isLoading)
+        .accessibilityLabel(config.label)
     }
 
     // MARK: - State

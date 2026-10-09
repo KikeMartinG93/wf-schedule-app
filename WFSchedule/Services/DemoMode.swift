@@ -37,7 +37,7 @@ enum DemoMode {
         // weekday: 1 = Sunday … 7 = Saturday
         let pattern: [Int: (job: String, start: (Int, Int), end: (Int, Int))] = [
             2: ("Supervisor", (7, 45), (15, 45)),
-            3: ("Supervisor", (7, 45), (15, 45)),
+            3: ("Supervisor", (7, 0), (15, 0)),
             5: ("Cash Office", (11, 30), (19, 30)),
             6: ("Cash Office", (11, 30), (19, 30)),
             7: ("Supervisor", (6, 0), (14, 30)),

@@ -51,24 +51,40 @@ final class CalendarSyncService {
         Self.markerPrefix + shiftId
     }
 
-    /// All events already tracking this shift (its marker in the notes field),
-    /// not just the first — a plain uninstall wipes this app's own on-disk
-    /// schedule snapshot (`ScheduleStore`, in the app's sandbox) but NOT this
-    /// calendar (a separate system database), so the first sync after a
-    /// reinstall has no "previous" snapshot to diff against and used to treat
-    /// every shift as brand new, creating a duplicate event for each one
-    /// already here. Returning every match (instead of just one) is what lets
-    /// callers actually find and clean those up.
+    /// All events matching a shift by ID marker, legacy Supervisor marker (for Cash Office shifts),
+    /// or matching start/end date/time on the Work Schedule calendar.
     private func existingEvents(for shiftId: String, in calendar: EKCalendar) -> [EKEvent] {
-        // Search a wide window since shifts can be scheduled well into the future.
         let start = Date().addingTimeInterval(-86_400 * 400)
         let end = Date().addingTimeInterval(86_400 * 400)
         let predicate = store.predicateForEvents(withStart: start, end: end, calendars: [calendar])
         return store.events(matching: predicate).filter { $0.notes?.contains(marker(for: shiftId)) == true }
     }
 
-    private func existingEvent(for shiftId: String, in calendar: EKCalendar) -> EKEvent? {
-        existingEvents(for: shiftId, in: calendar).first
+    private func existingEvents(for shift: Shift, in calendar: EKCalendar) -> [EKEvent] {
+        let exactIdMatches = existingEvents(for: shift.id, in: calendar)
+        if !exactIdMatches.isEmpty {
+            return exactIdMatches
+        }
+
+        // Check legacy Supervisor shift ID marker if shift is now Cash Office
+        if shift.job == "Cash Office" {
+            let legacyId = Shift.matchKey(date: shift.date, startTime: shift.startTime, endTime: shift.endTime, job: "Supervisor")
+            let legacyMatches = existingEvents(for: legacyId, in: calendar)
+            if !legacyMatches.isEmpty {
+                return legacyMatches
+            }
+        }
+
+        // Fallback: search for an event on the Work Schedule calendar at the exact start & end time
+        let predicate = store.predicateForEvents(withStart: shift.startTime, end: shift.endTime, calendars: [calendar])
+        return store.events(matching: predicate).filter { event in
+            abs(event.startDate.timeIntervalSince(shift.startTime)) < 60 &&
+            abs(event.endDate.timeIntervalSince(shift.endTime)) < 60
+        }
+    }
+
+    private func existingEvent(for shift: Shift, in calendar: EKCalendar) -> EKEvent? {
+        existingEvents(for: shift, in: calendar).first
     }
 
     func apply(changes: [ScheduleChangeKind]) throws {
@@ -77,24 +93,13 @@ final class CalendarSyncService {
         for change in changes {
             switch change {
             case .new(let shift):
-                // Nothing should exist under its own id yet, but if a sync
-                // somehow ran twice this is harmlessly idempotent — same as
-                // finding one already there and updating it in place.
-                try upsert(shift, matchingEventFor: shift.id, in: calendar)
+                try upsert(shift, matchingEventFor: shift, in: calendar)
 
             case .changed(let old, let new):
-                // A shift's id is derived from date+start+end+job (see
-                // `Shift.matchKey`), so an edited shift has a DIFFERENT id
-                // than the event already sitting on the calendar for it —
-                // that event is still tagged with `old.id`. Matching on the
-                // old id here, not the new shift's own id, is what makes
-                // this a true in-place edit of that same event (re-tagged
-                // with the new id via `configure`) instead of leaving the
-                // old event behind while a second one gets created.
-                try upsert(new, matchingEventFor: old.id, in: calendar)
+                try upsert(new, matchingEventFor: old, in: calendar)
 
             case .removed(let shift):
-                for event in existingEvents(for: shift.id, in: calendar) {
+                for event in existingEvents(for: shift, in: calendar) {
                     try store.remove(event, span: .thisEvent)
                 }
             }
@@ -103,8 +108,8 @@ final class CalendarSyncService {
         try store.commit()
     }
 
-    private func upsert(_ shift: Shift, matchingEventFor existingId: String, in calendar: EKCalendar) throws {
-        if let event = existingEvent(for: existingId, in: calendar) {
+    private func upsert(_ shift: Shift, matchingEventFor target: Shift, in calendar: EKCalendar) throws {
+        if let event = existingEvent(for: target, in: calendar) {
             configure(event, with: shift, calendar: calendar)
             try store.save(event, span: .thisEvent)
         } else {
@@ -115,7 +120,7 @@ final class CalendarSyncService {
     }
 
     /// Collapses any shift that ended up with more than one event (from past
-    /// reinstalls, before the upsert-on-`.new` fix above existed) down to
+    /// reinstalls, before the upsert-on-`.new` fix existed) down to
     /// one, keeping whichever copy was modified most recently. Cheap to run
     /// every sync since it's scoped to just this one calendar.
     func deduplicateEvents() throws {
@@ -147,15 +152,42 @@ final class CalendarSyncService {
     /// Re-applies current formatting (title, location, notes) to every already-
     /// synced event, even for shifts `ScheduleDiffer` didn't flag as changed.
     /// The diff only compares `Shift`'s own fields — it has no way to know when
-    /// this service's own formatting changes (e.g. dropping "— Regular" from
-    /// titles), so an event synced before such a change would otherwise never
-    /// get corrected. Only writes when something's actually different.
+    /// this service's own formatting changes (e.g. Supervisor -> Cash Office relabeling),
+    /// so an event synced before such a change is updated here. Only writes when something's actually different.
     func reconcileTitles(for shifts: [Shift]) throws {
         let calendar = workScheduleCalendar()
+        let start = Date().addingTimeInterval(-86_400 * 400)
+        let end = Date().addingTimeInterval(86_400 * 400)
+        let predicate = store.predicateForEvents(withStart: start, end: end, calendars: [calendar])
+        let allEvents = store.events(matching: predicate)
+
+        var byMarker: [String: [EKEvent]] = [:]
+        for event in allEvents {
+            guard let notes = event.notes, let range = notes.range(of: Self.markerPrefix) else { continue }
+            let shiftId = notes[range.upperBound...].prefix { $0 != "\n" }
+            byMarker[String(shiftId), default: []].append(event)
+        }
+
         var didChange = false
         for shift in shifts {
-            for event in existingEvents(for: shift.id, in: calendar) {
-                if event.title != shift.job || event.location != shift.location {
+            var matchedEvents = byMarker[shift.id] ?? []
+            if matchedEvents.isEmpty && shift.job == "Cash Office" {
+                let legacyId = Shift.matchKey(date: shift.date, startTime: shift.startTime, endTime: shift.endTime, job: "Supervisor")
+                matchedEvents = byMarker[legacyId] ?? []
+            }
+            if matchedEvents.isEmpty {
+                matchedEvents = allEvents.filter { event in
+                    abs(event.startDate.timeIntervalSince(shift.startTime)) < 60 &&
+                    abs(event.endDate.timeIntervalSince(shift.endTime)) < 60
+                }
+            }
+
+            for event in matchedEvents {
+                let currentMarker = marker(for: shift.id)
+                let needsUpdate = event.title != shift.job ||
+                                 event.location != shift.location ||
+                                 event.notes?.contains(currentMarker) == false
+                if needsUpdate {
                     configure(event, with: shift, calendar: calendar)
                     try store.save(event, span: .thisEvent)
                     didChange = true

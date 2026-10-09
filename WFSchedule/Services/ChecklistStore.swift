@@ -11,6 +11,11 @@ final class ChecklistStore {
     private let stateURL: URL
     private let selectionURL: URL
 
+    private let cacheLock = NSLock()
+    private var cachedTasks: [ChecklistTask]?
+    private var cachedState: ChecklistState?
+    private var cachedSelection: ChecklistDaySelection?
+
     private init() {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -22,8 +27,23 @@ final class ChecklistStore {
     // MARK: - Tasks
 
     func loadTasks() -> [ChecklistTask] {
-        guard let data = try? Data(contentsOf: tasksURL) else { return [] }
-        return (try? JSONDecoder().decode([ChecklistTask].self, from: data)) ?? []
+        cacheLock.lock()
+        if let cached = cachedTasks {
+            cacheLock.unlock()
+            return cached
+        }
+        cacheLock.unlock()
+
+        var tasks: [ChecklistTask] = []
+        if let data = try? Data(contentsOf: tasksURL),
+           let decoded = try? JSONDecoder().decode([ChecklistTask].self, from: data) {
+            tasks = decoded
+        }
+
+        cacheLock.lock()
+        cachedTasks = tasks
+        cacheLock.unlock()
+        return tasks
     }
 
     func tasks(for category: ChecklistCategory) -> [ChecklistTask] {
@@ -50,6 +70,9 @@ final class ChecklistStore {
     }
 
     private func saveTasks(_ tasks: [ChecklistTask]) {
+        cacheLock.lock()
+        cachedTasks = tasks
+        cacheLock.unlock()
         guard let data = try? JSONEncoder().encode(tasks) else { return }
         try? data.write(to: tasksURL, options: .atomic)
     }
@@ -57,13 +80,30 @@ final class ChecklistStore {
     // MARK: - Completion state
 
     func loadState() -> ChecklistState {
-        guard let data = try? Data(contentsOf: stateURL),
-              var state = try? JSONDecoder().decode(ChecklistState.self, from: data) else {
-            return .freshToday
+        cacheLock.lock()
+        if var state = cachedState {
+            if Calendar.current.isDateInToday(state.lastResetDay) {
+                cacheLock.unlock()
+                return state
+            }
         }
+        cacheLock.unlock()
+
+        var state: ChecklistState
+        if let data = try? Data(contentsOf: stateURL),
+           let decoded = try? JSONDecoder().decode(ChecklistState.self, from: data) {
+            state = decoded
+        } else {
+            state = .freshToday
+        }
+
         if !Calendar.current.isDateInToday(state.lastResetDay) {
             state = .freshToday
             saveState(state)
+        } else {
+            cacheLock.lock()
+            cachedState = state
+            cacheLock.unlock()
         }
         return state
     }
@@ -83,6 +123,9 @@ final class ChecklistStore {
     }
 
     private func saveState(_ state: ChecklistState) {
+        cacheLock.lock()
+        cachedState = state
+        cacheLock.unlock()
         guard let data = try? JSONEncoder().encode(state) else { return }
         try? data.write(to: stateURL, options: .atomic)
     }
@@ -90,13 +133,30 @@ final class ChecklistStore {
     // MARK: - Today's role selection
 
     func loadSelection() -> ChecklistDaySelection {
-        guard let data = try? Data(contentsOf: selectionURL),
-              var selection = try? JSONDecoder().decode(ChecklistDaySelection.self, from: data) else {
-            return .freshToday
+        cacheLock.lock()
+        if var selection = cachedSelection {
+            if Calendar.current.isDateInToday(selection.lastResetDay) {
+                cacheLock.unlock()
+                return selection
+            }
         }
+        cacheLock.unlock()
+
+        var selection: ChecklistDaySelection
+        if let data = try? Data(contentsOf: selectionURL),
+           let decoded = try? JSONDecoder().decode(ChecklistDaySelection.self, from: data) {
+            selection = decoded
+        } else {
+            selection = .freshToday
+        }
+
         if !Calendar.current.isDateInToday(selection.lastResetDay) {
             selection = .freshToday
             saveSelection(selection)
+        } else {
+            cacheLock.lock()
+            cachedSelection = selection
+            cacheLock.unlock()
         }
         return selection
     }
@@ -108,6 +168,9 @@ final class ChecklistStore {
     }
 
     private func saveSelection(_ selection: ChecklistDaySelection) {
+        cacheLock.lock()
+        cachedSelection = selection
+        cacheLock.unlock()
         guard let data = try? JSONEncoder().encode(selection) else { return }
         try? data.write(to: selectionURL, options: .atomic)
     }

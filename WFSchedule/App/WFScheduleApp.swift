@@ -3,30 +3,25 @@ import SwiftUI
 @main
 struct WFScheduleApp: App {
     @StateObject private var sessionManager = SessionManager.shared
-    @AppStorage(AppLanguage.storageKey) private var language: String = AppLanguage.system.rawValue
-    @Environment(\.scenePhase) private var scenePhase
-    @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
-    @ObservedObject private var theme = ThemeManager.shared
+    @AppStorage(AppLanguage.storageKey) private var languageCode: String = AppLanguage.system.rawValue
 
     init() {
         BackgroundRefreshManager.register()
     }
 
+    private var activeLocale: Locale {
+        let choice = AppLanguage(rawValue: languageCode) ?? .system
+        return choice == .system ? .autoupdatingCurrent : Locale(identifier: choice.rawValue)
+    }
+
     var body: some Scene {
         WindowGroup {
             RootView()
-                .fontDesign(roundedFont ? .rounded : .default)
-                .background(HighContrastApplier(enabled: theme.highContrast))
                 .environmentObject(sessionManager)
-                .environment(\.locale, (AppLanguage(rawValue: language) ?? .system).locale)
-                .onChange(of: scenePhase) { _, phase in
-                    if phase == .active { BreakActivityManager.sync() }
-                }
+                .environment(\.locale, activeLocale)
+                .id(languageCode)
                 .task {
-                    BreakActivityManager.sync()
-                    // On the very first launch the welcome sheet is showing, and
-                    // system permission prompts on top of it are a bad first
-                    // impression — RootView runs the same setup when it's dismissed.
+                    // Bootstrap runs once per app launch (only if welcome was seen).
                     if UserDefaults.standard.bool(forKey: "hasSeenWelcome") {
                         await AppBootstrap.run()
                     }
@@ -55,6 +50,9 @@ enum AppBootstrap {
         let calendarSync = CalendarSyncService()
         try? await calendarSync.requestAccess()
         try? calendarSync.deduplicateEvents()
+        if let shifts = ScheduleStore.shared.load()?.shifts {
+            try? calendarSync.reconcileTitles(for: shifts)
+        }
 
         _ = await NotificationService.requestAuthorization()
         BackgroundRefreshManager.scheduleNext()

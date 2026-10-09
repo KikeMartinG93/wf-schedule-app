@@ -20,7 +20,7 @@ enum Code128Barcode {
         "114131", "311141", "411131", "211412", "211214", "211232",
     ]
     private static let stopPattern = "2331112"
-    private static let startB = 104, startC = 105, switchToB = 100
+    private static let startB = 104, startC = 105, switchToB = 100, switchToC = 99
 
     /// Formats input so the encoded barcode value ALWAYS reads `491(TM ID)0`.
     static func formatBarcodeValue(for input: String) -> String {
@@ -49,15 +49,25 @@ enum Code128Barcode {
 
         var values: [Int] = []
         if allDigits && digits.count >= 4 {
-            values.append(startC)
-            var index = 0
-            while index + 1 < digits.count {
-                values.append(digits[index] * 10 + digits[index + 1])
-                index += 2
-            }
-            if index < digits.count {
-                values.append(switchToB)
-                values.append(Int(scalars[index].value) - 32)
+            if digits.count % 2 == 0 {
+                values.append(startC)
+                var index = 0
+                while index < digits.count {
+                    values.append(digits[index] * 10 + digits[index + 1])
+                    index += 2
+                }
+            } else {
+                // Odd number of digits (e.g. 11 digits "49126164890"):
+                // Start B with the first digit, then switch to Code C for the remaining pairs
+                // to match official Home Depot / Kronos badge encoding.
+                values.append(startB)
+                values.append(digits[0] + 16) // Code B ASCII offset: '0' (48) - 32 = 16
+                values.append(switchToC)
+                var index = 1
+                while index + 1 < digits.count {
+                    values.append(digits[index] * 10 + digits[index + 1])
+                    index += 2
+                }
             }
         } else {
             values.append(startB)

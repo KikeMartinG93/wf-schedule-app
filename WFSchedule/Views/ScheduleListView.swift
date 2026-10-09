@@ -4,8 +4,15 @@ struct ScheduleListView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @State private var shifts: [Shift] = ScheduleStore.shared.load()?.shifts ?? []
     @State private var lastSynced: Date? = ScheduleStore.shared.load()?.fetchedAt
-    @State private var isSyncing = false
+    @Binding var isSyncing: Bool
+    var refreshTrigger: Int = 0
     @State private var syncError: String?
+    @State private var groupedByDay: [(day: Date, shifts: [Shift])] = []
+
+    init(refreshTrigger: Int = 0, isSyncing: Binding<Bool> = .constant(false)) {
+        self.refreshTrigger = refreshTrigger
+        self._isSyncing = isSyncing
+    }
 
     private var calendar: Calendar { Calendar.current }
 
@@ -51,7 +58,7 @@ struct ScheduleListView: View {
 
                                 // Breathing room so the bottom blur fade doesn't sit
                                 // on top of the last row's text.
-                                Color.clear.frame(height: 40)
+                                Color.clear.frame(height: 64)
                             }
                             .padding(.horizontal)
                         }
@@ -61,8 +68,17 @@ struct ScheduleListView: View {
                         // Fires on first appear (using whatever's cached on disk)
                         // and again whenever a sync brings in a different set of
                         // days, since `groupedByDay`'s anchor day can shift.
-                        .onAppear { scrollToToday(proxy: proxy) }
-                        .onChange(of: shifts) { scrollToToday(proxy: proxy) }
+                        .onAppear {
+                            updateGroupedByDay()
+                            scrollToToday(proxy: proxy)
+                        }
+                        .onChange(of: shifts) { _, newShifts in
+                            updateGroupedByDay()
+                            scrollToToday(proxy: proxy)
+                        }
+                        .onChange(of: refreshTrigger) {
+                            Task { await sync(force: true) }
+                        }
                         // Same as Settings and Breaks: the title is a top bar the
                         // list scrolls under, fading out softly instead of being
                         // cut off along a hard line.
@@ -89,36 +105,21 @@ struct ScheduleListView: View {
         }
     }
 
-    /// Same layout as Home's monthHeader: bold large title on the leading
-    /// edge, the row's action (refresh here, month-navigation arrows there)
-    /// trailing, baseline-aligned.
+    /// Same layout as Home's monthHeader: bold large title on the leading edge.
     private var header: some View {
         HStack(alignment: .firstTextBaseline) {
-            Text("My Schedule")
+            Text("Timeline")
                 .font(.largeTitle.bold())
                 .foregroundStyle(Color(uiColor: .label))
 
             Spacer()
-
-            Button {
-                Task { await sync(force: true) }
-            } label: {
-                if isSyncing {
-                    ProgressView()
-                } else {
-                    Image(systemName: "arrow.clockwise")
-                        .font(.title3)
-                }
-            }
-            .buttonStyle(.glass)
-            .disabled(isSyncing)
         }
     }
 
-    private var groupedByDay: [(day: Date, shifts: [Shift])] {
+    private func updateGroupedByDay() {
         let sorted = shifts.sorted { $0.startTime < $1.startTime }
         let groups = Dictionary(grouping: sorted) { calendar.startOfDay(for: $0.startTime) }
-        return groups.keys.sorted().map { ($0, groups[$0] ?? []) }
+        groupedByDay = groups.keys.sorted().map { ($0, groups[$0] ?? []) }
     }
 
     /// Docks today's day section at the top of the visible area. Falls back to

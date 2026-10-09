@@ -8,6 +8,9 @@ final class ChangeLogStore {
     private let fileURL: URL
     private let maxEntries = 200
 
+    private let cacheLock = NSLock()
+    private var cachedEntries: [ChangeLogEntry]?
+
     private init() {
         let dir = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
         try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
@@ -16,8 +19,23 @@ final class ChangeLogStore {
 
     func load() -> [ChangeLogEntry] {
         if DemoMode.isEnabled { return DemoMode.entries }
-        guard let data = try? Data(contentsOf: fileURL) else { return [] }
-        return (try? JSONDecoder().decode([ChangeLogEntry].self, from: data)) ?? []
+        cacheLock.lock()
+        if let cached = cachedEntries {
+            cacheLock.unlock()
+            return cached
+        }
+        cacheLock.unlock()
+
+        var entries: [ChangeLogEntry] = []
+        if let data = try? Data(contentsOf: fileURL),
+           let decoded = try? JSONDecoder().decode([ChangeLogEntry].self, from: data) {
+            entries = decoded
+        }
+
+        cacheLock.lock()
+        cachedEntries = entries
+        cacheLock.unlock()
+        return entries
     }
 
     func append(_ newEntries: [ChangeLogEntry]) {
@@ -52,6 +70,9 @@ final class ChangeLogStore {
             DemoMode.entries = entries
             return
         }
+        cacheLock.lock()
+        cachedEntries = entries
+        cacheLock.unlock()
         guard let data = try? JSONEncoder().encode(entries) else { return }
         try? data.write(to: fileURL, options: .atomic)
     }
