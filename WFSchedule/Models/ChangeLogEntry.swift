@@ -63,6 +63,18 @@ struct ChangeLogEntry: Codable, Identifiable {
         seen = try container.decodeIfPresent(Bool.self, forKey: .seen) ?? false
     }
 
+    /// Formats the timestamp into a relative, natural time string (e.g., "now",
+    /// "5 minutes ago", "2 hours ago", "2 days ago") relative to `now`.
+    func relativeTimestamp(relativeTo current: Date = Date()) -> String {
+        let elapsed = current.timeIntervalSince(timestamp)
+        if elapsed < 45 && elapsed >= -45 {
+            return String(localized: "now")
+        }
+        let formatter = RelativeDateTimeFormatter()
+        formatter.unitsStyle = .full
+        return formatter.localizedString(for: timestamp, relativeTo: current)
+    }
+
     /// Human-readable description of what happened, used directly in AlertsView.
     var summary: String {
         switch kind {

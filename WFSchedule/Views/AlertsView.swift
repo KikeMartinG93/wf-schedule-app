@@ -216,9 +216,11 @@ private struct ChangeLogRow: View {
 
                     Spacer()
 
-                    Text(entry.timestamp.formatted(date: .abbreviated, time: .shortened))
-                        .font(.caption2)
-                        .foregroundStyle(.secondary)
+                    TimelineView(.periodic(from: .now, by: 30)) { timeline in
+                        Text(entry.relativeTimestamp(relativeTo: timeline.date))
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                    }
                 }
 
                 // Title line: Job + Shift Date

@@ -1498,6 +1498,17 @@
         }
       }
     },
+    "now" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ahora"
+          }
+        }
+      }
+    },
     "No Alerts" : {
       "extractionState" : "manual",
       "localizations" : {
