@@ -2908,6 +2908,50 @@
           }
         }
       }
+    },
+    "Independent Light & Dark Themes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temas independientes para claro y oscuro"
+          }
+        }
+      }
+    },
+    "Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige temas de color y vivacidad de fondo independientes para los modos claro y oscuro. Ajusta el contraste con un deslizador de accesibilidad."
+          }
+        }
+      }
+    },
+    "Relative Change Times": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horas relativas de cambios"
+          }
+        }
+      }
+    },
+    "Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las actualizaciones en la pestaña Cambios ahora muestran tiempos de detección relativos como ahora, hace 5 minutos o hace 2 días."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

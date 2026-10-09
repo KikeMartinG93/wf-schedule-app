@@ -97,6 +97,14 @@ enum WhatsNew {
                  title: "Full Demo Mode",
                  detail: "Explore all features — including break tools, operational role checklists, and sample shifts — directly from the new Demo Mode menu anytime you open the app or sign-in screens."),
         ]),
+        Release(revision: 16, items: [
+            Item(symbol: "circle.lefthalf.filled.inverse",
+                 title: "Independent Light & Dark Themes",
+                 detail: "Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider."),
+            Item(symbol: "clock.arrow.circlepath",
+                 title: "Relative Change Times",
+                 detail: "Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
