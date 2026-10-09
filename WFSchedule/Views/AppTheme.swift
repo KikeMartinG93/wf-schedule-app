@@ -1,29 +1,28 @@
 import SwiftUI
 import UIKit
 
-/// Drives the "breathing" pulse for every `AppBackground` on screen from a
-/// single shared, always-in-sync animation instead of each screen's own
-/// `@State` starting its own infinite `repeatForever` loop. SwiftUI's
-/// `TabView` keeps every tab's view alive, so with a per-instance animation
-/// the app was running one independent infinite animation timeline per tab
-/// (5+) at all times, even for backgrounded tabs — pure battery/CPU waste for
-/// a purely decorative effect. One shared driver looks identical (all
-/// backgrounds already pulsed in lockstep) and costs a fraction as much.
+/// Drives the slow, organic fluid gradient morphing for every `AppBackground` on
+/// screen from a single shared, synchronized driver. Two incommensurate animation
+/// cycles (11s and 17s) produce non-repeating Lissajous drift paths for the color
+/// orbs, recreating the hypnotic liquid-glow aesthetic of Apple Music lyrics
+/// without running per-screen timers or taxing the battery.
 @MainActor
-private final class BackgroundPulse: ObservableObject {
-    static let shared = BackgroundPulse()
+private final class BackgroundMorphDriver: ObservableObject {
+    static let shared = BackgroundMorphDriver()
 
-    @Published var breatheIn = false
+    @Published var phase1 = false
+    @Published var phase2 = false
 
     private init() {
         Task { @MainActor in
             self.updateAnimation()
         }
-        // The pulse is purely decorative, so it stands down for Reduce Motion and
-        // Low Power Mode (a forever-running animation is a steady battery cost)
-        // and comes back if either is switched off.
+        // Stands down for Reduce Motion and Low Power Mode, resuming when turned off.
         let center = NotificationCenter.default
-        for name in [UIAccessibility.reduceMotionStatusDidChangeNotification, Notification.Name.NSProcessInfoPowerStateDidChange] {
+        for name in [
+            UIAccessibility.reduceMotionStatusDidChangeNotification,
+            Notification.Name.NSProcessInfoPowerStateDidChange
+        ] {
             center.addObserver(forName: name, object: nil, queue: .main) { [weak self] _ in
                 MainActor.assumeIsolated { self?.updateAnimation() }
             }
@@ -33,56 +32,149 @@ private final class BackgroundPulse: ObservableObject {
     private func updateAnimation() {
         let shouldAnimate = !UIAccessibility.isReduceMotionEnabled && !ProcessInfo.processInfo.isLowPowerModeEnabled
         if shouldAnimate {
-            withAnimation(.easeInOut(duration: 4.5).repeatForever(autoreverses: true)) { breatheIn = true }
+            withAnimation(.easeInOut(duration: 11.0).repeatForever(autoreverses: true)) {
+                phase1 = true
+            }
+            withAnimation(.easeInOut(duration: 17.0).repeatForever(autoreverses: true)) {
+                phase2 = true
+            }
         } else {
-            // A new, non-repeating animation replaces the endless one.
-            withAnimation(.easeOut(duration: 0.3)) { breatheIn = false }
+            withAnimation(.easeOut(duration: 0.3)) {
+                phase1 = false
+                phase2 = false
+            }
         }
     }
 }
 
-/// The green background gradient used on every screen, with a slow "breathing"
-/// pulse — the tint's opacity drifts up and down on a long, gentle cycle rather
-/// than sitting static. `baseOpacity` preserves each screen's own tuned
-/// intensity; the pulse moves symmetrically around it.
+/// An Apple Music-inspired fluid animated background: multiple organic color orbs
+/// drift, breathe, scale, and gently rotate across the screen under a deep Gaussian
+/// blur, slowly morphing into dynamic liquid color gradients.
+/// Fades softly toward `.systemBackground` on the lower half to maintain total
+/// legibility for content and controls.
 struct AppBackground: View {
     var baseOpacity: Double = 0.42
-    private let amplitude: Double = 0.08
 
-    @ObservedObject private var pulse = BackgroundPulse.shared
+    @ObservedObject private var morph = BackgroundMorphDriver.shared
     @ObservedObject private var theme = ThemeManager.shared
     @Environment(\.colorScheme) private var colorScheme
     @Environment(\.colorSchemeContrast) private var contrast
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
-    /// Secondary text (weekday letters, captions) sits directly on this gradient,
-    /// so its strength is what limits their contrast. In Light mode the full tint
-    /// pushes secondary labels toward ~3:1, so it's eased back; Increase Contrast
-    /// and Reduce Transparency get a nearly flat background.
+    /// Strength eases back in Light mode or high contrast / reduced transparency
+    /// so text contrast remains compliant and crisp.
     private var strength: Double {
         if contrast == .increased || reduceTransparency { return 0.25 }
-        return colorScheme == .light ? 0.65 : 1
+        return colorScheme == .light ? 0.65 : 1.0
+    }
+
+    private var effectiveOpacity: Double {
+        let base = baseOpacity * strength
+        let pulseFactor = morph.phase1 ? 0.05 : -0.05
+        return max(0.05, base + pulseFactor * strength)
     }
 
     var body: some View {
         if theme.highContrast {
             Color(.systemBackground).ignoresSafeArea()
         } else {
-            gradient
+            ZStack {
+                Color(.systemBackground)
+
+                GeometryReader { proxy in
+                    let w = proxy.size.width
+                    let h = proxy.size.height
+
+                    ZStack {
+                        // Orb 1: Primary deep theme aura
+                        Ellipse()
+                            .fill(orb1Color)
+                            .frame(width: w * 1.35, height: h * 0.7)
+                            .offset(
+                                x: morph.phase1 ? w * 0.16 : -w * 0.22,
+                                y: morph.phase2 ? h * 0.10 : -h * 0.14
+                            )
+                            .scaleEffect(morph.phase1 ? 1.20 : 0.94)
+                            .rotationEffect(.degrees(morph.phase2 ? 22 : -18))
+
+                        // Orb 2: Luminous accent highlight
+                        Ellipse()
+                            .fill(orb2Color)
+                            .frame(width: w * 1.15, height: h * 0.6)
+                            .offset(
+                                x: morph.phase2 ? -w * 0.15 : w * 0.26,
+                                y: morph.phase1 ? h * 0.16 : -h * 0.06
+                            )
+                            .scaleEffect(morph.phase2 ? 0.92 : 1.18)
+                            .rotationEffect(.degrees(morph.phase1 ? -28 : 24))
+
+                        // Orb 3: Harmonious secondary glow
+                        RoundedRectangle(cornerRadius: w * 0.45)
+                            .fill(orb3Color)
+                            .frame(width: w * 1.2, height: h * 0.65)
+                            .offset(
+                                x: morph.phase1 ? w * 0.20 : -w * 0.16,
+                                y: morph.phase2 ? h * 0.24 : h * 0.40
+                            )
+                            .scaleEffect(morph.phase1 ? 1.15 : 0.88)
+                            .rotationEffect(.degrees(morph.phase2 ? 30 : -20))
+
+                        // Orb 4: Ambient floating pool
+                        Ellipse()
+                            .fill(orb4Color)
+                            .frame(width: w * 1.05, height: h * 0.55)
+                            .offset(
+                                x: morph.phase2 ? -w * 0.20 : w * 0.15,
+                                y: morph.phase1 ? h * 0.42 : h * 0.26
+                            )
+                            .scaleEffect(morph.phase2 ? 1.18 : 0.95)
+                            .rotationEffect(.degrees(morph.phase1 ? 20 : -32))
+                    }
+                    .blur(radius: 72)
+                    .clipped()
+                }
+
+                // Smooth bottom fade into system background for content legibility
+                LinearGradient(
+                    colors: [
+                        Color.clear,
+                        Color(.systemBackground).opacity(colorScheme == .dark ? 0.35 : 0.50),
+                        Color(.systemBackground).opacity(colorScheme == .dark ? 0.85 : 0.92)
+                    ],
+                    startPoint: .center,
+                    endPoint: .bottom
+                )
+            }
+            .ignoresSafeArea()
+            .allowsHitTesting(false)
         }
     }
 
-    private var gradient: some View {
-        let base = baseOpacity * strength
-        return LinearGradient(
-            colors: [
-                theme.current.backgroundTint.opacity(pulse.breatheIn ? base + amplitude * strength : base - amplitude * strength),
-                Color(.systemBackground)
-            ],
-            startPoint: .top,
-            endPoint: .bottom
-        )
-        .ignoresSafeArea()
+    private var orb1Color: Color {
+        theme.current.backgroundTint.opacity(effectiveOpacity * 0.95)
+    }
+
+    private var orb2Color: Color {
+        if let custom = theme.current.cashOfficeAccentOverride {
+            return custom.opacity(effectiveOpacity * 0.75)
+        }
+        return theme.current.accent.opacity(effectiveOpacity * 0.62)
+    }
+
+    private var orb3Color: Color {
+        if let custom = theme.current.supervisorAccentOverride {
+            return custom.opacity(effectiveOpacity * 0.75)
+        }
+        return theme.current.holidayPay.opacity(effectiveOpacity * 0.72)
+    }
+
+    private var orb4Color: Color {
+        if theme.current.id == "colorful" {
+            return theme.current.accent.opacity(effectiveOpacity * 0.65)
+        }
+        return theme.current.backgroundTint
+            .mixed(with: theme.current.accent, amount: 0.4)
+            .opacity(effectiveOpacity * 0.68)
     }
 }
 
