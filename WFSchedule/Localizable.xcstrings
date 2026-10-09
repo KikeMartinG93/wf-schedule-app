@@ -341,6 +341,61 @@
         }
       }
     },
+    "Appearance Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo de apariencia"
+          }
+        }
+      }
+    },
+    "Light Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo claro"
+          }
+        }
+      }
+    },
+    "Dark Mode" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo oscuro"
+          }
+        }
+      }
+    },
+    "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
+          }
+        }
+      }
+    },
+    "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
+          }
+        }
+      }
+    },
     "Appearance" : {
       "extractionState" : "manual",
       "localizations" : {

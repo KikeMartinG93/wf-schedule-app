@@ -61,11 +61,15 @@ struct AppBackground: View {
     @Environment(\.colorSchemeContrast) private var contrast
     @Environment(\.accessibilityReduceTransparency) private var reduceTransparency
 
+    private var activeTheme: AppColorTheme {
+        theme.current(for: colorScheme)
+    }
+
     /// Strength eases back in Light mode or high contrast / reduced transparency
     /// so text contrast remains compliant and crisp.
     private var strength: Double {
         if contrast == .increased || reduceTransparency { return 0.25 }
-        let lightBase = 0.70 + 0.30 * theme.gradientVibrancy
+        let lightBase = 0.70 + 0.30 * theme.vibrancy(for: colorScheme)
         return colorScheme == .light ? lightBase : 1.0
     }
 
@@ -150,7 +154,7 @@ struct AppBackground: View {
                 // At 100% full: 0 overlay (super colorful).
                 // At 0% full: 90% overlay (gradient minimal 10% visibility).
                 Color(colorScheme == .dark ? .black : .white)
-                    .opacity(theme.backgroundOverlayOpacity)
+                    .opacity(theme.overlayOpacity(for: colorScheme))
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
@@ -158,38 +162,38 @@ struct AppBackground: View {
     }
 
     private var orb1Color: Color {
-        theme.current.backgroundTint.opacity(effectiveOpacity * 0.95)
+        activeTheme.backgroundTint.opacity(effectiveOpacity * 0.95)
     }
 
     private var orb2Color: Color {
-        if theme.current.id == "rainbow" {
-            return theme.current.accent.opacity(effectiveOpacity * 0.85)
+        if activeTheme.id == "rainbow" {
+            return activeTheme.accent.opacity(effectiveOpacity * 0.85)
         }
-        if let custom = theme.current.cashOfficeAccentOverride {
+        if let custom = activeTheme.cashOfficeAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
-        return theme.current.accent.opacity(effectiveOpacity * 0.65)
+        return activeTheme.accent.opacity(effectiveOpacity * 0.65)
     }
 
     private var orb3Color: Color {
-        if theme.current.id == "rainbow" {
-            return theme.current.holidayPay.opacity(effectiveOpacity * 0.85)
+        if activeTheme.id == "rainbow" {
+            return activeTheme.holidayPay.opacity(effectiveOpacity * 0.85)
         }
-        if let custom = theme.current.supervisorAccentOverride {
+        if let custom = activeTheme.supervisorAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
-        return theme.current.holidayPay.opacity(effectiveOpacity * 0.75)
+        return activeTheme.holidayPay.opacity(effectiveOpacity * 0.75)
     }
 
     private var orb4Color: Color {
-        if theme.current.id == "rainbow" {
-            return theme.current.accent.opacity(effectiveOpacity * 0.80)
+        if activeTheme.id == "rainbow" {
+            return activeTheme.accent.opacity(effectiveOpacity * 0.80)
         }
-        if theme.current.id == "colorful" {
-            return theme.current.accent.opacity(effectiveOpacity * 0.65)
+        if activeTheme.id == "colorful" {
+            return activeTheme.accent.opacity(effectiveOpacity * 0.65)
         }
-        return theme.current.backgroundTint
-            .mixed(with: theme.current.accent, amount: 0.4)
+        return activeTheme.backgroundTint
+            .mixed(with: activeTheme.accent, amount: 0.4)
             .opacity(effectiveOpacity * 0.70)
     }
 }

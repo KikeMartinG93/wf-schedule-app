@@ -1,3 +1,4 @@
+import UIKit
 import SwiftUI
 import WidgetKit
 
@@ -188,30 +189,47 @@ enum AppColorThemes {
 final class ThemeManager: ObservableObject {
     static let shared = ThemeManager()
 
-    private static let storageKey = "selectedColorThemeID"
-    private static let vibrancyKey = "gradientVibrancy"
+    private static let lightThemeStorageKey = "selectedLightThemeID"
+    private static let darkThemeStorageKey = "selectedDarkThemeID"
+    private static let legacyThemeStorageKey = "selectedColorThemeID"
 
-    /// The gradient vibrancy from 0.0 (minimal 10% visibility with 90% white/black overlay)
-    /// to 1.0 (super colorful with 0% overlay).
-    @Published var gradientVibrancy: Double {
+    private static let lightVibrancyStorageKey = "lightGradientVibrancy"
+    private static let darkVibrancyStorageKey = "darkGradientVibrancy"
+    private static let legacyVibrancyStorageKey = "gradientVibrancy"
+
+    @Published var activeColorScheme: ColorScheme = .dark
+
+    @Published private(set) var lightTheme: AppColorTheme {
         didSet {
-            UserDefaults.standard.set(gradientVibrancy, forKey: Self.vibrancyKey)
+            UserDefaults.standard.set(lightTheme.id, forKey: Self.lightThemeStorageKey)
+            UserDefaults.standard.set(lightTheme.id, forKey: Self.legacyThemeStorageKey)
+            if activeColorScheme == .light {
+                AppIconManager.apply(themeID: lightTheme.id)
+            }
         }
     }
 
-    /// The opacity of the white/black overlay applied on top of the background gradients.
-    /// At 100% (1.0), opacity is 0.0 (0 overlay). At 0% (0.0), opacity is 0.90 (10% visibility).
-    var backgroundOverlayOpacity: Double {
-        let clamped = max(0.0, min(1.0, gradientVibrancy))
-        return (1.0 - clamped) * 0.90
+    @Published private(set) var darkTheme: AppColorTheme {
+        didSet {
+            UserDefaults.standard.set(darkTheme.id, forKey: Self.darkThemeStorageKey)
+            UserDefaults.standard.set(darkTheme.id, forKey: Self.legacyThemeStorageKey)
+            if activeColorScheme == .dark {
+                AppIconManager.apply(themeID: darkTheme.id)
+            }
+        }
     }
 
-    /// The theme the user picked. Kept even while high contrast is on, so turning
-    /// it off brings their colors back.
-    @Published private(set) var selected: AppColorTheme {
+    @Published var lightGradientVibrancy: Double {
         didSet {
-            UserDefaults.standard.set(selected.id, forKey: Self.storageKey)
-            if selected.id != oldValue.id { AppIconManager.apply(themeID: selected.id) }
+            UserDefaults.standard.set(lightGradientVibrancy, forKey: Self.lightVibrancyStorageKey)
+            UserDefaults.standard.set(lightGradientVibrancy, forKey: Self.legacyVibrancyStorageKey)
+        }
+    }
+
+    @Published var darkGradientVibrancy: Double {
+        didSet {
+            UserDefaults.standard.set(darkGradientVibrancy, forKey: Self.darkVibrancyStorageKey)
+            UserDefaults.standard.set(darkGradientVibrancy, forKey: Self.legacyVibrancyStorageKey)
         }
     }
 
@@ -230,46 +248,115 @@ final class ThemeManager: ObservableObject {
 
     /// Advances to the next 3-color combination when the active tab changes.
     func advanceRainbowCombo() {
-        guard selected.id == "rainbow" else { return }
+        guard lightTheme.id == "rainbow" || darkTheme.id == "rainbow" else { return }
         withAnimation(.easeInOut(duration: 1.4)) {
             rainbowComboIndex = (rainbowComboIndex + 1) % AppColorThemes.rainbowPalettes.count
         }
     }
 
+    func selectedTheme(for scheme: ColorScheme) -> AppColorTheme {
+        scheme == .light ? lightTheme : darkTheme
+    }
+
+    func setSelectedTheme(_ theme: AppColorTheme, for scheme: ColorScheme) {
+        if scheme == .light {
+            lightTheme = theme
+        } else {
+            darkTheme = theme
+        }
+    }
+
+    func vibrancy(for scheme: ColorScheme) -> Double {
+        scheme == .light ? lightGradientVibrancy : darkGradientVibrancy
+    }
+
+    func setVibrancy(_ value: Double, for scheme: ColorScheme) {
+        let clamped = max(0.0, min(1.0, value))
+        if scheme == .light {
+            lightGradientVibrancy = clamped
+        } else {
+            darkGradientVibrancy = clamped
+        }
+    }
+
+    func overlayOpacity(for scheme: ColorScheme) -> Double {
+        let v = vibrancy(for: scheme)
+        return (1.0 - v) * 0.90
+    }
+
+    func current(for scheme: ColorScheme) -> AppColorTheme {
+        if highContrast { return .monochrome }
+        let base = selectedTheme(for: scheme)
+        if base.id == "rainbow" {
+            let triad = AppColorThemes.rainbowPalettes[rainbowComboIndex % AppColorThemes.rainbowPalettes.count]
+            return AppColorTheme(
+                id: "rainbow",
+                name: "Rainbow",
+                backgroundTint: triad.c1,
+                accent: triad.c2,
+                holidayPay: triad.c3,
+                cashOfficeAccentOverride: triad.c2,
+                supervisorAccentOverride: triad.c3
+            )
+        }
+        return base
+    }
+
     /// What every screen draws with: the picked theme, the dynamic rainbow combination, or monochrome.
     var current: AppColorTheme {
-        get {
-            if highContrast { return .monochrome }
-            if selected.id == "rainbow" {
-                let triad = AppColorThemes.rainbowPalettes[rainbowComboIndex % AppColorThemes.rainbowPalettes.count]
-                return AppColorTheme(
-                    id: "rainbow",
-                    name: "Rainbow",
-                    backgroundTint: triad.c1,
-                    accent: triad.c2,
-                    holidayPay: triad.c3,
-                    cashOfficeAccentOverride: triad.c2,
-                    supervisorAccentOverride: triad.c3
-                )
-            }
-            return selected
-        }
-        set { selected = newValue }
+        get { current(for: activeColorScheme) }
+        set { setSelectedTheme(newValue, for: activeColorScheme) }
+    }
+
+    var selected: AppColorTheme {
+        selectedTheme(for: activeColorScheme)
+    }
+
+    var gradientVibrancy: Double {
+        get { vibrancy(for: activeColorScheme) }
+        set { setVibrancy(newValue, for: activeColorScheme) }
+    }
+
+    var backgroundOverlayOpacity: Double {
+        overlayOpacity(for: activeColorScheme)
+    }
+
+    func updateActiveColorScheme(_ scheme: ColorScheme) {
+        guard activeColorScheme != scheme else { return }
+        activeColorScheme = scheme
+        AppIconManager.apply(themeID: current.id)
     }
 
     private init() {
-        let savedID = UserDefaults.standard.string(forKey: Self.storageKey)
-        selected = AppColorThemes.theme(id: savedID ?? AppColorThemes.default.id)
-        if UserDefaults.standard.object(forKey: Self.vibrancyKey) != nil {
-            gradientVibrancy = max(0.0, min(1.0, UserDefaults.standard.double(forKey: Self.vibrancyKey)))
+        let legacyID = UserDefaults.standard.string(forKey: Self.legacyThemeStorageKey)
+        let lightSavedID = UserDefaults.standard.string(forKey: Self.lightThemeStorageKey) ?? legacyID
+        let darkSavedID = UserDefaults.standard.string(forKey: Self.darkThemeStorageKey) ?? legacyID
+
+        lightTheme = AppColorThemes.theme(id: lightSavedID ?? AppColorThemes.default.id)
+        darkTheme = AppColorThemes.theme(id: darkSavedID ?? AppColorThemes.default.id)
+
+        let legacyVibrancy = UserDefaults.standard.object(forKey: Self.legacyVibrancyStorageKey) != nil
+            ? UserDefaults.standard.double(forKey: Self.legacyVibrancyStorageKey)
+            : 1.0
+
+        if UserDefaults.standard.object(forKey: Self.lightVibrancyStorageKey) != nil {
+            lightGradientVibrancy = max(0.0, min(1.0, UserDefaults.standard.double(forKey: Self.lightVibrancyStorageKey)))
         } else {
-            gradientVibrancy = 1.0
+            lightGradientVibrancy = legacyVibrancy
         }
+
+        if UserDefaults.standard.object(forKey: Self.darkVibrancyStorageKey) != nil {
+            darkGradientVibrancy = max(0.0, min(1.0, UserDefaults.standard.double(forKey: Self.darkVibrancyStorageKey)))
+        } else {
+            darkGradientVibrancy = legacyVibrancy
+        }
+
+        let style = UITraitCollection.current.userInterfaceStyle
+        activeColorScheme = (style == .light ? .light : .dark)
+
         let enabled = FontPreference.store.bool(forKey: ContrastPreference.key)
             || UserDefaults.standard.bool(forKey: ContrastPreference.key)
         highContrast = enabled
-        // `didSet` doesn't run for the first assignment in an initializer; make sure
-        // the shared copy (read by widgets and the color helpers) agrees.
         FontPreference.store.set(enabled, forKey: ContrastPreference.key)
     }
 }

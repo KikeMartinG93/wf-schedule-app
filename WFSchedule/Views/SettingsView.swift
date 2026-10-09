@@ -12,6 +12,8 @@ struct SettingsView: View {
     @State private var showingChecklist = false
     @AppStorage(DemoMode.storageKey) private var demoMode = false
     @ObservedObject private var theme = ThemeManager.shared
+    @Environment(\.colorScheme) private var colorScheme
+    @State private var appearanceMode: ColorScheme = .dark
     @State private var versionTaps = 0
     @State private var lastVersionTap = Date.distantPast
     @State private var versionNote: LocalizedStringKey?
@@ -59,19 +61,32 @@ struct SettingsView: View {
                                 Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
                                     .foregroundStyle(.secondary)
                             } else {
-                                ThemePicker()
+                                Picker("Appearance Mode", selection: $appearanceMode) {
+                                    Label("Light Mode", systemImage: "sun.max.fill").tag(ColorScheme.light)
+                                    Label("Dark Mode", systemImage: "moon.fill").tag(ColorScheme.dark)
+                                }
+                                .pickerStyle(.segmented)
+                                .padding(.vertical, 2)
+
+                                ThemePicker(scheme: appearanceMode)
 
                                 VStack(alignment: .leading, spacing: 8) {
                                     HStack {
                                         row("Gradient vibrancy", "slider.horizontal.3")
                                         Spacer()
-                                        Text("\(Int(round(theme.gradientVibrancy * 100)))%")
+                                        Text("\(Int(round(theme.vibrancy(for: appearanceMode) * 100)))%")
                                             .font(.subheadline.monospacedDigit())
                                             .foregroundStyle(.secondary)
                                     }
 
-                                    Slider(value: $theme.gradientVibrancy, in: 0.0...1.0)
-                                        .tint(theme.current.readableAccent)
+                                    Slider(
+                                        value: Binding(
+                                            get: { theme.vibrancy(for: appearanceMode) },
+                                            set: { theme.setVibrancy($0, for: appearanceMode) }
+                                        ),
+                                        in: 0.0...1.0
+                                    )
+                                    .tint(theme.current(for: appearanceMode).readableAccent)
                                 }
                                 .padding(.top, 4)
                             }
@@ -79,7 +94,9 @@ struct SettingsView: View {
                             Text("Appearance")
                         } footer: {
                             if !theme.highContrast {
-                                Text("Gradient vibrancy controls the background overlay for accessibility. At 100%, the animated gradient is fully colorful with 0% overlay. At 0%, a white or black overlay leaves minimal 10% visibility.")
+                                Text(appearanceMode == .light
+                                     ? "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
+                                     : "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
                             }
                         }
 
@@ -209,6 +226,12 @@ struct SettingsView: View {
                     .scrollEdgeEffectStyle(.soft, for: .top)
             }
             .toolbar(.hidden, for: .navigationBar)
+            .onAppear {
+                appearanceMode = colorScheme
+            }
+            .onChange(of: colorScheme) { _, newScheme in
+                appearanceMode = newScheme
+            }
             .sheet(isPresented: $showingCredentialForm) {
                 AutoSignInCredentialForm()
             }
@@ -329,6 +352,7 @@ struct SettingsView: View {
 /// (backgrounds, tab bar, selection accents) observes directly, so the whole
 /// UI updates immediately with no extra plumbing here.
 private struct ThemePicker: View {
+    var scheme: ColorScheme = .dark
     @ObservedObject private var theme = ThemeManager.shared
 
     private let columns = Array(repeating: GridItem(.flexible()), count: 3)
@@ -337,7 +361,7 @@ private struct ThemePicker: View {
         LazyVGrid(columns: columns, spacing: 16) {
             ForEach(AppColorThemes.all) { candidate in
                 Button {
-                    theme.current = candidate
+                    theme.setSelectedTheme(candidate, for: scheme)
                 } label: {
                     VStack(spacing: 6) {
                         if candidate.id == "rainbow" {
@@ -360,7 +384,7 @@ private struct ThemePicker: View {
                                 )
                                 .frame(width: 32, height: 32)
                                 .overlay {
-                                    if candidate.id == theme.current.id {
+                                    if candidate.id == theme.selectedTheme(for: scheme).id {
                                         Image(systemName: "checkmark")
                                             .font(.footnote.weight(.bold))
                                             .foregroundStyle(.white)
@@ -372,9 +396,7 @@ private struct ThemePicker: View {
                                 .fill(candidate.accent)
                                 .frame(width: 32, height: 32)
                                 .overlay {
-                                    // A checkmark, not just a ring, so the selection
-                                    // doesn't depend on telling colors apart.
-                                    if candidate.id == theme.current.id {
+                                    if candidate.id == theme.selectedTheme(for: scheme).id {
                                         Image(systemName: "checkmark")
                                             .font(.footnote.weight(.bold))
                                             .foregroundStyle(Color.onFill(candidate.accent))
@@ -388,7 +410,7 @@ private struct ThemePicker: View {
                     .frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.plain)
-                .accessibilityAddTraits(candidate.id == theme.current.id ? .isSelected : [])
+                .accessibilityAddTraits(candidate.id == theme.selectedTheme(for: scheme).id ? .isSelected : [])
             }
         }
         .padding(.vertical, 6)

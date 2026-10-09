@@ -63,6 +63,7 @@ private struct MainTabView: View {
     @State private var isSyncingTimeline = false
     @State private var alertsFilter: AlertsFilter = .unread
     @ObservedObject private var theme = ThemeManager.shared
+    @Environment(\.colorScheme) private var colorScheme
 
     private static let tabBarHeight: CGFloat = 49
 
@@ -123,6 +124,9 @@ private struct MainTabView: View {
         // a different combination of 3 colors on every tab change.
         .onChange(of: selectedTab) { _, _ in
             ThemeManager.shared.advanceRainbowCombo()
+        }
+        .onChange(of: colorScheme, initial: true) { _, newScheme in
+            ThemeManager.shared.updateActiveColorScheme(newScheme)
         }
         // Breaks has no tab of its own: it opens from the countdown pill during a
         // shift, and from tapping a break widget or Live Activity.
