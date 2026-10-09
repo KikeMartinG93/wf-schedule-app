@@ -45,7 +45,7 @@ enum WhatsNew {
                  detail: "Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator."),
             Item(symbol: "applewatch",
                  title: "Shift countdown on Apple Watch",
-                 detail: "Open the Watch app to see the time until your next shift. During a shift the screen fills green, with a line that rises as the shift goes by until it reaches 100%. Swipe up for your barcode."),
+                 detail: "Open the Watch app to see the time until your next shift. During a shift the screen fills green, with a line that rises as the shift goes by until it reaches full capacity. Swipe up for your barcode."),
             Item(symbol: "sparkles",
                  title: "What's New",
                  detail: "Every update now opens with a summary like this one. You can find it again anytime in Settings."),

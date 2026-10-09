@@ -1,6 +1,6 @@
 import ActivityKit
 import Foundation
-import UserNotifications
+@preconcurrency import UserNotifications
 
 /// Decides when the break Live Activity should exist: only while a shift is on.
 /// Each shift gets its own `BreakFlow` (see `BreakRhythm`); this starts the
@@ -76,7 +76,6 @@ enum BreakActivityManager {
     // MARK: - Shift-start notice
 
     private static func scheduleStartNotices(now: Date) {
-        let center = UNUserNotificationCenter.current()
         let upcoming: [Shift] = isEnabled
             ? Array((ScheduleStore.shared.load()?.shifts ?? [])
                 .filter { $0.startTime > now && $0.endTime.timeIntervalSince($0.startTime) > 15 * 60 }
@@ -84,17 +83,19 @@ enum BreakActivityManager {
                 .prefix(14))
             : []
 
-        center.getPendingNotificationRequests { pending in
-            let stale = pending.map(\.identifier).filter { $0.hasPrefix(startNoticePrefix) }
-            center.removePendingNotificationRequests(withIdentifiers: stale)
+        let prefix = startNoticePrefix
+        let notificationCenter = UNUserNotificationCenter.current()
+        notificationCenter.getPendingNotificationRequests { [notificationCenter] pending in
+            let stale = pending.map(\.identifier).filter { $0.hasPrefix(prefix) }
+            notificationCenter.removePendingNotificationRequests(withIdentifiers: stale)
             for shift in upcoming {
                 let content = UNMutableNotificationContent()
                 content.title = String(localized: "Shift started")
                 content.body = String(localized: "Tap to start your break timers.")
                 content.sound = .default
                 let parts = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute], from: shift.startTime)
-                center.add(UNNotificationRequest(
-                    identifier: "\(startNoticePrefix)\(shift.id)",
+                notificationCenter.add(UNNotificationRequest(
+                    identifier: "\(prefix)\(shift.id)",
                     content: content,
                     trigger: UNCalendarNotificationTrigger(dateMatching: parts, repeats: false)
                 ))

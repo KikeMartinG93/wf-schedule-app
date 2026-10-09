@@ -85,7 +85,7 @@ final class ChecklistStore {
 
     func loadState() -> ChecklistState {
         cacheLock.lock()
-        if var state = cachedState {
+        if let state = cachedState {
             if Calendar.current.isDateInToday(state.lastResetDay) {
                 cacheLock.unlock()
                 return state
@@ -138,7 +138,7 @@ final class ChecklistStore {
 
     func loadSelection() -> ChecklistDaySelection {
         cacheLock.lock()
-        if var selection = cachedSelection {
+        if let selection = cachedSelection {
             if Calendar.current.isDateInToday(selection.lastResetDay) {
                 cacheLock.unlock()
                 return selection

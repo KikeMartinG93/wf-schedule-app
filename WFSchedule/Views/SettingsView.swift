@@ -83,7 +83,7 @@ struct SettingsView: View {
                                     HStack {
                                         row("Gradient vibrancy", "slider.horizontal.3")
                                         Spacer()
-                                        Text("\(Int(round(theme.vibrancy(for: appearanceMode) * 100)))%")
+                                        Text(theme.vibrancy(for: appearanceMode), format: .percent.precision(.fractionLength(0)))
                                             .font(.subheadline.monospacedDigit())
                                             .foregroundStyle(.secondary)
                                     }
