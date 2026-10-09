@@ -327,6 +327,17 @@
         }
       }
     },
+    "Animated fluid background" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fondo fluido animado"
+          }
+        }
+      }
+    },
     "Appearance" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -367,6 +378,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Inicio de sesión automático"
+          }
+        }
+      }
+    },
+    "Background gradients now slowly morph and breathe like Apple Music lyrics, bringing a dynamic, fluid ambiance to every screen." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Los degradados de fondo ahora se transforman y respiran suavemente como en Apple Music, aportando un ambiente dinámico y fluido a cada pantalla."
           }
         }
       }
@@ -809,6 +831,17 @@
         }
       }
     },
+    "Explore all features — including break tools, operational role checklists, and sample shifts — directly from the new Demo Mode menu anytime you open the app or sign-in screens." : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Explora todas las funciones —incluyendo descansos, lista de tareas operativas y turnos de prueba— directamente desde el nuevo menú de Modo demo en cualquier momento."
+          }
+        }
+      }
+    },
     "Explore demo mode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -874,6 +907,17 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Terminar descanso"
+          }
+        }
+      }
+    },
+    "Full Demo Mode" : {
+      "extractionState" : "stale",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Modo demo completo"
           }
         }
       }

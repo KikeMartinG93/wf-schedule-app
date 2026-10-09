@@ -89,6 +89,14 @@ enum WhatsNew {
                  title: "Smoother shift bar",
                  detail: "The shift bar now shrinks and expands faster with the tab bar, and it only floats back up once you're at the top of the list. Alerts no longer bounces when there's nothing to scroll."),
         ]),
+        Release(revision: 15, items: [
+            Item(symbol: "waveform.path",
+                 title: "Animated fluid background",
+                 detail: "Background gradients now slowly morph and breathe like Apple Music lyrics, bringing a dynamic, fluid ambiance to every screen."),
+            Item(symbol: "sparkles",
+                 title: "Full Demo Mode",
+                 detail: "Explore all features — including break tools, operational role checklists, and sample shifts — directly from the new Demo Mode menu anytime you open the app or sign-in screens."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
