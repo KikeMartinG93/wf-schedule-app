@@ -1,0 +1,40 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "NSAlarmKitUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WF Schedule rings an alarm when a break or lunch timer you started is over."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WF Schedule suena una alarma cuando termina un temporizador de descanso o almuerzo que iniciaste."
+          }
+        }
+      }
+    },
+    "NSCalendarsFullAccessUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WF Schedule creates a dedicated 'Work Schedule' calendar and adds your shifts to it so they stay in sync with your other Apple devices."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WF Schedule crea un calendario dedicado «Work Schedule» y agrega tus turnos para que se mantengan sincronizados con tus otros dispositivos Apple."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

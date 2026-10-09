@@ -1,0 +1,40 @@
+name: WFSchedule
+options:
+  bundleIdPrefix: com.example.wfschedule
+  deploymentTarget:
+    iOS: "26.0"
+
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: ""
+    CODE_SIGN_STYLE: Automatic
+
+targets:
+  WFSchedule:
+    type: application
+    platform: iOS
+    sources:
+      - path: WFSchedule
+    info:
+      path: WFSchedule/App/Info.plist
+      properties:
+        CFBundleDisplayName: WF Schedule
+        UILaunchScreen: {}
+        NSCalendarsFullAccessUsageDescription: "WF Schedule creates a dedicated 'Work Schedule' calendar and adds your shifts to it so they stay in sync with your other Apple devices."
+        UIBackgroundModes:
+          - fetch
+          - processing
+        BGTaskSchedulerPermittedIdentifiers:
+          - com.example.wfschedule.refresh
+        ITSAppUsesNonExemptEncryption: false
+    entitlements:
+      path: WFSchedule/App/WFSchedule.entitlements
+      properties:
+        keychain-access-groups:
+          - $(AppIdentifierPrefix)com.example.wfschedule
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.example.wfschedule
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_KEY_UILaunchScreen_Generation: "YES"

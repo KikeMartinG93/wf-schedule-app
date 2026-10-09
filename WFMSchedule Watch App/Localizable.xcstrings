@@ -1,0 +1,50 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "Set your barcode in the WF Schedule app on your iPhone": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura tu código de barras en la app WF Schedule de tu iPhone"
+          }
+        }
+      }
+    },
+    "Shift ends in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El turno termina en"
+          }
+        }
+      }
+    },
+    "Next shift in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo turno en"
+          }
+        }
+      }
+    },
+    "No upcoming shifts": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay turnos próximos"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

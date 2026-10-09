@@ -1,0 +1,61 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "What is my next shift in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuál es mi próximo turno en ${applicationName}"
+          }
+        }
+      }
+    },
+    "When do I work next in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuándo trabajo próximamente en ${applicationName}"
+          }
+        }
+      }
+    },
+    "Next shift in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo turno en ${applicationName}"
+          }
+        }
+      }
+    },
+    "Am I working ${day} in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Trabajo ${day} en ${applicationName}"
+          }
+        }
+      }
+    },
+    "What is my schedule ${day} in ${applicationName}": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuál es mi horario de ${day} en ${applicationName}"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
