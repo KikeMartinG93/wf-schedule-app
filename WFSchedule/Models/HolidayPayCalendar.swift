@@ -32,11 +32,14 @@ enum HolidayPayCalendar {
 
         let dates: [Date?] = [
             date(month: 1, day: 1),                                    // New Year's Day
-            calendar.date(from: easter(year: year)),                   // Easter
-            lastWeekday(2, ofMonth: 5, year: year, calendar: calendar), // Memorial Day
+            nthWeekday(3, weekday: 2, ofMonth: 1, year: year, calendar: calendar), // Martin Luther King Jr. Day (3rd Mon in Jan)
+            calendar.date(from: easter(year: year)),                   // Easter Sunday
+            lastWeekday(2, ofMonth: 5, year: year, calendar: calendar), // Memorial Day (Last Mon in May)
+            date(month: 6, day: 19),                                   // Juneteenth
             date(month: 7, day: 4),                                    // Independence Day
-            nthWeekday(1, weekday: 2, ofMonth: 9, year: year, calendar: calendar),  // Labor Day
-            nthWeekday(4, weekday: 5, ofMonth: 11, year: year, calendar: calendar), // Thanksgiving
+            nthWeekday(1, weekday: 2, ofMonth: 9, year: year, calendar: calendar),  // Labor Day (1st Mon in Sep)
+            nthWeekday(4, weekday: 5, ofMonth: 11, year: year, calendar: calendar), // Thanksgiving (4th Thu in Nov)
+            date(month: 12, day: 25),                                  // Christmas Day
         ]
 
         return Set(dates.compactMap { $0.map { calendar.startOfDay(for: $0) } })

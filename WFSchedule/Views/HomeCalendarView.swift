@@ -1,32 +1,30 @@
 import SwiftUI
 import UIKit
 
-/// A golden star icon with a sparkly highlight effect
+/// A clean, crisp, luminous golden star icon for Holiday Pay
 struct SparklyStar: View {
-    var size: CGFloat = 10
+    var size: CGFloat = 8
+
+    @ObservedObject private var theme = ThemeManager.shared
 
     private static let goldGradient = LinearGradient(
         colors: [
-            Color(red: 1.0, green: 0.95, blue: 0.5),
-            Color(red: 1.0, green: 0.82, blue: 0.1),
-            Color(red: 0.95, green: 0.62, blue: 0.0)
+            Color(red: 1.0, green: 0.86, blue: 0.24), // Vibrant rich gold
+            Color(red: 0.98, green: 0.66, blue: 0.08)  // Deep amber gold
         ],
-        startPoint: .topLeading,
-        endPoint: .bottomTrailing
+        startPoint: .top,
+        endPoint: .bottom
     )
 
     var body: some View {
-        ZStack {
+        if theme.highContrast {
+            Image(systemName: "star.fill")
+                .font(.system(size: size, weight: .bold))
+                .foregroundStyle(Color.primary)
+        } else {
             Image(systemName: "star.fill")
                 .font(.system(size: size, weight: .bold))
                 .foregroundStyle(Self.goldGradient)
-                .shadow(color: Color(red: 1.0, green: 0.82, blue: 0.1).opacity(0.6), radius: 1.5)
-
-            Image(systemName: "sparkle")
-                .font(.system(size: max(4, size * 0.65), weight: .black))
-                .foregroundStyle(.white)
-                .offset(x: size * 0.22, y: -size * 0.22)
-                .shadow(color: .white.opacity(0.8), radius: 1)
         }
     }
 }
@@ -517,11 +515,45 @@ struct HomeCalendarView: View {
                 let dayShifts = index.shifts(on: date, calendar: calendar)
 
                 if dayShifts.isEmpty {
-                    Text("No shift on \(date.formatted(date: .abbreviated, time: .omitted).capitalized)")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .padding(.top, 16)
+                    VStack(alignment: .leading, spacing: 8) {
+                        Text("No shift on \(date.formatted(date: .abbreviated, time: .omitted).capitalized)")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .padding(.top, 16)
+
+                        if isHolidayPay(date) {
+                            HStack(spacing: 6) {
+                                SparklyStar(size: 12)
+                                Text("Holiday Pay Eligible")
+                                    .font(.caption.weight(.semibold))
+                                    .foregroundStyle(.primary)
+                            }
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background {
+                                Capsule()
+                                    .fill(Color(red: 1.0, green: 0.82, blue: 0.1).opacity(0.18))
+                            }
+                        }
+                    }
                 } else {
+                    if isHolidayPay(date) {
+                        HStack(spacing: 6) {
+                            SparklyStar(size: 12)
+                            Text("Holiday Pay Eligible")
+                                .font(.caption.weight(.semibold))
+                                .foregroundStyle(.primary)
+                        }
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 8)
+                        .background {
+                            Capsule()
+                                .fill(Color(red: 1.0, green: 0.82, blue: 0.1).opacity(0.18))
+                        }
+                        .padding(.top, 12)
+                        .padding(.bottom, 4)
+                    }
+
                     ForEach(Array(dayShifts.enumerated()), id: \.element.id) { index, shift in
                         DayEventRow(shift: shift)
                         if index < dayShifts.count - 1 {
@@ -706,7 +738,7 @@ private struct DayCell: View {
     }
 
     private var indicator: some View {
-        HStack(spacing: 4) {
+        HStack(alignment: .center, spacing: 3) {
             workMarker
             if isHolidayPay {
                 SparklyStar(size: 8)

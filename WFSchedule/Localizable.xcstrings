@@ -1014,7 +1014,26 @@
       }
     },
     "Holiday Pay" : {
-
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pago de día festivo"
+          }
+        }
+      }
+    },
+    "Holiday Pay Eligible" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Elegible para día festivo"
+          }
+        }
+      }
     },
     "Home" : {
       "extractionState" : "manual",
