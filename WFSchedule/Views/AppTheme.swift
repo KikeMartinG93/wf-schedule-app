@@ -50,10 +50,10 @@ private final class BackgroundMorphDriver: ObservableObject {
 /// An Apple Music-inspired fluid animated background: multiple organic color orbs
 /// drift, breathe, scale, and gently rotate across the screen under a deep Gaussian
 /// blur, slowly morphing into dynamic liquid color gradients.
-/// Fades softly toward `.systemBackground` on the lower half to maintain total
-/// legibility for content and controls.
+/// Seamlessly fills and adapts to the full screen edge-to-edge across all views,
+/// ensuring the background smoothly continues without cutoffs or color jumps.
 struct AppBackground: View {
-    var baseOpacity: Double = 0.42
+    var baseOpacity: Double = 0.46
 
     @ObservedObject private var morph = BackgroundMorphDriver.shared
     @ObservedObject private var theme = ThemeManager.shared
@@ -65,12 +65,12 @@ struct AppBackground: View {
     /// so text contrast remains compliant and crisp.
     private var strength: Double {
         if contrast == .increased || reduceTransparency { return 0.25 }
-        return colorScheme == .light ? 0.65 : 1.0
+        return colorScheme == .light ? 0.70 : 1.0
     }
 
     private var effectiveOpacity: Double {
         let base = baseOpacity * strength
-        let pulseFactor = morph.phase1 ? 0.05 : -0.05
+        let pulseFactor = morph.phase1 ? 0.04 : -0.04
         return max(0.05, base + pulseFactor * strength)
     }
 
@@ -86,64 +86,68 @@ struct AppBackground: View {
                     let h = proxy.size.height
 
                     ZStack {
-                        // Orb 1: Primary deep theme aura
+                        // Orb 1: Primary deep theme aura (Top-Leading)
                         Ellipse()
                             .fill(orb1Color)
-                            .frame(width: w * 1.35, height: h * 0.7)
-                            .offset(
-                                x: morph.phase1 ? w * 0.16 : -w * 0.22,
-                                y: morph.phase2 ? h * 0.10 : -h * 0.14
+                            .frame(width: w * 1.35, height: h * 0.55)
+                            .position(
+                                x: morph.phase1 ? w * 0.22 : w * 0.38,
+                                y: morph.phase2 ? h * 0.20 : h * 0.12
                             )
-                            .scaleEffect(morph.phase1 ? 1.20 : 0.94)
+                            .scaleEffect(morph.phase1 ? 1.15 : 0.94)
                             .rotationEffect(.degrees(morph.phase2 ? 22 : -18))
 
-                        // Orb 2: Luminous accent highlight
+                        // Orb 2: Luminous accent highlight (Top-Trailing)
                         Ellipse()
                             .fill(orb2Color)
-                            .frame(width: w * 1.15, height: h * 0.6)
-                            .offset(
-                                x: morph.phase2 ? -w * 0.15 : w * 0.26,
-                                y: morph.phase1 ? h * 0.16 : -h * 0.06
+                            .frame(width: w * 1.20, height: h * 0.50)
+                            .position(
+                                x: morph.phase2 ? w * 0.68 : w * 0.84,
+                                y: morph.phase1 ? h * 0.32 : h * 0.22
                             )
-                            .scaleEffect(morph.phase2 ? 0.92 : 1.18)
+                            .scaleEffect(morph.phase2 ? 0.92 : 1.16)
                             .rotationEffect(.degrees(morph.phase1 ? -28 : 24))
 
-                        // Orb 3: Harmonious secondary glow
+                        // Orb 3: Harmonious secondary glow (Center-Leading)
                         RoundedRectangle(cornerRadius: w * 0.45)
                             .fill(orb3Color)
-                            .frame(width: w * 1.2, height: h * 0.65)
-                            .offset(
-                                x: morph.phase1 ? w * 0.20 : -w * 0.16,
-                                y: morph.phase2 ? h * 0.24 : h * 0.40
+                            .frame(width: w * 1.25, height: h * 0.52)
+                            .position(
+                                x: morph.phase1 ? w * 0.35 : w * 0.18,
+                                y: morph.phase2 ? h * 0.54 : h * 0.44
                             )
-                            .scaleEffect(morph.phase1 ? 1.15 : 0.88)
-                            .rotationEffect(.degrees(morph.phase2 ? 30 : -20))
+                            .scaleEffect(morph.phase1 ? 1.12 : 0.88)
+                            .rotationEffect(.degrees(morph.phase2 ? 28 : -22))
 
-                        // Orb 4: Ambient floating pool
+                        // Orb 4: Ambient floating pool (Lower-Trailing)
                         Ellipse()
                             .fill(orb4Color)
-                            .frame(width: w * 1.05, height: h * 0.55)
-                            .offset(
-                                x: morph.phase2 ? -w * 0.20 : w * 0.15,
-                                y: morph.phase1 ? h * 0.42 : h * 0.26
+                            .frame(width: w * 1.20, height: h * 0.52)
+                            .position(
+                                x: morph.phase2 ? w * 0.62 : w * 0.80,
+                                y: morph.phase1 ? h * 0.72 : h * 0.62
                             )
-                            .scaleEffect(morph.phase2 ? 1.18 : 0.95)
-                            .rotationEffect(.degrees(morph.phase1 ? 20 : -32))
-                    }
-                    .blur(radius: 72)
-                    .clipped()
-                }
+                            .scaleEffect(morph.phase2 ? 1.16 : 0.94)
+                            .rotationEffect(.degrees(morph.phase1 ? 22 : -30))
 
-                // Smooth bottom fade into system background for content legibility
-                LinearGradient(
-                    colors: [
-                        Color.clear,
-                        Color(.systemBackground).opacity(colorScheme == .dark ? 0.35 : 0.50),
-                        Color(.systemBackground).opacity(colorScheme == .dark ? 0.85 : 0.92)
-                    ],
-                    startPoint: .center,
-                    endPoint: .bottom
-                )
+                        // Orb 5: Deep base tone filling the lower screen (Bottom-Leading / Center)
+                        Ellipse()
+                            .fill(orb1Color)
+                            .frame(width: w * 1.35, height: h * 0.55)
+                            .position(
+                                x: morph.phase1 ? w * 0.30 : w * 0.48,
+                                y: morph.phase2 ? h * 0.88 : h * 0.80
+                            )
+                            .scaleEffect(morph.phase1 ? 1.14 : 0.92)
+                            .rotationEffect(.degrees(morph.phase2 ? -18 : 20))
+                    }
+                    .blur(radius: 80)
+                }
+                .ignoresSafeArea()
+
+                // Subtle uniform ambient surface scrim ensuring crisp readability everywhere
+                Color(.systemBackground)
+                    .opacity(colorScheme == .dark ? 0.32 : 0.42)
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
@@ -158,14 +162,14 @@ struct AppBackground: View {
         if let custom = theme.current.cashOfficeAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
-        return theme.current.accent.opacity(effectiveOpacity * 0.62)
+        return theme.current.accent.opacity(effectiveOpacity * 0.65)
     }
 
     private var orb3Color: Color {
         if let custom = theme.current.supervisorAccentOverride {
             return custom.opacity(effectiveOpacity * 0.75)
         }
-        return theme.current.holidayPay.opacity(effectiveOpacity * 0.72)
+        return theme.current.holidayPay.opacity(effectiveOpacity * 0.75)
     }
 
     private var orb4Color: Color {
@@ -174,7 +178,7 @@ struct AppBackground: View {
         }
         return theme.current.backgroundTint
             .mixed(with: theme.current.accent, amount: 0.4)
-            .opacity(effectiveOpacity * 0.68)
+            .opacity(effectiveOpacity * 0.70)
     }
 }
 
