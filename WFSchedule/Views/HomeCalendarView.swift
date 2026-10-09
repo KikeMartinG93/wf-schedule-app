@@ -220,26 +220,18 @@ struct HomeCalendarView: View {
             loginButton(.innerview, title: "Innerview Login")
             loginButton(.ukg, title: "Amazon Login")
 
-            Menu {
-                Button {
-                    DemoMode.set(true)
-                } label: {
-                    Label("Demo Mode", systemImage: "sparkles")
-                }
+            Button {
+                DemoMode.set(true)
             } label: {
-                HStack(spacing: 6) {
-                    Image(systemName: "sparkles")
-                    Text("Demo Mode")
-                    Image(systemName: "ellipsis")
-                        .font(.caption2)
-                }
-                .font(.subheadline.weight(.medium))
-                .foregroundStyle(.secondary)
-                .padding(.horizontal, 14)
-                .padding(.vertical, 8)
-                .background(.ultraThinMaterial, in: Capsule())
+                Label("Explore Demo Mode", systemImage: "sparkles")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(theme.current.readableAccent)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 10)
+                    .background(.ultraThinMaterial, in: Capsule())
             }
-            .padding(.top, 4)
+            .buttonStyle(.plain)
+            .padding(.top, 6)
         }
     }
 

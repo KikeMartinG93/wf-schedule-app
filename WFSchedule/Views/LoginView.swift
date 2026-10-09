@@ -50,17 +50,12 @@ struct LoginView: View {
                     Button("Cancel") { dismiss() }
                 }
                 ToolbarItem(placement: .primaryAction) {
-                    Menu {
-                        Button {
-                            DemoMode.set(true)
-                            dismiss()
-                        } label: {
-                            Label("Demo Mode", systemImage: "sparkles")
-                        }
+                    Button {
+                        DemoMode.set(true)
+                        dismiss()
                     } label: {
-                        Image(systemName: "ellipsis.circle")
-                            .font(.body.weight(.medium))
-                            .accessibilityLabel("Options")
+                        Label("Demo", systemImage: "sparkles")
+                            .font(.subheadline.weight(.semibold))
                     }
                 }
             }
