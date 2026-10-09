@@ -89,18 +89,6 @@ struct SettingsView: View {
                             Text("High contrast turns the app, widgets and Live Activity plain black, white and gray. Some items, like dates and notifications, update after you restart the app.")
                         }
 
-                        // Features
-                        Section {
-                            Toggle(isOn: breakActivityBinding) {
-                                row("Break Live Activity", "timer")
-                            }
-                            .tint(theme.current.toggleTint)
-                        } header: {
-                            Text("Breaks")
-                        } footer: {
-                            Text("Shows your break countdown on the Lock Screen and in the Dynamic Island during a shift.")
-                        }
-
                         Section {
                             TMIDField()
                         } header: {
@@ -270,16 +258,6 @@ struct SettingsView: View {
                 roundedFont = newValue
                 WidgetCenter.shared.reloadAllTimelines()
                 BarcodePhoneSync.shared.send(BarcodeStore.value)
-            }
-        )
-    }
-
-    private var breakActivityBinding: Binding<Bool> {
-        Binding(
-            get: { BreakActivityManager.isEnabled },
-            set: { newValue in
-                UserDefaults.standard.set(newValue, forKey: BreakActivityManager.enabledKey)
-                BreakActivityManager.sync()
             }
         )
     }

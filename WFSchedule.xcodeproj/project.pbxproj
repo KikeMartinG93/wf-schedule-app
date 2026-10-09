@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 56;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -192,7 +192,7 @@
 /* Begin PBXFileReference section */
 		02E3F23FCC6EF4AF243D496F /* WFMSchedule Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WFMSchedule Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		035CE694CFB5AD933A933521 /* WFMNextShiftWidget.entitlements */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.entitlements; path = WFMNextShiftWidget.entitlements; sourceTree = "<group>"; };
-		046DB8F3D50D88DD70219BFA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		046DB8F3D50D88DD70219BFA /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		0BD216898D953684E72BBD36 /* HighContrast.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HighContrast.swift; sourceTree = "<group>"; };
 		0CF88ADDE662C89D268A640D /* ChecklistView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChecklistView.swift; sourceTree = "<group>"; };
 		0E573D59A0E3F78BEE090E2B /* WatchShift.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WatchShift.swift; sourceTree = "<group>"; };
@@ -215,7 +215,7 @@
 		4C8B9E5314B1B7FAD5910B14 /* AppColorTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppColorTheme.swift; sourceTree = "<group>"; };
 		4D2008148A020323FA2D1EC5 /* Shift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shift.swift; sourceTree = "<group>"; };
 		4DB65CA4F673B2DF5B92F108 /* BarcodeWatchView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BarcodeWatchView.swift; sourceTree = "<group>"; };
-		50AF903082AFF7FFF52A5F96 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Assets.xcassets; sourceTree = "<group>"; };
+		50AF903082AFF7FFF52A5F96 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		510B04AFA7E917D8F650FA7C /* BreaksView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BreaksView.swift; sourceTree = "<group>"; };
 		52947A59904FE92B1297CFA1 /* BreakIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BreakIntents.swift; sourceTree = "<group>"; };
 		5319B2527FA83FEE9073015D /* InfoPlist.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
@@ -365,7 +365,6 @@
 				955B2FCB15C222EC9839768A /* ScheduleFetching.swift */,
 				C2C68E3744DFCA21A566FEE8 /* WebKitCookies.swift */,
 			);
-			name = Services;
 			path = Services;
 			sourceTree = "<group>";
 		};
@@ -394,7 +393,6 @@
 				A675D42B640F80C52C6B2357 /* BreakWidget.swift */,
 				D067C9F28A927559F1532165 /* BreakLiveActivity.swift */,
 			);
-			name = WFMNextShiftWidget;
 			path = WFMNextShiftWidget;
 			sourceTree = "<group>";
 		};
@@ -431,7 +429,6 @@
 				AA16F5BE7976116D2ACD9D00 /* InnerviewLoginWebView.swift */,
 				7EC753527AC8288F486CC3AA /* UKGLoginView.swift */,
 			);
-			name = Views;
 			path = Views;
 			sourceTree = "<group>";
 		};
@@ -441,7 +438,6 @@
 				FC26724723CB5FF7384AEDDA /* SessionManager.swift */,
 				4C8B9E5314B1B7FAD5910B14 /* AppColorTheme.swift */,
 			);
-			name = ViewModels;
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
@@ -470,7 +466,6 @@
 				BC52577B72F4D406B1EE9CA5 /* BarcodeTimeline.swift */,
 				B67C7775C5761C7C5D4E2EC2 /* BreakComplication.swift */,
 			);
-			name = WFMBarcodeComplication;
 			path = WFMBarcodeComplication;
 			sourceTree = "<group>";
 		};
@@ -488,7 +483,6 @@
 				C0FE6A9CA9DC571368D63C24 /* BreakFlowEngine.swift */,
 				52947A59904FE92B1297CFA1 /* BreakIntents.swift */,
 			);
-			name = Shared;
 			path = Shared;
 			sourceTree = "<group>";
 		};
@@ -539,7 +533,6 @@
 				59CB55DCDC55B33D7FAF8FE7 /* Localizable.xcstrings */,
 				A2C5E99EB3D7AD659A773B2F /* WatchShiftView.swift */,
 			);
-			name = "WFMSchedule Watch App";
 			path = "WFMSchedule Watch App";
 			sourceTree = "<group>";
 		};
@@ -627,7 +620,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 2700;
-				LastUpgradeCheck = 1430;
+				LastUpgradeCheck = 2700;
 				TargetAttributes = {
 					023E7FEF9EC189E6247798BE = {
 						CreatedOnToolsVersion = 16.0;
@@ -866,6 +859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -898,9 +892,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -921,6 +916,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -934,7 +930,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WFSchedule/App/WFSchedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = G7C5D28VAK;
 				INFOPLIST_FILE = WFSchedule/App/Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -953,8 +948,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMBarcodeComplication/WFMBarcodeComplication.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMBarcodeComplication/Info.plist;
 				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.watchkitapp.WFMBarcodeComplication;
@@ -968,14 +962,12 @@
 		67D129E938C697F1FF5DE22C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "WFMSchedule Watch App/WFMScheduleWatchApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = "WFMSchedule Watch App/Info.plist";
 				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.watchkitapp;
@@ -991,14 +983,12 @@
 		9B8EF0C17ED0FACADED908FB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "WFMSchedule Watch App/WFMScheduleWatchApp.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = "WFMSchedule Watch App/Info.plist";
 				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.watchkitapp;
@@ -1016,8 +1006,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1042,8 +1031,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1067,8 +1055,7 @@
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMBarcodeComplication/WFMBarcodeComplication.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
-				DEVELOPMENT_TEAM = G7C5D28VAK;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMBarcodeComplication/Info.plist;
 				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.watchkitapp.WFMBarcodeComplication;
@@ -1087,7 +1074,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WFSchedule/App/WFSchedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				DEVELOPMENT_TEAM = G7C5D28VAK;
 				INFOPLIST_FILE = WFSchedule/App/Info.plist;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1104,6 +1090,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1136,9 +1123,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = G7C5D28VAK;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -1152,6 +1140,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = NO;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;

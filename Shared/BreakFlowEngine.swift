@@ -34,7 +34,7 @@ enum BreakFlowEngine {
     static let enabledKey = "breakLiveActivityEnabled"
 
     static var isEnabled: Bool {
-        UserDefaults.standard.object(forKey: enabledKey) as? Bool ?? true
+        false
     }
 
     /// `end` is asynchronous, so an activity that's on its way out can still be

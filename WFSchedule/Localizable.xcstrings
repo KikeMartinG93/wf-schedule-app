@@ -1925,9 +1925,6 @@
         }
       }
     },
-    "Shows your break countdown on the Lock Screen and in the Dynamic Island during a shift." : {
-
-    },
     "Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue." : {
       "extractionState" : "manual",
       "localizations" : {
