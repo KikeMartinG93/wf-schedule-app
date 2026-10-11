@@ -99,6 +99,16 @@ enum AppColorThemes {
     /// ~205-215° hue). The rest fill out a spread across the color wheel so
     /// there's a genuinely distinct choice in every direction.
     static let all: [AppColorTheme] = [
+        // Spooky seasonal Halloween theme: green, pumpkin orange, and witch purple
+        // fluid gradients with lightning flashes and climbing spiders easter eggs.
+        AppColorTheme(
+            id: "halloween", name: "Halloween",
+            backgroundTint: Color(red: 0x24 / 255, green: 0x0A / 255, blue: 0x3E / 255), // deep witch violet
+            accent: Color(red: 1.00, green: 0.48, blue: 0.05), // vivid pumpkin orange
+            holidayPay: Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255), // neon eerie green
+            cashOfficeAccentOverride: Color(red: 0xA8 / 255, green: 0x3A / 255, blue: 0xF0 / 255), // witch purple
+            supervisorAccentOverride: Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255) // neon slime green
+        ),
         AppColorTheme(
             id: "green", name: "Green",
             backgroundTint: Color(red: 0x00 / 255, green: 0x4E / 255, blue: 0x36 / 255),
@@ -174,7 +184,7 @@ enum AppColorThemes {
 
     ]
 
-    static let `default` = all[0]
+    static let `default` = all.first { $0.id == "halloween" } ?? all[0]
 
     static func theme(id: String) -> AppColorTheme {
         all.first { $0.id == id } ?? AppColorThemes.default
@@ -196,6 +206,7 @@ final class ThemeManager: ObservableObject {
     private static let lightVibrancyStorageKey = "lightGradientVibrancy"
     private static let darkVibrancyStorageKey = "darkGradientVibrancy"
     private static let legacyVibrancyStorageKey = "gradientVibrancy"
+    private static let halloweenDefaultAppliedKey = "halloweenThemeDefaultApplied_v1"
 
     @Published var activeColorScheme: ColorScheme = .dark
 
@@ -328,6 +339,14 @@ final class ThemeManager: ObservableObject {
     }
 
     private init() {
+        // Automatically default to Halloween once upon updating the app.
+        if !UserDefaults.standard.bool(forKey: Self.halloweenDefaultAppliedKey) {
+            UserDefaults.standard.set(true, forKey: Self.halloweenDefaultAppliedKey)
+            UserDefaults.standard.set("halloween", forKey: Self.lightThemeStorageKey)
+            UserDefaults.standard.set("halloween", forKey: Self.darkThemeStorageKey)
+            UserDefaults.standard.set("halloween", forKey: Self.legacyThemeStorageKey)
+        }
+
         let legacyID = UserDefaults.standard.string(forKey: Self.legacyThemeStorageKey)
         let lightSavedID = UserDefaults.standard.string(forKey: Self.lightThemeStorageKey) ?? legacyID
         let darkSavedID = UserDefaults.standard.string(forKey: Self.darkThemeStorageKey) ?? legacyID

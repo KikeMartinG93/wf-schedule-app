@@ -3039,6 +3039,17 @@
           }
         }
       }
+    },
+    "Halloween": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halloween"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

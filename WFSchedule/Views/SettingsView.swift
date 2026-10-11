@@ -19,6 +19,7 @@ struct SettingsView: View {
     @State private var versionNote: LocalizedStringKey?
     @AppStorage(AppIconManager.unlockedKey) private var classicIconUnlocked = false
     @AppStorage(AppIconManager.classicKey) private var classicIconOn = false
+    @AppStorage("themeSectionExpanded") private var isThemeExpanded = true
     @AppStorage(AppLanguage.storageKey) private var language: String = AppLanguage.system.rawValue
     @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
 
@@ -64,45 +65,58 @@ struct SettingsView: View {
                             Text("Stored in the secure Keychain and synced to your Apple Watch.")
                         }
 
-                        // 3. Theme & Appearance
+                        // 3. Theme & Appearance (Collapsible)
                         Section {
-                            if theme.highContrast {
-                                Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
-                                    .foregroundStyle(.secondary)
-                            } else {
-                                Picker("Appearance Mode", selection: $appearanceMode) {
-                                    Label("Light Mode", systemImage: "sun.max.fill").tag(ColorScheme.light)
-                                    Label("Dark Mode", systemImage: "moon.fill").tag(ColorScheme.dark)
+                            DisclosureGroup(isExpanded: $isThemeExpanded) {
+                                if theme.highContrast {
+                                    Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
+                                        .foregroundStyle(.secondary)
+                                        .padding(.vertical, 4)
+                                } else {
+                                    Picker("Appearance Mode", selection: $appearanceMode) {
+                                        Label("Light Mode", systemImage: "sun.max.fill").tag(ColorScheme.light)
+                                        Label("Dark Mode", systemImage: "moon.fill").tag(ColorScheme.dark)
+                                    }
+                                    .pickerStyle(.segmented)
+                                    .padding(.vertical, 4)
+
+                                    ThemePicker(scheme: appearanceMode)
+
+                                    VStack(alignment: .leading, spacing: 8) {
+                                        HStack {
+                                            row("Gradient vibrancy", "slider.horizontal.3")
+                                            Spacer()
+                                            Text(theme.vibrancy(for: appearanceMode), format: .percent.precision(.fractionLength(0)))
+                                                .font(.subheadline.monospacedDigit())
+                                                .foregroundStyle(.secondary)
+                                        }
+
+                                        Slider(
+                                            value: Binding(
+                                                get: { theme.vibrancy(for: appearanceMode) },
+                                                set: { theme.setVibrancy($0, for: appearanceMode) }
+                                            ),
+                                            in: 0.0...1.0
+                                        )
+                                        .tint(theme.current(for: appearanceMode).readableAccent)
+                                    }
+                                    .padding(.top, 4)
                                 }
-                                .pickerStyle(.segmented)
-                                .padding(.vertical, 2)
-
-                                ThemePicker(scheme: appearanceMode)
-
-                                VStack(alignment: .leading, spacing: 8) {
-                                    HStack {
-                                        row("Gradient vibrancy", "slider.horizontal.3")
-                                        Spacer()
-                                        Text(theme.vibrancy(for: appearanceMode), format: .percent.precision(.fractionLength(0)))
-                                            .font(.subheadline.monospacedDigit())
+                            } label: {
+                                HStack {
+                                    row("Theme & Appearance", "paintpalette")
+                                    Spacer()
+                                    if !isThemeExpanded && !theme.highContrast {
+                                        Text(LocalizedStringKey(theme.selectedTheme(for: appearanceMode).name))
+                                            .font(.subheadline)
                                             .foregroundStyle(.secondary)
                                     }
-
-                                    Slider(
-                                        value: Binding(
-                                            get: { theme.vibrancy(for: appearanceMode) },
-                                            set: { theme.setVibrancy($0, for: appearanceMode) }
-                                        ),
-                                        in: 0.0...1.0
-                                    )
-                                    .tint(theme.current(for: appearanceMode).readableAccent)
                                 }
-                                .padding(.top, 4)
                             }
                         } header: {
                             Text("Theme & Appearance")
                         } footer: {
-                            if !theme.highContrast {
+                            if isThemeExpanded && !theme.highContrast {
                                 Text(appearanceMode == .light
                                      ? "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
                                      : "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
@@ -378,6 +392,28 @@ private struct ThemePicker: View {
                                             Color(red: 0.95, green: 0.22, blue: 0.32)
                                         ]),
                                         center: .center
+                                    )
+                                )
+                                .frame(width: 32, height: 32)
+                                .overlay {
+                                    if candidate.id == theme.selectedTheme(for: scheme).id {
+                                        Image(systemName: "checkmark")
+                                            .font(.footnote.weight(.bold))
+                                            .foregroundStyle(.white)
+                                            .shadow(color: .black.opacity(0.6), radius: 2)
+                                    }
+                                }
+                        } else if candidate.id == "halloween" {
+                            Circle()
+                                .fill(
+                                    LinearGradient(
+                                        colors: [
+                                            Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255), // green
+                                            Color(red: 1.00, green: 0.48, blue: 0.05), // orange
+                                            Color(red: 0xA8 / 255, green: 0x3A / 255, blue: 0xF0 / 255)  // purple
+                                        ],
+                                        startPoint: .topLeading,
+                                        endPoint: .bottomTrailing
                                     )
                                 )
                                 .frame(width: 32, height: 32)

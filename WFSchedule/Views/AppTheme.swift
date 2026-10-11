@@ -155,6 +155,11 @@ struct AppBackground: View {
                 // At 0% full: 90% overlay (gradient minimal 10% visibility).
                 Color(colorScheme == .dark ? .black : .white)
                     .opacity(theme.overlayOpacity(for: colorScheme))
+
+                // Spooky Halloween easter eggs (lightning flashes and climbing spiders)
+                if activeTheme.id == "halloween" && !theme.highContrast {
+                    HalloweenSpookyOverlay()
+                }
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
@@ -188,6 +193,10 @@ struct AppBackground: View {
     private var orb4Color: Color {
         if activeTheme.id == "rainbow" {
             return activeTheme.accent.opacity(effectiveOpacity * 0.80)
+        }
+        if activeTheme.id == "halloween" {
+            // Vivid violet purple pool complementing the neon green and pumpkin orange
+            return Color(red: 0x94 / 255, green: 0x29 / 255, blue: 0xE0 / 255).opacity(effectiveOpacity * 0.80)
         }
         if activeTheme.id == "colorful" {
             return activeTheme.accent.opacity(effectiveOpacity * 0.65)
@@ -306,5 +315,261 @@ extension Shift {
 
     func accentColor(theme: AppColorTheme) -> Color {
         Self.accentColor(forJob: job, theme: theme)
+    }
+}
+
+
+// MARK: - Halloween Spooky Easter Eggs (Lightning & Spiders)
+
+/// Coordinates subtle, atmospheric easter egg events (sudden lightning flashes
+/// and descending spiders) when the Halloween theme is active.
+@MainActor
+final class HalloweenSpookyEasterEggs: ObservableObject {
+    static let shared = HalloweenSpookyEasterEggs()
+
+    @Published var lightningActive = false
+    @Published var lightningBranch: Int = 0
+
+    @Published var spiderVisible = false
+    @Published var spiderProgress: CGFloat = 0.0 // 0 = offscreen at top, 1 = descended
+    @Published var spiderXRatio: CGFloat = 0.82
+    @Published var spiderThreadLength: CGFloat = 160
+
+    private var activeTimer: Timer?
+    private var isAnimating = false
+
+    private init() {
+        scheduleNext()
+    }
+
+    func scheduleNext() {
+        activeTimer?.invalidate()
+        // Random intervals between 8 and 18 seconds for subtle spooky atmosphere
+        let interval = Double.random(in: 8.0...18.0)
+        activeTimer = Timer.scheduledTimer(withTimeInterval: interval, repeats: false) { [weak self] _ in
+            Task { @MainActor in
+                self?.triggerRandomEvent()
+            }
+        }
+    }
+
+    private func triggerRandomEvent() {
+        guard !isAnimating else {
+            scheduleNext()
+            return
+        }
+
+        // Only run when Halloween theme is active and not high-contrast
+        let currentThemeID = ThemeManager.shared.current.id
+        guard currentThemeID == "halloween" && !ThemeManager.shared.highContrast else {
+            scheduleNext()
+            return
+        }
+
+        // Reduced motion check
+        if UIAccessibility.isReduceMotionEnabled {
+            scheduleNext()
+            return
+        }
+
+        let isLightning = Bool.random()
+        if isLightning {
+            triggerLightning()
+        } else {
+            triggerSpider()
+        }
+    }
+
+    private func triggerLightning() {
+        isAnimating = true
+        lightningBranch = Int.random(in: 0...2)
+        lightningActive = true
+
+        // Double flash effect mimicking distant lightning storm
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.07) { [weak self] in
+            self?.lightningActive = false
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.06) { [weak self] in
+                self?.lightningActive = true
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.12) { [weak self] in
+                    withAnimation(.easeOut(duration: 0.35)) {
+                        self?.lightningActive = false
+                    }
+                    self?.isAnimating = false
+                    self?.scheduleNext()
+                }
+            }
+        }
+    }
+
+    private func triggerSpider() {
+        isAnimating = true
+        spiderXRatio = CGFloat.random(in: 0.15...0.85)
+        spiderThreadLength = CGFloat.random(in: 120...220)
+        spiderProgress = 0.0
+        spiderVisible = true
+
+        // Spider slowly drops down from the ceiling on a silk thread
+        withAnimation(.easeInOut(duration: 2.2)) {
+            spiderProgress = 1.0
+        }
+
+        // Dangles and wiggles briefly, then scurries back up
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.2) { [weak self] in
+            withAnimation(.easeInOut(duration: 1.5)) {
+                self?.spiderProgress = 0.0
+            }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.7) { [weak self] in
+                self?.spiderVisible = false
+                self?.isAnimating = false
+                self?.scheduleNext()
+            }
+        }
+    }
+}
+
+/// Overlay that renders the lightning flashes and animated spiders across the background.
+struct HalloweenSpookyOverlay: View {
+    @ObservedObject private var easterEggs = HalloweenSpookyEasterEggs.shared
+    @Environment(\.colorScheme) private var colorScheme
+
+    var body: some View {
+        GeometryReader { proxy in
+            let w = proxy.size.width
+            let h = proxy.size.height
+
+            ZStack(alignment: .topLeading) {
+                // Lightning Flash & Bolt
+                if easterEggs.lightningActive {
+                    Color(colorScheme == .dark ? Color(red: 0.92, green: 0.95, blue: 1.0) : Color(red: 0.88, green: 0.92, blue: 1.0))
+                        .opacity(0.35)
+                        .blendMode(.screen)
+                        .ignoresSafeArea()
+
+                    LightningBoltShape(branch: easterEggs.lightningBranch)
+                        .stroke(
+                            Color.white,
+                            style: StrokeStyle(lineWidth: 3.0, lineCap: .round, lineJoin: .round)
+                        )
+                        .shadow(color: Color(red: 0.6, green: 0.85, blue: 1.0), radius: 12)
+                        .frame(width: w * 0.40, height: h * 0.50)
+                        .position(
+                            x: easterEggs.lightningBranch == 0 ? w * 0.32 : (easterEggs.lightningBranch == 1 ? w * 0.68 : w * 0.50),
+                            y: h * 0.26
+                        )
+                        .opacity(0.9)
+                }
+
+                // Descending spider easter egg on a delicate silk thread
+                if easterEggs.spiderVisible {
+                    let spiderX = w * easterEggs.spiderXRatio
+                    let currentY = easterEggs.spiderThreadLength * easterEggs.spiderProgress
+
+                    // Silk thread
+                    Path { p in
+                        p.move(to: CGPoint(x: spiderX, y: 0))
+                        p.addLine(to: CGPoint(x: spiderX, y: currentY))
+                    }
+                    .stroke(Color.white.opacity(0.35), style: StrokeStyle(lineWidth: 1.0, dash: [4, 3]))
+
+                    // Spider
+                    SpiderShape()
+                        .fill(Color(white: 0.10))
+                        .overlay {
+                            SpiderShape()
+                                .stroke(Color(red: 1.0, green: 0.50, blue: 0.05).opacity(0.65), lineWidth: 1.0)
+                        }
+                        .frame(width: 24, height: 24)
+                        .position(x: spiderX, y: currentY)
+                        .opacity(min(1.0, easterEggs.spiderProgress * 1.6))
+                        .shadow(color: .black.opacity(0.45), radius: 4, y: 2)
+                }
+            }
+        }
+        .allowsHitTesting(false)
+        .ignoresSafeArea()
+    }
+}
+
+/// Procedural spider shape with abdomen, cephalothorax, and eight articulated legs.
+struct SpiderShape: Shape {
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let midX = rect.midX
+        let midY = rect.midY
+        let w = rect.width
+        let h = rect.height
+
+        // Abdomen (round lower body)
+        path.addEllipse(in: CGRect(x: midX - w * 0.28, y: midY - h * 0.08, width: w * 0.56, height: h * 0.52))
+        // Cephalothorax (head/upper body)
+        path.addEllipse(in: CGRect(x: midX - w * 0.20, y: midY - h * 0.38, width: w * 0.40, height: h * 0.34))
+
+        // 4 pairs of bent legs spreading out
+        let offsets: [CGFloat] = [-0.22, -0.08, 0.06, 0.20]
+        for (i, offset) in offsets.enumerated() {
+            // Left leg
+            let leftStart = CGPoint(x: midX - w * 0.12, y: midY + h * offset)
+            let leftElbow = CGPoint(x: midX - w * (0.50 + CGFloat(i) * 0.04), y: midY + h * (offset - 0.24))
+            let leftTip = CGPoint(x: midX - w * (0.80 + CGFloat(i) * 0.06), y: midY + h * (offset + 0.12))
+            path.move(to: leftStart)
+            path.addLine(to: leftElbow)
+            path.addLine(to: leftTip)
+
+            // Right leg
+            let rightStart = CGPoint(x: midX + w * 0.12, y: midY + h * offset)
+            let rightElbow = CGPoint(x: midX + w * (0.50 + CGFloat(i) * 0.04), y: midY + h * (offset - 0.24))
+            let rightTip = CGPoint(x: midX + w * (0.80 + CGFloat(i) * 0.06), y: midY + h * (offset + 0.12))
+            path.move(to: rightStart)
+            path.addLine(to: rightElbow)
+            path.addLine(to: rightTip)
+        }
+
+        return path
+    }
+}
+
+/// Stylized jagged lightning bolt shape with branch variations.
+struct LightningBoltShape: Shape {
+    var branch: Int = 0
+
+    func path(in rect: CGRect) -> Path {
+        var path = Path()
+        let w = rect.width
+        let h = rect.height
+
+        if branch == 1 {
+            // Jagged bolt tilting right
+            path.move(to: CGPoint(x: w * 0.40, y: 0))
+            path.addLine(to: CGPoint(x: w * 0.50, y: h * 0.25))
+            path.addLine(to: CGPoint(x: w * 0.35, y: h * 0.30))
+            path.addLine(to: CGPoint(x: w * 0.65, y: h * 0.55))
+            path.addLine(to: CGPoint(x: w * 0.48, y: h * 0.60))
+            path.addLine(to: CGPoint(x: w * 0.70, y: h * 1.0))
+            // Branch
+            path.move(to: CGPoint(x: w * 0.35, y: h * 0.30))
+            path.addLine(to: CGPoint(x: w * 0.15, y: h * 0.50))
+        } else if branch == 2 {
+            // Jagged bolt tilting left
+            path.move(to: CGPoint(x: w * 0.60, y: 0))
+            path.addLine(to: CGPoint(x: w * 0.45, y: h * 0.22))
+            path.addLine(to: CGPoint(x: w * 0.58, y: h * 0.26))
+            path.addLine(to: CGPoint(x: w * 0.30, y: h * 0.52))
+            path.addLine(to: CGPoint(x: w * 0.44, y: h * 0.56))
+            path.addLine(to: CGPoint(x: w * 0.20, y: h * 1.0))
+            // Branch
+            path.move(to: CGPoint(x: w * 0.58, y: h * 0.26))
+            path.addLine(to: CGPoint(x: w * 0.80, y: h * 0.45))
+        } else {
+            // Classic central bolt
+            path.move(to: CGPoint(x: w * 0.50, y: 0))
+            path.addLine(to: CGPoint(x: w * 0.38, y: h * 0.28))
+            path.addLine(to: CGPoint(x: w * 0.55, y: h * 0.32))
+            path.addLine(to: CGPoint(x: w * 0.32, y: h * 0.62))
+            path.addLine(to: CGPoint(x: w * 0.50, y: h * 0.66))
+            path.addLine(to: CGPoint(x: w * 0.42, y: h * 1.0))
+        }
+
+        return path
     }
 }
