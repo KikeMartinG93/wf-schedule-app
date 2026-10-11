@@ -3050,6 +3050,72 @@
           }
         }
       }
+    },
+    "Halloween Theme & Ambiance": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema y ambiente de Halloween"
+          }
+        }
+      }
+    },
+    "Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celebra la temporada con una vibrante paleta de Halloween: halos brillantes en naranja calabaza, verde viscoso y violeta oscuro."
+          }
+        }
+      }
+    },
+    "Atmospheric Easter Eggs": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles sorpresa temáticos"
+          }
+        }
+      }
+    },
+    "Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descubre relámpagos repentinos y arañitas colgantes en tu pantalla cuando el tema de Halloween esté activo."
+          }
+        }
+      }
+    },
+    "Collapsible Theme Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes de tema plegables"
+          }
+        }
+      }
+    },
+    "Theme & Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ajustes de Tema y Apariencia ahora se pueden expandir o contraer para mantener la pantalla de Ajustes más compacta y ordenada."
+          }
+        }
+      }
     }
   },
   "version": "1.0"

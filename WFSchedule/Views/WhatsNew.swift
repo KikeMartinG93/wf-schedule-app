@@ -116,6 +116,17 @@ enum WhatsNew {
                  title: "Instant Demo Mode",
                  detail: "Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons."),
         ]),
+        Release(revision: 18, items: [
+            Item(symbol: "theatermasks.fill",
+                 title: "Halloween Theme & Ambiance",
+                 detail: "Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet."),
+            Item(symbol: "bolt.fill",
+                 title: "Atmospheric Easter Eggs",
+                 detail: "Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active."),
+            Item(symbol: "chevron.down.circle",
+                 title: "Collapsible Theme Settings",
+                 detail: "Theme & Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

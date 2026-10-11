@@ -1,0 +1,6 @@
+Version 2.3 (Revision 18):
+
+• Spooky Halloween Theme: Celebrate the season with an all-new Halloween theme featuring fluid gradients of pumpkin orange, eerie slime green, and deep witch violet (applied automatically upon updating!).
+• Atmospheric Easter Eggs: Watch out for subtle lightning flashes and spiders dropping down on silk threads across the background when the Halloween theme is active.
+• Collapsible Theme & Appearance: The Theme & Appearance section in Settings can now be collapsed and expanded with a tap, keeping your settings neat and compact.
+• Performance & Stability: Enhanced background rendering animations and barcode optimizations.
