@@ -275,6 +275,7 @@ final class ThemeManager: ObservableObject {
         } else {
             darkTheme = theme
         }
+        AppIconManager.apply(themeID: theme.id)
     }
 
     func vibrancy(for scheme: ColorScheme) -> Double {
@@ -377,5 +378,9 @@ final class ThemeManager: ObservableObject {
             || UserDefaults.standard.bool(forKey: ContrastPreference.key)
         highContrast = enabled
         FontPreference.store.set(enabled, forKey: ContrastPreference.key)
+
+        Task { @MainActor in
+            AppIconManager.apply(themeID: self.current.id)
+        }
     }
 }

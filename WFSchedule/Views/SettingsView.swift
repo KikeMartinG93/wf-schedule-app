@@ -280,7 +280,7 @@ struct SettingsView: View {
                 .font(.footnote.weight(.semibold))
                 .foregroundStyle(.white)
                 .frame(width: 28, height: 28)
-                .background((tint ?? theme.current.readableAccent).gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+                .background((tint ?? theme.current.accent).gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
         }
         .foregroundStyle(tint == .red ? Color.red : Color.primary)
     }
