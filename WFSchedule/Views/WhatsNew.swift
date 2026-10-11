@@ -105,6 +105,17 @@ enum WhatsNew {
                  title: "Relative Change Times",
                  detail: "Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago."),
         ]),
+        Release(revision: 17, items: [
+            Item(symbol: "barcode.viewfinder",
+                 title: "Official UPC-A Barcode",
+                 detail: "The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning."),
+            Item(symbol: "textformat",
+                 title: "Rounded Font Design",
+                 detail: "The rounded font preference in Display settings now dynamically styles text across every screen in the app."),
+            Item(symbol: "sparkles",
+                 title: "Instant Demo Mode",
+                 detail: "Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
