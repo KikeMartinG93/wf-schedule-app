@@ -171,6 +171,10 @@ struct AppBackground: View {
     }
 
     private var orb2Color: Color {
+        if activeTheme.id == "halloween" {
+            // Radiant pumpkin orange highlight
+            return activeTheme.accent.opacity(effectiveOpacity * 0.95)
+        }
         if activeTheme.id == "rainbow" {
             return activeTheme.accent.opacity(effectiveOpacity * 0.85)
         }
@@ -181,6 +185,10 @@ struct AppBackground: View {
     }
 
     private var orb3Color: Color {
+        if activeTheme.id == "halloween" {
+            // Eerie neon slime green glow
+            return activeTheme.holidayPay.opacity(effectiveOpacity * 0.85)
+        }
         if activeTheme.id == "rainbow" {
             return activeTheme.holidayPay.opacity(effectiveOpacity * 0.85)
         }
@@ -191,12 +199,12 @@ struct AppBackground: View {
     }
 
     private var orb4Color: Color {
+        if activeTheme.id == "halloween" {
+            // Rich glowing pumpkin orange pool so orange radiates prominently across the screen
+            return activeTheme.accent.opacity(effectiveOpacity * 0.90)
+        }
         if activeTheme.id == "rainbow" {
             return activeTheme.accent.opacity(effectiveOpacity * 0.80)
-        }
-        if activeTheme.id == "halloween" {
-            // Vivid violet purple pool complementing the neon green and pumpkin orange
-            return Color(red: 0x94 / 255, green: 0x29 / 255, blue: 0xE0 / 255).opacity(effectiveOpacity * 0.80)
         }
         if activeTheme.id == "colorful" {
             return activeTheme.accent.opacity(effectiveOpacity * 0.65)
