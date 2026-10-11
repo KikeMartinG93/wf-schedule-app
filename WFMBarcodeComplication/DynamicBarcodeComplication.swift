@@ -47,7 +47,7 @@ struct DynamicBarcodeComplicationView: View {
     @ViewBuilder
     private var rectangular: some View {
         if let tmID = entry.barcode?.trimmingCharacters(in: .whitespacesAndNewlines), !tmID.isEmpty,
-           let modules = Code128Barcode.modules(for: tmID) {
+           let modules = UPCABarcode.modules(for: tmID) {
             ZStack {
                 // Only in full color: the black behind the holes is what makes
                 // them read as black bars. In accented/vibrant modes an opaque
@@ -55,7 +55,7 @@ struct DynamicBarcodeComplicationView: View {
                 if renderingMode == .fullColor {
                     Color.black
                 }
-                Code128Shape(modules: modules)
+                UPCAShape(modules: modules)
                     .fill(Color.white, style: FillStyle(eoFill: true))
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity)

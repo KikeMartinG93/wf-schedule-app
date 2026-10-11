@@ -8,18 +8,14 @@ struct BarcodeWatchView: View {
 
     var body: some View {
         VStack(spacing: 8) {
-            if let barcode = receiver.barcode, let modules = Code128Barcode.modules(for: barcode) {
-                // The same Code 128 ("491" + TM ID + "0") the phone previews and the
-                // complication draws, black bars on a white card so it scans.
-                Code128BarsShape(modules: modules)
-                    .fill(Color.black)
-                    .padding(10)
+            if let barcode = receiver.barcode, UPCABarcode.modules(for: barcode) != nil {
+                // Official Whole Foods Market UPC-A barcode card matching the
+                // supermarket discount card exactly (white card, guard bars, masked numbers).
+                UPCABarcodeCard(input: barcode)
+                    .padding(8)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 96)
-                    .background(.white, in: .rect(cornerRadius: 8))
-                Text(verbatim: SecureTMID.masked)
-                    .font(.caption2)
-                    .foregroundStyle(.secondary)
+                    .frame(height: 100)
+                    .background(Color.white, in: RoundedRectangle(cornerRadius: 8, style: .continuous))
             } else {
                 Image(systemName: "barcode")
                     .font(.largeTitle)

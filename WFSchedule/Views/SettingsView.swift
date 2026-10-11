@@ -422,7 +422,7 @@ private struct TMIDField: View {
     // The Keychain is read once when the row appears and cached here. Reading it
     // in the property initializer or in `body` hit the Keychain on every redraw.
     @State private var isStored = false
-    @State private var previewModules: [Bool]?
+    @State private var tmIDValue: String?
     @State private var isEditing = false
     @State private var draft = ""
 
@@ -431,7 +431,7 @@ private struct TMIDField: View {
     private func refresh() {
         let id = BarcodeStore.value
         isStored = id != nil
-        previewModules = id.flatMap { Code128Barcode.modules(for: $0) }
+        tmIDValue = id
     }
 
     var body: some View {
@@ -492,20 +492,17 @@ private struct TMIDField: View {
         }
     }
 
-    /// The same Code 128 the widgets and watch draw: "491" + TM ID + "0".
+    /// The official Whole Foods Market discount card barcode matching the supermarket reader format.
     @ViewBuilder
     private var preview: some View {
-        if let modules = previewModules {
-            ZStack {
-                Color.white
-                Code128BarsShape(modules: modules)
-                    .fill(Color.black)
-                    .padding(.vertical, 8)
-                    .padding(.horizontal, 8)
-            }
-            .frame(maxWidth: .infinity)
-            .frame(height: 56)
-            .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
+        if let id = tmIDValue {
+            UPCABarcodeCard(input: id)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 10)
+                .background(Color.white)
+                .frame(maxWidth: .infinity)
+                .frame(height: 80)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
         }
     }
 }

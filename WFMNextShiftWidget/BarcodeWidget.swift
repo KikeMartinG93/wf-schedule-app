@@ -58,25 +58,16 @@ struct BarcodeWidgetView: View {
 
     var body: some View {
         Group {
-            if let tmID, let modules = Code128Barcode.modules(for: tmID) {
+            if let tmID, let upcModules = UPCABarcode.modules(for: tmID) {
                 if isAccessory {
-                    bars(modules)
+                    accessoryBars(upcModules)
                 } else {
-                    VStack(spacing: 8) {
-                        ZStack {
-                            Color.white
-                            Code128BarsShape(modules: modules)
-                                .fill(Color.black)
-                                .padding(.vertical, 8)
-                                .padding(.horizontal, 6)
-                        }
-                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    UPCABarcodeCard(input: tmID)
+                        .padding(.vertical, 10)
+                        .padding(.horizontal, 10)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
-
-                        Text(verbatim: SecureTMID.masked)
-                            .font(.system(.caption, design: .monospaced))
-                            .foregroundStyle(.secondary)
-                    }
                 }
             } else {
                 Text("Set your TM ID in the app's Settings")
@@ -88,16 +79,16 @@ struct BarcodeWidgetView: View {
         .containerBackground(for: .widget) { Color.clear }
     }
 
-    /// Lock Screen version: bars as holes in a solid block (see `Code128Shape`)
+    /// Lock Screen version: UPC-A bars as holes in a solid block (see `UPCAShape`)
     /// so they survive the Lock Screen's tinted rendering; black backing only in
-    /// full color. The Home Screen widget is transparent instead and draws the
-    /// bars in black on a white card for high scanner contrast.
-    private func bars(_ modules: [Bool]) -> some View {
+    /// full color. The Home Screen widget draws the official UPC-A card in black
+    /// on white with the exact discount card guard bars and masked numbers.
+    private func accessoryBars(_ modules: [UPCABarcode.Module]) -> some View {
         ZStack {
             if renderingMode == .fullColor {
                 Color.black
             }
-            Code128Shape(modules: modules)
+            UPCAShape(modules: modules)
                 .fill(Color.white, style: FillStyle(eoFill: true))
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)

@@ -179,10 +179,10 @@ struct WidgetShowcase: View {
                         Text(verbatim: "10:09")
                             .font(.system(size: 30, weight: .semibold, design: .rounded))
                             .foregroundStyle(.white)
-                        if let modules = Code128Barcode.modules(for: "49112345670") {
+                        if let modules = UPCABarcode.modules(for: "49112345670") {
                             ZStack {
                                 Color.black
-                                Code128Shape(modules: modules)
+                                UPCAShape(modules: modules)
                                     .fill(Color.white, style: FillStyle(eoFill: true))
                             }
                             .frame(width: 100, height: 32)
