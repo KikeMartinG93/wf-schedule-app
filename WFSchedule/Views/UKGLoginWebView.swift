@@ -29,7 +29,7 @@ struct UKGLoginWebView: UIViewRepresentable {
     let onAuthenticated: (WKWebView, [HTTPCookie]) -> Void
 
     func makeUIView(context: Context) -> WKWebView {
-        let configuration = WKWebViewConfiguration()
+        let configuration = WKWebViewConfiguration.scheduleAppConfiguration()
         let webView = WKWebView(frame: .zero, configuration: configuration)
         // Without this, the webview is invisible to Safari's Web Inspector even
         // with Developer Mode on — that toggle only covers Safari's own tabs,
@@ -51,6 +51,13 @@ struct UKGLoginWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+
+    static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
+        uiView.stopLoading()
+        uiView.navigationDelegate = nil
+        uiView.uiDelegate = nil
+        uiView.removeFromSuperview()
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(onAuthenticated: onAuthenticated)

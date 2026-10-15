@@ -96,6 +96,34 @@ final class SessionManager: ObservableObject {
 
     private var cookies: [HTTPCookie] = []
     private var webView: WKWebView?
+    private var backgroundObserver: NSObjectProtocol?
+    private var foregroundObserver: NSObjectProtocol?
+
+    init() {
+        backgroundObserver = NotificationCenter.default.addObserver(
+            forName: UIApplication.didEnterBackgroundNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.handleAppDidEnterBackground()
+            }
+        }
+        foregroundObserver = NotificationCenter.default.addObserver(
+            forName: UIApplication.willEnterForegroundNotification,
+            object: nil,
+            queue: .main
+        ) { [weak self] _ in
+            MainActor.assumeIsolated {
+                self?.handleAppWillEnterForeground()
+            }
+        }
+    }
+
+    deinit {
+        if let backgroundObserver { NotificationCenter.default.removeObserver(backgroundObserver) }
+        if let foregroundObserver { NotificationCenter.default.removeObserver(foregroundObserver) }
+    }
 
     private static let signedInBeforeKey = "hasSignedInBefore"
     private static let backendKey = "sessionBackend"
@@ -200,6 +228,11 @@ final class SessionManager: ObservableObject {
     /// already in progress.
     @discardableResult
     func attemptCookieRestore() async -> Bool {
+        // Do not attempt cookie restore if the app is in the background.
+        // Loading web pages in the background risks 0x8BADF00D watchdog hangs.
+        guard UIApplication.shared.applicationState != .background else {
+            return false
+        }
         guard state != .authenticated else {
             isRestoringSession = false
             return false
@@ -220,7 +253,7 @@ final class SessionManager: ObservableObject {
             isRestoringSession = false
         }
 
-        let configuration = WKWebViewConfiguration()
+        let configuration = WKWebViewConfiguration.scheduleAppConfiguration()
         let webView = WKWebView(frame: .zero, configuration: configuration)
         #if DEBUG
         if #available(iOS 16.4, *) { webView.isInspectable = true }
@@ -244,6 +277,10 @@ final class SessionManager: ObservableObject {
             // seeded first, comes straight back signed in. Landing on the schedule
             // is the proof; a sign-in page that stays put means the session is gone.
             if case .schedule = await InnerviewPage.load(in: webView, timeout: 25, settle: false) {
+                guard UIApplication.shared.applicationState != .background else {
+                    webView.removeFromSuperview()
+                    return false
+                }
                 let liveCookies = await webView.configuration.websiteDataStore.httpCookieStore.allCookies()
                 handleInteractiveLoginSuccess(
                     webView: webView,
@@ -260,6 +297,11 @@ final class SessionManager: ObservableObject {
 
         let deadline = Date().addingTimeInterval(15)
         while Date() < deadline {
+            if UIApplication.shared.applicationState == .background {
+                webView.stopLoading()
+                webView.removeFromSuperview()
+                return false
+            }
             if webView.url?.host == UKGEndpoints.host, !webView.isLoading {
                 let hasPasswordField = (try? await webView.evaluateJavaScript(
                     "!!document.querySelector('input[type=password]')")) as? Bool ?? false
@@ -302,8 +344,12 @@ final class SessionManager: ObservableObject {
     ///     `isHidden`. Positioning off-screen while leaving `isHidden = false`
     ///     avoids that throttling without showing anything to the user.
     static func keepWindowAttached(_ webView: WKWebView) {
+        guard UIApplication.shared.applicationState != .background else {
+            return
+        }
         let windows = UIApplication.shared.connectedScenes
             .compactMap { $0 as? UIWindowScene }
+            .filter { $0.activationState == .foregroundActive || $0.activationState == .foregroundInactive }
             .flatMap { $0.windows }
         guard let host = windows.first(where: { $0.isKeyWindow }) ?? windows.first else {
             return
@@ -319,6 +365,19 @@ final class SessionManager: ObservableObject {
         // heuristics, whereas an off-screen frame was NOT enough to avoid it
         // (confirmed live: still produced a permanently empty document.body).
         host.insertSubview(webView, at: 0)
+    }
+
+    func handleAppDidEnterBackground() {
+        // Stop any active navigation to avoid didCommitMainFrameData firing in the background
+        // and triggering synchronous ScreenTime XPC watchdog hangs (0x8BADF00D).
+        webView?.stopLoading()
+        // Detach from window hierarchy so self.window == nil.
+        webView?.removeFromSuperview()
+    }
+
+    func handleAppWillEnterForeground() {
+        guard state == .authenticated, let webView else { return }
+        Self.keepWindowAttached(webView)
     }
 
     /// Explicit opt-in for automatic background refresh. The user re-enters their
@@ -377,7 +436,9 @@ final class SessionManager: ObservableObject {
 
         do {
             let result = try await HeadlessUKGLogin.login(username: username, password: password)
-            Self.keepWindowAttached(result.webView)
+            if UIApplication.shared.applicationState != .background {
+                Self.keepWindowAttached(result.webView)
+            }
             self.webView = result.webView
             self.cookies = result.cookies
             state = .authenticated
@@ -408,5 +469,24 @@ final class SessionManager: ObservableObject {
             modifiedSince: .distantPast,
             completionHandler: {}
         )
+    }
+}
+
+extension WKWebViewConfiguration {
+    /// Configures a `WKWebViewConfiguration` suitable for this app's internal,
+    /// headless, and authentication flows, disabling Screen Time tracking hooks
+    /// that can cause synchronous XPC hangs and 0x8BADF00D watchdog terminations
+    /// during background transitions.
+    static func scheduleAppConfiguration() -> WKWebViewConfiguration {
+        let configuration = WKWebViewConfiguration()
+        if #available(iOS 16.0, *) {
+            configuration.showsSystemScreenTimeBlockingView = false
+        }
+        let selPref = Selector(("_setScreenTimeEnabled:"))
+        let selPublic = Selector(("setScreenTimeEnabled:"))
+        if configuration.preferences.responds(to: selPref) || configuration.preferences.responds(to: selPublic) {
+            configuration.preferences.setValue(false, forKey: "screenTimeEnabled")
+        }
+        return configuration
     }
 }

@@ -15,7 +15,7 @@ struct InnerviewLoginWebView: UIViewRepresentable {
     let onAuthenticated: (WKWebView, [HTTPCookie]) -> Void
 
     func makeUIView(context: Context) -> WKWebView {
-        let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration())
+        let webView = WKWebView(frame: .zero, configuration: WKWebViewConfiguration.scheduleAppConfiguration())
         #if DEBUG
         if #available(iOS 16.4, *) {
             webView.isInspectable = true
@@ -28,6 +28,13 @@ struct InnerviewLoginWebView: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: WKWebView, context: Context) {}
+
+    static func dismantleUIView(_ uiView: WKWebView, coordinator: Coordinator) {
+        uiView.stopLoading()
+        uiView.navigationDelegate = nil
+        uiView.uiDelegate = nil
+        uiView.removeFromSuperview()
+    }
 
     func makeCoordinator() -> Coordinator {
         Coordinator(onAuthenticated: onAuthenticated)

@@ -45,7 +45,7 @@ enum HeadlessUKGLogin {
     /// (see UKGScheduleClient), the same reason the interactive login's webview
     /// is kept alive by SessionManager.
     static func login(username: String, password: String) async throws -> (webView: WKWebView, cookies: [HTTPCookie]) {
-        let configuration = WKWebViewConfiguration()
+        let configuration = WKWebViewConfiguration.scheduleAppConfiguration()
         let webView = WKWebView(frame: .zero, configuration: configuration)
         #if DEBUG
         if #available(iOS 16.4, *) {
@@ -59,7 +59,9 @@ enum HeadlessUKGLogin {
         // would mean `waitForField` never finds the sign-in form and every
         // silent re-login attempt times out. Reusing the same window-attached,
         // real-size, non-hidden technique already proven not to trip that stall.
-        SessionManager.keepWindowAttached(webView)
+        if UIApplication.shared.applicationState != .background {
+            SessionManager.keepWindowAttached(webView)
+        }
 
         do {
             webView.load(URLRequest(url: UKGEndpoints.loginURL))

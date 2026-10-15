@@ -143,6 +143,14 @@ enum ScheduleSyncCoordinator {
         let sessionManager = SessionManager.shared
 
         if !sessionManager.isSessionValid() {
+            // In the background (e.g. BGAppRefreshTask wake), do not spin up
+            // a new WKWebView load. WebKit navigations in the background trigger
+            // synchronous ScreenTime XPC hangs and 0x8BADF00D watchdog kills.
+            if UIApplication.shared.applicationState == .background {
+                guard force else { return }
+                throw UKGClientError.sessionExpired
+            }
+
             // Try resuming from the cookies saved at the last sign-in before giving
             // up — for Innerview Login this is the ONLY way back in without the
             // user (there's no stored password to replay), and it's cheap when

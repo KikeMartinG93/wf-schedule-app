@@ -577,6 +577,17 @@ struct DiscountCardModalView: View {
     @Environment(\.dismiss) private var dismiss
     #if os(iOS)
     @State private var previousBrightness: CGFloat = 0.5
+
+    private var currentScreen: UIScreen? {
+        (UIApplication.shared.connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .first { $0.activationState == .foregroundActive }?
+            .screen)
+            ?? (UIApplication.shared.connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .first?
+                .screen)
+    }
     #endif
 
     var body: some View {
@@ -637,14 +648,18 @@ struct DiscountCardModalView: View {
         }
         .onAppear {
             #if os(iOS)
-            previousBrightness = UIScreen.main.brightness
-            UIScreen.main.brightness = 1.0
+            if let screen = currentScreen {
+                previousBrightness = screen.brightness
+                screen.brightness = 1.0
+            }
             UIApplication.shared.isIdleTimerDisabled = true
             #endif
         }
         .onDisappear {
             #if os(iOS)
-            UIScreen.main.brightness = previousBrightness
+            if let screen = currentScreen {
+                screen.brightness = previousBrightness
+            }
             UIApplication.shared.isIdleTimerDisabled = false
             #endif
         }

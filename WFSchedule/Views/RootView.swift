@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject private var sessionManager: SessionManager
+    @Environment(\.scenePhase) private var scenePhase
     @AppStorage("hasSeenWelcome") private var hasSeenWelcome = false
     @State private var showingWelcome = false
     @State private var whatsNewItems: [WhatsNew.Item] = []
@@ -21,7 +22,7 @@ struct RootView: View {
                 // survive relaunch) — try to resume silently from cookies saved
                 // at the last successful login before falling back to the
                 // sign-in card. See SessionManager's doc comment.
-                if sessionManager.state != .authenticated {
+                if sessionManager.state != .authenticated && scenePhase == .active && UIApplication.shared.applicationState != .background {
                     Task { await sessionManager.attemptCookieRestore() }
                 }
             } else {
@@ -52,6 +53,8 @@ private enum AppTab: Hashable {
 
 private struct MainTabView: View {
     @EnvironmentObject private var sessionManager: SessionManager
+    @Environment(\.scenePhase) private var scenePhase
+    @AppStorage("hasSeenWelcome") private var hasSeenWelcome = false
     @State private var selectedTab: AppTab = .home
     @State private var homeResetToken = 0
     @State private var showingLogin = false
@@ -74,8 +77,15 @@ private struct MainTabView: View {
     /// they aren't already signing in by hand. This probe reloads the UKG Pro
     /// sign-in page, so it's only for someone whose session is a UKG one —
     /// Innerview Login resumes through `SessionManager.attemptCookieRestore`.
+    /// Probing must only run while the app is in the active foreground scene
+    /// to avoid 0x8BADF00D watchdog hangs during background scene updates.
     private var shouldProbeForSession: Bool {
-        !isAuthenticated && !DemoMode.isEnabled && SessionManager.hasSignedInBefore && !showingLogin
+        scenePhase == .active
+            && UIApplication.shared.applicationState != .background
+            && !isAuthenticated
+            && !DemoMode.isEnabled
+            && SessionManager.hasSignedInBefore
+            && !showingLogin
             && SessionManager.preferredBackend == .ukg
     }
 
@@ -159,6 +169,19 @@ private struct MainTabView: View {
         }
         .background {
             if shouldProbeForSession { SessionRestoreProbe() }
+        }
+        .onChange(of: scenePhase) { _, newPhase in
+            switch newPhase {
+            case .background:
+                sessionManager.handleAppDidEnterBackground()
+            case .active:
+                sessionManager.handleAppWillEnterForeground()
+                if !isAuthenticated && !sessionManager.isRestoringSession && hasSeenWelcome {
+                    Task { await sessionManager.attemptCookieRestore() }
+                }
+            default:
+                break
+            }
         }
     }
 
