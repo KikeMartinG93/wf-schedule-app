@@ -1,83 +1,77 @@
 {
-  "sourceLanguage" : "en",
-  "strings" : {
-    "–" : {
-
-    },
-    "%@" : {
-
-    },
-    "%@ – %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ – %2$@"
+  "sourceLanguage": "en",
+  "strings": {
+    "–": {},
+    "%@": {},
+    "%@ – %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ – %2$@"
           }
         }
       }
     },
-    "%@ — %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ — %@"
+    "%@ — %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ — %@"
           }
         }
       }
     },
-    "%@ · %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ · %2$@"
+    "%@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ · %2$@"
           }
         }
       }
     },
-    "%@ %@ %@" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "%1$@ %2$@ %3$@"
+    "%@ %@ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$@ %3$@"
           }
         }
       }
     },
-    "%@ min" : {
-
-    },
-    "%@ starts at %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%@ empieza a las %@"
+    "%@ min": {},
+    "%@ starts at %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ empieza a las %@"
           }
         }
       }
     },
-    "%lld changed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld modificado"
+    "%lld changed": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld modificado"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld modificados"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld modificados"
                 }
               }
             }
@@ -85,55 +79,55 @@
         }
       }
     },
-    "%lld h" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld h"
+    "%lld h": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h"
           }
         }
       }
     },
-    "%lld h %lld min" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld h %lld min"
+    "%lld h %lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld h %lld min"
           }
         }
       }
     },
-    "%lld min" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "%lld min"
+    "%lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
           }
         }
       }
     },
-    "%lld new" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld nuevo"
+    "%lld new": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld nuevo"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld nuevos"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld nuevos"
                 }
               }
             }
@@ -141,22 +135,22 @@
         }
       }
     },
-    "%lld removed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "variations" : {
-            "plural" : {
-              "one" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eliminado"
+    "%lld removed": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eliminado"
                 }
               },
-              "other" : {
-                "stringUnit" : {
-                  "state" : "translated",
-                  "value" : "%lld eliminados"
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld eliminados"
                 }
               }
             }
@@ -164,3006 +158,3014 @@
         }
       }
     },
-    "A bigger countdown that shifts from green to red." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una cuenta regresiva más grande que pasa de verde a rojo."
+    "A bigger countdown that shifts from green to red.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una cuenta regresiva más grande que pasa de verde a rojo."
           }
         }
       }
     },
-    "A meal period is required, but you and your manager can agree to skip it since your shift is 6 hours or less." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se requiere un período de comida, pero tú y tu gerente pueden acordar omitirlo porque tu turno es de 6 horas o menos."
+    "A meal period is required, but you and your manager can agree to skip it since your shift is 6 hours or less.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se requiere un período de comida, pero tú y tu gerente pueden acordar omitirlo porque tu turno es de 6 horas o menos."
           }
         }
       }
     },
-    "A new ring design for the Home Screen, Lock Screen and Apple Watch that shifts from green to red as your break gets close." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un nuevo diseño de anillo para la pantalla de inicio, la pantalla de bloqueo y el Apple Watch que cambia de verde a rojo a medida que se acerca tu descanso."
+    "A new ring design for the Home Screen, Lock Screen and Apple Watch that shifts from green to red as your break gets close.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un nuevo diseño de anillo para la pantalla de inicio, la pantalla de bloqueo y el Apple Watch que cambia de verde a rojo a medida que se acerca tu descanso."
           }
         }
       }
     },
-    "A sleeker Breaks sheet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Una hoja de descansos más elegante"
+    "A sleeker Breaks sheet": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Una hoja de descansos más elegante"
           }
         }
       }
     },
-    "A softer calendar" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un calendario más suave"
+    "A softer calendar": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un calendario más suave"
           }
         }
       }
     },
-    "A transparent widget with your barcode, ready at the register." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un widget transparente con tu código de barras, listo en la caja."
+    "A transparent widget with your barcode, ready at the register.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Un widget transparente con tu código de barras, listo en la caja."
           }
         }
       }
     },
-    "About" : {
-
-    },
-    "Account" : {
-
-    },
-    "Add Next Shift or Discount Barcode to your Home Screen, Lock Screen, or Apple Watch face." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Añade Próximo turno o Código de descuento a tu pantalla de inicio, bloqueo o Apple Watch."
+    "About": {},
+    "Account": {},
+    "Add Next Shift or Discount Barcode to your Home Screen, Lock Screen, or Apple Watch face.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Añade Próximo turno o Código de descuento a tu pantalla de inicio, bloqueo o Apple Watch."
           }
         }
       }
     },
-    "Add note" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agregar nota"
+    "Add note": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agregar nota"
           }
         }
       }
     },
-    "Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agrega el widget Próximo turno a tu pantalla de bloqueo para ver qué sigue y cuánto falta para que empiece."
+    "Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agrega el widget Próximo turno a tu pantalla de bloqueo para ver qué sigue y cuánto falta para que empiece."
           }
         }
       }
     },
-    "Add your breaks below to start a countdown." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Agrega tus descansos abajo para iniciar una cuenta regresiva."
+    "Add your breaks below to start a countdown.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Agrega tus descansos abajo para iniciar una cuenta regresiva."
           }
         }
       }
     },
-    "Alerts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alertas"
+    "Alerts": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alertas"
           }
         }
       }
     },
-    "Alerts clear themselves" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las alertas se limpian solas"
+    "Alerts clear themselves": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las alertas se limpian solas"
           }
         }
       }
     },
-    "All breaks taken" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Todos los descansos tomados"
+    "All breaks taken": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Todos los descansos tomados"
           }
         }
       }
     },
-    "Amazon Login" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio de sesión de Amazon"
+    "Amazon Login": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión de Amazon"
           }
         }
       }
     },
-    "Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El inicio con Amazon es un respaldo si Innerview Login no funciona. El inicio automático guarda credenciales de forma segura en el llavero."
+    "Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El inicio con Amazon es un respaldo si Innerview Login no funciona. El inicio automático guarda credenciales de forma segura en el llavero."
           }
         }
       }
     },
-    "Amber" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ámbar"
+    "Amber": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ámbar"
           }
         }
       }
     },
-    "Appearance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apariencia"
+    "Appearance": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apariencia"
           }
         }
       }
     },
-    "Appearance Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo de apariencia"
+    "Appearance Mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo de apariencia"
           }
         }
       }
     },
-    "Apple Watch" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Apple Watch"
+    "Apple Watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch"
           }
         }
       }
     },
-    "Atmospheric Easter Eggs" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detalles sorpresa temáticos"
+    "Atmospheric Easter Eggs": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles sorpresa temáticos"
           }
         }
       }
     },
-    "Automatic background sign-in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio de sesión automático en segundo plano"
+    "Automatic background sign-in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión automático en segundo plano"
           }
         }
       }
     },
-    "Automatic Sign-In" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio de sesión automático"
+    "Automatic Sign-In": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión automático"
           }
         }
       }
     },
-    "Backup sign-in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio de sesión alternativo"
+    "Backup sign-in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión alternativo"
           }
         }
       }
     },
-    "Blue" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Azul"
+    "Blue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Azul"
           }
         }
       }
-    },
-    "Break %@" : {
-
     },
-    "Break %@ · %@ min" : {
-      "localizations" : {
-        "en" : {
-          "stringUnit" : {
-            "state" : "new",
-            "value" : "Break %1$@ · %2$@ min"
+    "Break %@": {},
+    "Break %@ · %@ min": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "new",
+            "value": "Break %1$@ · %2$@ min"
           }
         }
       }
     },
-    "Break %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso %lld"
+    "Break %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso %lld"
           }
         }
       }
     },
-    "Break %lld · %lld min" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso %lld · %lld min"
+    "Break %lld · %lld min": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso %lld · %lld min"
           }
         }
       }
     },
-    "Break calculator" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Calculadora de descansos"
+    "Break calculator": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calculadora de descansos"
           }
         }
       }
     },
-    "Break chart" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tabla de descansos"
+    "Break chart": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tabla de descansos"
           }
         }
       }
     },
-    "Break in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso en"
+    "Break in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso en"
           }
         }
       }
     },
-    "Break is over" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El descanso terminó"
+    "Break is over": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El descanso terminó"
           }
         }
       }
     },
-    "Break Live Activity" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ver Breaks en Pantalla"
+    "Break Live Activity": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ver Breaks en Pantalla"
           }
         }
       }
     },
-    "Break overdue" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso atrasado"
+    "Break overdue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso atrasado"
           }
         }
       }
     },
-    "Break Timer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temporizador de descanso"
+    "Break Timer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temporizador de descanso"
           }
         }
       }
     },
-    "Breaks" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descansos"
+    "Breaks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descansos"
           }
         }
       }
     },
-    "Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los descansos ahora se abren en una tarjeta compacta con tu cuenta regresiva y tus descansos. Desliza hacia arriba para ver la calculadora de descansos."
+    "Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los descansos ahora se abren en una tarjeta compacta con tu cuenta regresiva y tus descansos. Desliza hacia arriba para ver la calculadora de descansos."
           }
         }
       }
     },
-    "Breaks on your Lock Screen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descansos en tu pantalla de bloqueo"
+    "Breaks on your Lock Screen": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descansos en tu pantalla de bloqueo"
           }
         }
       }
     },
-    "Calendar access was not granted." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se concedió el acceso al calendario."
+    "Calendar access was not granted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se concedió el acceso al calendario."
           }
         }
       }
     },
-    "Cancel" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cancelar"
+    "Cancel": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancelar"
           }
         }
       }
     },
-    "Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Celebra la temporada con una vibrante paleta de Halloween: halos brillantes en naranja calabaza, verde viscoso y violeta oscuro."
+    "Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Celebra la temporada con una vibrante paleta de Halloween: halos brillantes en naranja calabaza, verde viscoso y violeta oscuro."
           }
         }
       }
     },
-    "Change" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cambiar"
+    "Change": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambiar"
           }
         }
       }
     },
-    "Checklist" : {
-
-    },
-    "Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elige temas de color y vivacidad de fondo independientes para los modos claro y oscuro. Ajusta el contraste con un deslizador de accesibilidad."
+    "Checklist": {},
+    "Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige temas de color y vivacidad de fondo independientes para los modos claro y oscuro. Ajusta el contraste con un deslizador de accesibilidad."
           }
         }
       }
     },
-    "Clearer when you're signed out" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más claro cuando cerraste sesión"
+    "Clearer when you're signed out": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más claro cuando cerraste sesión"
           }
         }
       }
     },
-    "Collapsible Theme Settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustes de tema plegables"
+    "Collapsible Theme Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes de tema plegables"
           }
         }
       }
     },
-    "Colorful" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colorido"
+    "Colorful": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colorido"
           }
         }
       }
     },
-    "Colors are off while High contrast is on." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los colores están desactivados mientras el alto contraste está activado."
+    "Colors are off while High contrast is on.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los colores están desactivados mientras el alto contraste está activado."
           }
         }
       }
     },
-    "Connect your UKG Pro account to sync your shifts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Conecta tu cuenta de UKG Pro para sincronizar tus turnos."
+    "Connect your UKG Pro account to sync your shifts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Conecta tu cuenta de UKG Pro para sincronizar tus turnos."
           }
         }
       }
     },
-    "Continue" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Continuar"
+    "Continue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Continuar"
           }
         }
       }
     },
-    "Could not locate the sign-in form." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se encontró el formulario de inicio de sesión."
+    "Could not locate the sign-in form.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se encontró el formulario de inicio de sesión."
           }
         }
       }
     },
-    "Could not parse the UKG schedule response." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se pudo interpretar la respuesta del horario de UKG."
+    "Could not parse the UKG schedule response.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se pudo interpretar la respuesta del horario de UKG."
           }
         }
       }
     },
-    "Crimson" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Carmesí"
+    "Crimson": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Carmesí"
           }
         }
       }
     },
-    "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personaliza la paleta y vivacidad para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
+    "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personaliza la paleta y vivacidad para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
           }
         }
       }
     },
-    "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personaliza la paleta y vivacidad para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
+    "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personaliza la paleta y vivacidad para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
           }
         }
       }
     },
-    "Dark Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo oscuro"
+    "Dark Mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo oscuro"
           }
         }
       }
     },
-    "Day" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Día"
+    "Day": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Día"
           }
         }
       }
     },
-    "Demo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Demo"
+    "Demo": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Demo"
           }
         }
       }
     },
-    "Demo mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo demo"
+    "Demo mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo demo"
           }
         }
       }
     },
-    "Demo mode · sample data" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo demo · datos de ejemplo"
+    "Demo mode · sample data": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo demo · datos de ejemplo"
           }
         }
       }
     },
-    "Demo mode is currently active with sample data." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El modo demo está activo con datos de ejemplo."
+    "Demo mode is currently active with sample data.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El modo demo está activo con datos de ejemplo."
           }
         }
       }
     },
-    "Discount Barcode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Código de barras de descuento"
+    "Discount Barcode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de barras de descuento"
           }
         }
       }
     },
-    "Discount barcode on your wrist" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Código de barras de descuento en tu muñeca"
+    "Discount barcode on your wrist": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de barras de descuento en tu muñeca"
           }
         }
       }
     },
-    "Display & Accessibility" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pantalla y accesibilidad"
+    "Display & Accessibility": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantalla y accesibilidad"
           }
         }
       }
     },
-    "Done" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Listo"
+    "Done": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Listo"
           }
         }
       }
-    },
-    "Due %@" : {
-
-    },
-    "Due by" : {
-
     },
-    "Easier to read" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más fácil de leer"
+    "Due %@": {},
+    "Due by": {},
+    "Easier to read": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más fácil de leer"
           }
         }
       }
     },
-    "End" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fin"
+    "End": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fin"
           }
         }
       }
     },
-    "Enrique Martin" : {
-
-    },
-    "Every update now opens with a summary like this one. You can find it again anytime in Settings." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cada actualización ahora comienza con un resumen como este. Puedes volver a verlo en cualquier momento en Ajustes."
+    "Enrique Martin": {},
+    "Every update now opens with a summary like this one. You can find it again anytime in Settings.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cada actualización ahora comienza con un resumen como este. Puedes volver a verlo en cualquier momento en Ajustes."
           }
         }
       }
     },
-    "Exit" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Salir"
+    "Exit": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salir"
           }
         }
       }
     },
-    "Explore demo mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Explorar el modo demo"
+    "Explore demo mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorar el modo demo"
           }
         }
       }
     },
-    "Explore Demo Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Explorar modo demo"
+    "Explore Demo Mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explorar modo demo"
           }
         }
       }
     },
-    "Explore every feature with sample data. No UKG account needed, and nothing real is changed." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Explora todas las funciones con datos de ejemplo. No necesitas una cuenta de UKG y no se cambia nada real."
+    "Explore every feature with sample data. No UKG account needed, and nothing real is changed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explora todas las funciones con datos de ejemplo. No necesitas una cuenta de UKG y no se cambia nada real."
           }
         }
       }
     },
-    "Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Explora turnos de muestra, herramientas de pausas y listas de tareas por función directamente desde la pantalla principal y de inicio de sesión con botones de Demo dedicados."
+    "Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Explora turnos de muestra, herramientas de pausas y listas de tareas por función directamente desde la pantalla principal y de inicio de sesión con botones de Demo dedicados."
           }
         }
       }
     },
-    "Faster and smoother" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Más rápida y fluida"
+    "Faster and smoother": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Más rápida y fluida"
           }
         }
       }
     },
-    "Find out when your next shift starts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Averigua cuándo empieza tu próximo turno."
+    "Find out when your next shift starts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Averigua cuándo empieza tu próximo turno."
           }
         }
       }
     },
-    "Finish break" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Terminar descanso"
+    "Finish break": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terminar descanso"
           }
         }
       }
     },
-    "Get notified when a shift is added, moved, or removed, plus a reminder before each one starts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Recibe una notificación cuando se agregue, cambie o elimine un turno, además de un recordatorio antes de que empiece cada uno."
+    "Get notified when a shift is added, moved, or removed, plus a reminder before each one starts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recibe una notificación cuando se agregue, cambie o elimine un turno, además de un recordatorio antes de que empiece cada uno."
           }
         }
       }
     },
-    "Gradient vibrancy" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vivacidad del degradado"
+    "Gradient vibrancy": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vivacidad del degradado"
           }
         }
       }
     },
-    "Green" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Verde"
+    "Green": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Verde"
           }
         }
       }
     },
-    "Halloween" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Halloween"
+    "Halloween": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Halloween"
           }
         }
       }
     },
-    "Halloween Theme & Ambiance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema y ambiente de Halloween"
+    "Halloween Theme & Ambiance": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema y ambiente de Halloween"
           }
         }
       }
     },
-    "High contrast" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alto contraste"
+    "High contrast": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alto contraste"
           }
         }
       }
     },
-    "High contrast and font choice" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alto contraste y elección de fuente"
+    "High contrast and font choice": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alto contraste y elección de fuente"
           }
         }
       }
     },
-    "High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El alto contraste cambia todas las pantallas y widgets a monocromático. Desactiva Fuente redondeada para usar la fuente estándar del sistema."
+    "High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El alto contraste cambia todas las pantallas y widgets a monocromático. Desactiva Fuente redondeada para usar la fuente estándar del sistema."
           }
         }
       }
     },
-    "High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El alto contraste cambia toda la app, los widgets y la actividad en vivo a negro, blanco y gris con fondos planos. Desactiva la fuente redondeada para usar la fuente estándar del sistema. Los widgets siguen la elección de fuente."
+    "High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El alto contraste cambia toda la app, los widgets y la actividad en vivo a negro, blanco y gris con fondos planos. Desactiva la fuente redondeada para usar la fuente estándar del sistema. Los widgets siguen la elección de fuente."
           }
         }
       }
     },
-    "Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Colores con más contraste, compatibilidad con VoiceOver en el calendario y la fuente redondeada del sistema en toda la app."
+    "Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Colores con más contraste, compatibilidad con VoiceOver en el calendario y la fuente redondeada del sistema en toda la app."
           }
         }
       }
     },
-    "Holiday" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Feriado"
+    "Holiday": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Feriado"
           }
         }
       }
     },
-    "Holiday pay" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Holiday Pay"
+    "Holiday pay": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Holiday Pay"
           }
         }
       }
     },
-    "Holiday Pay" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pago de día festivo"
+    "Holiday Pay": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pago de día festivo"
           }
         }
       }
     },
-    "Holiday Pay Eligible" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elegible para día festivo"
+    "Holiday Pay Eligible": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elegible para día festivo"
           }
         }
       }
     },
-    "Home" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio"
+    "Home": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio"
           }
         }
       }
     },
-    "Home now blurs the calendar and shows a sign-in button when your session needs attention — and only after actually checking, not on every launch." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahora Inicio difumina el calendario y muestra un botón de inicio de sesión cuando tu sesión necesita atención, y solo después de comprobarlo, no en cada apertura."
+    "Home now blurs the calendar and shows a sign-in button when your session needs attention — and only after actually checking, not on every launch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora Inicio difumina el calendario y muestra un botón de inicio de sesión cuando tu sesión necesita atención, y solo después de comprobarlo, no en cada apertura."
           }
         }
       }
     },
-    "Home Screen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pantalla de inicio"
+    "Home Screen": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantalla de inicio"
           }
         }
       }
     },
-    "Home's month view drops the hard grid lines: every day is a soft rounded blob with its number and shift dot inside, tinted by the work you have that day." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La vista mensual de Inicio deja atrás las líneas duras: cada día es una forma suave y redondeada con su número y el punto del turno dentro, teñida según el trabajo de ese día."
+    "Home's month view drops the hard grid lines: every day is a soft rounded blob with its number and shift dot inside, tinted by the work you have that day.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La vista mensual de Inicio deja atrás las líneas duras: cada día es una forma suave y redondeada con su número y el punto del turno dentro, teñida según el trabajo de ese día."
           }
         }
       }
     },
-    "If Innerview Login isn't working, you can sign in with your UKG Pro account through Amazon instead." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Si el inicio de sesión de Innerview no funciona, puedes iniciar sesión con tu cuenta de UKG Pro a través de Amazon."
+    "If Innerview Login isn't working, you can sign in with your UKG Pro account through Amazon instead.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Si el inicio de sesión de Innerview no funciona, puedes iniciar sesión con tu cuenta de UKG Pro a través de Amazon."
           }
         }
       }
     },
-    "If it's not checked off by this time, you'll get a reminder every 10 minutes until it is." : {
-
-    },
-    "Independent Light & Dark Themes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Temas independientes para claro y oscuro"
+    "If it's not checked off by this time, you'll get a reminder every 10 minutes until it is.": {},
+    "Independent Light & Dark Themes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Temas independientes para claro y oscuro"
           }
         }
       }
     },
-    "Indigo" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Índigo"
+    "Indigo": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Índigo"
           }
         }
       }
     },
-    "Innerview Login" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio de sesión de Innerview"
+    "Innerview Login": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio de sesión de Innerview"
           }
         }
       }
     },
-    "Instant Demo Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo Demo instantáneo"
+    "Instant Demo Mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo Demo instantáneo"
           }
         }
       }
     },
-    "Job" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puesto"
+    "Job": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puesto"
           }
         }
       }
     },
-    "Job changed from %@ to %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puesto cambiado de %@ a %@"
+    "Job changed from %@ to %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Puesto cambiado de %@ a %@"
           }
         }
       }
     },
-    "Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descubre relámpagos repentinos y arañitas colgantes en tu pantalla cuando el tema de Halloween esté activo."
+    "Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descubre relámpagos repentinos y arañitas colgantes en tu pantalla cuando el tema de Halloween esté activo."
           }
         }
       }
     },
-    "Kept in the secure Keychain on your devices and hidden once saved. Synced automatically to your Apple Watch so it shows up on the watch face and in the Watch app." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se guarda en el llavero seguro de tus dispositivos y se oculta una vez guardado. Se sincroniza automáticamente con tu Apple Watch para que aparezca en la carátula y en la app del Watch."
+    "Kept in the secure Keychain on your devices and hidden once saved. Synced automatically to your Apple Watch so it shows up on the watch face and in the Watch app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se guarda en el llavero seguro de tus dispositivos y se oculta una vez guardado. Se sincroniza automáticamente con tu Apple Watch para que aparezca en la carátula y en la app del Watch."
           }
         }
       }
     },
-    "Know the moment it changes" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Entérate al instante de los cambios"
+    "Know the moment it changes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Entérate al instante de los cambios"
           }
         }
       }
     },
-    "Language" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idioma"
+    "Language": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma"
           }
         }
       }
     },
-    "Last synced %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Última sincronización: %@"
+    "Last synced %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Última sincronización: %@"
           }
         }
       }
     },
-    "Light Mode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Modo claro"
+    "Light Mode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Modo claro"
           }
         }
       }
     },
-    "List" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Lista"
+    "List": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lista"
           }
         }
       }
     },
-    "Lives in Apple Calendar" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vive en el Calendario de Apple"
+    "Lives in Apple Calendar": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vive en el Calendario de Apple"
           }
         }
       }
     },
-    "Location" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ubicación"
+    "Location": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación"
           }
         }
       }
     },
-    "Location changed from %@ to %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ubicación cambiada de %@ a %@"
+    "Location changed from %@ to %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ubicación cambiada de %@ a %@"
           }
         }
       }
     },
-    "Lock Screen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Pantalla de bloqueo"
+    "Lock Screen": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pantalla de bloqueo"
           }
         }
       }
     },
-    "Lunch is over" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El almuerzo terminó"
+    "Lunch is over": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El almuerzo terminó"
           }
         }
       }
     },
-    "Make it yours" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Personalízala"
+    "Make it yours": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personalízala"
           }
         }
       }
     },
-    "Mark all as viewed" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marcar todo como visto"
+    "Mark all as viewed": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar todo como visto"
           }
         }
       }
     },
-    "Mark as taken" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Marcar como tomado"
+    "Mark as taken": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Marcar como tomado"
           }
         }
       }
     },
-    "Meal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Comida"
+    "Meal": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Comida"
           }
         }
       }
     },
-    "My Schedule" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mi horario"
+    "My Schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mi horario"
           }
         }
       }
     },
-    "New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nuevos ajustes de legibilidad: un modo de alto contraste que deja toda la app, los widgets y la actividad en vivo en negro, blanco y gris, y un interruptor entre la fuente redondeada y la fuente estándar del sistema."
+    "New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nuevos ajustes de legibilidad: un modo de alto contraste que deja toda la app, los widgets y la actividad en vivo en negro, blanco y gris, y un interruptor entre la fuente redondeada y la fuente estándar del sistema."
           }
         }
       }
     },
-    "NEW SHIFT" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TURNO NUEVO"
+    "NEW SHIFT": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TURNO NUEVO"
           }
         }
       }
     },
-    "New shift added" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turno nuevo agregado"
+    "New shift added": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turno nuevo agregado"
           }
         }
       }
     },
-    "New, changed, or removed shifts will show up here after your next sync." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los turnos nuevos, modificados o eliminados aparecerán aquí después de tu próxima sincronización."
+    "New, changed, or removed shifts will show up here after your next sync.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los turnos nuevos, modificados o eliminados aparecerán aquí después de tu próxima sincronización."
           }
         }
       }
     },
-    "Next" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximo"
+    "Next": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo"
           }
         }
       }
     },
-    "Next break" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximo descanso"
+    "Next break": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo descanso"
           }
         }
       }
     },
-    "Next month" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mes siguiente"
+    "Next month": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes siguiente"
           }
         }
       }
     },
-    "Next Shift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximo turno"
+    "Next Shift": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo turno"
           }
         }
       }
     },
-    "Next shift at a glance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu próximo turno de un vistazo"
+    "Next shift at a glance": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu próximo turno de un vistazo"
           }
         }
       }
     },
-    "Next shift in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Próximo turno en"
+    "Next shift in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Próximo turno en"
           }
         }
       }
     },
-    "No Alerts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin Alertas"
+    "No Alerts": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin Alertas"
           }
         }
       }
     },
-    "No breaks set" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin descansos"
+    "No breaks set": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin descansos"
           }
         }
       }
     },
-    "No changes yet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no hay cambios"
+    "No changes yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay cambios"
           }
         }
       }
     },
-    "No meal period is required for a shift this short." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No se requiere período de comida para un turno tan corto."
+    "No meal period is required for a shift this short.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No se requiere período de comida para un turno tan corto."
           }
         }
       }
     },
-    "No second 10-minute rest break for this shift." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay un segundo descanso de 10 minutos en este turno."
+    "No second 10-minute rest break for this shift.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay un segundo descanso de 10 minutos en este turno."
           }
         }
       }
     },
-    "No shift on %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sin turno el %@"
+    "No shift on %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sin turno el %@"
           }
         }
       }
     },
-    "No shifts yet" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Aún no hay turnos"
+    "No shifts yet": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Aún no hay turnos"
           }
         }
       }
-    },
-    "No tasks yet" : {
-
     },
-    "No upcoming shifts" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No hay turnos próximos"
+    "No tasks yet": {},
+    "No upcoming shifts": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No hay turnos próximos"
           }
         }
       }
     },
-    "now" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ahora"
+    "now": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "ahora"
           }
         }
       }
     },
-    "Number of breaks" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cantidad de descansos"
+    "Number of breaks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cantidad de descansos"
           }
         }
       }
     },
-    "Number of breaks: %@" : {
-
-    },
-    "Number of breaks: %lld" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cantidad de descansos: %lld"
+    "Number of breaks: %@": {},
+    "Number of breaks: %lld": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cantidad de descansos: %lld"
           }
         }
       }
     },
-    "Official UPC-A Barcode" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Código de barras oficial UPC-A"
+    "Official UPC-A Barcode": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Código de barras oficial UPC-A"
           }
         }
       }
     },
-    "Open the Watch app to see the time until your next shift. During a shift the screen fills green, with a line that rises as the shift goes by until it reaches full capacity. Swipe up for your barcode." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre la app del Watch para ver el tiempo hasta tu próximo turno. Durante un turno la pantalla se llena de verde, con una línea que sube a medida que avanza el turno hasta completarse. Desliza hacia arriba para ver tu código de barras."
+    "Open the Watch app to see the time until your next shift. During a shift the screen fills green, with a line that rises as the shift goes by until it reaches full capacity. Swipe up for your barcode.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre la app del Watch para ver el tiempo hasta tu próximo turno. Durante un turno la pantalla se llena de verde, con una línea que sube a medida que avanza el turno hasta completarse. Desliza hacia arriba para ver tu código de barras."
           }
         }
       }
     },
-    "Opens sign in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre el inicio de sesión"
+    "Opens sign in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre el inicio de sesión"
           }
         }
       }
     },
-    "Opens your breaks" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Abre tus descansos"
+    "Opens your breaks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre tus descansos"
           }
         }
       }
     },
-    "Overdue" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Atrasado"
+    "Overdue": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Atrasado"
           }
         }
       }
     },
-    "Paid rest breaks (10 min)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descansos pagados (10 min)"
+    "Paid rest breaks (10 min)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descansos pagados (10 min)"
           }
         }
       }
     },
-    "Pay code change" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cambio de código de pago"
+    "Pay code change": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cambio de código de pago"
           }
         }
       }
     },
-    "Pick a color theme in Settings and the whole app follows." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Elige un tema de color en Ajustes y toda la app lo sigue."
+    "Pick a color theme in Settings and the whole app follows.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Elige un tema de color en Ajustes y toda la app lo sigue."
           }
         }
       }
     },
-    "Plan break schedules or track shift duties and checklists." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Planifica horarios de descanso o consulta tareas de turno y listas de control."
+    "Plan break schedules or track shift duties and checklists.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Planifica horarios de descanso o consulta tareas de turno y listas de control."
           }
         }
       }
-    },
-    "Please open an ASK TMS case or call 833-4ASKTMS (833-427-5867) to report the problem." : {
-
     },
-    "Previous month" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mes anterior"
+    "Please open an ASK TMS case or call 833-4ASKTMS (833-427-5867) to report the problem.": {},
+    "Previous month": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mes anterior"
           }
         }
       }
     },
-    "Pull to sync your UKG schedule." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desliza hacia abajo para sincronizar tu horario de UKG."
+    "Pull to sync your UKG schedule.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Desliza hacia abajo para sincronizar tu horario de UKG."
           }
         }
       }
     },
-    "Purple" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Morado"
+    "Purple": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Morado"
           }
         }
       }
     },
-    "Rainbow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Arcoíris"
+    "Rainbow": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arcoíris"
           }
         }
       }
     },
-    "Readability" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Legibilidad"
+    "Readability": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legibilidad"
           }
         }
       }
     },
-    "Redesigned Break Timer widget" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Widget del temporizador de descansos rediseñado"
+    "Redesigned Break Timer widget": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widget del temporizador de descansos rediseñado"
           }
         }
       }
     },
-    "Regular" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Regular"
+    "Regular": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Regular"
           }
         }
       }
     },
-    "Relative Change Times" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horas relativas de cambios"
+    "Relative Change Times": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horas relativas de cambios"
           }
         }
       }
     },
-    "Remove" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Quitar"
+    "Remove": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quitar"
           }
         }
       }
     },
-    "Rest" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Descanso"
+    "Rest": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Descanso"
           }
         }
       }
     },
-    "Rose" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Rosa"
+    "Rose": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rosa"
           }
         }
       }
     },
-    "Rounded font" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Fuente redondeada"
+    "Rounded font": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fuente redondeada"
           }
         }
       }
     },
-    "Rounded Font Design" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Diseño con fuente redondeada"
+    "Rounded Font Design": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Diseño con fuente redondeada"
           }
         }
       }
     },
-    "Save" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guardar"
+    "Save": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardar"
           }
         }
       }
     },
-    "Save your TM ID in Settings and it shows up as an Apple Watch complication." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guarda tu TM ID en Ajustes y aparecerá como complicación en tu Apple Watch."
+    "Save your TM ID in Settings and it shows up as an Apple Watch complication.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guarda tu TM ID en Ajustes y aparecerá como complicación en tu Apple Watch."
           }
         }
       }
     },
-    "Scan your discount right from your wrist." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Escanea tu descuento directamente desde la muñeca."
+    "Scan your discount right from your wrist.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Escanea tu descuento directamente desde la muñeca."
           }
         }
       }
     },
-    "Schedule for %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horario de %@"
+    "Schedule for %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario de %@"
           }
         }
       }
     },
-    "Schedule for a Day" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horario de un día"
+    "Schedule for a Day": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario de un día"
           }
         }
       }
     },
-    "Schedule updated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horario actualizado"
+    "Schedule updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario actualizado"
           }
         }
       }
     },
-    "Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Las actualizaciones en la pestaña Cambios ahora muestran tiempos de detección relativos como ahora, hace 5 minutos o hace 2 días."
+    "Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Las actualizaciones en la pestaña Cambios ahora muestran tiempos de detección relativos como ahora, hace 5 minutos o hace 2 días."
           }
         }
       }
     },
-    "See what shifts you have today or tomorrow." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Consulta qué turnos tienes hoy o mañana."
+    "See what shifts you have today or tomorrow.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consulta qué turnos tienes hoy o mañana."
           }
         }
       }
     },
-    "Select above — a shift can cover more than one role." : {
-
-    },
-    "Selected" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seleccionado"
+    "Select above — a shift can cover more than one role.": {},
+    "Selected": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seleccionado"
           }
         }
       }
     },
-    "Selects this sign-in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Selecciona este inicio de sesión"
+    "Selects this sign-in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Selecciona este inicio de sesión"
           }
         }
       }
     },
-    "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
+    "Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad."
           }
         }
       }
     },
-    "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
+    "Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad."
           }
         }
       }
     },
-    "Set your breaks in the app" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Configura tus descansos en la app"
+    "Set your breaks in the app": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Configura tus descansos en la app"
           }
         }
       }
-    },
-    "Set your TM ID in the app's Settings" : {
-
     },
-    "Settings" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ajustes"
+    "Set your TM ID in the app's Settings": {},
+    "Settings": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ajustes"
           }
         }
       }
     },
-    "Shift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turno"
+    "Shift": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turno"
           }
         }
       }
     },
-    "SHIFT CHANGED" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TURNO MODIFICADO"
+    "SHIFT CHANGED": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TURNO MODIFICADO"
           }
         }
       }
     },
-    "Shift countdown" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cuenta regresiva del turno"
+    "Shift countdown": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta regresiva del turno"
           }
         }
       }
     },
-    "Shift countdown on Apple Watch" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cuenta regresiva del turno en el Apple Watch"
+    "Shift countdown on Apple Watch": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cuenta regresiva del turno en el Apple Watch"
           }
         }
       }
     },
-    "Shift details updated" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Detalles del turno actualizados"
+    "Shift details updated": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detalles del turno actualizados"
           }
         }
       }
     },
-    "Shift ends in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El turno termina en"
+    "Shift ends in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El turno termina en"
           }
         }
       }
     },
-    "Shift length: %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Duración del turno: %@"
+    "Shift length: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duración del turno: %@"
           }
         }
       }
     },
-    "SHIFT REMOVED" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TURNO ELIMINADO"
+    "SHIFT REMOVED": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TURNO ELIMINADO"
           }
         }
       }
     },
-    "Shift removed from your schedule" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turno eliminado de tu horario"
+    "Shift removed from your schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turno eliminado de tu horario"
           }
         }
       }
     },
-    "Shift started" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turno iniciado"
+    "Shift started": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turno iniciado"
           }
         }
       }
     },
-    "Shift starting soon" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu turno empieza pronto"
+    "Shift starting soon": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu turno empieza pronto"
           }
         }
       }
     },
-    "Shifts appear in their own Work Schedule calendar on all your Apple devices." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tus turnos aparecen en su propio calendario Work Schedule en todos tus dispositivos Apple."
+    "Shifts appear in their own Work Schedule calendar on all your Apple devices.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus turnos aparecen en su propio calendario Work Schedule en todos tus dispositivos Apple."
           }
         }
       }
     },
-    "Shifts that Innerview lists as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los turnos que Innerview lista como Customer Service Team, Front End ahora aparecen como Supervisor, con el color de Supervisor."
+    "Shifts that Innerview lists as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los turnos que Innerview lista como Customer Service Team, Front End ahora aparecen como Supervisor, con el color de Supervisor."
           }
         }
       }
     },
-    "Shifts: %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turnos: %@"
+    "Shifts: %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turnos: %@"
           }
         }
       }
     },
-    "Show welcome screen" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mostrar pantalla de bienvenida"
+    "Show welcome screen": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mostrar pantalla de bienvenida"
           }
         }
       }
     },
-    "Shows as Supervisor" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se muestra como Supervisor"
+    "Shows as Supervisor": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se muestra como Supervisor"
           }
         }
       }
     },
-    "Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muestra la cuenta regresiva de tu descanso en la pantalla de bloqueo y en la Dynamic Island. Se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado."
+    "Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra la cuenta regresiva de tu descanso en la pantalla de bloqueo y en la Dynamic Island. Se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado."
           }
         }
       }
     },
-    "Shows your next shift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Muestra tu próximo turno"
+    "Shows your next shift": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Muestra tu próximo turno"
           }
         }
       }
     },
-    "Sign in required" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se requiere iniciar sesión"
+    "Sign in required": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se requiere iniciar sesión"
           }
         }
       }
     },
-    "Sign in to see your schedule" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicia sesión para ver tu horario"
+    "Sign in to see your schedule": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión para ver tu horario"
           }
         }
       }
     },
-    "Sign in with Amazon (UKG Pro)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iniciar sesión con Amazon (UKG Pro)"
+    "Sign in with Amazon (UKG Pro)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión con Amazon (UKG Pro)"
           }
         }
       }
     },
-    "Sign in with UKG once and your shifts sync in the background, on a month calendar or a simple list." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicia sesión una vez con UKG y tus turnos se sincronizan en segundo plano, en un calendario mensual o en una lista sencilla."
+    "Sign in with UKG once and your shifts sync in the background, on a month calendar or a simple list.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión una vez con UKG y tus turnos se sincronizan en segundo plano, en un calendario mensual o en una lista sencilla."
           }
         }
       }
     },
-    "Sign in with UKG Pro" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iniciar sesión con UKG Pro"
+    "Sign in with UKG Pro": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar sesión con UKG Pro"
           }
         }
       }
     },
-    "Sign in with your Whole Foods team member account and your schedule loads from Innerview. It's the new main sign-in; the Amazon sign-in is still in Settings as a backup." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicia sesión con tu cuenta de miembro del equipo de Whole Foods y tu horario se carga desde Innerview. Es el nuevo inicio de sesión principal; el de Amazon sigue en Ajustes como alternativa."
+    "Sign in with your Whole Foods team member account and your schedule loads from Innerview. It's the new main sign-in; the Amazon sign-in is still in Settings as a backup.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión con tu cuenta de miembro del equipo de Whole Foods y tu horario se carga desde Innerview. Es el nuevo inicio de sesión principal; el de Amazon sigue en Ajustes como alternativa."
           }
         }
       }
     },
-    "Sign in with your Whole Foods team member account. Your credentials go directly into Innerview's own sign-in page below — this app never sees them." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicia sesión con tu cuenta de miembro del equipo de Whole Foods. Tus credenciales van directamente a la página de inicio de sesión de Innerview que aparece abajo; esta app nunca las ve."
+    "Sign in with your Whole Foods team member account. Your credentials go directly into Innerview's own sign-in page below — this app never sees them.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicia sesión con tu cuenta de miembro del equipo de Whole Foods. Tus credenciales van directamente a la página de inicio de sesión de Innerview que aparece abajo; esta app nunca las ve."
           }
         }
       }
     },
-    "Sign out" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cerrar sesión"
+    "Sign out": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cerrar sesión"
           }
         }
       }
     },
-    "Some items, like dates and notifications, update after you restart the app. Widgets and Apple Watch follow your device language." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Algunos elementos, como las fechas y las notificaciones, se actualizan al reiniciar la app. Los widgets y el Apple Watch usan el idioma de tu dispositivo."
+    "Some items, like dates and notifications, update after you restart the app. Widgets and Apple Watch follow your device language.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Algunos elementos, como las fechas y las notificaciones, se actualizan al reiniciar la app. Los widgets y el Apple Watch usan el idioma de tu dispositivo."
           }
         }
       }
     },
-    "Start" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Inicio"
+    "Start": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Inicio"
           }
         }
       }
     },
-    "Start break" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Iniciar descanso"
+    "Start break": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Iniciar descanso"
           }
         }
       }
     },
-    "Staying signed in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sesión más estable"
+    "Staying signed in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sesión más estable"
           }
         }
       }
     },
-    "Stored in the secure Keychain and synced to your Apple Watch." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Guardado en el llavero seguro y sincronizado con tu Apple Watch."
+    "Stored in the secure Keychain and synced to your Apple Watch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Guardado en el llavero seguro y sincronizado con tu Apple Watch."
           }
         }
       }
     },
-    "Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se guarda solo en el llavero de este dispositivo y se usa únicamente para volver a iniciar sesión en wfminc.prd.mykronos.com cuando caduque tu sesión."
+    "Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se guarda solo en el llavero de este dispositivo y se usa únicamente para volver a iniciar sesión en wfminc.prd.mykronos.com cuando caduque tu sesión."
           }
         }
       }
     },
-    "Swapped with? (optional)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "¿Con quién cambiaste? (opcional)"
+    "Swapped with? (optional)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "¿Con quién cambiaste? (opcional)"
           }
         }
       }
     },
-    "Switching away from Alerts now quietly marks what you saw as read. No more tapping each one or hitting Mark all as viewed." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahora, al salir de Alertas, se marca en silencio como leído lo que viste. Ya no hace falta tocar cada una ni usar Marcar todo como visto."
+    "Switching away from Alerts now quietly marks what you saw as read. No more tapping each one or hitting Mark all as viewed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora, al salir de Alertas, se marca en silencio como leído lo que viste. Ya no hace falta tocar cada una ni usar Marcar todo como visto."
           }
         }
       }
     },
-    "Sync timed out. Check your connection and try again." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La sincronización tardó demasiado. Revisa tu conexión e inténtalo de nuevo."
+    "Sync timed out. Check your connection and try again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sincronización tardó demasiado. Revisa tu conexión e inténtalo de nuevo."
           }
         }
       }
     },
-    "System default" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Idioma del dispositivo"
+    "System default": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Idioma del dispositivo"
           }
         }
       }
     },
-    "Taken" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tomado"
+    "Taken": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tomado"
           }
         }
       }
     },
-    "Tap for full-screen card & max brightness" : {
-
-    },
-    "Tap to start your break timers." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Toca para iniciar tus temporizadores de descanso."
+    "Tap for full-screen card & max brightness": {},
+    "Tap to start your break timers.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Toca para iniciar tus temporizadores de descanso."
           }
         }
       }
     },
-    "Teal" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Turquesa"
+    "Teal": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turquesa"
           }
         }
       }
     },
-    "The app now saves your session itself, so it shouldn't ask you to sign in with your Amazon account every time you open it." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ahora la app guarda tu sesión por su cuenta, así que no debería pedirte iniciar sesión con tu cuenta de Amazon cada vez que la abres."
+    "The app now saves your session itself, so it shouldn't ask you to sign in with your Amazon account every time you open it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ahora la app guarda tu sesión por su cuenta, así que no debería pedirte iniciar sesión con tu cuenta de Amazon cada vez que la abres."
           }
         }
       }
     },
-    "The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La actividad en vivo de descansos ahora solo funciona durante tu turno. Toca Iniciar para un descanso de 10 minutos, un almuerzo de 30 minutos después de cuatro horas y otro descanso a las seis horas; cada uno cuenta hacia atrás en una barra que se pone roja cerca de cero y luego suena una alarma."
+    "The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La actividad en vivo de descansos ahora solo funciona durante tu turno. Toca Iniciar para un descanso de 10 minutos, un almuerzo de 30 minutos después de cuatro horas y otro descanso a las seis horas; cada uno cuenta hacia atrás en una barra que se pone roja cerca de cero y luego suena una alarma."
           }
         }
       }
     },
-    "The calendar, schedule and break editor do less work, so the app feels snappier and uses less battery." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El calendario, el horario y el editor de descansos trabajan menos, así que la app responde mejor y gasta menos batería."
+    "The calendar, schedule and break editor do less work, so the app feels snappier and uses less battery.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El calendario, el horario y el editor de descansos trabajan menos, así que la app responde mejor y gasta menos batería."
           }
         }
       }
     },
-    "The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "El código de barras de la tarjeta de descuento ahora coincide con el formato de pago de Whole Foods Market con simbología UPC-A y barras de protección más altas para un escaneo instantáneo en caja."
+    "The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "El código de barras de la tarjeta de descuento ahora coincide con el formato de pago de Whole Foods Market con simbología UPC-A y barras de protección más altas para un escaneo instantáneo en caja."
           }
         }
       }
     },
-    "The rounded font preference in Display settings now dynamically styles text across every screen in the app." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La preferencia de fuente redondeada en los ajustes de pantalla ahora aplica estilo dinámico a todo el texto en cada pantalla de la app."
+    "The rounded font preference in Display settings now dynamically styles text across every screen in the app.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La preferencia de fuente redondeada en los ajustes de pantalla ahora aplica estilo dinámico a todo el texto en cada pantalla de la app."
           }
         }
       }
     },
-    "The stored credentials were rejected." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Se rechazaron las credenciales guardadas."
+    "The stored credentials were rejected.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se rechazaron las credenciales guardadas."
           }
         }
       }
     },
-    "The tab bar now collapses as you scroll, with a live countdown beside it: time until your next shift, or until the shift you're on ends. Tap it during a shift to open your breaks, or any other time to jump to your next shift. Breaks no longer has its own tab." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La barra de pestañas ahora se contrae al desplazarte, con una cuenta regresiva al lado: el tiempo hasta tu próximo turno, o hasta que termine el turno en curso. Tócala durante un turno para abrir tus descansos, o en cualquier otro momento para ir a tu próximo turno. Descansos ya no tiene su propia pestaña."
+    "The tab bar now collapses as you scroll, with a live countdown beside it: time until your next shift, or until the shift you're on ends. Tap it during a shift to open your breaks, or any other time to jump to your next shift. Breaks no longer has its own tab.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La barra de pestañas ahora se contrae al desplazarte, con una cuenta regresiva al lado: el tiempo hasta tu próximo turno, o hasta que termine el turno en curso. Tócala durante un turno para abrir tus descansos, o en cualquier otro momento para ir a tu próximo turno. Descansos ya no tiene su propia pestaña."
           }
         }
       }
     },
-    "Theme & Appearance" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tema y apariencia"
+    "Theme & Appearance": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tema y apariencia"
           }
         }
       }
     },
-    "Theme & Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los ajustes de Tema y Apariencia ahora se pueden expandir o contraer para mantener la pantalla de Ajustes más compacta y ordenada."
+    "Theme & Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los ajustes de Tema y Apariencia ahora se pueden expandir o contraer para mantener la pantalla de Ajustes más compacta y ordenada."
           }
         }
       }
     },
-    "This electronic discount card is for the sole use of the Whole Foods Market Team Member named above. Additional picture identification may be requested. Misuse of the discount card, including electronic duplication, is strictly prohibited. This card is the sole property of Whole Foods Market and use of it is governed by the discount policy in the GIG." : {
-
+    "This electronic discount card is for the sole use of the Whole Foods Market Team Member named above. Additional picture identification may be requested. Misuse of the discount card, including electronic duplication, is strictly prohibited. This card is the sole property of Whole Foods Market and use of it is governed by the discount policy in the GIG.": {},
+    "Time changed from %@–%@ to %@–%@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Horario cambiado de %@–%@ a %@–%@"
+          }
+        }
+      }
     },
-    "Time changed from %@–%@ to %@–%@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Horario cambiado de %@–%@ a %@–%@"
+    "Time off": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo libre"
           }
         }
       }
     },
-    "Time off" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiempo libre"
+    "Time until your next break, or how long it's overdue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo hasta tu próximo descanso, o cuánto lleva atrasado."
           }
         }
       }
     },
-    "Time until your next break, or how long it's overdue." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiempo hasta tu próximo descanso, o cuánto lleva atrasado."
+    "Time until your next break, red and pulsing when overdue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tiempo hasta tu próximo descanso, en rojo y pulsando cuando está atrasado."
           }
         }
       }
     },
-    "Time until your next break, red and pulsing when overdue." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tiempo hasta tu próximo descanso, en rojo y pulsando cuando está atrasado."
+    "Timeline": {},
+    "Times repeat every day. Mark a break as taken to stop its countdown; it resets tomorrow.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los horarios se repiten todos los días. Marca un descanso como tomado para detener su cuenta regresiva; se reinicia mañana."
           }
         }
       }
     },
-    "Timeline" : {
-
+    "TM ID": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "TM ID"
+          }
+        }
+      }
     },
-    "Times repeat every day. Mark a break as taken to stop its countdown; it resets tomorrow." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Los horarios se repiten todos los días. Marca un descanso como tomado para detener su cuenta regresiva; se reinicia mañana."
+    "To add one, long-press your Home Screen or Lock Screen and tap Add Widget or Customize, then search for WF Schedule. For the watch, edit a watch face and choose Discount Barcode. Previews use sample data.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Para agregar uno, mantén presionada la pantalla de inicio o de bloqueo y toca Agregar widget o Personalizar, luego busca WF Schedule. En el reloj, edita una carátula y elige Código de descuento. Las vistas previas usan datos de ejemplo."
           }
         }
       }
     },
-    "TM ID" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "TM ID"
+    "Today": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy"
           }
         }
       }
     },
-    "To add one, long-press your Home Screen or Lock Screen and tap Add Widget or Customize, then search for WF Schedule. For the watch, edit a watch face and choose Discount Barcode. Previews use sample data." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Para agregar uno, mantén presionada la pantalla de inicio o de bloqueo y toca Agregar widget o Personalizar, luego busca WF Schedule. En el reloj, edita una carátula y elige Código de descuento. Las vistas previas usan datos de ejemplo."
+    "Today you work %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy trabajas: %@."
           }
         }
       }
     },
-    "Today" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoy"
+    "Tomorrow": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana"
           }
         }
       }
     },
-    "Today you work %@." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoy trabajas: %@."
+    "Tomorrow you work %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana trabajas: %@."
           }
         }
       }
     },
-    "Tomorrow" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mañana"
+    "Tools": {
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Herramientas"
           }
         }
       }
     },
-    "Tomorrow you work %@." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mañana trabajas: %@."
+    "Transfer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Transferencia"
           }
         }
       }
     },
-    "Tools" : {
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Herramientas"
+    "Type changed from %@ to %@": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tipo cambiado de %@ a %@"
           }
         }
       }
     },
-    "Transfer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Transferencia"
+    "UKG did not respond in time (possibly waiting on a two-factor prompt this app can't complete on its own).": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UKG no respondió a tiempo (posiblemente esperando una verificación en dos pasos que esta app no puede completar por sí sola)."
           }
         }
       }
     },
-    "Type changed from %@ to %@" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tipo cambiado de %@ a %@"
+    "UKG password": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contraseña de UKG"
           }
         }
       }
     },
-    "UKG did not respond in time (possibly waiting on a two-factor prompt this app can't complete on its own)." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UKG no respondió a tiempo (posiblemente esperando una verificación en dos pasos que esta app no puede completar por sí sola)."
+    "UKG returned an unexpected response (%lld).": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "UKG devolvió una respuesta inesperada (%lld)."
           }
         }
       }
     },
-    "UKG password" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Contraseña de UKG"
+    "UKG session expired.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La sesión de UKG caducó."
           }
         }
       }
     },
-    "UKG returned an unexpected response (%lld)." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "UKG devolvió una respuesta inesperada (%lld)."
+    "UKG username": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usuario de UKG"
           }
         }
       }
     },
-    "UKG session expired." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La sesión de UKG caducó."
+    "Unpaid meal periods (30 min)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Períodos de comida sin pago (30 min)"
           }
         }
       }
     },
-    "UKG username" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usuario de UKG"
+    "Use my next shift": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar mi próximo turno"
           }
         }
       }
     },
-    "Unpaid meal periods (30 min)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Períodos de comida sin pago (30 min)"
+    "Use these in my break timer": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Usar en mi temporizador de descanso"
           }
         }
       }
     },
-    "Use my next shift" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usar mi próximo turno"
+    "Version": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Versión"
           }
         }
       }
     },
-    "Use these in my break timer" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Usar en mi temporizador de descanso"
+    "Viewed (%lld)": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vistos (%lld)"
           }
         }
       }
     },
-    "Version" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Versión"
+    "Welcome to": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Te damos la bienvenida a"
           }
         }
       }
     },
-    "Viewed (%lld)" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vistos (%lld)"
+    "WF Icon unlocked": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ícono WF desbloqueado"
           }
         }
       }
     },
-    "Welcome to" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Te damos la bienvenida a"
+    "WF Schedule": {},
+    "WF Schedule couldn't refresh your schedule automatically. Open the app to sign in again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "WF Schedule no pudo actualizar tu horario automáticamente. Abre la app para iniciar sesión de nuevo."
           }
         }
       }
     },
-    "WF Icon unlocked" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ícono WF desbloqueado"
+    "What's new": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades"
           }
         }
       }
     },
-    "WF Schedule" : {
-
+    "What's New": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades"
+          }
+        }
+      }
     },
-    "WF Schedule couldn't refresh your schedule automatically. Open the app to sign in again." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "WF Schedule no pudo actualizar tu horario automáticamente. Abre la app para iniciar sesión de nuevo."
+    "What's New in": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Novedades de"
           }
         }
       }
     },
-    "What's new" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Novedades"
+    "When enabled, WF Schedule stores your UKG username and password in the device Keychain so it can sign in again on its own if your session expires while the app is in the background. Off by default — turn this on only if you're comfortable with the app holding a reusable copy of your password on this device.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Al activarlo, WF Schedule guarda tu usuario y contraseña de UKG en el llavero del dispositivo para poder iniciar sesión por sí sola si tu sesión caduca mientras la app está en segundo plano. Está desactivado por defecto: actívalo solo si te sientes cómodo con que la app guarde una copia reutilizable de tu contraseña en este dispositivo."
           }
         }
       }
     },
-    "What's New" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Novedades"
+    "Whole Foods Market Team Member": {},
+    "Widgets": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets"
           }
         }
       }
     },
-    "What's New in" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Novedades de"
+    "You are not working today.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hoy no trabajas."
           }
         }
       }
     },
-    "When enabled, WF Schedule stores your UKG username and password in the device Keychain so it can sign in again on its own if your session expires while the app is in the background. Off by default — turn this on only if you're comfortable with the app holding a reusable copy of your password on this device." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Al activarlo, WF Schedule guarda tu usuario y contraseña de UKG en el llavero del dispositivo para poder iniciar sesión por sí sola si tu sesión caduca mientras la app está en segundo plano. Está desactivado por defecto: actívalo solo si te sientes cómodo con que la app guarde una copia reutilizable de tu contraseña en este dispositivo."
+    "You are not working tomorrow.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mañana no trabajas."
           }
         }
       }
     },
-    "Whole Foods Market Team Member" : {
-
+    "You get a second 10-minute rest break.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tienes un segundo descanso de 10 minutos."
+          }
+        }
+      }
     },
-    "Widgets" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Widgets"
+    "You have no upcoming shifts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No tienes próximos turnos."
           }
         }
       }
     },
-    "You are not working today." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hoy no trabajas."
+    "You must take %lld unpaid 30-minute meal periods.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debes tomar %lld períodos de comida de 30 minutos sin pago."
           }
         }
       }
     },
-    "You are not working tomorrow." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mañana no trabajas."
+    "You must take 1 unpaid 30-minute meal period.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Debes tomar 1 período de comida de 30 minutos sin pago."
           }
         }
       }
     },
-    "You get a second 10-minute rest break." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tienes un segundo descanso de 10 minutos."
+    "You're all caught up": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Estás al día"
           }
         }
       }
     },
-    "You have no upcoming shifts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "No tienes próximos turnos."
+    "Your barcode on the Lock Screen, no unlocking needed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu código de barras en la pantalla de bloqueo, sin desbloquear."
           }
         }
       }
     },
-    "You must take %lld unpaid 30-minute meal periods." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Debes tomar %lld períodos de comida de 30 minutos sin pago."
+    "Your break countdown now lives on the Lock Screen and in the Dynamic Island, turning red and counting up when a break is overdue.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "La cuenta regresiva de tu descanso ahora aparece en la pantalla de bloqueo y en la Dynamic Island, y se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado."
           }
         }
       }
     },
-    "You must take 1 unpaid 30-minute meal period." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Debes tomar 1 período de comida de 30 minutos sin pago."
+    "Your breaks": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus descansos"
           }
         }
       }
     },
-    "You're all caught up" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Estás al día"
+    "Your credentials go directly into UKG's own sign-in page below — this app never sees them.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tus credenciales van directamente a la página de inicio de sesión de UKG que aparece abajo; esta app nunca las ve."
           }
         }
       }
     },
-    "Your barcode on the Lock Screen, no unlocking needed." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu código de barras en la pantalla de bloqueo, sin desbloquear."
+    "Your next shift and how long until it starts.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu próximo turno y cuánto falta para que empiece."
           }
         }
       }
     },
-    "Your break countdown now lives on the Lock Screen and in the Dynamic Island, turning red and counting up when a break is overdue." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "La cuenta regresiva de tu descanso ahora aparece en la pantalla de bloqueo y en la Dynamic Island, y se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado."
+    "Your next shift is %@ on %@.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu próximo turno es %@ el %@."
           }
         }
       }
     },
-    "Your breaks" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tus descansos"
+    "Your schedule is stored only on this device.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu horario se guarda solo en este dispositivo."
           }
         }
       }
     },
-    "Your credentials go directly into UKG's own sign-in page below — this app never sees them." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tus credenciales van directamente a la página de inicio de sesión de UKG que aparece abajo; esta app nunca las ve."
+    "Your schedule, always current": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tu horario, siempre al día"
           }
         }
       }
     },
-    "Your next shift and how long until it starts." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu próximo turno y cuánto falta para que empiece."
+    "Precise Register Barcodes": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Códigos de barras precisos para caja"
           }
         }
       }
     },
-    "Your next shift is %@ on %@." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu próximo turno es %@ el %@."
+    "Discount cards and widget barcodes are now formatted with the official 0491 prefix and check digits for instant, reliable scanning at Whole Foods Market registers.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Los códigos de barras de la tarjeta de descuento y widgets ahora están formateados con el prefijo oficial 0491 y dígitos de control para un escaneo instantáneo y confiable en las cajas de Whole Foods Market."
           }
         }
       }
     },
-    "Your schedule is stored only on this device." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu horario se guarda solo en este dispositivo."
+    "Background Refresh Reliability": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Confiabilidad de actualización en segundo plano"
           }
         }
       }
     },
-    "Your schedule, always current" : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tu horario, siempre al día"
+    "Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date.": {
+      "extractionState": "manual",
+      "localizations": {
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Se resolvieron bloqueos por tiempo de espera en segundo plano y se mejoró la recuperación de sesión para mantener tu horario actualizado sin interrupciones."
           }
         }
       }
     }
   },
-  "version" : "1.0"
+  "version": "1.0"
 }

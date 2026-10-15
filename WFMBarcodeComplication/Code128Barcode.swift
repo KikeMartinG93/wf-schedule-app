@@ -22,20 +22,28 @@ enum Code128Barcode {
     private static let stopPattern = "2331112"
     private static let startB = 104, startC = 105, switchToB = 100, switchToC = 99
 
-    /// Formats input so the encoded barcode value ALWAYS reads `491(TM ID)0`.
+    /// Formats input so the encoded barcode value ALWAYS reads `0491(TM ID)00`.
     static func formatBarcodeValue(for input: String) -> String {
-        let cleaned = input.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleaned = input.filter { $0.isNumber }
         guard !cleaned.isEmpty else { return "" }
-        if cleaned.hasPrefix("491") && cleaned.hasSuffix("0") && cleaned.count > 4 {
+        if cleaned.count == 13 && cleaned.hasPrefix("0491") {
             return cleaned
         }
+        if cleaned.count == 12 && cleaned.hasPrefix("491") {
+            return "0" + cleaned
+        }
+        if cleaned.hasPrefix("0491") {
+            let body = String(cleaned.dropFirst(4))
+            let tm = body.count < 7 ? String(repeating: "0", count: 7 - body.count) + body : body
+            return "0491\(tm)00"
+        }
         if cleaned.hasPrefix("491") {
-            return cleaned + "0"
+            let body = String(cleaned.dropFirst(3))
+            let tm = body.count < 7 ? String(repeating: "0", count: 7 - body.count) + body : body
+            return "0491\(tm)00"
         }
-        if cleaned.hasSuffix("0") {
-            return "491" + cleaned
-        }
-        return "491\(cleaned)0"
+        let tm = cleaned.count < 7 ? String(repeating: "0", count: 7 - cleaned.count) + cleaned : cleaned
+        return "0491\(tm)00"
     }
 
     /// Symbol values for `message`, including start; checksum is added by caller.
@@ -213,30 +221,55 @@ enum UPCABarcode {
     }
 
     /// Formats input into the canonical 12-digit UPC-A string.
+    /// Encodes `491(TM ID)0(check)` so POS/register scanners reading EAN-13
+    /// read exactly `0491(TM ID)00` (e.g. `0491261648900` for TM ID `2616489`).
     static func formatDigits(for input: String) -> String {
-        let cleaned = input.filter { $0.isNumber }
+        var cleaned = input.filter { $0.isNumber }
         guard !cleaned.isEmpty else { return "" }
+
+        // Strip leading "0" if 13 digits starting with 0 or prefixed with "0491"
+        if cleaned.count == 13 && cleaned.hasPrefix("0") {
+            cleaned = String(cleaned.dropFirst())
+        } else if cleaned.hasPrefix("0491") {
+            cleaned = String(cleaned.dropFirst())
+        }
+
+        // If 12 digits, return as-is
         if cleaned.count == 12 { return cleaned }
+
+        // If 11 digits, calculate and append check digit
         if cleaned.count == 11 {
             return cleaned + String(calculateCheckDigit(for: cleaned))
         }
+
+        // If prefixed with "491"
         if cleaned.hasPrefix("491") {
             let body = String(cleaned.dropFirst(3))
+            if body.count == 7 {
+                let d11 = "491" + body + "0"
+                return d11 + String(calculateCheckDigit(for: d11))
+            }
             if body.count == 8 {
                 let d11 = "491" + body
                 return d11 + String(calculateCheckDigit(for: d11))
             }
-            if body.count <= 8 {
-                let padded = String(repeating: "0", count: max(0, 8 - body.count)) + body
-                let d11 = "491" + padded
+            if body.count < 7 {
+                let padded = String(repeating: "0", count: 7 - body.count) + body
+                let d11 = "491" + padded + "0"
                 return d11 + String(calculateCheckDigit(for: d11))
             }
         }
-        if cleaned.count <= 8 {
-            let padded = String(repeating: "0", count: max(0, 8 - cleaned.count)) + cleaned
-            let d11 = "491" + padded
+
+        // Standard TM ID entered in settings (e.g. 7 digits like "2616489")
+        if cleaned.count <= 7 {
+            let tmID = String(repeating: "0", count: max(0, 7 - cleaned.count)) + cleaned
+            let d11 = "491" + tmID + "0"
+            return d11 + String(calculateCheckDigit(for: d11))
+        } else if cleaned.count == 8 {
+            let d11 = "491" + cleaned
             return d11 + String(calculateCheckDigit(for: d11))
         }
+
         let d11 = String(cleaned.prefix(11)).padding(toLength: 11, withPad: "0", startingAt: 0)
         return d11 + String(calculateCheckDigit(for: d11))
     }

@@ -1,7 +1,5 @@
-Version 2.3 (Build 2 / Revision 18):
+Version 2.4 (Build 1 / Revision 19):
 
-• Spooky Halloween Theme: Celebrate the season with an all-new Halloween theme featuring fluid gradients of pumpkin orange, eerie slime green, and deep witch violet (applied automatically upon updating!).
-• Atmospheric Easter Eggs: Watch out for subtle lightning flashes and spiders dropping down on silk threads across the background when the Halloween theme is active.
-• Collapsible Theme & Appearance: The Theme & Appearance section in Settings can now be collapsed and expanded with a tap, keeping your settings neat and compact.
-• Official UPC-A Barcode: Discount card barcode formatted with official UPC-A symbology and taller guard bars for instant checkout scanning.
-• Performance & Stability: Enhanced background rendering animations, reliable screen brightness adjustment, and resolved background watchdog hangs.
+• Precise Register Barcodes: Widgets and discount cards now encode the exact 0491(TM ID)00 format required by Whole Foods Market registers for effortless and instant checkout scanning.
+• Background Refresh Reliability: Resolved background watchdog timeout hangs and improved background session restoration so schedules update smoothly.
+• Performance & Stability: Enhanced complications, optimized barcode geometry, and overall performance improvements.

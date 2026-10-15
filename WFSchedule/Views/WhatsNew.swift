@@ -127,6 +127,14 @@ enum WhatsNew {
                  title: "Collapsible Theme Settings",
                  detail: "Theme & Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact."),
         ]),
+        Release(revision: 19, items: [
+            Item(symbol: "barcode.viewfinder",
+                 title: "Precise Register Barcodes",
+                 detail: "Discount cards and widget barcodes are now formatted with the official 0491 prefix and check digits for instant, reliable scanning at Whole Foods Market registers."),
+            Item(symbol: "arrow.triangle.2.circlepath",
+                 title: "Background Refresh Reliability",
+                 detail: "Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
