@@ -57,11 +57,8 @@ enum Code128Barcode {
                     index += 2
                 }
             } else {
-                // Odd number of digits (e.g. 11 digits "49126164890"):
-                // Start B with the first digit, then switch to Code C for the remaining pairs
-                // to match official Home Depot / Kronos badge encoding.
                 values.append(startB)
-                values.append(digits[0] + 16) // Code B ASCII offset: '0' (48) - 32 = 16
+                values.append(digits[0] + 16)
                 values.append(switchToC)
                 var index = 1
                 while index + 1 < digits.count {
@@ -295,7 +292,7 @@ enum UPCABarcode {
 struct UPCABarsShape: Shape {
     let modules: [UPCABarcode.Module]
     var quietModules: CGFloat = 10
-    var dataHeightRatio: CGFloat = 0.78
+    var dataHeightRatio: CGFloat = 0.81
     var guardHeightRatio: CGFloat = 0.94
 
     func path(in rect: CGRect) -> Path {
@@ -327,9 +324,12 @@ struct UPCABarsShape: Shape {
 }
 
 /// Solid block with barcode holes cut out for accessory complications / Lock Screen tinted rendering.
+/// Features extended guard bars and data notches matching standard UPC-A geometry.
 struct UPCAShape: Shape {
     let modules: [UPCABarcode.Module]
     var quietModules: CGFloat = 8
+    var dataHeightRatio: CGFloat = 0.81
+    var guardHeightRatio: CGFloat = 0.94
 
     func path(in rect: CGRect) -> Path {
         var path = Path()
@@ -346,13 +346,15 @@ struct UPCAShape: Shape {
                 index += 1
                 continue
             }
+            let isTall = modules[index].isTall
             var end = index
-            while end < modules.count && modules[end].isBar {
+            while end < modules.count && modules[end].isBar && modules[end].isTall == isTall {
                 end += 1
             }
+            let h = rect.height * (isTall ? guardHeightRatio : dataHeightRatio)
             let x = startX + CGFloat(index) * moduleWidth
             let w = CGFloat(end - index) * moduleWidth
-            path.addRect(CGRect(x: x, y: rect.minY, width: w, height: rect.height))
+            path.addRect(CGRect(x: x, y: rect.minY, width: w, height: h))
             index = end
         }
         return path
@@ -377,39 +379,39 @@ struct UPCABarcodeCard: View {
                     // White card backing
                     Color.white
 
-                    // UPC-A Bars
-                    UPCABarsShape(modules: modules, quietModules: 10, dataHeightRatio: 0.78, guardHeightRatio: 0.94)
+                    // UPC-A Bars with extended guard bars and data notches
+                    UPCABarsShape(modules: modules, quietModules: 10, dataHeightRatio: 0.81, guardHeightRatio: 0.94)
                         .fill(Color.black)
 
-                    // Digits matching official discount card
+                    // Digits matching official discount card: 4  91***  *****  0
                     if let labels = UPCABarcode.maskedLabels(for: input) {
+                        let fontSize = max(8, min(h * 0.17, moduleWidth * 4.4))
+
                         // Digit 0 (prefix "4" outside left guard)
                         Text(labels.prefix)
-                            .font(.system(size: max(8, h * 0.16), weight: .bold, design: .rounded))
+                            .font(.system(size: fontSize, weight: .regular, design: .default))
                             .foregroundStyle(Color.black)
-                            .frame(width: 10 * moduleWidth, height: h * 0.22)
-                            .position(x: 5 * moduleWidth, y: h * 0.88)
+                            .position(x: 6.2 * moduleWidth, y: h * 0.90)
 
                         // Left group ("91***" under left data bars)
                         Text(labels.left)
-                            .font(.system(size: max(8, h * 0.16), weight: .bold, design: .monospaced))
+                            .font(.system(size: fontSize, weight: .medium, design: .monospaced))
                             .foregroundStyle(Color.black)
-                            .frame(width: 42 * moduleWidth, height: h * 0.22)
-                            .position(x: (10 + 3 + 21) * moduleWidth, y: h * 0.88)
+                            .frame(width: 42 * moduleWidth)
+                            .position(x: 34.0 * moduleWidth, y: h * 0.90)
 
                         // Right group ("*****" under right data bars)
                         Text(labels.right)
-                            .font(.system(size: max(8, h * 0.16), weight: .bold, design: .monospaced))
+                            .font(.system(size: fontSize, weight: .medium, design: .monospaced))
                             .foregroundStyle(Color.black)
-                            .frame(width: 42 * moduleWidth, height: h * 0.22)
-                            .position(x: (10 + 50 + 21) * moduleWidth, y: h * 0.88)
+                            .frame(width: 42 * moduleWidth)
+                            .position(x: 81.0 * moduleWidth, y: h * 0.90)
 
                         // Check digit (e.g. "0" outside right guard)
                         Text(labels.check)
-                            .font(.system(size: max(8, h * 0.16), weight: .bold, design: .rounded))
+                            .font(.system(size: fontSize, weight: .regular, design: .default))
                             .foregroundStyle(Color.black)
-                            .frame(width: 10 * moduleWidth, height: h * 0.22)
-                            .position(x: (10 + 95 + 5) * moduleWidth, y: h * 0.88)
+                            .position(x: 108.8 * moduleWidth, y: h * 0.90)
                     }
                 }
             }

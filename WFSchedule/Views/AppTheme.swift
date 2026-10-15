@@ -12,6 +12,7 @@ private final class BackgroundMorphDriver: ObservableObject {
 
     @Published var phase1 = false
     @Published var phase2 = false
+    @Published var phase3 = false
 
     private init() {
         Task { @MainActor in
@@ -32,16 +33,20 @@ private final class BackgroundMorphDriver: ObservableObject {
     private func updateAnimation() {
         let shouldAnimate = !UIAccessibility.isReduceMotionEnabled && !ProcessInfo.processInfo.isLowPowerModeEnabled
         if shouldAnimate {
-            withAnimation(.easeInOut(duration: 11.0).repeatForever(autoreverses: true)) {
+            withAnimation(.easeInOut(duration: 6.0).repeatForever(autoreverses: true)) {
                 phase1 = true
             }
-            withAnimation(.easeInOut(duration: 17.0).repeatForever(autoreverses: true)) {
+            withAnimation(.easeInOut(duration: 8.5).repeatForever(autoreverses: true)) {
                 phase2 = true
+            }
+            withAnimation(.easeInOut(duration: 11.0).repeatForever(autoreverses: true)) {
+                phase3 = true
             }
         } else {
             withAnimation(.easeOut(duration: 0.3)) {
                 phase1 = false
                 phase2 = false
+                phase3 = false
             }
         }
     }
@@ -90,63 +95,13 @@ struct AppBackground: View {
                     let w = proxy.size.width
                     let h = proxy.size.height
 
-                    ZStack {
-                        // Orb 1: Primary deep theme aura (Top-Leading)
-                        Ellipse()
-                            .fill(orb1Color)
-                            .frame(width: w * 1.35, height: h * 0.55)
-                            .position(
-                                x: morph.phase1 ? w * 0.22 : w * 0.38,
-                                y: morph.phase2 ? h * 0.20 : h * 0.12
-                            )
-                            .scaleEffect(morph.phase1 ? 1.15 : 0.94)
-                            .rotationEffect(.degrees(morph.phase2 ? 22 : -18))
-
-                        // Orb 2: Luminous accent highlight (Top-Trailing)
-                        Ellipse()
-                            .fill(orb2Color)
-                            .frame(width: w * 1.20, height: h * 0.50)
-                            .position(
-                                x: morph.phase2 ? w * 0.68 : w * 0.84,
-                                y: morph.phase1 ? h * 0.32 : h * 0.22
-                            )
-                            .scaleEffect(morph.phase2 ? 0.92 : 1.16)
-                            .rotationEffect(.degrees(morph.phase1 ? -28 : 24))
-
-                        // Orb 3: Harmonious secondary glow (Center-Leading)
-                        RoundedRectangle(cornerRadius: w * 0.45)
-                            .fill(orb3Color)
-                            .frame(width: w * 1.25, height: h * 0.52)
-                            .position(
-                                x: morph.phase1 ? w * 0.35 : w * 0.18,
-                                y: morph.phase2 ? h * 0.54 : h * 0.44
-                            )
-                            .scaleEffect(morph.phase1 ? 1.12 : 0.88)
-                            .rotationEffect(.degrees(morph.phase2 ? 28 : -22))
-
-                        // Orb 4: Ambient floating pool (Lower-Trailing)
-                        Ellipse()
-                            .fill(orb4Color)
-                            .frame(width: w * 1.20, height: h * 0.52)
-                            .position(
-                                x: morph.phase2 ? w * 0.62 : w * 0.80,
-                                y: morph.phase1 ? h * 0.72 : h * 0.62
-                            )
-                            .scaleEffect(morph.phase2 ? 1.16 : 0.94)
-                            .rotationEffect(.degrees(morph.phase1 ? 22 : -30))
-
-                        // Orb 5: Deep base tone filling the lower screen (Bottom-Leading / Center)
-                        Ellipse()
-                            .fill(orb1Color)
-                            .frame(width: w * 1.35, height: h * 0.55)
-                            .position(
-                                x: morph.phase1 ? w * 0.30 : w * 0.48,
-                                y: morph.phase2 ? h * 0.88 : h * 0.80
-                            )
-                            .scaleEffect(morph.phase1 ? 1.14 : 0.92)
-                            .rotationEffect(.degrees(morph.phase2 ? -18 : 20))
+                    if activeTheme.id == "halloween" {
+                        halloweenOrbs(w: w, h: h)
+                            .blur(radius: 75)
+                    } else {
+                        defaultOrbs(w: w, h: h)
+                            .blur(radius: 80)
                     }
-                    .blur(radius: 80)
                 }
                 .ignoresSafeArea()
 
@@ -163,6 +118,134 @@ struct AppBackground: View {
             }
             .ignoresSafeArea()
             .allowsHitTesting(false)
+        }
+    }
+
+    @ViewBuilder
+    private func halloweenOrbs(w: CGFloat, h: CGFloat) -> some View {
+        // Exact specified palette: 50% Pumpkin Orange, 40% Bright Purple, 10% Apple Green
+        let orange = Color(red: 1.00, green: 0.48, blue: 0.05).opacity(effectiveOpacity * 1.05)
+        let brightPurple = Color(red: 0.65, green: 0.18, blue: 0.95).opacity(effectiveOpacity * 0.95)
+        let appleGreen = Color(red: 0.42, green: 0.88, blue: 0.16).opacity(effectiveOpacity * 0.90)
+
+        ZStack {
+            // --- 50% ORANGE (2 large sweeping orbs) ---
+            // Orange Orb 1: Upper-center fluid drift across the top region
+            Ellipse()
+                .fill(orange)
+                .frame(width: w * 1.30, height: h * 0.52)
+                .position(
+                    x: morph.phase1 ? w * 0.25 : w * 0.70,
+                    y: morph.phase2 ? h * 0.14 : h * 0.36
+                )
+                .scaleEffect(morph.phase3 ? 1.18 : 0.90)
+                .rotationEffect(.degrees(morph.phase1 ? 26 : -22))
+
+            // Orange Orb 2: Lower-center sweeping drift across the bottom region
+            Ellipse()
+                .fill(orange)
+                .frame(width: w * 1.25, height: h * 0.50)
+                .position(
+                    x: morph.phase2 ? w * 0.75 : w * 0.30,
+                    y: morph.phase1 ? h * 0.66 : h * 0.88
+                )
+                .scaleEffect(morph.phase2 ? 0.88 : 1.16)
+                .rotationEffect(.degrees(morph.phase3 ? -25 : 22))
+
+            // --- 40% BRIGHT PURPLE (2 vibrant sweeping orbs) ---
+            // Bright Purple Orb 1: Top-trailing to center-left sweep
+            Ellipse()
+                .fill(brightPurple)
+                .frame(width: w * 1.15, height: h * 0.46)
+                .position(
+                    x: morph.phase2 ? w * 0.82 : w * 0.38,
+                    y: morph.phase3 ? h * 0.12 : h * 0.28
+                )
+                .scaleEffect(morph.phase1 ? 1.14 : 0.88)
+                .rotationEffect(.degrees(morph.phase2 ? -30 : 18))
+
+            // Bright Purple Orb 2: Lower-leading to center-right sweep
+            Ellipse()
+                .fill(brightPurple)
+                .frame(width: w * 1.15, height: h * 0.46)
+                .position(
+                    x: morph.phase3 ? w * 0.15 : w * 0.58,
+                    y: morph.phase1 ? h * 0.46 : h * 0.74
+                )
+                .scaleEffect(morph.phase3 ? 0.90 : 1.14)
+                .rotationEffect(.degrees(morph.phase1 ? 22 : -26))
+
+            // --- 10% APPLE GREEN (1 focused accent orb) ---
+            // Apple Green Orb: Crisp accent orb floating and swirling through the mid-screen
+            Ellipse()
+                .fill(appleGreen)
+                .frame(width: w * 0.65, height: h * 0.30)
+                .position(
+                    x: morph.phase1 ? (morph.phase2 ? w * 0.35 : w * 0.68) : (morph.phase3 ? w * 0.52 : w * 0.25),
+                    y: morph.phase2 ? (morph.phase3 ? h * 0.40 : h * 0.62) : (morph.phase1 ? h * 0.30 : h * 0.52)
+                )
+                .scaleEffect(morph.phase2 ? 1.25 : 0.80)
+                .rotationEffect(.degrees(morph.phase1 ? 40 : -36))
+        }
+    }
+
+    @ViewBuilder
+    private func defaultOrbs(w: CGFloat, h: CGFloat) -> some View {
+        ZStack {
+            // Orb 1: Primary deep theme aura (Top-Leading)
+            Ellipse()
+                .fill(orb1Color)
+                .frame(width: w * 1.35, height: h * 0.55)
+                .position(
+                    x: morph.phase1 ? w * 0.22 : w * 0.38,
+                    y: morph.phase2 ? h * 0.20 : h * 0.12
+                )
+                .scaleEffect(morph.phase1 ? 1.15 : 0.94)
+                .rotationEffect(.degrees(morph.phase2 ? 22 : -18))
+
+            // Orb 2: Luminous accent highlight (Top-Trailing)
+            Ellipse()
+                .fill(orb2Color)
+                .frame(width: w * 1.20, height: h * 0.50)
+                .position(
+                    x: morph.phase2 ? w * 0.68 : w * 0.84,
+                    y: morph.phase1 ? h * 0.32 : h * 0.22
+                )
+                .scaleEffect(morph.phase2 ? 0.92 : 1.16)
+                .rotationEffect(.degrees(morph.phase1 ? -28 : 24))
+
+            // Orb 3: Harmonious secondary glow (Center-Leading)
+            RoundedRectangle(cornerRadius: w * 0.45)
+                .fill(orb3Color)
+                .frame(width: w * 1.25, height: h * 0.52)
+                .position(
+                    x: morph.phase1 ? w * 0.35 : w * 0.18,
+                    y: morph.phase2 ? h * 0.54 : h * 0.44
+                )
+                .scaleEffect(morph.phase1 ? 1.12 : 0.88)
+                .rotationEffect(.degrees(morph.phase2 ? 28 : -22))
+
+            // Orb 4: Ambient floating pool (Lower-Trailing)
+            Ellipse()
+                .fill(orb4Color)
+                .frame(width: w * 1.20, height: h * 0.52)
+                .position(
+                    x: morph.phase2 ? w * 0.62 : w * 0.80,
+                    y: morph.phase1 ? h * 0.72 : h * 0.62
+                )
+                .scaleEffect(morph.phase2 ? 1.16 : 0.94)
+                .rotationEffect(.degrees(morph.phase1 ? 22 : -30))
+
+            // Orb 5: Deep base tone filling the lower screen (Bottom-Leading / Center)
+            Ellipse()
+                .fill(orb1Color)
+                .frame(width: w * 1.35, height: h * 0.55)
+                .position(
+                    x: morph.phase1 ? w * 0.30 : w * 0.48,
+                    y: morph.phase2 ? h * 0.88 : h * 0.80
+                )
+                .scaleEffect(morph.phase1 ? 1.14 : 0.92)
+                .rotationEffect(.degrees(morph.phase2 ? -18 : 20))
         }
     }
 

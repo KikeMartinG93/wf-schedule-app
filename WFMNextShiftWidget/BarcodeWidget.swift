@@ -2,8 +2,8 @@ import WidgetKit
 import SwiftUI
 
 /// Discount barcode widget: home screen medium plus a Lock Screen rectangle,
-/// both drawn from the TM ID saved in the app's Settings as a
-/// Code 128 barcode of "491" + TM ID + "0".
+/// both drawn from the TM ID saved in the app's Settings as the official
+/// Whole Foods Market UPC-A electronic discount card.
 struct BarcodeWidgetEntry: TimelineEntry {
     let date: Date
     let tmID: String?
@@ -60,10 +60,10 @@ struct BarcodeWidgetView: View {
         Group {
             if let tmID, let upcModules = UPCABarcode.modules(for: tmID) {
                 if isAccessory {
-                    accessoryBars(upcModules)
+                    accessoryBars(tmID: tmID, modules: upcModules)
                 } else {
                     UPCABarcodeCard(input: tmID)
-                        .padding(.vertical, 10)
+                        .padding(.vertical, 8)
                         .padding(.horizontal, 10)
                         .background(Color.white)
                         .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
@@ -77,21 +77,27 @@ struct BarcodeWidgetView: View {
             }
         }
         .containerBackground(for: .widget) { Color.clear }
+        .widgetURL(URL(string: "wfschedule://barcode"))
     }
 
-    /// Lock Screen version: UPC-A bars as holes in a solid block (see `UPCAShape`)
-    /// so they survive the Lock Screen's tinted rendering; black backing only in
-    /// full color. The Home Screen widget draws the official UPC-A card in black
-    /// on white with the exact discount card guard bars and masked numbers.
-    private func accessoryBars(_ modules: [UPCABarcode.Module]) -> some View {
-        ZStack {
-            if renderingMode == .fullColor {
-                Color.black
+    /// Lock Screen version: in full color, renders the exact UPC-A discount card
+    /// with guard bars and masked digits; in tinted/vibrant mode, uses UPCAShape
+    /// with extended guard bars. Tapping always opens the full-screen card.
+    @ViewBuilder
+    private func accessoryBars(tmID: String, modules: [UPCABarcode.Module]) -> some View {
+        if renderingMode == .fullColor {
+            UPCABarcodeCard(input: tmID)
+                .padding(3)
+                .background(Color.white)
+                .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
+                .frame(maxWidth: .infinity, maxHeight: .infinity)
+        } else {
+            ZStack {
+                UPCAShape(modules: modules)
+                    .fill(Color.white, style: FillStyle(eoFill: true))
             }
-            UPCAShape(modules: modules)
-                .fill(Color.white, style: FillStyle(eoFill: true))
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .clipShape(RoundedRectangle(cornerRadius: 8, style: .continuous))
     }
 }

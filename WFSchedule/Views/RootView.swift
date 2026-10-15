@@ -57,6 +57,7 @@ private struct MainTabView: View {
     @State private var showingLogin = false
     @State private var loginBackend: SessionBackend = .innerview
     @State private var showingBreaks = false
+    @State private var showingDiscountCard = false
     @State private var homeJump: HomeJump?
     @State private var monthCommand: MonthCommand?
     @State private var timelineRefreshTrigger = 0
@@ -135,8 +136,19 @@ private struct MainTabView: View {
                 .tint(theme.current.readableAccent)
                 .presentationDragIndicator(.visible)
         }
+        // Tapping the Lock Screen or Home Screen barcode widget opens the full-screen
+        // official discount card directly with 100% boosted screen brightness.
+        .sheet(isPresented: $showingDiscountCard) {
+            if let id = BarcodeStore.value {
+                DiscountCardModalView(tmID: id)
+                    .presentationDragIndicator(.visible)
+            }
+        }
         .onOpenURL { url in
-            if url.scheme == "wfschedule", url.host == "breaks" { showingBreaks = true }
+            if url.scheme == "wfschedule" {
+                if url.host == "breaks" { showingBreaks = true }
+                if url.host == "barcode" { showingDiscountCard = true }
+            }
         }
         .sheet(isPresented: $showingLogin) {
             Group {

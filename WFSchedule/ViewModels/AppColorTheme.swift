@@ -103,11 +103,11 @@ enum AppColorThemes {
         // fluid gradients with lightning flashes and climbing spiders easter eggs.
         AppColorTheme(
             id: "halloween", name: "Halloween",
-            backgroundTint: Color(red: 0x24 / 255, green: 0x0A / 255, blue: 0x3E / 255), // deep witch violet
+            backgroundTint: Color(red: 0.65, green: 0.18, blue: 0.95), // bright purple
             accent: Color(red: 1.00, green: 0.48, blue: 0.05), // vivid pumpkin orange
-            holidayPay: Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255), // neon eerie green
-            cashOfficeAccentOverride: Color(red: 0xA8 / 255, green: 0x3A / 255, blue: 0xF0 / 255), // witch purple
-            supervisorAccentOverride: Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255) // neon slime green
+            holidayPay: Color(red: 0.42, green: 0.88, blue: 0.16), // crisp apple green
+            cashOfficeAccentOverride: Color(red: 0.68, green: 0.20, blue: 0.98), // bright purple
+            supervisorAccentOverride: Color(red: 0.42, green: 0.88, blue: 0.16) // apple green
         ),
         AppColorTheme(
             id: "green", name: "Green",

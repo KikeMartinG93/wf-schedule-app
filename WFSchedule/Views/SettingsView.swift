@@ -1,5 +1,8 @@
 import SwiftUI
 import WidgetKit
+#if canImport(UIKit)
+import UIKit
+#endif
 
 struct SettingsView: View {
     @EnvironmentObject private var sessionManager: SessionManager
@@ -407,10 +410,13 @@ private struct ThemePicker: View {
                             Circle()
                                 .fill(
                                     LinearGradient(
-                                        colors: [
-                                            Color(red: 0x32 / 255, green: 0xDC / 255, blue: 0x48 / 255), // green
-                                            Color(red: 1.00, green: 0.48, blue: 0.05), // orange
-                                            Color(red: 0xA8 / 255, green: 0x3A / 255, blue: 0xF0 / 255)  // purple
+                                        stops: [
+                                            .init(color: Color(red: 1.00, green: 0.48, blue: 0.05), location: 0.0), // orange 50%
+                                            .init(color: Color(red: 1.00, green: 0.48, blue: 0.05), location: 0.50),
+                                            .init(color: Color(red: 0.65, green: 0.18, blue: 0.95), location: 0.50), // bright purple 40%
+                                            .init(color: Color(red: 0.65, green: 0.18, blue: 0.95), location: 0.90),
+                                            .init(color: Color(red: 0.42, green: 0.88, blue: 0.16), location: 0.90), // apple green 10%
+                                            .init(color: Color(red: 0.42, green: 0.88, blue: 0.16), location: 1.0)
                                         ],
                                         startPoint: .topLeading,
                                         endPoint: .bottomTrailing
@@ -453,7 +459,7 @@ private struct ThemePicker: View {
 
 /// Entry for the TM ID. It's typed into a secure field, saved to the Keychain
 /// (also pushed to the Watch and widgets), and from then on only ever shown as
-/// "*****" — with a barcode preview so you can see it worked.
+/// "*****" — with a barcode preview matching the official Whole Foods discount card.
 private struct TMIDField: View {
     // The Keychain is read once when the row appears and cached here. Reading it
     // in the property initializer or in `body` hit the Keychain on every redraw.
@@ -461,6 +467,7 @@ private struct TMIDField: View {
     @State private var tmIDValue: String?
     @State private var isEditing = false
     @State private var draft = ""
+    @State private var showingDiscountCardModal = false
 
     private var trimmedDraft: String { draft.trimmingCharacters(in: .whitespacesAndNewlines) }
 
@@ -532,13 +539,114 @@ private struct TMIDField: View {
     @ViewBuilder
     private var preview: some View {
         if let id = tmIDValue {
-            UPCABarcodeCard(input: id)
-                .padding(.vertical, 8)
-                .padding(.horizontal, 10)
-                .background(Color.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 80)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            Button {
+                showingDiscountCardModal = true
+            } label: {
+                VStack(spacing: 8) {
+                    UPCABarcodeCard(input: id)
+                        .padding(.vertical, 16)
+                        .padding(.horizontal, 12)
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 180)
+                        .background(Color.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14, style: .continuous))
+                        .shadow(color: .black.opacity(0.12), radius: 6, y: 3)
+
+                    HStack(spacing: 5) {
+                        Image(systemName: "viewfinder")
+                            .font(.caption.bold())
+                        Text("Tap for full-screen card & max brightness")
+                            .font(.caption)
+                    }
+                    .foregroundStyle(.secondary)
+                }
+            }
+            .buttonStyle(.plain)
+            .sheet(isPresented: $showingDiscountCardModal) {
+                DiscountCardModalView(tmID: id)
+            }
+        }
+    }
+}
+
+/// Full-screen Whole Foods Market Electronic Discount Card matching the official Innerview card
+/// (IMG_1867-1). Displays the card at maximum brightness with tall UPC-A bars, extended guard bars,
+/// masked numbers, and official legal disclaimers so registers scan it effortlessly.
+struct DiscountCardModalView: View {
+    let tmID: String
+    @Environment(\.dismiss) private var dismiss
+    #if os(iOS)
+    @State private var previousBrightness: CGFloat = 0.5
+    #endif
+
+    var body: some View {
+        NavigationStack {
+            ScrollView {
+                VStack(spacing: 24) {
+                    // Header matching official electronic discount card
+                    VStack(spacing: 4) {
+                        Text("Enrique Martin")
+                            .font(.title2.weight(.bold))
+                            .multilineTextAlignment(.center)
+                        Text("Whole Foods Market Team Member")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.top, 20)
+
+                    // Official Discount Card Barcode matching IMG_1867-1
+                    VStack(spacing: 0) {
+                        UPCABarcodeCard(input: tmID)
+                            .padding(.vertical, 22)
+                            .padding(.horizontal, 16)
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 220)
+                    }
+                    .background(Color.white)
+                    .clipShape(RoundedRectangle(cornerRadius: 16, style: .continuous))
+                    .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
+                    .padding(.horizontal, 16)
+
+                    // Help & legal disclaimer verbatim from Innerview
+                    VStack(spacing: 12) {
+                        Text("Please open an ASK TMS case or call 833-4ASKTMS (833-427-5867) to report the problem.")
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+
+                        Text("This electronic discount card is for the sole use of the Whole Foods Market Team Member named above. Additional picture identification may be requested. Misuse of the discount card, including electronic duplication, is strictly prohibited. This card is the sole property of Whole Foods Market and use of it is governed by the discount policy in the GIG.")
+                            .font(.caption2)
+                            .foregroundStyle(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal, 8)
+                    }
+                    .padding(.horizontal, 16)
+                    .padding(.top, 8)
+                }
+                .padding(.bottom, 32)
+            }
+            .navigationTitle("Discount Card")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .confirmationAction) {
+                    Button("Done") {
+                        dismiss()
+                    }
+                }
+            }
+        }
+        .onAppear {
+            #if os(iOS)
+            previousBrightness = UIScreen.main.brightness
+            UIScreen.main.brightness = 1.0
+            UIApplication.shared.isIdleTimerDisabled = true
+            #endif
+        }
+        .onDisappear {
+            #if os(iOS)
+            UIScreen.main.brightness = previousBrightness
+            UIApplication.shared.isIdleTimerDisabled = false
+            #endif
         }
     }
 }
