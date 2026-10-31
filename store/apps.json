@@ -3,11 +3,11 @@
   "identifier": "com.marting.WFM.source",
   "subtitle": "Whole Foods schedule, breaks, and discount barcode",
   "description": "Sideload WF Schedule. Compatible with FlareStore, SideStore, Feather, and AltStore.",
-  "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
+  "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
   "website": "https://github.com/KikeMartinG93/wf-schedule-app",
   "tintColor": "#31D158",
   "nsfw": false,
-  "sourceURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/apps.json",
+  "sourceURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/apps.json",
   "featuredApps": [
     "com.marting.WFM"
   ],
@@ -18,12 +18,12 @@
       "developerName": "Enrique Martin",
       "subtitle": "Your Whole Foods schedule on iPhone.",
       "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Weather on Home for the city you work in\n• Theme-colored selected-day bar, plus a shift bar on work days\n• Drag the calendar header to expand the month\n• Break timer and Live Activity\n• Discount barcode for the register",
-      "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
+      "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
       "version": "2.8",
       "versionDate": "2026-10-31T19:35:22Z",
-      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.8.ipa",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.8/WFSchedule-2.8.ipa",
       "size": 2113319,
       "versions": [
         {
@@ -31,7 +31,7 @@
           "buildVersion": "3",
           "date": "2026-10-31T19:35:22Z",
           "localizedDescription": "Home shows weather for the city you work in. The selected-day bar matches your theme, with a second bar on shift days. Drag the white header to expand the month. Placeholder Design meetings and reviews are gone.",
-          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.8.ipa",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.8/WFSchedule-2.8.ipa",
           "size": 2113319,
           "minOSVersion": "26.0"
         },
@@ -40,7 +40,7 @@
           "buildVersion": "2",
           "date": "2026-10-31T18:47:00Z",
           "localizedDescription": "Redesigned Home calendar with a day ticker, month grid, and scrolling agenda. Removed the leftover bottom bar that showed through the glass tab bar.",
-          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.7.ipa",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.7/WFSchedule.ipa",
           "size": 2085933,
           "minOSVersion": "26.0"
         },
