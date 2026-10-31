@@ -1,0 +1,21 @@
+---
+description: When Kike says "push an update", bump, IPA, catalog, commit, and push.
+alwaysApply: true
+---
+
+# Push an update
+
+When the user says **push an update** (or equivalent: bump the IPA, ship a store build), do this full release — do not only commit source.
+
+1. Bump **marketing version** (2.8 → 2.9) and **build** (`CFBundleVersion` / `CURRENT_PROJECT_VERSION`, always unique and increasing). Update:
+   - `WFSchedule/App/Info.plist`
+   - `WFMNextShiftWidget/Info.plist`
+   - `WFSchedule.xcodeproj/project.pbxproj` (`MARKETING_VERSION`, `CURRENT_PROJECT_VERSION`)
+2. Append a `WhatsNew` release with the next revision.
+3. Archive unsigned Release, ad-hoc sign, zip IPA:
+   - `xcodebuild … archive CODE_SIGNING_ALLOWED=NO -derivedDataPath build/DerivedData -archivePath build/WFSchedule.xcarchive`
+   - Package `Payload/WFSchedule.app` → `store/WFSchedule-X.Y.ipa` and `store/WFSchedule.ipa`
+4. Update `store/apps.json`: new `version`, unique `downloadURL` on GitHub Releases (`…/releases/download/vX.Y/WFSchedule-X.Y.ipa`), unique `buildVersion`, prepend `versions[]`, replace `news`. Keep `sourceURL` as GitHub raw `main/store/apps.json`.
+5. Commit (not `xcuserdata`, `build/`, `scripts/icon_*`, root `WFSchedule.ipa`). Push `main`.
+6. `gh release create vX.Y store/WFSchedule-X.Y.ipa` and `sh scripts/publish-sidestore-source.sh`.
+7. Tell the user the version/build and that SideStore uses `https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/apps.json` (never jsDelivr).

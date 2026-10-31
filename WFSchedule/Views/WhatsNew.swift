@@ -158,6 +158,14 @@ enum WhatsNew {
                  title: "Drag to expand the month",
                  detail: "Pull down on the white calendar header to open the full month, and drag it back up for the day ticker. Today shows whenever you leave today's date."),
         ]),
+        Release(revision: 24, items: [
+            Item(symbol: "arrow.up.arrow.down.circle",
+                 title: "Ticker and agenda stay in sync",
+                 detail: "Scroll the schedule and the day strip follows, or flick the strip and the agenda jumps to that day — like a dial."),
+            Item(symbol: "circle.lefthalf.filled",
+                 title: "Shift colors you can read",
+                 detail: "A small legend under the calendar names Cash Office, Supervisor, holiday pay, and your other jobs. The bars on each day use those same colors."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

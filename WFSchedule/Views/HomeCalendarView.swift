@@ -67,6 +67,10 @@ struct HomeCalendarView: View {
 
     @State private var displayedMonth: Date = Calendar.current.startOfDay(for: Date())
     @State private var selectedDate: Date = Calendar.current.startOfDay(for: Date())
+    /// Shared dial position: the horizontal ticker and vertical agenda both
+    /// report and follow these, so scrolling one turns the other.
+    @State private var tickerDay: Date? = Calendar.current.startOfDay(for: Date())
+    @State private var agendaDay: Date? = Calendar.current.startOfDay(for: Date())
 
     @State private var completedTaskIDs: Set<UUID> = []
 
@@ -129,6 +133,24 @@ struct HomeCalendarView: View {
                     weatherStore.refreshIfNeeded()
                 }
             }
+            .onChange(of: selectedDate) { _, newDate in
+                let start = calendar.startOfDay(for: newDate)
+                if tickerDay.map({ !calendar.isDate($0, inSameDayAs: start) }) ?? true {
+                    tickerDay = start
+                }
+                if agendaDay.map({ !calendar.isDate($0, inSameDayAs: start) }) ?? true {
+                    agendaDay = start
+                }
+                if !calendar.isDate(start, equalTo: displayedMonth, toGranularity: .month) {
+                    displayedMonth = start
+                }
+            }
+            .onChange(of: tickerDay) { _, newDay in
+                commitDialDay(newDay)
+            }
+            .onChange(of: agendaDay) { _, newDay in
+                commitDialDay(newDay)
+            }
         }
     }
 
@@ -163,18 +185,62 @@ struct HomeCalendarView: View {
             .frame(height: calendarBodyHeight, alignment: .top)
             .clipped()
 
-            dragHandle
+            ZStack(alignment: .bottom) {
+                shiftLegend
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .padding(.leading, 14)
+                    .padding(.trailing, 52)
+                    .padding(.top, 2)
+                    .padding(.bottom, 10)
+
+                dragHandle
+            }
         }
         .background(Color.white)
         .contentShape(Rectangle())
         .simultaneousGesture(verticalExpandGesture)
     }
 
+    /// Tiny color keys for the bars on the day strip: the jobs on this
+    /// schedule, plus holiday pay. Same colors as the ticker marks.
+    private var shiftLegend: some View {
+        FlowLayout(spacing: 12, rowSpacing: 4) {
+            ForEach(legendJobs, id: \.self) { job in
+                HStack(spacing: 5) {
+                    Capsule()
+                        .fill(colorForJob(job))
+                        .frame(width: 12, height: 3.5)
+                    Text(verbatim: job)
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(Color(red: 0.45, green: 0.45, blue: 0.48))
+                        .lineLimit(1)
+                }
+            }
+
+            HStack(spacing: 4) {
+                SparklyStar(size: 8)
+                Text("Holiday pay")
+                    .font(.system(size: 11, weight: .medium))
+                    .foregroundStyle(Color(red: 0.45, green: 0.45, blue: 0.48))
+                    .lineLimit(1)
+            }
+        }
+    }
+
+    private var legendJobs: [String] {
+        var seen = Set<String>()
+        var jobs: [String] = []
+        for shift in index.sortedByStart {
+            if seen.insert(shift.job).inserted { jobs.append(shift.job) }
+        }
+        return jobs.isEmpty ? ["Supervisor", "Cash Office"] : jobs
+    }
+
     private var dragHandle: some View {
         Capsule()
             .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
             .frame(width: 38, height: 4.5)
-            .padding(.top, 6)
+            .padding(.top, 8)
             .padding(.bottom, 8)
             .padding(.horizontal, 28)
             .contentShape(Rectangle())
@@ -219,47 +285,49 @@ struct HomeCalendarView: View {
     }
 
     private var dayTickerStrip: some View {
-        ScrollViewReader { tickerProxy in
+        GeometryReader { geo in
             ScrollView(.horizontal, showsIndicators: false) {
                 LazyHStack(spacing: 0) {
-                    ForEach(dayTickerDays, id: \.self) { day in
+                    ForEach(dialDays, id: \.self) { day in
                         dayTickerColumn(for: day)
-                            .id(dayTickerID(for: day))
+                            .id(day)
                             .contentShape(Rectangle())
                             .onTapGesture {
                                 withAnimation(.easeInOut(duration: 0.22)) {
-                                    selectedDate = calendar.startOfDay(for: day)
-                                    displayedMonth = calendar.startOfDay(for: day)
+                                    selectDialDay(day)
                                 }
                             }
                     }
                 }
+                .scrollTargetLayout()
             }
-            .frame(height: 104)
-            .onAppear {
-                tickerProxy.scrollTo(dayTickerID(for: selectedDate), anchor: .center)
-            }
-            .onChange(of: selectedDate) { _, newDate in
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    tickerProxy.scrollTo(dayTickerID(for: newDate), anchor: .center)
-                }
-            }
+            .scrollTargetBehavior(.viewAligned)
+            .scrollPosition(id: $tickerDay, anchor: .center)
+            .contentMargins(.horizontal, max(0, (geo.size.width - 66) / 2), for: .scrollContent)
         }
+        .frame(height: 104)
     }
 
-    private func dayTickerID(for day: Date) -> String {
-        "ticker-" + dayIdentifier(for: day)
+    /// Stable day span shared by the ticker and agenda so they can scroll
+    /// independently without the window jumping back around the selection.
+    private var dialDays: [Date] {
+        let today = calendar.startOfDay(for: Date())
+        return (-120...240).compactMap { calendar.date(byAdding: .day, value: $0, to: today) }
     }
 
-    private var dayTickerDays: [Date] {
-        var result: [Date] = []
-        let center = calendar.startOfDay(for: selectedDate)
-        for offset in -40...50 {
-            if let d = calendar.date(byAdding: .day, value: offset, to: center) {
-                result.append(d)
-            }
-        }
-        return result
+    private func selectDialDay(_ day: Date) {
+        let start = calendar.startOfDay(for: day)
+        selectedDate = start
+        displayedMonth = start
+        tickerDay = start
+        agendaDay = start
+    }
+
+    private func commitDialDay(_ day: Date?) {
+        guard let day else { return }
+        let start = calendar.startOfDay(for: day)
+        guard !calendar.isDate(start, inSameDayAs: selectedDate) else { return }
+        selectedDate = start
     }
 
     private func dayTickerColumn(for day: Date) -> some View {
@@ -297,18 +365,21 @@ struct HomeCalendarView: View {
                     .foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.08))
                     .padding(.top, 2)
 
-                // Selected-day bar uses the Settings theme accent; a second,
-                // shorter bar stacks under it when that day has a shift.
+                // Selected-day bar uses the Settings theme accent. Shift bars
+                // under it use the same job colors as the legend.
                 VStack(spacing: 3) {
                     if isSelected {
                         Capsule()
                             .fill(theme.current.readableAccent)
                             .frame(width: 48, height: 4)
                     }
-                    ForEach(Array(shiftColors.enumerated()), id: \.offset) { index, color in
+                    ForEach(Array(shiftColors.enumerated()), id: \.offset) { _, color in
                         Capsule()
                             .fill(color)
-                            .frame(width: isSelected || index > 0 ? 28 : 48, height: 4)
+                            .frame(width: 48, height: 4)
+                    }
+                    if isHolidayPay(day) {
+                        SparklyStar(size: 8)
                     }
                 }
                 .frame(height: 22, alignment: .top)
@@ -326,13 +397,13 @@ struct HomeCalendarView: View {
         }
     }
 
-    /// Job colors for up to two shifts on a ticker day, matching the Settings theme.
+    /// Job colors for up to two shifts on a ticker day, matching the legend.
     private func tickerShiftBarColors(for day: Date) -> [Color] {
         var seen = Set<String>()
         var colors: [Color] = []
         for shift in index.shifts(on: day, calendar: calendar) {
             guard seen.insert(shift.job).inserted else { continue }
-            colors.append(shift.accentColor(theme: theme.current))
+            colors.append(colorForJob(shift.job))
             if colors.count == 2 { break }
         }
         return colors
@@ -484,10 +555,7 @@ struct HomeCalendarView: View {
                         .contentShape(Rectangle())
                         .onTapGesture {
                             withAnimation(.easeInOut(duration: 0.2)) {
-                                selectedDate = calendar.startOfDay(for: day)
-                                if !calendar.isDate(day, equalTo: displayedMonth, toGranularity: .month) {
-                                    displayedMonth = calendar.startOfDay(for: day)
-                                }
+                                selectDialDay(day)
                             }
                         }
                     }
@@ -505,69 +573,51 @@ struct HomeCalendarView: View {
     // MARK: - Agenda View with Continuous Vertical Scrolling
 
     private var agendaView: some View {
-        ScrollViewReader { proxy in
-            ScrollView {
-                LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
-                    if demoMode {
-                        demoBanner
-                            .padding(.horizontal, 16)
-                            .padding(.top, 10)
-                    }
-
-                    let agendaDays = visibleAgendaDays
-                    if agendaDays.isEmpty {
-                        VStack(spacing: 12) {
-                            Image(systemName: "calendar.badge.exclamationmark")
-                                .font(.system(size: 36))
-                                .foregroundStyle(Color(white: 0.4))
-                                .padding(.top, 40)
-                            Text("No shifts scheduled for this period")
-                                .font(.subheadline)
-                                .foregroundStyle(Color(white: 0.6))
-                        }
-                        .frame(maxWidth: .infinity)
-                    } else {
-                        ForEach(agendaDays, id: \.self) { day in
-                            agendaSection(for: day)
-                                .id(dayIdentifier(for: day))
-                        }
-                    }
-
-                    // Room to scroll the last rows clear of the floating shift bar.
-                    Color.clear.frame(height: 64)
+        ScrollView {
+            LazyVStack(spacing: 0, pinnedViews: [.sectionHeaders]) {
+                if demoMode {
+                    demoBanner
+                        .padding(.horizontal, 16)
+                        .padding(.top, 10)
                 }
-            }
-            .scrollIndicators(.hidden)
-            .scrollEdgeEffectStyle(.soft, for: .bottom)
-            .background(Color.black)
-            .onChange(of: selectedDate) { _, newDate in
-                withAnimation(.easeInOut(duration: 0.25)) {
-                    proxy.scrollTo(dayIdentifier(for: newDate), anchor: .top)
+
+                let agendaDays = visibleAgendaDays
+                if agendaDays.isEmpty {
+                    VStack(spacing: 12) {
+                        Image(systemName: "calendar.badge.exclamationmark")
+                            .font(.system(size: 36))
+                            .foregroundStyle(Color(white: 0.4))
+                            .padding(.top, 40)
+                        Text("No shifts scheduled for this period")
+                            .font(.subheadline)
+                            .foregroundStyle(Color(white: 0.6))
+                    }
+                    .frame(maxWidth: .infinity)
+                } else {
+                    ForEach(agendaDays, id: \.self) { day in
+                        agendaSection(for: day)
+                            .id(day)
+                    }
                 }
+
+                // Room to scroll the last rows clear of the floating shift bar.
+                Color.clear.frame(height: 64)
             }
+            .scrollTargetLayout()
         }
-    }
-
-    private func dayIdentifier(for date: Date) -> String {
-        let comp = calendar.dateComponents([.year, .month, .day], from: date)
-        return "\(comp.year ?? 0)-\(comp.month ?? 0)-\(comp.day ?? 0)"
+        .scrollIndicators(.hidden)
+        .scrollPosition(id: $agendaDay, anchor: .top)
+        .scrollEdgeEffectStyle(.soft, for: .bottom)
+        .background(Color.black)
     }
 
     /// Continuous range of past and upcoming days for smooth vertical scrolling
     private var visibleAgendaDays: [Date] {
         if calendarDayTickerMode {
-            // Continuous sequence of days around selectedDate (e.g. -25 to +45 days)
-            let center = calendar.startOfDay(for: selectedDate)
-            var days: [Date] = []
-            for offset in -25...45 {
-                if let d = calendar.date(byAdding: .day, value: offset, to: center) {
-                    days.append(d)
-                }
-            }
-            return days
+            return dialDays
         } else {
             var daysSet = Set<Date>()
-            daysSet.insert(selectedDate)
+            daysSet.insert(calendar.startOfDay(for: selectedDate))
             for shift in shifts {
                 daysSet.insert(calendar.startOfDay(for: shift.date))
             }
@@ -850,18 +900,7 @@ struct HomeCalendarView: View {
     }
 
     private func colorForJob(_ job: String) -> Color {
-        let lower = job.lowercased()
-        if lower.contains("supervisor") {
-            return Color(red: 0.88, green: 0.20, blue: 0.65)
-        } else if lower.contains("cash office") {
-            return Color(red: 0.22, green: 0.78, blue: 0.35)
-        } else if lower.contains("customer") {
-            return Color(red: 0.0, green: 0.62, blue: 1.0)
-        } else if lower.contains("support") {
-            return Color(red: 1.0, green: 0.58, blue: 0.0)
-        } else {
-            return Color(red: 0.65, green: 0.35, blue: 0.95)
-        }
+        Shift.accentColor(forJob: job, theme: theme.current)
     }
 
     private func colorForTaskCategory(_ category: ChecklistCategory) -> Color {
@@ -878,13 +917,12 @@ struct HomeCalendarView: View {
     }
 
     private func gridDotColors(for day: Date) -> [Color] {
-        let dayShifts = index.shifts(on: day, calendar: calendar)
+        var seen = Set<String>()
         var colors: [Color] = []
-        for s in dayShifts {
-            let col = colorForJob(s.job)
-            if !colors.contains(col) { colors.append(col) }
+        for shift in index.shifts(on: day, calendar: calendar) {
+            guard seen.insert(shift.job).inserted else { continue }
+            colors.append(colorForJob(shift.job))
         }
-
         return Array(colors.prefix(4))
     }
 
@@ -917,20 +955,16 @@ struct HomeCalendarView: View {
     }
 
     private func jumpToToday() {
-        let today = calendar.startOfDay(for: Date())
         withAnimation(.easeInOut(duration: 0.25)) {
-            selectedDate = today
-            displayedMonth = today
+            selectDialDay(calendar.startOfDay(for: Date()))
         }
     }
 
     private func handleJump() {
         guard let jump, jump.id != handledJumpID else { return }
         handledJumpID = jump.id
-        let day = calendar.startOfDay(for: jump.date)
         withAnimation(.easeInOut(duration: 0.25)) {
-            displayedMonth = day
-            selectedDate = day
+            selectDialDay(calendar.startOfDay(for: jump.date))
         }
     }
 
@@ -1071,6 +1105,44 @@ struct MonthCommand: Equatable {
 struct HomeJump: Equatable {
     let id = UUID()
     let date: Date
+}
+
+/// Wraps legend chips onto the next line instead of clipping them.
+private struct FlowLayout: Layout {
+    var spacing: CGFloat
+    var rowSpacing: CGFloat
+
+    func sizeThatFits(proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) -> CGSize {
+        let maxWidth = proposal.width ?? .infinity
+        var x: CGFloat = 0, y: CGFloat = 0, rowHeight: CGFloat = 0, usedWidth: CGFloat = 0
+        for subview in subviews {
+            let size = subview.sizeThatFits(.unspecified)
+            if x > 0 && x + size.width > maxWidth {
+                y += rowHeight + rowSpacing
+                x = 0
+                rowHeight = 0
+            }
+            x += size.width + spacing
+            usedWidth = max(usedWidth, x - spacing)
+            rowHeight = max(rowHeight, size.height)
+        }
+        return CGSize(width: usedWidth, height: y + rowHeight)
+    }
+
+    func placeSubviews(in bounds: CGRect, proposal: ProposedViewSize, subviews: Subviews, cache: inout ()) {
+        var x = bounds.minX, y = bounds.minY, rowHeight: CGFloat = 0
+        for subview in subviews {
+            let size = subview.sizeThatFits(.unspecified)
+            if x > bounds.minX && x + size.width > bounds.maxX {
+                y += rowHeight + rowSpacing
+                x = bounds.minX
+                rowHeight = 0
+            }
+            subview.place(at: CGPoint(x: x, y: y), proposal: ProposedViewSize(size))
+            x += size.width + spacing
+            rowHeight = max(rowHeight, size.height)
+        }
+    }
 }
 
 private struct ShiftIndex {
