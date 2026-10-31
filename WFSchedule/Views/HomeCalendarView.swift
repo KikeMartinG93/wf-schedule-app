@@ -185,13 +185,12 @@ struct HomeCalendarView: View {
             .frame(height: calendarBodyHeight, alignment: .top)
             .clipped()
 
-            ZStack(alignment: .bottom) {
+            VStack(spacing: 0) {
                 shiftLegend
                     .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.leading, 14)
-                    .padding(.trailing, 52)
-                    .padding(.top, 2)
-                    .padding(.bottom, 10)
+                    .padding(.horizontal, 14)
+                    .padding(.top, 6)
+                    .padding(.bottom, 6)
 
                 dragHandle
             }
@@ -240,7 +239,7 @@ struct HomeCalendarView: View {
         Capsule()
             .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
             .frame(width: 38, height: 4.5)
-            .padding(.top, 8)
+            .padding(.top, 2)
             .padding(.bottom, 8)
             .padding(.horizontal, 28)
             .contentShape(Rectangle())

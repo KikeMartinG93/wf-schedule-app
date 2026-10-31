@@ -21,11 +21,20 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.9",
-      "versionDate": "2026-10-31T21:10:50Z",
-      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.9/WFSchedule-2.9.ipa",
-      "size": 2123118,
+      "version": "2.10",
+      "versionDate": "2026-10-31T21:39:48Z",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.10/WFSchedule-2.10.ipa",
+      "size": 2123696,
       "versions": [
+        {
+          "version": "2.10",
+          "buildVersion": "5",
+          "date": "2026-10-31T21:39:48Z",
+          "localizedDescription": "The job-color labels sit above the calendar handle instead of overlapping it.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.10/WFSchedule-2.10.ipa",
+          "size": 2123696,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.9",
           "buildVersion": "4",
@@ -77,10 +86,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.9",
-      "identifier": "wf-schedule-2.9",
-      "caption": "Day strip and agenda stay in sync, with a shift-color legend.",
-      "date": "2026-10-31T21:10:50Z",
+      "title": "Version 2.10",
+      "identifier": "wf-schedule-2.10",
+      "caption": "Shift labels no longer overlap the calendar handle.",
+      "date": "2026-10-31T21:39:48Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"

@@ -166,6 +166,11 @@ enum WhatsNew {
                  title: "Shift colors you can read",
                  detail: "A small legend under the calendar names Cash Office, Supervisor, holiday pay, and your other jobs. The bars on each day use those same colors."),
         ]),
+        Release(revision: 25, items: [
+            Item(symbol: "rectangle.split.1x2",
+                 title: "Room for the shift legend",
+                 detail: "The job-color labels now sit above the calendar handle instead of overlapping it."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
