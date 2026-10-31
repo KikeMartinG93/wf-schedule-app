@@ -8,60 +8,60 @@ nlu:
         title: Next Shift
       corpuses:
         training:
-        - locale: en
-          utterances:
-          - '{${+prefix} }What is my next shift in ${+applicationName}'
-          - '{${+prefix} }When do I work next in ${+applicationName}'
-          - '{${+prefix} }Next shift in ${+applicationName}'
         - locale: es
           utterances:
           - '{${+prefix} }Cuál es mi próximo turno en ${+applicationName}'
           - '{${+prefix} }Cuándo trabajo próximamente en ${+applicationName}'
           - '{${+prefix} }Próximo turno en ${+applicationName}'
+        - locale: en
+          utterances:
+          - '{${+prefix} }What is my next shift in ${+applicationName}'
+          - '{${+prefix} }When do I work next in ${+applicationName}'
+          - '{${+prefix} }Next shift in ${+applicationName}'
     - metadata:
         name: ScheduleForDayIntent_1
         title: Schedule for a Day
       corpuses:
         training:
-        - locale: en
-          utterances:
-          - '{${+prefix} }Am I working ${DayChoice} in ${+applicationName}'
-          - '{${+prefix} }What is my schedule ${DayChoice} in ${+applicationName}'
         - locale: es
           utterances:
           - '{${+prefix} }Trabajo ${DayChoice} en ${+applicationName}'
           - '{${+prefix} }Cuál es mi horario de ${DayChoice} en ${+applicationName}'
+        - locale: en
+          utterances:
+          - '{${+prefix} }Am I working ${DayChoice} in ${+applicationName}'
+          - '{${+prefix} }What is my schedule ${DayChoice} in ${+applicationName}'
     - metadata:
         name: +negative
       corpuses:
         training:
-        - locale: en
+        - locale: es
           utterances:
           - '{${+prefix} }${+standardAppShortcutNegatives}'
-        - locale: es
+        - locale: en
           utterances:
           - '{${+prefix} }${+standardAppShortcutNegatives}'
 variables:
 - name: +applicationName
   type: ssu/expansion
   definitions:
-  - locale: en
+  - locale: es
     synomyms:
     - WF Schedule
-  - locale: es
+  - locale: en
     synomyms:
     - WF Schedule
 - name: DayChoice
   type: ssu/parameter
   definitions:
-  - locale: en
-    synomyms:
-    - Today
-    - Tomorrow
   - locale: es
     synomyms:
     - Hoy
     - Mañana
+  - locale: en
+    synomyms:
+    - Today
+    - Tomorrow
 - name: +prefix
   type: ssu/expansion
   definitions:

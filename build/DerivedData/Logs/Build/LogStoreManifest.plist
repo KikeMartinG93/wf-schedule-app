@@ -6,7 +6,7 @@
 	<integer>13</integer>
 	<key>logs</key>
 	<dict>
-		<key>35BC2B19-5263-4846-9942-1742B3B08AEA</key>
+		<key>63349DDA-E58F-4F6D-8E97-185BB38B8525</key>
 		<dict>
 			<key>className</key>
 			<string>IDECommandLineBuildLog</string>
@@ -15,7 +15,49 @@
 			<key>domainType</key>
 			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
 			<key>fileName</key>
-			<string>35BC2B19-5263-4846-9942-1742B3B08AEA.xcactivitylog</string>
+			<string>63349DDA-E58F-4F6D-8E97-185BB38B8525.xcactivitylog</string>
+			<key>hasPrimaryLog</key>
+			<true/>
+			<key>primaryObservable</key>
+			<dict>
+				<key>highLevelStatus</key>
+				<string>S</string>
+				<key>totalNumberOfAnalyzerIssues</key>
+				<integer>0</integer>
+				<key>totalNumberOfErrors</key>
+				<integer>0</integer>
+				<key>totalNumberOfTestFailures</key>
+				<integer>0</integer>
+				<key>totalNumberOfWarnings</key>
+				<integer>0</integer>
+			</dict>
+			<key>schemeIdentifier-containerName</key>
+			<string>WFSchedule project</string>
+			<key>schemeIdentifier-schemeName</key>
+			<string>WFSchedule</string>
+			<key>schemeIdentifier-sharedScheme</key>
+			<integer>1</integer>
+			<key>signature</key>
+			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
+			<key>timeStartedRecording</key>
+			<real>815175238.50856996</real>
+			<key>timeStoppedRecording</key>
+			<real>815175245.25254905</real>
+			<key>title</key>
+			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
+			<key>uniqueIdentifier</key>
+			<string>63349DDA-E58F-4F6D-8E97-185BB38B8525</string>
+		</dict>
+		<key>896A2032-25F8-4FD2-9586-41C3BE348BBE</key>
+		<dict>
+			<key>className</key>
+			<string>IDECommandLineBuildLog</string>
+			<key>documentTypeString</key>
+			<string>&lt;nil&gt;</string>
+			<key>domainType</key>
+			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
+			<key>fileName</key>
+			<string>896A2032-25F8-4FD2-9586-41C3BE348BBE.xcactivitylog</string>
 			<key>hasPrimaryLog</key>
 			<true/>
 			<key>primaryObservable</key>
@@ -40,97 +82,13 @@
 			<key>signature</key>
 			<string>Archiving project WFSchedule with scheme WFSchedule</string>
 			<key>timeStartedRecording</key>
-			<real>815168091.17562497</real>
+			<real>815175498.99013603</real>
 			<key>timeStoppedRecording</key>
-			<real>815168114.70966005</real>
+			<real>815175581.95666099</real>
 			<key>title</key>
 			<string>Archiving project WFSchedule with scheme WFSchedule</string>
 			<key>uniqueIdentifier</key>
-			<string>35BC2B19-5263-4846-9942-1742B3B08AEA</string>
-		</dict>
-		<key>46647EBD-F6C9-4E20-9891-9FE548FCE53D</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>46647EBD-F6C9-4E20-9891-9FE548FCE53D.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>WFSchedule project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>WFSchedule</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>815167836.812868</real>
-			<key>timeStoppedRecording</key>
-			<real>815167842.39680898</real>
-			<key>title</key>
-			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>46647EBD-F6C9-4E20-9891-9FE548FCE53D</string>
-		</dict>
-		<key>6955F740-978C-42A9-96D4-085C3CD35EBF</key>
-		<dict>
-			<key>className</key>
-			<string>IDECommandLineBuildLog</string>
-			<key>documentTypeString</key>
-			<string>&lt;nil&gt;</string>
-			<key>domainType</key>
-			<string>Xcode.IDEActivityLogDomainType.BuildLog</string>
-			<key>fileName</key>
-			<string>6955F740-978C-42A9-96D4-085C3CD35EBF.xcactivitylog</string>
-			<key>hasPrimaryLog</key>
-			<true/>
-			<key>primaryObservable</key>
-			<dict>
-				<key>highLevelStatus</key>
-				<string>S</string>
-				<key>totalNumberOfAnalyzerIssues</key>
-				<integer>0</integer>
-				<key>totalNumberOfErrors</key>
-				<integer>0</integer>
-				<key>totalNumberOfTestFailures</key>
-				<integer>0</integer>
-				<key>totalNumberOfWarnings</key>
-				<integer>0</integer>
-			</dict>
-			<key>schemeIdentifier-containerName</key>
-			<string>WFSchedule project</string>
-			<key>schemeIdentifier-schemeName</key>
-			<string>WFSchedule</string>
-			<key>schemeIdentifier-sharedScheme</key>
-			<integer>1</integer>
-			<key>signature</key>
-			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
-			<key>timeStartedRecording</key>
-			<real>815167913.435583</real>
-			<key>timeStoppedRecording</key>
-			<real>815167917.06691802</real>
-			<key>title</key>
-			<string>Building project WFSchedule with scheme WFSchedule and configuration Debug</string>
-			<key>uniqueIdentifier</key>
-			<string>6955F740-978C-42A9-96D4-085C3CD35EBF</string>
+			<string>896A2032-25F8-4FD2-9586-41C3BE348BBE</string>
 		</dict>
 	</dict>
 </dict>
