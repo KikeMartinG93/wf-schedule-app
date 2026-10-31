@@ -7,7 +7,7 @@
   "website": "https://github.com/KikeMartinG93/wf-schedule-app",
   "tintColor": "#31D158",
   "nsfw": false,
-  "sourceURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/latest/apps.json",
+  "sourceURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/apps.json",
   "featuredApps": [
     "com.marting.WFM"
   ],
