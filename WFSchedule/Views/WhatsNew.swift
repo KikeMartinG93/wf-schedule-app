@@ -147,6 +147,17 @@ enum WhatsNew {
                  title: "A redesigned Home calendar",
                  detail: "Home now uses a day-ticker and month-grid layout with a scrolling agenda. The leftover bottom bar from the old design is gone, so it no longer shows through the glass tab bar."),
         ]),
+        Release(revision: 23, items: [
+            Item(symbol: "cloud.sun.fill",
+                 title: "Weather for your work city",
+                 detail: "Settings now asks which city you work in. Home shows that city's high and low on each day of the calendar."),
+            Item(symbol: "rectangle.bottomhalf.filled",
+                 title: "Shift marks on the calendar",
+                 detail: "The selected-day bar uses your theme color. A second bar appears under it on days you have a shift."),
+            Item(symbol: "hand.draw.fill",
+                 title: "Drag to expand the month",
+                 detail: "Pull down on the white calendar header to open the full month, and drag it back up for the day ticker. Today shows whenever you leave today's date."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

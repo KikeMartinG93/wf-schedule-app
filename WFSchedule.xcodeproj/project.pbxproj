@@ -23,6 +23,7 @@
 		2E69C3623FC0748DB2B396F0 /* AlertsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 812B551B9A10EBCD810B2593 /* AlertsView.swift */; };
 		2E9F23B813859F13E2A55E48 /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78EA7CFB1A1DAC4BDF81541F /* RootView.swift */; };
 		3049CC5F36143B5C1F7AAA91 /* ChecklistStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0BFDE985BA3C12EF813BDEF /* ChecklistStore.swift */; };
+		F9D5B2C38E4A5012B7C9D0E1 /* WorkWeatherStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4A1B27D3F4901A6B8C9D0 /* WorkWeatherStore.swift */; };
 		30810AC1D6C08F8940E681B0 /* BreakIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52947A59904FE92B1297CFA1 /* BreakIntents.swift */; };
 		31B09DEAF32861E99A75B0B0 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E459CDF6BF737A5D4A3AC6C9 /* AppShortcuts.xcstrings */; };
 		35A6B8990F801575FB304075 /* BreakFlow.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBCDC006EF712589D4623F12 /* BreakFlow.swift */; };
@@ -171,6 +172,7 @@
 		A7AB79D78ED786990BB9CC28 /* HeadlessUKGLogin.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HeadlessUKGLogin.swift; sourceTree = "<group>"; };
 		A9A1094A52DD175A35ACD26F /* WelcomeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		B0BFDE985BA3C12EF813BDEF /* ChecklistStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ChecklistStore.swift; sourceTree = "<group>"; };
+		E8C4A1B27D3F4901A6B8C9D0 /* WorkWeatherStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WorkWeatherStore.swift; sourceTree = "<group>"; };
 		B170206D7963B8559F4A1685 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		B1C5C85945A05B92150D20F9 /* WhatsNew.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = WhatsNew.swift; sourceTree = "<group>"; };
 		C0FE6A9CA9DC571368D63C24 /* BreakFlowEngine.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BreakFlowEngine.swift; sourceTree = "<group>"; };
@@ -229,6 +231,7 @@
 				A7AB79D78ED786990BB9CC28 /* HeadlessUKGLogin.swift */,
 				C1E60CA30E2E62AA9B7DCC5D /* ChangeLogStore.swift */,
 				B0BFDE985BA3C12EF813BDEF /* ChecklistStore.swift */,
+				E8C4A1B27D3F4901A6B8C9D0 /* WorkWeatherStore.swift */,
 				8BABAE14B965ACF17D7DD27E /* ChecklistReminderService.swift */,
 				3E6217A572E40F4084FF2D88 /* UKGScheduleClient.swift */,
 				0F94E6F636ED3CD150A5D675 /* NotificationService.swift */,
@@ -525,6 +528,7 @@
 				B5428BCFD5788CBF4B6B20EA /* HeadlessUKGLogin.swift in Sources */,
 				E1BF1A0942386EEEF710789B /* ChangeLogStore.swift in Sources */,
 				3049CC5F36143B5C1F7AAA91 /* ChecklistStore.swift in Sources */,
+				F9D5B2C38E4A5012B7C9D0E1 /* WorkWeatherStore.swift in Sources */,
 				979542CD738BA90C68A9DD9C /* ChecklistReminderService.swift in Sources */,
 				FECA18803177FE460FA731F8 /* UKGScheduleClient.swift in Sources */,
 				3726D1E45F2CFD978153122C /* NotificationService.swift in Sources */,
@@ -659,7 +663,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -672,7 +676,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -680,7 +684,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -697,7 +701,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -705,7 +709,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -729,7 +733,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.7;
+				MARKETING_VERSION = 2.8;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

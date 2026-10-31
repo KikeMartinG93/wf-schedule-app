@@ -26,6 +26,7 @@ struct SettingsView: View {
     @AppStorage(AppLanguage.storageKey) private var language: String = AppLanguage.system.rawValue
     @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
     @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
+    @ObservedObject private var weatherStore = WorkWeatherStore.shared
 
     var body: some View {
         NavigationStack {
@@ -128,7 +129,26 @@ struct SettingsView: View {
                         }
                     }
 
-                    // 4. Calendar & Display
+                    // 4. Work city (forecast on Home)
+                    Section {
+                        NavigationLink {
+                            WorkCityPicker()
+                        } label: {
+                            HStack {
+                                row("Work city", "building.2")
+                                Spacer()
+                                Text(weatherStore.city?.displayName ?? "Choose a city")
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                    } header: {
+                        Text("Work Location")
+                    } footer: {
+                        Text("Home shows the high/low forecast for the city you work in, on each day of the calendar.")
+                    }
+
+                    // 5. Calendar & Display
                     Section {
                         Toggle(isOn: $calendarDayTickerMode) {
                             row("Day ticker & continuous scroll", "calendar.day.timeline.leading")
@@ -640,6 +660,99 @@ private struct AutoSignInCredentialForm: View {
                     .buttonStyle(.glassProminent)
                     .disabled(username.isEmpty || password.isEmpty)
                 }
+            }
+        }
+    }
+}
+
+/// Search for the city the associate works in. Results come from Open-Meteo geocoding.
+private struct WorkCityPicker: View {
+    @ObservedObject private var weather = WorkWeatherStore.shared
+    @Environment(\.dismiss) private var dismiss
+    @State private var query = ""
+    @State private var results: [WorkCity] = []
+    @State private var searchTask: Task<Void, Never>?
+    @State private var isSearching = false
+
+    var body: some View {
+        List {
+            if let city = weather.city {
+                Section("Current") {
+                    Button {
+                        weather.setCity(nil)
+                    } label: {
+                        HStack {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(city.displayName)
+                                    .foregroundStyle(Color.primary)
+                                if !city.country.isEmpty {
+                                    Text(city.country)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                            Spacer()
+                            Text("Clear")
+                                .font(.subheadline)
+                                .foregroundStyle(.red)
+                        }
+                    }
+                }
+            }
+
+            Section {
+                if isSearching && results.isEmpty {
+                    HStack {
+                        ProgressView()
+                        Text("Searching…")
+                            .foregroundStyle(.secondary)
+                    }
+                } else if results.isEmpty && query.trimmingCharacters(in: .whitespaces).count >= 2 {
+                    Text("No matching cities")
+                        .foregroundStyle(.secondary)
+                } else {
+                    ForEach(results) { city in
+                        Button {
+                            weather.setCity(city)
+                            dismiss()
+                        } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(city.displayName)
+                                    .foregroundStyle(Color.primary)
+                                if !city.country.isEmpty {
+                                    Text(city.country)
+                                        .font(.caption)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+                        }
+                    }
+                }
+            } header: {
+                if weather.city == nil {
+                    Text("Search for the city you work in")
+                }
+            }
+        }
+        .navigationTitle("Work City")
+        .navigationBarTitleDisplayMode(.inline)
+        .searchable(text: $query, prompt: "City name")
+        .onChange(of: query) { _, newValue in
+            searchTask?.cancel()
+            let trimmed = newValue.trimmingCharacters(in: .whitespacesAndNewlines)
+            guard trimmed.count >= 2 else {
+                results = []
+                isSearching = false
+                return
+            }
+            isSearching = true
+            searchTask = Task {
+                try? await Task.sleep(for: .milliseconds(350))
+                guard !Task.isCancelled else { return }
+                let found = await weather.searchCities(trimmed)
+                guard !Task.isCancelled else { return }
+                results = found
+                isSearching = false
             }
         }
     }

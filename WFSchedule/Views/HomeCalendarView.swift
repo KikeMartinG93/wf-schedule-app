@@ -29,36 +29,11 @@ struct SparklyStar: View {
     }
 }
 
-/// Weather summary for an agenda day header
-struct DayWeather: Equatable {
-    let highTemp: Int
-    let lowTemp: Int
-    let symbolName: String
-}
-
 /// Represents an event or shift in the agenda
 private struct RichAgendaItem: Identifiable {
     enum Kind {
-        case allDayBadge(title: String, color: Color)
         case task(task: ChecklistTask)
         case shift(shift: Shift)
-        case custom(
-            indicator: IndicatorType,
-            timeString: String,
-            tag: String?,
-            tagIcon: String?,
-            tagColor: Color?,
-            title: String,
-            trailingIcon: String?,
-            isDimmed: Bool
-        )
-    }
-
-    enum IndicatorType {
-        case dot(Color)
-        case targetRing(Color)
-        case strikeRing(Color)
-        case dimmedRing
     }
 
     let id: String
@@ -67,7 +42,7 @@ private struct RichAgendaItem: Identifiable {
 
 /// Month-grid and Day-ticker calendar and agenda view styled identically to Fantastical's iconic iOS layout:
 /// - Light/white top card with large "Month Year" header (red year), weekday columns or day ticker strip.
-/// - Drag handle divider allowing toggling between Day Ticker mode and Month Grid mode.
+/// - Vertical drag on the white header expands the compact ticker into a full month grid, and drags it back.
 /// - Dark/black agenda feed below with weather ranges, "TODAY / Up Next", colored event dots, interactive task checkboxes,
 ///   and continuous vertical scrolling across next and previous days.
 struct HomeCalendarView: View {
@@ -81,6 +56,11 @@ struct HomeCalendarView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @AppStorage(DemoMode.storageKey) private var demoMode = false
     @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
+    /// 0 = compact day ticker, 1 = full month grid. Driven by a vertical drag
+    /// on the white calendar header, matching Fantastical's expand/collapse.
+    @State private var expansion: CGFloat = 0
+    @State private var isDraggingCalendar = false
+    @State private var dragStartExpansion: CGFloat = 0
 
     @State private var index = ShiftIndex(ScheduleStore.shared.load()?.shifts ?? [])
     private var shifts: [Shift] { index.all }
@@ -91,6 +71,8 @@ struct HomeCalendarView: View {
     @State private var completedTaskIDs: Set<UUID> = []
 
     @ObservedObject private var theme = ThemeManager.shared
+    @ObservedObject private var weatherStore = WorkWeatherStore.shared
+    @Environment(\.scenePhase) private var scenePhase
     private var calendar: Calendar { Calendar.current }
 
     var body: some View {
@@ -99,15 +81,7 @@ struct HomeCalendarView: View {
                 Color.black.ignoresSafeArea()
 
                 VStack(spacing: 0) {
-                    if calendarDayTickerMode {
-                        dayTickerCard
-                            .background(Color.white)
-                            .transition(.opacity.combined(with: .move(edge: .top)))
-                    } else {
-                        monthGridCard
-                            .background(Color.white)
-                            .transition(.opacity.combined(with: .move(edge: .top)))
-                    }
+                    calendarCard
 
                     agendaView
                 }
@@ -125,11 +99,18 @@ struct HomeCalendarView: View {
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
-            .animation(.spring(response: 0.35, dampingFraction: 0.8), value: calendarDayTickerMode)
             .onAppear {
+                expansion = calendarDayTickerMode ? 0 : 1
                 reloadShifts()
                 reloadTasks()
                 handleJump()
+                weatherStore.refreshIfNeeded()
+            }
+            .onChange(of: calendarDayTickerMode) { _, isTicker in
+                guard !isDraggingCalendar else { return }
+                withAnimation(.spring(response: 0.35, dampingFraction: 0.84)) {
+                    expansion = isTicker ? 0 : 1
+                }
             }
             .onChange(of: jump) { handleJump() }
             .onChange(of: monthCommand) {
@@ -143,34 +124,97 @@ struct HomeCalendarView: View {
             .onChange(of: resetToken) {
                 jumpToToday()
             }
+            .onChange(of: scenePhase) { _, phase in
+                if phase == .active {
+                    weatherStore.refreshIfNeeded()
+                }
+            }
         }
     }
 
-    // MARK: - Day Ticker Card (Matching Screenshot 2)
+    // MARK: - Expandable Calendar Card
 
-    private var dayTickerCard: some View {
+    private static let tickerBodyHeight: CGFloat = 118
+    private static let gridBodyHeight: CGFloat = 308
+
+    private var calendarBodyHeight: CGFloat {
+        Self.tickerBodyHeight + (Self.gridBodyHeight - Self.tickerBodyHeight) * expansion
+    }
+
+    /// White header that morphs from the compact day ticker into the full month
+    /// grid as you drag it vertically — the same hide/show as Fantastical.
+    private var calendarCard: some View {
         VStack(spacing: 0) {
             monthHeader
                 .padding(.horizontal, 20)
                 .padding(.top, 6)
 
-            dayTickerStrip
-                .padding(.top, 10)
-                .padding(.bottom, 4)
+            ZStack(alignment: .top) {
+                monthGridBody
+                    .opacity(expansion)
+                    .allowsHitTesting(expansion > 0.5)
 
-            // Centered drag handle pill - tapping toggles to month grid
-            Button {
-                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                    calendarDayTickerMode = false
-                }
-            } label: {
-                Capsule()
-                    .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
-                    .frame(width: 38, height: 4.5)
-                    .padding(.top, 6)
-                    .padding(.bottom, 8)
+                dayTickerStrip
+                    .padding(.top, 10)
+                    .padding(.bottom, 4)
+                    .opacity(1 - expansion)
+                    .allowsHitTesting(expansion < 0.5)
             }
-            .buttonStyle(.plain)
+            .frame(height: calendarBodyHeight, alignment: .top)
+            .clipped()
+
+            dragHandle
+        }
+        .background(Color.white)
+        .contentShape(Rectangle())
+        .simultaneousGesture(verticalExpandGesture)
+    }
+
+    private var dragHandle: some View {
+        Capsule()
+            .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
+            .frame(width: 38, height: 4.5)
+            .padding(.top, 6)
+            .padding(.bottom, 8)
+            .padding(.horizontal, 28)
+            .contentShape(Rectangle())
+            .onTapGesture {
+                setCalendarExpanded(expansion < 0.5)
+            }
+            .accessibilityLabel(expansion < 0.5 ? "Show month" : "Hide month")
+    }
+
+    private var verticalExpandGesture: some Gesture {
+        DragGesture(minimumDistance: 8, coordinateSpace: .local)
+            .onChanged { value in
+                let dx = value.translation.width
+                let dy = value.translation.height
+                if !isDraggingCalendar {
+                    guard abs(dy) > abs(dx) else { return }
+                    isDraggingCalendar = true
+                    dragStartExpansion = expansion
+                }
+                let range = max(Self.gridBodyHeight - Self.tickerBodyHeight, 1)
+                expansion = min(1, max(0, dragStartExpansion + dy / range))
+            }
+            .onEnded { value in
+                guard isDraggingCalendar else { return }
+                isDraggingCalendar = false
+                let flick = value.predictedEndTranslation.height - value.translation.height
+                let expand: Bool
+                if abs(flick) > 80 {
+                    expand = flick > 0
+                } else {
+                    expand = expansion >= 0.45
+                }
+                setCalendarExpanded(expand)
+            }
+    }
+
+    private func setCalendarExpanded(_ expanded: Bool) {
+        withAnimation(.spring(response: 0.35, dampingFraction: 0.84)) {
+            expansion = expanded ? 1 : 0
+            calendarDayTickerMode = !expanded
         }
     }
 
@@ -224,7 +268,7 @@ struct HomeCalendarView: View {
         let dayNumber = calendar.component(.day, from: day)
         let weekdaySymbol = day.formatted(.dateTime.weekday(.abbreviated)).uppercased()
         let hasTasks = hasChecklistTasks(on: day)
-        let dots = tickerDotColors(for: day)
+        let shiftColors = tickerShiftBarColors(for: day)
 
         return HStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -253,27 +297,22 @@ struct HomeCalendarView: View {
                     .foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.08))
                     .padding(.top, 2)
 
-                // Selected pill underline bar directly under the number
-                if isSelected {
-                    Capsule()
-                        .fill(Color(red: 0.72, green: 0.28, blue: 0.88))
-                        .frame(width: 48, height: 4)
-                        .padding(.top, 3)
-                } else {
-                    Spacer().frame(height: 7)
-                }
-
-                // Staggered vertical waterfall of colored dots
-                VStack(spacing: 3.5) {
-                    ForEach(Array(dots.enumerated()), id: \.offset) { index, col in
-                        Circle()
-                            .fill(col)
-                            .frame(width: 5, height: 5)
-                            .offset(x: CGFloat(index * 5) - CGFloat(dots.count - 1) * 2.5)
+                // Selected-day bar uses the Settings theme accent; a second,
+                // shorter bar stacks under it when that day has a shift.
+                VStack(spacing: 3) {
+                    if isSelected {
+                        Capsule()
+                            .fill(theme.current.readableAccent)
+                            .frame(width: 48, height: 4)
+                    }
+                    ForEach(Array(shiftColors.enumerated()), id: \.offset) { index, color in
+                        Capsule()
+                            .fill(color)
+                            .frame(width: isSelected || index > 0 ? 28 : 48, height: 4)
                     }
                 }
-                .frame(height: 32, alignment: .top)
-                .padding(.top, isSelected ? 4 : 2)
+                .frame(height: 22, alignment: .top)
+                .padding(.top, 3)
 
                 Spacer(minLength: 0)
             }
@@ -287,53 +326,22 @@ struct HomeCalendarView: View {
         }
     }
 
-    private func tickerDotColors(for day: Date) -> [Color] {
-        let d = calendar.component(.day, from: day)
-
-        // Exact match for the screenshot days:
-        // Day 6: yellow, magenta
-        // Day 7: yellow, orange, magenta
-        // Day 8: yellow, green, magenta
-        // Day 9: yellow, green
-        // Day 10: yellow, magenta
-        if d == 6 {
-            return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.78, green: 0.28, blue: 0.88)]
-        } else if d == 7 {
-            return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.96, green: 0.48, blue: 0.12), Color(red: 0.78, green: 0.28, blue: 0.88)]
-        } else if d == 8 {
-            return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.32, green: 0.78, blue: 0.38), Color(red: 0.78, green: 0.28, blue: 0.88)]
-        } else if d == 9 {
-            return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.32, green: 0.78, blue: 0.38)]
-        } else if d == 10 {
-            return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.78, green: 0.28, blue: 0.88)]
+    /// Job colors for up to two shifts on a ticker day, matching the Settings theme.
+    private func tickerShiftBarColors(for day: Date) -> [Color] {
+        var seen = Set<String>()
+        var colors: [Color] = []
+        for shift in index.shifts(on: day, calendar: calendar) {
+            guard seen.insert(shift.job).inserted else { continue }
+            colors.append(shift.accentColor(theme: theme.current))
+            if colors.count == 2 { break }
         }
-
-        // Days with actual shifts
-        let dayShifts = index.shifts(on: day, calendar: calendar)
-        if !dayShifts.isEmpty {
-            return dayShifts.prefix(3).map { colorForJob($0.job) }
-        }
-
-        // Demo sample dots
-        if demoMode {
-            if d % 2 == 0 {
-                return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.78, green: 0.28, blue: 0.88)]
-            } else if d % 3 == 0 {
-                return [Color(red: 0.98, green: 0.78, blue: 0.0), Color(red: 0.32, green: 0.78, blue: 0.38), Color(red: 0.78, green: 0.28, blue: 0.88)]
-            }
-        }
-
-        return []
+        return colors
     }
 
-    // MARK: - Month Grid Card (Matching Screenshot 1)
+    // MARK: - Month Grid
 
-    private var monthGridCard: some View {
+    private var monthGridBody: some View {
         VStack(spacing: 0) {
-            monthHeader
-                .padding(.horizontal, 20)
-                .padding(.top, 6)
-
             weekdayHeader
                 .padding(.horizontal, 8)
                 .padding(.top, 12)
@@ -346,6 +354,7 @@ struct HomeCalendarView: View {
                 .gesture(
                     DragGesture(minimumDistance: 25)
                         .onEnded { value in
+                            guard abs(value.translation.width) > abs(value.translation.height) else { return }
                             if value.translation.width < -40 {
                                 changeMonth(by: 1)
                             } else if value.translation.width > 40 {
@@ -353,21 +362,13 @@ struct HomeCalendarView: View {
                             }
                         }
                 )
-
-            // Centered drag handle pill - tapping toggles to day ticker
-            Button {
-                withAnimation(.spring(response: 0.35, dampingFraction: 0.8)) {
-                    calendarDayTickerMode = true
-                }
-            } label: {
-                Capsule()
-                    .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
-                    .frame(width: 38, height: 4.5)
-                    .padding(.top, 4)
-                    .padding(.bottom, 8)
-            }
-            .buttonStyle(.plain)
         }
+    }
+
+    /// Shown whenever the selected day isn't today, or the header is on another month.
+    private var isViewingToday: Bool {
+        calendar.isDateInToday(selectedDate)
+            && calendar.isDate(displayedMonth, equalTo: Date(), toGranularity: .month)
     }
 
     private var monthHeader: some View {
@@ -382,7 +383,7 @@ struct HomeCalendarView: View {
 
             Spacer()
 
-            if !calendar.isDate(displayedMonth, equalTo: Date(), toGranularity: .month) {
+            if !isViewingToday {
                 Button {
                     jumpToToday()
                 } label: {
@@ -394,8 +395,10 @@ struct HomeCalendarView: View {
                         .background(Color(red: 0.0, green: 0.48, blue: 1.0).opacity(0.10), in: Capsule())
                 }
                 .buttonStyle(.plain)
+                .transition(.opacity.combined(with: .scale(scale: 0.92)))
             }
         }
+        .animation(.easeInOut(duration: 0.2), value: isViewingToday)
     }
 
     private var weekdayHeader: some View {
@@ -489,6 +492,12 @@ struct HomeCalendarView: View {
                         }
                     }
                 }
+                .background {
+                    if week.contains(where: { calendar.isDate($0, inSameDayAs: selectedDate) }) {
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(Color(white: 0.93))
+                    }
+                }
             }
         }
     }
@@ -576,7 +585,7 @@ struct HomeCalendarView: View {
     private func agendaSection(for day: Date) -> some View {
         let isToday = calendar.isDateInToday(day)
         let isTomorrow = calendar.isDateInTomorrow(day)
-        let weather = weatherInfo(for: day)
+        let weather = weatherStore.weather(on: day)
         let items = itemsForAgendaDay(day)
 
         return Section {
@@ -594,7 +603,7 @@ struct HomeCalendarView: View {
         }
     }
 
-    private func agendaHeader(day: Date, isToday: Bool, isTomorrow: Bool, weather: DayWeather) -> some View {
+    private func agendaHeader(day: Date, isToday: Bool, isTomorrow: Bool, weather: DayWeather?) -> some View {
         let shortDate = shortDateString(day)
 
         return HStack(alignment: .top) {
@@ -635,19 +644,21 @@ struct HomeCalendarView: View {
 
             Spacer()
 
-            HStack(spacing: 5) {
-                Text("\(weather.highTemp)°/\(weather.lowTemp)°")
-                    .font(.system(size: 14, weight: .semibold))
-                    .foregroundStyle(Color(white: 0.82))
+            if let weather {
+                HStack(spacing: 5) {
+                    Text("\(weather.highTemp)°/\(weather.lowTemp)°")
+                        .font(.system(size: 14, weight: .semibold))
+                        .foregroundStyle(Color(white: 0.82))
 
-                if weather.symbolName.contains("sun") {
-                    Image(systemName: weather.symbolName)
-                        .font(.system(size: 15))
-                        .symbolRenderingMode(.multicolor)
-                } else {
-                    Image(systemName: weather.symbolName)
-                        .font(.system(size: 15))
-                        .foregroundStyle(.white)
+                    if weather.symbolName.contains("sun") {
+                        Image(systemName: weather.symbolName)
+                            .font(.system(size: 15))
+                            .symbolRenderingMode(.multicolor)
+                    } else {
+                        Image(systemName: weather.symbolName)
+                            .font(.system(size: 15))
+                            .foregroundStyle(.white)
+                    }
                 }
             }
         }
@@ -661,106 +672,12 @@ struct HomeCalendarView: View {
 
     private func itemsForAgendaDay(_ day: Date) -> [RichAgendaItem] {
         var items: [RichAgendaItem] = []
-        let d = calendar.component(.day, from: day)
 
-        // Exact rich demo items matching Screenshot 2:
-        if (demoMode || calendarDayTickerMode) && d == 6 {
-            items.append(RichAgendaItem(id: "all-day-sec-audit", kind: .allDayBadge(title: "Security audit", color: Color(red: 0.68, green: 0.28, blue: 0.88))))
-            items.append(RichAgendaItem(id: "task-check-email", kind: .task(task: ChecklistTask(category: .opener, title: "Check email", dueHour: 8, dueMinute: 0, sortOrder: 0))))
-            items.append(RichAgendaItem(id: "custom-design-meeting-6", kind: .custom(
-                indicator: .dot(Color(red: 0.98, green: 0.78, blue: 0.0)),
-                timeString: "10:00 – 11:30 AM",
-                tag: "PROPOSED",
-                tagIcon: "person.crop.circle",
-                tagColor: Color(red: 0.98, green: 0.78, blue: 0.0),
-                title: "Design meeting",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            items.append(RichAgendaItem(id: "custom-lunch-jane", kind: .custom(
-                indicator: .dimmedRing,
-                timeString: "12:00 – 1:00 PM",
-                tag: nil,
-                tagIcon: nil,
-                tagColor: nil,
-                title: "Lunch with Jane",
-                trailingIcon: nil,
-                isDimmed: true
-            )))
-            items.append(RichAgendaItem(id: "custom-strategy-meeting", kind: .custom(
-                indicator: .targetRing(Color(red: 0.75, green: 0.32, blue: 0.88)),
-                timeString: "1:00 – 3:00 PM",
-                tag: nil,
-                tagIcon: nil,
-                tagColor: nil,
-                title: "Strategy meeting",
-                trailingIcon: "video.fill",
-                isDimmed: false
-            )))
-            return items
-        } else if (demoMode || calendarDayTickerMode) && d == 7 {
-            items.append(RichAgendaItem(id: "custom-design-meeting-7", kind: .custom(
-                indicator: .dot(Color(red: 0.98, green: 0.78, blue: 0.0)),
-                timeString: "11:00 AM – 12:30 PM",
-                tag: "PROPOSED",
-                tagIcon: "person.crop.circle",
-                tagColor: Color(red: 0.98, green: 0.78, blue: 0.0),
-                title: "Design meeting",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            items.append(RichAgendaItem(id: "custom-quarterly-review", kind: .custom(
-                indicator: .strikeRing(Color(red: 0.96, green: 0.48, blue: 0.12)),
-                timeString: "1:00 – 2:00 PM",
-                tag: nil,
-                tagIcon: nil,
-                tagColor: nil,
-                title: "Quarterly review",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            items.append(RichAgendaItem(id: "custom-podcast-recording", kind: .custom(
-                indicator: .dot(Color(red: 0.82, green: 0.28, blue: 0.88)),
-                timeString: "2:00 – 4:00 PM",
-                tag: nil,
-                tagIcon: nil,
-                tagColor: nil,
-                title: "Podcast recording",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            return items
-        } else if (demoMode || calendarDayTickerMode) && d == 8 {
-            items.append(RichAgendaItem(id: "custom-design-meeting-8", kind: .custom(
-                indicator: .dot(Color(red: 0.98, green: 0.78, blue: 0.0)),
-                timeString: "11:00 AM – 12:30 PM",
-                tag: "PROPOSED",
-                tagIcon: "person.crop.circle",
-                tagColor: Color(red: 0.98, green: 0.78, blue: 0.0),
-                title: "Design meeting",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            items.append(RichAgendaItem(id: "custom-lunch-sam", kind: .custom(
-                indicator: .dot(Color(red: 0.22, green: 0.78, blue: 0.35)),
-                timeString: "1:00 – 2:00 PM",
-                tag: nil,
-                tagIcon: nil,
-                tagColor: nil,
-                title: "Lunch with Sam",
-                trailingIcon: nil,
-                isDimmed: false
-            )))
-            return items
-        }
-
-        // Shifts for this day
-        let dayShifts = shifts.filter { calendar.isDate($0.date, inSameDayAs: day) }.sorted { $0.startTime < $1.startTime }
+        let dayShifts = index.shifts(on: day, calendar: calendar)
         for shift in dayShifts {
             items.append(RichAgendaItem(id: "shift-\(shift.id)", kind: .shift(shift: shift)))
         }
 
-        // Today checklist tasks
         if calendar.isDateInToday(day) {
             for task in checklistTasksForToday {
                 items.append(RichAgendaItem(id: "task-\(task.id)", kind: .task(task: task)))
@@ -773,86 +690,11 @@ struct HomeCalendarView: View {
     @ViewBuilder
     private func renderAgendaItem(_ item: RichAgendaItem) -> some View {
         switch item.kind {
-        case .allDayBadge(let title, let color):
-            HStack {
-                Text(title)
-                    .font(.system(size: 13.5, weight: .semibold))
-                    .foregroundStyle(.white)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 4.5)
-                    .background(color, in: RoundedRectangle(cornerRadius: 6, style: .continuous))
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 6)
-
         case .task(let task):
             agendaTaskRow(task: task)
 
         case .shift(let shift):
             agendaShiftRow(shift: shift)
-
-        case .custom(let indicator, let timeString, let tag, let tagIcon, let tagColor, let title, let trailingIcon, let isDimmed):
-            HStack(alignment: .top, spacing: 14) {
-                // Indicator
-                Group {
-                    switch indicator {
-                    case .dot(let col):
-                        Circle()
-                            .fill(col)
-                            .frame(width: 10, height: 10)
-                    case .targetRing(let col):
-                        Circle()
-                            .strokeBorder(col, lineWidth: 2)
-                            .frame(width: 10, height: 10)
-                            .overlay(Circle().fill(col).frame(width: 4, height: 4))
-                    case .strikeRing(let col):
-                        Image(systemName: "nosign")
-                            .font(.system(size: 11, weight: .bold))
-                            .foregroundStyle(col)
-                    case .dimmedRing:
-                        Image(systemName: "sun.min")
-                            .font(.system(size: 11))
-                            .foregroundStyle(Color(white: 0.40))
-                    }
-                }
-                .frame(width: 12, height: 12)
-                .padding(.top, 4.5)
-
-                VStack(alignment: .leading, spacing: 2) {
-                    HStack(spacing: 6) {
-                        Text(timeString)
-                            .font(.system(size: 13, weight: .semibold))
-                            .foregroundStyle(isDimmed ? Color(white: 0.45) : Color(white: 0.70))
-
-                        if let tag {
-                            HStack(spacing: 3) {
-                                if let tagIcon {
-                                    Image(systemName: tagIcon)
-                                        .font(.system(size: 9, weight: .bold))
-                                }
-                                Text(tag)
-                                    .font(.system(size: 10.5, weight: .bold))
-                            }
-                            .foregroundStyle(tagColor ?? Color.yellow)
-                        }
-
-                        if let trailingIcon {
-                            Image(systemName: trailingIcon)
-                                .font(.system(size: 11))
-                                .foregroundStyle(Color(white: 0.70))
-                        }
-                    }
-
-                    Text(title)
-                        .font(.system(size: 16, weight: .regular))
-                        .foregroundStyle(isDimmed ? Color(white: 0.45) : .white)
-                }
-
-                Spacer()
-            }
-            .padding(.horizontal, 20)
-            .padding(.vertical, 7)
         }
     }
 
@@ -1007,44 +849,6 @@ struct HomeCalendarView: View {
         return String(format: "%02d:%02d", hour, minute)
     }
 
-    private func weatherInfo(for date: Date) -> DayWeather {
-        let m = calendar.component(.month, from: date)
-        let d = calendar.component(.day, from: date)
-
-        // Exact match for the screenshot values
-        if m == 10 && d == 6 {
-            return DayWeather(highTemp: 74, lowTemp: 57, symbolName: "cloud.sun.fill")
-        } else if m == 10 && d == 7 {
-            return DayWeather(highTemp: 71, lowTemp: 56, symbolName: "sun.max.fill")
-        } else if m == 10 && d == 8 {
-            return DayWeather(highTemp: 70, lowTemp: 56, symbolName: "sun.max.fill")
-        } else if m == 10 && d == 3 {
-            return DayWeather(highTemp: 67, lowTemp: 56, symbolName: "cloud.sun.fill")
-        } else if m == 10 && d == 4 {
-            return DayWeather(highTemp: 69, lowTemp: 56, symbolName: "sun.max.fill")
-        } else if m == 10 && d == 5 {
-            return DayWeather(highTemp: 71, lowTemp: 58, symbolName: "sun.max.fill")
-        }
-
-        let baseHigh: Int
-        switch m {
-        case 12, 1, 2: baseHigh = 52
-        case 3, 4: baseHigh = 62
-        case 5, 6: baseHigh = 74
-        case 7, 8: baseHigh = 82
-        case 9, 10: baseHigh = 68
-        default: baseHigh = 58
-        }
-
-        let delta = ((d * 7 + m * 13) % 9) - 4
-        let high = baseHigh + delta
-        let low = high - (11 + (d % 3))
-
-        let icons = ["sun.max.fill", "cloud.sun.fill", "cloud.sun.fill", "sun.max.fill"]
-        let symbol = icons[(d + m) % icons.count]
-        return DayWeather(highTemp: high, lowTemp: low, symbolName: symbol)
-    }
-
     private func colorForJob(_ job: String) -> Color {
         let lower = job.lowercased()
         if lower.contains("supervisor") {
@@ -1081,25 +885,11 @@ struct HomeCalendarView: View {
             if !colors.contains(col) { colors.append(col) }
         }
 
-        if colors.isEmpty && demoMode {
-            let d = calendar.component(.day, from: day)
-            if d % 2 == 0 {
-                colors = [Color(red: 0.88, green: 0.20, blue: 0.65), Color(red: 0.0, green: 0.62, blue: 1.0)]
-            } else if d % 3 == 0 {
-                colors = [Color(red: 1.0, green: 0.58, blue: 0.0), Color(red: 0.22, green: 0.78, blue: 0.35), Color(red: 0.65, green: 0.35, blue: 0.95)]
-            }
-        }
-
         return Array(colors.prefix(4))
     }
 
     private func hasChecklistTasks(on day: Date) -> Bool {
-        let d = calendar.component(.day, from: day)
-        if d == 6 { return true }
-        if calendar.isDateInToday(day) {
-            return !checklistTasksForToday.isEmpty
-        }
-        return false
+        calendar.isDateInToday(day) && !checklistTasksForToday.isEmpty
     }
 
     private var checklistTasksForToday: [ChecklistTask] {

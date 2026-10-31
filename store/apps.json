@@ -17,15 +17,24 @@
       "bundleIdentifier": "com.marting.WFM",
       "developerName": "Enrique Martin",
       "subtitle": "Your Whole Foods schedule on iPhone.",
-      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Redesigned Home calendar with day ticker, month grid, and agenda\n• Break timer and Live Activity\n• Discount barcode for the register\n• Color themes, including Halloween and Rainbow",
+      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Weather on Home for the city you work in\n• Theme-colored selected-day bar, plus a shift bar on work days\n• Drag the calendar header to expand the month\n• Break timer and Live Activity\n• Discount barcode for the register",
       "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.7",
-      "versionDate": "2026-10-31T18:47:00Z",
-      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.7.ipa",
-      "size": 2085933,
+      "version": "2.8",
+      "versionDate": "2026-10-31T19:35:22Z",
+      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.8.ipa",
+      "size": 2113319,
       "versions": [
+        {
+          "version": "2.8",
+          "buildVersion": "3",
+          "date": "2026-10-31T19:35:22Z",
+          "localizedDescription": "Home shows weather for the city you work in. The selected-day bar matches your theme, with a second bar on shift days. Drag the white header to expand the month. Placeholder Design meetings and reviews are gone.",
+          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.8.ipa",
+          "size": 2113319,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.7",
           "buildVersion": "2",
@@ -59,10 +68,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.7",
-      "identifier": "wf-schedule-2.7",
-      "caption": "Redesigned Home calendar, and the leftover bottom bar is gone.",
-      "date": "2026-10-31T18:47:00Z",
+      "title": "Version 2.8",
+      "identifier": "wf-schedule-2.8",
+      "caption": "Work-city weather, themed shift bars, and a month you can drag open.",
+      "date": "2026-10-31T19:35:22Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"
