@@ -70,6 +70,13 @@ private struct MainTabView: View {
 
     private static let tabBarHeight: CGFloat = 49
 
+    /// Frost + slight darken behind the tab bar only for the all-white Light
+    /// calendar while iOS itself is in Light Mode. Hidden in Dark Mode so the
+    /// glass tab bar sits on the dark agenda as-is.
+    private var showsLightBottomScrim: Bool {
+        colorScheme == .light && theme.displayStyle(for: .light) == .light
+    }
+
     private var isAuthenticated: Bool { sessionManager.state == .authenticated }
 
     /// Only while a returning user's session might still be restorable and
@@ -111,8 +118,19 @@ private struct MainTabView: View {
         // One bar shared by every tab (so it can morph between them), floated above
         // the tab bar. The lift is the floating tab bar's height.
         .overlay(alignment: .bottom) {
-            shiftBar(for: selectedTab)
-                .padding(.bottom, Self.tabBarHeight)
+            ZStack(alignment: .bottom) {
+                if showsLightBottomScrim {
+                    LightModeBottomScrim()
+                        .frame(height: 168)
+                        .ignoresSafeArea(edges: .bottom)
+                        .transition(.opacity)
+                        .allowsHitTesting(false)
+                }
+
+                shiftBar(for: selectedTab)
+                    .padding(.bottom, Self.tabBarHeight)
+            }
+            .animation(.easeInOut(duration: 0.22), value: showsLightBottomScrim)
         }
         // Background-refresh the schedule when entering the foreground with an
         // active session, so it's fresh right away; gated on `isAuthenticated` so
@@ -278,5 +296,37 @@ private struct MainTabView: View {
                 selectedTab = newValue
             }
         )
+    }
+}
+
+/// Progressive frost and a light dim behind the tab bar so white agenda text
+/// stays readable in the Light calendar. Only drawn while iOS Light Mode is on.
+private struct LightModeBottomScrim: View {
+    var body: some View {
+        ZStack(alignment: .bottom) {
+            Rectangle()
+                .fill(.regularMaterial)
+                .mask {
+                    LinearGradient(
+                        stops: [
+                            .init(color: .clear, location: 0),
+                            .init(color: .black.opacity(0.45), location: 0.42),
+                            .init(color: .black, location: 1)
+                        ],
+                        startPoint: .top,
+                        endPoint: .bottom
+                    )
+                }
+
+            LinearGradient(
+                stops: [
+                    .init(color: .clear, location: 0),
+                    .init(color: Color.black.opacity(0.05), location: 0.38),
+                    .init(color: Color.black.opacity(0.16), location: 1)
+                ],
+                startPoint: .top,
+                endPoint: .bottom
+            )
+        }
     }
 }

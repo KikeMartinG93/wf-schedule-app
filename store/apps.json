@@ -21,11 +21,20 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.11",
-      "versionDate": "2026-10-31T22:04:41Z",
-      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.11/WFSchedule-2.11.ipa",
-      "size": 2152085,
+      "version": "2.12",
+      "versionDate": "2026-10-31T22:16:22Z",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.12/WFSchedule-2.12.ipa",
+      "size": 2155086,
       "versions": [
+        {
+          "version": "2.12",
+          "buildVersion": "7",
+          "date": "2026-10-31T22:16:22Z",
+          "localizedDescription": "When the Light calendar is on and iOS is in Light Mode, the bottom of the screen frosts and dims a little so agenda text stays readable behind the tab bar. It goes away in Dark Mode.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.12/WFSchedule-2.12.ipa",
+          "size": 2155086,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.11",
           "buildVersion": "6",
@@ -95,10 +104,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.11",
-      "identifier": "wf-schedule-2.11",
-      "caption": "Classic, Light, and Dark calendars — six looks in Settings → Appearance.",
-      "date": "2026-10-31T22:04:41Z",
+      "title": "Version 2.12",
+      "identifier": "wf-schedule-2.12",
+      "caption": "The Light calendar now frosts the bottom of the screen in iOS Light Mode.",
+      "date": "2026-10-31T22:16:22Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"

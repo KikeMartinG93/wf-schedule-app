@@ -176,6 +176,11 @@ enum WhatsNew {
                  title: "Classic, Light, and Dark calendars",
                  detail: "Settings → Appearance now has six looks: Classic, Light, and Dark for Light Mode and again for Dark Mode. Classic keeps the mixed white header and dark agenda; Light is the all-white calendar; Dark is fully dark."),
         ]),
+        Release(revision: 27, items: [
+            Item(symbol: "rectangle.bottomhalf.inset.filled",
+                 title: "Clearer Light calendar",
+                 detail: "When the Light calendar is on and iOS is in Light Mode, the bottom of the screen frosts and dims a little so agenda text stays readable behind the tab bar. It goes away in Dark Mode."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }
