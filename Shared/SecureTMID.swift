@@ -1,8 +1,8 @@
 import Foundation
 import Security
 
-/// The TM ID lives in the Keychain, shared between the app and its widgets /
-/// watch pieces through one access group, never in plain defaults. Readable
+/// The TM ID lives in the Keychain, shared between the app and its widgets
+/// through one access group, never in plain defaults. Readable
 /// after the first unlock so Lock Screen widgets work while the phone is locked,
 /// and never backed up or moved to another device.
 enum SecureTMID {

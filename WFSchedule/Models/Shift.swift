@@ -52,8 +52,7 @@ struct Shift: Codable, Identifiable, Equatable {
         return job
     }
 
-    /// Normalizes store location codes (e.g. UKG's "GIL-10530") to friendly store names (e.g. "Gilman"),
-    /// preventing false "Location changed" diffs when switching between UKG and Innerview.
+    /// Normalizes store location codes (e.g. UKG's "GIL-10530") to friendly store names (e.g. "Gilman").
     static func normalizeLocation(_ location: String?) -> String? {
         guard let location = location?.trimmingCharacters(in: .whitespacesAndNewlines), !location.isEmpty else { return nil }
         let upper = location.uppercased()

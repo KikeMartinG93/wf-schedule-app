@@ -2,7 +2,7 @@ import SwiftUI
 import WidgetKit
 
 /// Enter one to three breaks (time + length) and get a live countdown to the
-/// next one, in the app and on the widgets / watch complication.
+/// next one, in the app and on the widgets.
 struct BreaksView: View {
     @State private var plan = BreakStore.load()
     @State private var pulse = false
@@ -73,7 +73,7 @@ struct BreaksView: View {
             }
             .onChange(of: plan) {
                 // Persist right away so nothing is lost, but hold the fan-out
-                // (widget reloads, watch message, Live Activity) until edits pause:
+                // (widget reloads, Live Activity) until edits pause:
                 // spinning a time-picker wheel changes the plan dozens of times.
                 BreakStore.save(plan, reloadWidgets: false)
                 scheduleFanOut()
@@ -98,7 +98,6 @@ struct BreaksView: View {
         fanOutTask?.cancel()
         fanOutTask = nil
         WidgetCenter.shared.reloadAllTimelines()
-        BarcodePhoneSync.shared.send(BarcodeStore.value)
     }
 
     // MARK: - Countdown

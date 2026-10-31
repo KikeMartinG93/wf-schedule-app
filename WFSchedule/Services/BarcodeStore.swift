@@ -2,7 +2,7 @@ import Foundation
 import WidgetKit
 
 /// The user's TM ID. Held in the Keychain (see `SecureTMID`) and shared with
-/// this device's widgets and the paired Watch; never shown as text anywhere in
+/// this device's widgets; never shown as text anywhere in
 /// the app. Older builds kept it in plain defaults, so the first read moves any
 /// such copy into the Keychain and deletes it.
 enum BarcodeStore {

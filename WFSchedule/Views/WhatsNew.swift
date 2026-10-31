@@ -142,6 +142,11 @@ enum WhatsNew {
                  title: "Icons that match your theme",
                  detail: "The Home Screen icon and every settings tile now pick up the selected color theme — including a new Rainbow icon."),
         ]),
+        Release(revision: 22, items: [
+            Item(symbol: "calendar",
+                 title: "A redesigned Home calendar",
+                 detail: "Home now uses a day-ticker and month-grid layout with a scrolling agenda. The leftover bottom bar from the old design is gone, so it no longer shows through the glass tab bar."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

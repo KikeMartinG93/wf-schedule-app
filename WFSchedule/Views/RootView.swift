@@ -58,7 +58,6 @@ private struct MainTabView: View {
     @State private var selectedTab: AppTab = .home
     @State private var homeResetToken = 0
     @State private var showingLogin = false
-    @State private var loginBackend: SessionBackend = .innerview
     @State private var showingBreaks = false
     @State private var showingDiscountCard = false
     @State private var homeJump: HomeJump?
@@ -74,11 +73,9 @@ private struct MainTabView: View {
     private var isAuthenticated: Bool { sessionManager.state == .authenticated }
 
     /// Only while a returning user's session might still be restorable and
-    /// they aren't already signing in by hand. This probe reloads the UKG Pro
-    /// sign-in page, so it's only for someone whose session is a UKG one —
-    /// Innerview Login resumes through `SessionManager.attemptCookieRestore`.
-    /// Probing must only run while the app is in the active foreground scene
-    /// to avoid 0x8BADF00D watchdog hangs during background scene updates.
+    /// they aren't already signing in by hand. Probing must only run while the app
+    /// is in the active foreground scene to avoid 0x8BADF00D watchdog hangs
+    /// during background scene updates.
     private var shouldProbeForSession: Bool {
         scenePhase == .active
             && UIApplication.shared.applicationState != .background
@@ -86,14 +83,12 @@ private struct MainTabView: View {
             && !DemoMode.isEnabled
             && SessionManager.hasSignedInBefore
             && !showingLogin
-            && SessionManager.preferredBackend == .ukg
     }
 
     var body: some View {
         TabView(selection: selectionBinding) {
             Tab("Home", systemImage: "calendar", value: AppTab.home) {
-                HomeCalendarView(resetToken: homeResetToken, onSignIn: { backend in
-                    loginBackend = backend
+                HomeCalendarView(resetToken: homeResetToken, onSignIn: {
                     showingLogin = true
                 }, jump: homeJump, monthCommand: monthCommand)
             }
@@ -119,9 +114,8 @@ private struct MainTabView: View {
             shiftBar(for: selectedTab)
                 .padding(.bottom, Self.tabBarHeight)
         }
-        // Home is the first tab, but the only sync trigger used to live in the
-        // Timeline tab's own task, so a fresh install showed an empty Home calendar
-        // until Timeline was opened. MainTabView only exists once authenticated, so
+        // Background-refresh the schedule when entering the foreground with an
+        // active session, so it's fresh right away; gated on `isAuthenticated` so
         // this can't burn the auto-sync throttle window before login.
         .task {
             if isAuthenticated { try? await ScheduleSyncCoordinator.runSync() }
@@ -161,11 +155,9 @@ private struct MainTabView: View {
             }
         }
         .sheet(isPresented: $showingLogin) {
-            Group {
-                if loginBackend == .ukg { UKGLoginView() } else { LoginView() }
-            }
-            .tint(theme.current.readableAccent)
-            .presentationDragIndicator(.visible)
+            LoginView()
+                .tint(theme.current.readableAccent)
+                .presentationDragIndicator(.visible)
         }
         .background {
             if shouldProbeForSession { SessionRestoreProbe() }

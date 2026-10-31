@@ -1,4 +1,4 @@
-Version 2.6 (Build 1 / Revision 21):
+Version 2.7 (Build 1 / Revision 22):
 
-• Themed Home Screen icons: Every color theme now has a matching app icon background using that theme's exact accent — including a new Rainbow icon and a Halloween orange-to-purple gradient.
-• Settings, Welcome, and What's New tiles pick distinct colors from the selected theme so neighbouring rows stay unique without leaving the palette.
+• Redesigned Home calendar: Fantastical-style day ticker and month grid with a scrolling agenda.
+• Removed the leftover bottom bar from the previous Home layout so it no longer shows through the glass tab bar and next-shift pill.

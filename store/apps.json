@@ -17,22 +17,22 @@
       "bundleIdentifier": "com.marting.WFM",
       "developerName": "Enrique Martin",
       "subtitle": "Your Whole Foods schedule on iPhone.",
-      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Month calendar and shift list\n• Break timer and Live Activity\n• Discount barcode for the register\n• Color themes, including Halloween and Rainbow",
+      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Redesigned Home calendar with day ticker, month grid, and agenda\n• Break timer and Live Activity\n• Discount barcode for the register\n• Color themes, including Halloween and Rainbow",
       "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.6",
-      "versionDate": "2026-10-31T02:15:40Z",
+      "version": "2.7",
+      "versionDate": "2026-10-31T17:51:00Z",
       "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
-      "size": 2100662,
+      "size": 2085932,
       "versions": [
         {
-          "version": "2.6",
+          "version": "2.7",
           "buildVersion": "1",
-          "date": "2026-10-31T02:15:40Z",
-          "localizedDescription": "Home Screen icons and settings tiles now match the selected color theme, including a new Rainbow icon.",
+          "date": "2026-10-31T17:51:00Z",
+          "localizedDescription": "Redesigned Home calendar with a day ticker, month grid, and scrolling agenda. Removed the leftover bottom bar that showed through the glass tab bar.",
           "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
-          "size": 2100662,
+          "size": 2085932,
           "minOSVersion": "26.0"
         }
       ],
@@ -50,10 +50,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.6",
-      "identifier": "wf-schedule-2.6",
-      "caption": "Home Screen icons now match your selected color theme.",
-      "date": "2026-10-31T02:15:40Z",
+      "title": "Version 2.7",
+      "identifier": "wf-schedule-2.7",
+      "caption": "Redesigned Home calendar, and the leftover bottom bar is gone.",
+      "date": "2026-10-31T17:51:00Z",
       "tintColor": "#31D158",
       "notify": false,
       "appID": "com.marting.WFM"

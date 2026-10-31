@@ -59,7 +59,6 @@ enum AppBootstrap {
         _ = await NotificationService.requestAuthorization()
         BackgroundRefreshManager.scheduleNext()
         ChecklistReminderService.refreshAllReminders()
-        BarcodePhoneSync.shared.activate()
         ScheduleStore.shared.republishExistingSnapshot()
         if let tmID = BarcodeStore.value { BarcodeStore.value = tmID }
     }

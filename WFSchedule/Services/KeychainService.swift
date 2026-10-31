@@ -55,8 +55,5 @@ enum KeychainService {
         /// The full mykronos.com-domain cookie jar from the last successful login
         /// (interactive or silent). See `SessionManager.attemptCookieRestore`.
         static let sessionCookies = "ukg_session_cookies"
-        /// The same idea for Innerview Login: its own cookies plus the identity
-        /// providers' (see `InnerviewEndpoints.isSessionCookie`).
-        static let innerviewSessionCookies = "innerview_session_cookies"
     }
 }

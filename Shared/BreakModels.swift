@@ -97,8 +97,7 @@ struct BreakBar: View {
     }
 }
 
-/// Stored in the shared app-group defaults so the iPhone widget can read it,
-/// and mirrored to the watch by `BarcodePhoneSync`.
+/// Stored in the shared app-group defaults so the iPhone widget can read it.
 enum BreakStore {
     static let appGroupID = "group.com.marting.WFM"
     static let key = "breakPlanJSON"

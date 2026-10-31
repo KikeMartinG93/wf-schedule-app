@@ -1,11 +1,9 @@
 import SwiftUI
 
-/// Innerview Login, presented as a sheet over the calendar. The web view below is
+/// Sign-in sheet presented over the calendar. The web view below is
 /// the ONLY place the team member password is ever entered — it goes straight into
-/// Innerview's own sign-in page and this app never sees it, which is why there's
-/// no way to replay it silently; a returning launch resumes from saved cookies
-/// instead (see `SessionManager.attemptCookieRestore`). `MainTabView` dismisses
-/// this as soon as the session becomes authenticated.
+/// the sign-in page and this app never sees it.
+/// `RootView` or this view dismisses this as soon as the session becomes authenticated.
 struct LoginView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @Environment(\.dismiss) private var dismiss
@@ -17,9 +15,9 @@ struct LoginView: View {
 
                 VStack(spacing: 12) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Label("Innerview Login", systemImage: "lock.shield")
+                        Label("Sign in with Amazon", systemImage: "lock.shield")
                             .font(.headline)
-                        Text("Sign in with your Whole Foods team member account. Your credentials go directly into Innerview's own sign-in page below — this app never sees them.")
+                        Text("Sign in with your Whole Foods team member account. Your credentials go directly into the sign-in page below — this app never sees them.")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                         if let error = sessionManager.lastLoginError {
@@ -35,15 +33,18 @@ struct LoginView: View {
                     .padding(.horizontal)
                     .padding(.top, 12)
 
-                    InnerviewLoginWebView { webView, cookies in
-                        sessionManager.handleInteractiveLoginSuccess(webView: webView, cookies: cookies, backend: .innerview)
+                    UKGLoginWebView(loginURL: UKGEndpoints.loginURL) { webView, cookies in
+                        sessionManager.handleInteractiveLoginSuccess(webView: webView, cookies: cookies)
                     }
                     .clipShape(.rect(cornerRadius: 24))
                     .padding(.horizontal)
                     .padding(.bottom)
                 }
             }
-            .navigationTitle("Innerview Login")
+            .onChange(of: sessionManager.state) { _, newState in
+                if newState == .authenticated { dismiss() }
+            }
+            .navigationTitle("Sign in with Amazon")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {

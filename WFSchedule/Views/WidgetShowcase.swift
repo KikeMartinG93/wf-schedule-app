@@ -1,9 +1,9 @@
 import SwiftUI
 import WidgetKit
 
-/// A swipeable gallery of every widget and the watch complication, each drawn
+/// A swipeable gallery of every widget, each drawn
 /// with the real widget view on sample data (never the real TM ID) inside a small
-/// scene: a Lock Screen, a Home Screen, or a watch face. Every scene is the same
+/// scene: a Lock Screen or a Home Screen. Every scene is the same
 /// size so the cards line up and snap into place.
 struct WidgetShowcase: View {
     @ObservedObject private var theme = ThemeManager.shared
@@ -15,8 +15,10 @@ struct WidgetShowcase: View {
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(alignment: .top, spacing: 14) {
-                card(kind: "Apple Watch", title: "Discount Barcode",
-                     caption: "Scan your discount right from your wrist.") { watchScene }
+                card(kind: "Home Screen", title: "Calendar & Agenda",
+                     caption: "Big day date, mini month calendar, and today's schedule with weather.") { homeCalendarAgendaScene }
+                card(kind: "Home Screen", title: "Month & Agenda",
+                     caption: "Full month grid with calendar weeks and upcoming day-by-day agenda.") { homeMonthAgendaScene }
                 card(kind: "Home Screen", title: "Discount Barcode",
                      caption: "A transparent widget with your barcode, ready at the register.") { homeBarcodeScene }
                 card(kind: "Lock Screen", title: "Discount Barcode",
@@ -64,7 +66,7 @@ struct WidgetShowcase: View {
     }
 
     /// Scales a widget drawn at its real point size down (or up) without letting
-    /// the unscaled layout size leak out and push neighbouring cards around.
+    /// the unscaled layout size leak out and push neighbouring cards around.\n
     private func scaled<Content: View>(_ size: CGSize, _ scale: CGFloat, @ViewBuilder _ content: () -> Content) -> some View {
         content()
             .frame(width: size.width, height: size.height)
@@ -142,6 +144,34 @@ struct WidgetShowcase: View {
         .environment(\.colorScheme, .dark)
     }
 
+    private var homeCalendarAgendaScene: some View {
+        ZStack {
+            sceneBackground
+            scaled(CGSize(width: 338, height: 354), 0.42) {
+                CalendarAgendaWidgetView(entry: CalendarAgendaEntry(date: now, shifts: []), familyOverride: .systemLarge)
+                    .padding(16)
+                    .background { LiquidGlassWidgetBackground() }
+                    .clipShape(.rect(cornerRadius: 26, style: .continuous))
+            }
+            .shadow(color: .black.opacity(0.12), radius: 8, y: 4)
+        }
+        .environment(\.colorScheme, .light)
+    }
+
+    private var homeMonthAgendaScene: some View {
+        ZStack {
+            sceneBackground
+            scaled(CGSize(width: 338, height: 354), 0.42) {
+                MonthGridAgendaWidgetView(entry: CalendarAgendaEntry(date: now, shifts: []))
+                    .padding(16)
+                    .background { LiquidGlassWidgetBackground() }
+                    .clipShape(.rect(cornerRadius: 26, style: .continuous))
+            }
+            .shadow(color: .black.opacity(0.2), radius: 8, y: 4)
+        }
+        .environment(\.colorScheme, .dark)
+    }
+
     private var homeBreakScene: some View {
         ZStack {
             sceneBackground
@@ -157,45 +187,6 @@ struct WidgetShowcase: View {
             .environment(\.colorScheme, .light)
         }
         .environment(\.colorScheme, .dark)
-    }
-
-    /// An Apple Watch face with the barcode complication under the time.
-    private var watchScene: some View {
-        ZStack {
-            LinearGradient(colors: [Color(white: 0.20), Color(white: 0.06)], startPoint: .top, endPoint: .bottom)
-            watchBody
-        }
-    }
-
-    private var watchBody: some View {
-        ZStack(alignment: .trailing) {
-            RoundedRectangle(cornerRadius: 34, style: .continuous)
-                .fill(Color.black)
-                .overlay(RoundedRectangle(cornerRadius: 34, style: .continuous)
-                    .stroke(LinearGradient(colors: [Color(white: 0.55), Color(white: 0.25)], startPoint: .top, endPoint: .bottom), lineWidth: 3))
-                .frame(width: 128, height: 152)
-                .overlay {
-                    VStack(spacing: 8) {
-                        Text(verbatim: "10:09")
-                            .font(.system(size: 30, weight: .semibold, design: .rounded))
-                            .foregroundStyle(.white)
-                        if let modules = UPCABarcode.modules(for: "49112345670") {
-                            ZStack {
-                                Color.black
-                                UPCAShape(modules: modules)
-                                    .fill(Color.white, style: FillStyle(eoFill: true))
-                            }
-                            .frame(width: 100, height: 32)
-                            .clipShape(.rect(cornerRadius: 6, style: .continuous))
-                        }
-                    }
-                }
-            RoundedRectangle(cornerRadius: 3)
-                .fill(Color(white: 0.4))
-                .frame(width: 6, height: 26)
-                .offset(x: 5)
-        }
-        .frame(width: 140, height: 152)
     }
 
     // MARK: - Sample data

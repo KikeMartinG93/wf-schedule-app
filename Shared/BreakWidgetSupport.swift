@@ -87,11 +87,7 @@ struct BreakWidgetBackground: View {
     var body: some View {
         let tint = BreakWidgetTint.color(for: entry)
         ZStack {
-            #if os(watchOS)
-            Color.black
-            #else
             Color(uiColor: .systemBackground)
-            #endif
             if !ContrastPreference.high {
                 LinearGradient(colors: [tint.opacity(0.34), tint.opacity(0.06)], startPoint: .topLeading, endPoint: .bottomTrailing)
             }
@@ -126,9 +122,9 @@ private struct BreakRing<Center: View>: View {
 }
 
 /// Time until the next break, or how long it's overdue. Small (Home Screen):
-/// a ring around the countdown. Rectangular (Lock Screen / watch): a compact ring
+/// a ring around the countdown. Rectangular (Lock Screen): a compact ring
 /// beside the countdown. Full color only shows on the Home Screen; the Lock
-/// Screen and most watch faces recolor widgets to one tint, where the ring's
+/// Screen recolors widgets to one tint, where the ring's
 /// length and the pulse carry the message.
 struct BreakWidgetView: View {
     @Environment(\.widgetRenderingMode) private var renderingMode
@@ -138,13 +134,7 @@ struct BreakWidgetView: View {
     var familyOverride: WidgetFamily? = nil
 
     private var family: WidgetFamily { familyOverride ?? environmentFamily }
-
-    #if os(watchOS)
-    private var isSmall: Bool { false }
-    #else
     private var isSmall: Bool { family == .systemSmall }
-    #endif
-
     private var fullColor: Bool { renderingMode == .fullColor }
 
     var body: some View {

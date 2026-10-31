@@ -6,8 +6,7 @@ import Foundation
 /// character is 9 alternating bar/space elements, 3 of which are "wide."
 ///
 /// A real barcode scanner needs precise, physically-sized bar widths — this is
-/// meant for on-screen display (Settings preview, the Watch app's full-screen
-/// view), not guaranteed to scan reliably when shrunk into a watch complication.
+/// meant for on-screen display (Settings preview), not guaranteed to scan reliably when shrunk.
 enum Code39Barcode {
     /// `true` = wide element, `false` = narrow. 9 elements per character,
     /// alternating bar/space starting and ending on a bar (5 bars + 4 spaces).
@@ -90,11 +89,7 @@ enum Code39Barcode {
     /// `code` should be the raw barcode digits/characters only (no `*` — those
     /// are added automatically as the required start/stop character).
     /// `roundedBars` controls whether each individual bar has pill-shaped
-    /// rounded ends (Settings preview, the Watch app's full-screen view) or
-    /// plain square edges (the complication, which conceals the OVERALL
-    /// image's corners with its own rounded-frame clip shape instead — round
-    /// both and the two roundings compound into a busier, less finished look
-    /// at that size).
+    /// rounded ends or plain square edges.
     static func cgImage(for code: String, height: Int = 200, roundedBars: Bool = true) -> CGImage? {
         guard let full = normalized(code) else { return nil }
         let totalWidth = contentWidth(for: full)

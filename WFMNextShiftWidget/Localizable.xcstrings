@@ -1,6 +1,9 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "%@" : {
+
+    },
     "%@ %@ %@" : {
       "localizations" : {
         "en" : {
@@ -25,6 +28,24 @@
         }
       }
     },
+    "2:00 – 2:30 PM" : {
+
+    },
+    "6:00 – 7:00 AM" : {
+
+    },
+    "7:00 – 8:00 PM" : {
+
+    },
+    "66°/43°" : {
+
+    },
+    "69°/41°" : {
+
+    },
+    "79°/62°" : {
+
+    },
     "All breaks taken" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -46,6 +67,9 @@
           }
         }
       }
+    },
+    "Band practice" : {
+
     },
     "Break" : {
       "extractionState" : "manual",
@@ -115,6 +139,9 @@
         }
       }
     },
+    "CW" : {
+
+    },
     "Discount Barcode" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -169,6 +196,9 @@
           }
         }
       }
+    },
+    "Morning run" : {
+
     },
     "Next" : {
       "extractionState" : "manual",
@@ -225,6 +255,9 @@
         }
       }
     },
+    "PROPOSED" : {
+
+    },
     "Set your breaks in the app" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -280,6 +313,9 @@
         }
       }
     },
+    "Team Meeting" : {
+
+    },
     "Time for a break" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -312,6 +348,15 @@
           }
         }
       }
+    },
+    "TODAY" : {
+
+    },
+    "TOMORROW" : {
+
+    },
+    "Up Next" : {
+
     },
     "Your employee discount barcode, generated from your TM ID." : {
       "extractionState" : "manual",

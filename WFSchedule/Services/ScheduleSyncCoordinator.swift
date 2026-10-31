@@ -95,10 +95,7 @@ enum ScheduleSyncCoordinator {
     }
 
     private static func makeClient(for webView: WKWebView) -> any ScheduleFetching {
-        switch SessionManager.shared.backend {
-        case .innerview: InnerviewScheduleClient(webView: webView)
-        case .ukg: UKGScheduleClient(webView: webView)
-        }
+        UKGScheduleClient(webView: webView)
     }
 
     private static func fetchAndApply(using client: any ScheduleFetching) async throws {
@@ -152,9 +149,7 @@ enum ScheduleSyncCoordinator {
             }
 
             // Try resuming from the cookies saved at the last sign-in before giving
-            // up — for Innerview Login this is the ONLY way back in without the
-            // user (there's no stored password to replay), and it's cheap when
-            // there's nothing saved.
+            // up, which is cheap when there's nothing saved.
             let resumed = await sessionManager.attemptCookieRestore()
 
             // A background relaunch always starts with no in-memory webview/cookies

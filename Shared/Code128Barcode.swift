@@ -2,8 +2,7 @@ import CoreGraphics
 import Foundation
 import SwiftUI
 
-/// Minimal Code 128 encoder (subsets B and C). Core Image's Code 128 generator
-/// doesn't exist on watchOS, so this produces the same symbology directly.
+/// Minimal Code 128 encoder (subsets B and C).
 enum Code128Barcode {
     /// Bar/space widths (in modules) for symbol values 0...105, then Stop.
     private static let patterns: [String] = [
@@ -114,9 +113,8 @@ enum Code128Barcode {
 }
 
 /// The whole rect as one solid block with every bar cut out as a hole (fill it
-/// with `FillStyle(eoFill: true)`). Watch faces recolor widgets using only each
-/// pixel's opacity, so a black-on-white bitmap turns into a flat white
-/// rectangle there; holes survive every rendering mode and read as dark bars on
+/// with `FillStyle(eoFill: true)`). Tinted Lock Screen modes recolor widgets using only
+/// each pixel's opacity; holes survive every rendering mode and read as dark bars on
 /// a light block. Being a vector, it also fills any slot size exactly with no
 /// aspect-ratio or scaling math.
 struct Code128Shape: Shape {
