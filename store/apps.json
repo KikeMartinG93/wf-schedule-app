@@ -1,0 +1,62 @@
+{
+  "name": "WF Schedule",
+  "identifier": "com.marting.WFM.source",
+  "subtitle": "Whole Foods schedule, breaks, and discount barcode",
+  "description": "Sideload WF Schedule. Compatible with FlareStore, SideStore, Feather, and AltStore.",
+  "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
+  "website": "https://github.com/KikeMartinG93/wf-schedule-app",
+  "tintColor": "#31D158",
+  "nsfw": false,
+  "sourceURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/apps.json",
+  "featuredApps": [
+    "com.marting.WFM"
+  ],
+  "apps": [
+    {
+      "name": "WF Schedule",
+      "bundleIdentifier": "com.marting.WFM",
+      "developerName": "Enrique Martin",
+      "subtitle": "Your Whole Foods schedule on iPhone.",
+      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Month calendar and shift list\n• Break timer and Live Activity\n• Discount barcode for the register\n• Color themes, including Halloween and Rainbow",
+      "iconURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/icon.png",
+      "tintColor": "#31D158",
+      "category": "utilities",
+      "version": "2.6",
+      "versionDate": "2026-10-31T02:15:40Z",
+      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
+      "size": 2100662,
+      "versions": [
+        {
+          "version": "2.6",
+          "buildVersion": "1",
+          "date": "2026-10-31T02:15:40Z",
+          "localizedDescription": "Home Screen icons and settings tiles now match the selected color theme, including a new Rainbow icon.",
+          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
+          "size": 2100662,
+          "minOSVersion": "26.0"
+        }
+      ],
+      "appPermissions": {
+        "entitlements": [
+          "com.apple.security.application-groups",
+          "keychain-access-groups"
+        ],
+        "privacy": {
+          "NSCalendarsFullAccessUsageDescription": "WF Schedule creates a dedicated 'Work Schedule' calendar and adds your shifts to it so they stay in sync with your other Apple devices.",
+          "NSAlarmKitUsageDescription": "WF Schedule rings an alarm when a break or lunch timer you started is over."
+        }
+      }
+    }
+  ],
+  "news": [
+    {
+      "title": "Version 2.6",
+      "identifier": "wf-schedule-2.6",
+      "caption": "Home Screen icons now match your selected color theme.",
+      "date": "2026-10-31T02:15:40Z",
+      "tintColor": "#31D158",
+      "notify": false,
+      "appID": "com.marting.WFM"
+    }
+  ]
+}
