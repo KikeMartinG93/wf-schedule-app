@@ -33,7 +33,7 @@ enum WhatsNew {
         Release(revision: 8, items: [
             Item(symbol: "circle.dashed",
                  title: "Redesigned Break Timer widget",
-                 detail: "A new ring design for the Home Screen, Lock Screen and Apple Watch that shifts from green to red as your break gets close."),
+                 detail: "A new ring design for the Home Screen and Lock Screen that shifts from green to red as your break gets close."),
             Item(symbol: "circle.lefthalf.filled",
                  title: "High contrast and font choice",
                  detail: "New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font."),
@@ -43,9 +43,6 @@ enum WhatsNew {
             Item(symbol: "rectangle.bottomhalf.inset.filled",
                  title: "A sleeker Breaks sheet",
                  detail: "Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator."),
-            Item(symbol: "applewatch",
-                 title: "Shift countdown on Apple Watch",
-                 detail: "Open the Watch app to see the time until your next shift. During a shift the screen fills green, with a line that rises as the shift goes by until it reaches full capacity. Swipe up for your barcode."),
             Item(symbol: "sparkles",
                  title: "What's New",
                  detail: "Every update now opens with a summary like this one. You can find it again anytime in Settings."),
@@ -65,8 +62,8 @@ enum WhatsNew {
         ]),
         Release(revision: 11, items: [
             Item(symbol: "person.badge.key.fill",
-                 title: "Innerview Login",
-                 detail: "Sign in with your Whole Foods team member account and your schedule loads from Innerview. It's the new main sign-in; the Amazon sign-in is still in Settings as a backup."),
+                 title: "Unified Sign-In",
+                 detail: "Sign in with your Whole Foods team member account directly through Amazon SSO to keep your schedule seamlessly in sync."),
             Item(symbol: "cup.and.saucer.fill",
                  title: "Breaks on your Lock Screen",
                  detail: "The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm."),
@@ -74,7 +71,7 @@ enum WhatsNew {
         Release(revision: 12, items: [
             Item(symbol: "person.text.rectangle.fill",
                  title: "Shows as Supervisor",
-                 detail: "Shifts that Innerview lists as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color."),
+                 detail: "Shifts listed as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color."),
         ]),
         Release(revision: 13, items: [
             Item(symbol: "calendar",
@@ -134,6 +131,16 @@ enum WhatsNew {
             Item(symbol: "arrow.triangle.2.circlepath",
                  title: "Background Refresh Reliability",
                  detail: "Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date."),
+        ]),
+        Release(revision: 20, items: [
+            Item(symbol: "lock.shield.fill",
+                 title: "Amazon Sign-In & Version 2.5",
+                 detail: "Streamlined sign-in with your Whole Foods team member account directly through Amazon and UKG Pro, with durable session restore and automatic background sync."),
+        ]),
+        Release(revision: 21, items: [
+            Item(symbol: "app.badge.fill",
+                 title: "Icons that match your theme",
+                 detail: "The Home Screen icon and every settings tile now pick up the selected color theme — including a new Rainbow icon."),
         ]),
     ]
 
@@ -223,10 +230,7 @@ struct WhatsNewView: View {
 
     private func row(_ item: WhatsNew.Item) -> some View {
         HStack(alignment: .top, spacing: 18) {
-            Image(systemName: item.symbol)
-                .font(.title)
-                .foregroundStyle(theme.current.readableAccent)
-                .frame(width: 44)
+            ThemedGlyph(symbol: item.symbol, size: 36, font: .body.weight(.semibold))
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 3) {

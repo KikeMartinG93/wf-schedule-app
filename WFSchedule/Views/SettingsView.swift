@@ -8,7 +8,7 @@ struct SettingsView: View {
     @EnvironmentObject private var sessionManager: SessionManager
 
     @State private var showingCredentialForm = false
-    @State private var showingBackupSignIn = false
+    @State private var showingSignIn = false
     @State private var showingWelcome = false
     @State private var showingWhatsNew = false
     @State private var showingBreaks = false
@@ -25,6 +25,7 @@ struct SettingsView: View {
     @AppStorage("themeSectionExpanded") private var isThemeExpanded = true
     @AppStorage(AppLanguage.storageKey) private var language: String = AppLanguage.system.rawValue
     @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
+    @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
 
     var body: some View {
         NavigationStack {
@@ -34,211 +35,216 @@ struct SettingsView: View {
                 // The title is a top bar, not a sibling above the Form, so content
                 // scrolls up under it and fades out softly instead of being cut off
                 // in a hard line.
-                    Form {
-                        // 1. Account & Security
-                        Section {
-                            if sessionManager.state == .authenticated {
-                                Button(role: .destructive) {
-                                    sessionManager.logOut()
-                                } label: {
-                                    row("Sign out", "rectangle.portrait.and.arrow.right", tint: .red)
-                                }
+                Form {
+                    // 1. Account & Security
+                    Section {
+                        if sessionManager.state == .authenticated {
+                            Button(role: .destructive) {
+                                sessionManager.logOut()
+                            } label: {
+                                row("Sign out", "rectangle.portrait.and.arrow.right", tint: .red)
                             }
+                        } else {
                             Button {
-                                showingBackupSignIn = true
+                                showingSignIn = true
                             } label: {
-                                row("Sign in with Amazon (UKG Pro)", "person.badge.key")
+                                row("Sign in with Amazon", "person.badge.key")
                             }
-                            Toggle(isOn: automaticSignInBinding) {
-                                row("Automatic background sign-in", "arrow.triangle.2.circlepath")
-                            }
-                            .tint(theme.current.toggleTint)
-                        } header: {
-                            Text("Account")
-                        } footer: {
-                            Text("Amazon sign-in is a backup if Innerview Login isn't working. Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed.")
                         }
-
-                        // 2. Discount Barcode
-                        Section {
-                            TMIDField()
-                        } header: {
-                            Text("Discount Barcode")
-                        } footer: {
-                            Text("Stored in the secure Keychain and synced to your Apple Watch.")
+                        Toggle(isOn: automaticSignInBinding) {
+                            row("Automatic background sign-in", "arrow.triangle.2.circlepath")
                         }
+                        .tint(theme.current.toggleTint)
+                    } header: {
+                        Text("Account")
+                    } footer: {
+                        Text("Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.")
+                    }
 
-                        // 3. Theme & Appearance (Collapsible)
-                        Section {
-                            DisclosureGroup(isExpanded: $isThemeExpanded) {
-                                if theme.highContrast {
-                                    Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
-                                        .foregroundStyle(.secondary)
-                                        .padding(.vertical, 4)
-                                } else {
-                                    Picker("Appearance Mode", selection: $appearanceMode) {
-                                        Label("Light Mode", systemImage: "sun.max.fill").tag(ColorScheme.light)
-                                        Label("Dark Mode", systemImage: "moon.fill").tag(ColorScheme.dark)
-                                    }
-                                    .pickerStyle(.segmented)
+                    // 2. Discount Barcode
+                    Section {
+                        TMIDField()
+                    } header: {
+                        Text("Discount Barcode")
+                    } footer: {
+                        Text("Stored securely in the Keychain for quick access and widgets.")
+                    }
+
+                    // 3. Theme & Appearance (Collapsible)
+                    Section {
+                        DisclosureGroup(isExpanded: $isThemeExpanded) {
+                            if theme.highContrast {
+                                Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
+                                    .foregroundStyle(.secondary)
                                     .padding(.vertical, 4)
-
-                                    ThemePicker(scheme: appearanceMode)
-
-                                    VStack(alignment: .leading, spacing: 8) {
-                                        HStack {
-                                            row("Gradient vibrancy", "slider.horizontal.3")
-                                            Spacer()
-                                            Text(theme.vibrancy(for: appearanceMode), format: .percent.precision(.fractionLength(0)))
-                                                .font(.subheadline.monospacedDigit())
-                                                .foregroundStyle(.secondary)
-                                        }
-
-                                        Slider(
-                                            value: Binding(
-                                                get: { theme.vibrancy(for: appearanceMode) },
-                                                set: { theme.setVibrancy($0, for: appearanceMode) }
-                                            ),
-                                            in: 0.0...1.0
-                                        )
-                                        .tint(theme.current(for: appearanceMode).readableAccent)
-                                    }
-                                    .padding(.top, 4)
+                            } else {
+                                Picker("Appearance Mode", selection: $appearanceMode) {
+                                    Label("Light Mode", systemImage: "sun.max.fill").tag(ColorScheme.light)
+                                    Label("Dark Mode", systemImage: "moon.fill").tag(ColorScheme.dark)
                                 }
-                            } label: {
-                                HStack {
-                                    row("Theme & Appearance", "paintpalette")
-                                    Spacer()
-                                    if !isThemeExpanded && !theme.highContrast {
-                                        Text(LocalizedStringKey(theme.selectedTheme(for: appearanceMode).name))
-                                            .font(.subheadline)
+                                .pickerStyle(.segmented)
+                                .padding(.vertical, 4)
+
+                                ThemePicker(scheme: appearanceMode)
+
+                                VStack(alignment: .leading, spacing: 8) {
+                                    HStack {
+                                        row("Gradient vibrancy", "slider.horizontal.3")
+                                        Spacer()
+                                        Text(theme.vibrancy(for: appearanceMode), format: .percent.precision(.fractionLength(0)))
+                                            .font(.subheadline.monospacedDigit())
                                             .foregroundStyle(.secondary)
                                     }
+
+                                    Slider(
+                                        value: Binding(
+                                            get: { theme.vibrancy(for: appearanceMode) },
+                                            set: { theme.setVibrancy($0, for: appearanceMode) }
+                                        ),
+                                        in: 0.0...1.0
+                                    )
+                                    .tint(theme.current(for: appearanceMode).readableAccent)
                                 }
+                                .padding(.top, 4)
                             }
-                        } header: {
-                            Text("Theme & Appearance")
-                        } footer: {
-                            if isThemeExpanded && !theme.highContrast {
-                                Text(appearanceMode == .light
-                                     ? "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
-                                     : "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
-                            }
-                        }
-
-                        // 4. Accessibility & Display
-                        Section {
-                            Toggle(isOn: $theme.highContrast) {
-                                row("High contrast", "circle.lefthalf.filled")
-                            }
-                            .tint(theme.current.toggleTint)
-                            Toggle(isOn: roundedFontBinding) {
-                                row("Rounded font", "textformat")
-                            }
-                            .tint(theme.current.toggleTint)
-                            Picker(selection: languageBinding) {
-                                Text("System default").tag(AppLanguage.system)
-                                Text(verbatim: "English").tag(AppLanguage.en)
-                                Text(verbatim: "Español").tag(AppLanguage.es)
-                            } label: {
-                                row("Language", "globe")
-                            }
-                            .tint(theme.current.readableAccent)
-                            .id(theme.highContrast)
-                        } header: {
-                            Text("Display & Accessibility")
-                        } footer: {
-                            Text("High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.")
-                        }
-
-                        // 5. Tools & Quick Actions
-                        Section {
-                            Button {
-                                showingBreaks = true
-                            } label: {
-                                row("Breaks & Calculator", "cup.and.saucer")
-                            }
-                            Button {
-                                showingChecklist = true
-                            } label: {
-                                row("Daily Role Checklist", "checklist")
-                            }
-                        } header: {
-                            Text("Tools")
-                        } footer: {
-                            Text("Plan break schedules or track shift duties and checklists.")
-                        }
-
-                        // 6. Widgets & Lock Screen
-                        Section {
-                            WidgetShowcase()
-                                .listRowInsets(EdgeInsets())
-                                .listRowBackground(Color.clear)
-                        } header: {
-                            Text("Widgets")
-                        } footer: {
-                            Text("Add Next Shift or Discount Barcode to your Home Screen, Lock Screen, or Apple Watch face.")
-                        }
-
-                        // 7. About & Help
-                        Section {
-                            Button {
-                                showingWelcome = true
-                            } label: {
-                                row("Show welcome screen", "hand.wave")
-                            }
-                            Button {
-                                showingWhatsNew = true
-                            } label: {
-                                row("What's new", "wand.and.stars")
-                            }
-                            Toggle(isOn: demoBinding) {
-                                row("Demo mode", "sparkles")
-                            }
-                            .tint(theme.current.toggleTint)
-
+                        } label: {
                             HStack {
-                                row("Version", "info.circle")
+                                row("Theme & Appearance", "paintpalette")
                                 Spacer()
-                                if let versionNote {
-                                    Text(versionNote)
-                                        .foregroundStyle(theme.current.readableAccent)
-                                } else {
-                                    Text(appVersionString)
+                                if !isThemeExpanded && !theme.highContrast {
+                                    Text(LocalizedStringKey(theme.selectedTheme(for: appearanceMode).name))
+                                        .font(.subheadline)
                                         .foregroundStyle(.secondary)
                                 }
                             }
-                            .contentShape(Rectangle())
-                            .onTapGesture { versionTapped() }
+                        }
+                    } header: {
+                        Text("Theme & Appearance")
+                    } footer: {
+                        if isThemeExpanded && !theme.highContrast {
+                            Text(appearanceMode == .light
+                                 ? "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
+                                 : "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
+                        }
+                    }
 
-                            if classicIconUnlocked {
-                                Toggle(isOn: classicIconBinding) {
-                                    row("WF Icon", "app.badge", verbatim: true)
-                                }
-                                .tint(theme.current.toggleTint)
-                            }
-                        } header: {
-                            Text("About")
-                        } footer: {
-                            if demoMode {
-                                Text("Demo mode is currently active with sample data.")
-                            }
+                    // 4. Calendar & Display
+                    Section {
+                        Toggle(isOn: $calendarDayTickerMode) {
+                            row("Day ticker & continuous scroll", "calendar.day.timeline.leading")
                         }
+                        .tint(theme.current.toggleTint)
+                        Toggle(isOn: $theme.highContrast) {
+                            row("High contrast", "circle.lefthalf.filled")
+                        }
+                        .tint(theme.current.toggleTint)
+                        Toggle(isOn: roundedFontBinding) {
+                            row("Rounded font", "textformat")
+                        }
+                        .tint(theme.current.toggleTint)
+                        Picker(selection: languageBinding) {
+                            Text("System default").tag(AppLanguage.system)
+                            Text(verbatim: "English").tag(AppLanguage.en)
+                            Text(verbatim: "Español").tag(AppLanguage.es)
+                        } label: {
+                            row("Language", "globe")
+                        }
+                        .tint(theme.current.readableAccent)
+                        .id(theme.highContrast)
+                    } header: {
+                        Text("Display & Calendar")
+                    } footer: {
+                        Text("Day ticker shows a compact horizontal day strip and lets you continuously scroll vertically through past and upcoming days.")
                     }
-                    .scrollContentBackground(.hidden)
-                    // Room to scroll the last rows clear of the floating shift bar.
-                    .contentMargins(.bottom, 64, for: .scrollContent)
-                    .safeAreaBar(edge: .top) {
-                        HStack(alignment: .firstTextBaseline) {
-                            Text("Settings")
-                                .font(.largeTitle.bold())
-                                .foregroundStyle(Color(uiColor: .label))
+
+                    // 5. Tools & Quick Actions
+                    Section {
+                        Button {
+                            showingBreaks = true
+                        } label: {
+                            row("Breaks & Calculator", "cup.and.saucer")
+                        }
+                        Button {
+                            showingChecklist = true
+                        } label: {
+                            row("Daily Role Checklist", "checklist")
+                        }
+                    } header: {
+                        Text("Tools")
+                    } footer: {
+                        Text("Plan break schedules or track shift duties and checklists.")
+                    }
+
+                    // 6. Widgets & Lock Screen
+                    Section {
+                        WidgetShowcase()
+                            .listRowInsets(EdgeInsets())
+                            .listRowBackground(Color.clear)
+                    } header: {
+                        Text("Widgets")
+                    } footer: {
+                        Text("Add Next Shift or Discount Barcode to your Home Screen or Lock Screen.")
+                    }
+
+                    // 7. About & Help
+                    Section {
+                        Button {
+                            showingWelcome = true
+                        } label: {
+                            row("Show welcome screen", "hand.wave")
+                        }
+                        Button {
+                            showingWhatsNew = true
+                        } label: {
+                            row("What's new", "wand.and.stars")
+                        }
+                        Toggle(isOn: demoBinding) {
+                            row("Demo mode", "sparkles")
+                        }
+                        .tint(theme.current.toggleTint)
+
+                        HStack {
+                            row("Version", "info.circle")
                             Spacer()
+                            if let versionNote {
+                                Text(versionNote)
+                                    .foregroundStyle(theme.current.readableAccent)
+                            } else {
+                                Text(appVersionString)
+                                    .foregroundStyle(.secondary)
+                            }
                         }
-                        .padding(.horizontal)
-                        .padding(.top, 8)
+                        .contentShape(Rectangle())
+                        .onTapGesture { versionTapped() }
+
+                        if classicIconUnlocked {
+                            Toggle(isOn: classicIconBinding) {
+                                row("WF Icon", "app.badge", verbatim: true)
+                            }
+                            .tint(theme.current.toggleTint)
+                        }
+                    } header: {
+                        Text("About")
+                    } footer: {
+                        if demoMode {
+                            Text("Demo mode is currently active with sample data.")
+                        }
                     }
-                    .scrollEdgeEffectStyle(.soft, for: .top)
+                }
+                .scrollContentBackground(.hidden)
+                // Room to scroll the last rows clear of the floating shift bar.
+                .contentMargins(.bottom, 64, for: .scrollContent)
+                .safeAreaBar(edge: .top) {
+                    HStack(alignment: .firstTextBaseline) {
+                        Text("Settings")
+                            .font(.largeTitle.bold())
+                            .foregroundStyle(Color(uiColor: .label))
+                        Spacer()
+                    }
+                    .padding(.horizontal)
+                    .padding(.top, 8)
+                }
+                .scrollEdgeEffectStyle(.soft, for: .top)
             }
             .toolbar(.hidden, for: .navigationBar)
             .onAppear {
@@ -250,8 +256,8 @@ struct SettingsView: View {
             .sheet(isPresented: $showingCredentialForm) {
                 AutoSignInCredentialForm()
             }
-            .sheet(isPresented: $showingBackupSignIn) {
-                UKGLoginView()
+            .sheet(isPresented: $showingSignIn) {
+                LoginView()
                     .tint(theme.current.readableAccent)
                     .presentationDragIndicator(.visible)
             }
@@ -274,16 +280,14 @@ struct SettingsView: View {
         }
     }
 
-    /// A settings row: a small tinted icon tile beside the title.
+    /// A settings row: a small tinted icon tile beside the title. Tile colors
+    /// come from the selected theme's palette so neighbouring rows stay
+    /// distinct without leaving that theme's family.
     private func row(_ title: LocalizedStringKey, _ symbol: String, tint: Color? = nil, verbatim: Bool = false) -> some View {
         Label {
             if verbatim { Text(verbatim: "WF Icon") } else { Text(title) }
         } icon: {
-            Image(systemName: symbol)
-                .font(.footnote.weight(.semibold))
-                .foregroundStyle(.white)
-                .frame(width: 28, height: 28)
-                .background((tint ?? theme.current.accent).gradient, in: RoundedRectangle(cornerRadius: 7, style: .continuous))
+            ThemedGlyph(symbol: symbol, tint: tint)
         }
         .foregroundStyle(tint == .red ? Color.red : Color.primary)
     }
@@ -343,7 +347,6 @@ struct SettingsView: View {
             set: { newValue in
                 roundedFont = newValue
                 WidgetCenter.shared.reloadAllTimelines()
-                BarcodePhoneSync.shared.send(BarcodeStore.value)
             }
         )
     }
@@ -373,84 +376,34 @@ private struct ThemePicker: View {
     private let columns = Array(repeating: GridItem(.flexible()), count: 3)
 
     var body: some View {
-        LazyVGrid(columns: columns, spacing: 16) {
-            ForEach(AppColorThemes.all) { candidate in
+        LazyVGrid(columns: columns, spacing: 10) {
+            ForEach(AppColorThemes.all) { item in
                 Button {
-                    theme.setSelectedTheme(candidate, for: scheme)
+                    theme.setSelectedTheme(item, for: scheme)
                 } label: {
                     VStack(spacing: 6) {
-                        if candidate.id == "rainbow" {
-                            Circle()
-                                .fill(
-                                    AngularGradient(
-                                        gradient: Gradient(colors: [
-                                            Color(red: 0.95, green: 0.22, blue: 0.32),
-                                            Color(red: 1.00, green: 0.52, blue: 0.12),
-                                            Color(red: 1.00, green: 0.82, blue: 0.16),
-                                            Color(red: 0.30, green: 0.86, blue: 0.28),
-                                            Color(red: 0.08, green: 0.76, blue: 0.72),
-                                            Color(red: 0.16, green: 0.66, blue: 0.96),
-                                            Color(red: 0.72, green: 0.25, blue: 0.95),
-                                            Color(red: 0.98, green: 0.18, blue: 0.60),
-                                            Color(red: 0.95, green: 0.22, blue: 0.32)
-                                        ]),
-                                        center: .center
-                                    )
-                                )
-                                .frame(width: 32, height: 32)
-                                .overlay {
-                                    if candidate.id == theme.selectedTheme(for: scheme).id {
-                                        Image(systemName: "checkmark")
-                                            .font(.footnote.weight(.bold))
-                                            .foregroundStyle(.white)
-                                            .shadow(color: .black.opacity(0.6), radius: 2)
-                                    }
-                                }
-                        } else if candidate.id == "halloween" {
-                            Circle()
-                                .fill(
-                                    LinearGradient(
-                                        stops: [
-                                            .init(color: Color(red: 1.00, green: 0.48, blue: 0.05), location: 0.0), // orange 50%
-                                            .init(color: Color(red: 1.00, green: 0.48, blue: 0.05), location: 0.50),
-                                            .init(color: Color(red: 0.65, green: 0.18, blue: 0.95), location: 0.50), // bright purple 40%
-                                            .init(color: Color(red: 0.65, green: 0.18, blue: 0.95), location: 0.90),
-                                            .init(color: Color(red: 0.42, green: 0.88, blue: 0.16), location: 0.90), // apple green 10%
-                                            .init(color: Color(red: 0.42, green: 0.88, blue: 0.16), location: 1.0)
-                                        ],
-                                        startPoint: .topLeading,
-                                        endPoint: .bottomTrailing
-                                    )
-                                )
-                                .frame(width: 32, height: 32)
-                                .overlay {
-                                    if candidate.id == theme.selectedTheme(for: scheme).id {
-                                        Image(systemName: "checkmark")
-                                            .font(.footnote.weight(.bold))
-                                            .foregroundStyle(.white)
-                                            .shadow(color: .black.opacity(0.6), radius: 2)
-                                    }
-                                }
-                        } else {
-                            Circle()
-                                .fill(candidate.accent)
-                                .frame(width: 32, height: 32)
-                                .overlay {
-                                    if candidate.id == theme.selectedTheme(for: scheme).id {
-                                        Image(systemName: "checkmark")
-                                            .font(.footnote.weight(.bold))
-                                            .foregroundStyle(Color.onFill(candidate.accent))
-                                    }
-                                }
-                        }
-                        Text(LocalizedStringKey(candidate.name))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                        Circle()
+                            .fill(item.accent)
+                            .frame(width: 32, height: 32)
+                            .overlay(
+                                Circle()
+                                    .strokeBorder(Color.white, lineWidth: theme.selectedTheme(for: scheme).id == item.id ? 2.5 : 0)
+                            )
+                            .shadow(color: item.accent.opacity(0.35), radius: 4, y: 2)
+
+                        Text(LocalizedStringKey(item.name))
+                            .font(.caption2.weight(.medium))
+                            .foregroundStyle(theme.selectedTheme(for: scheme).id == item.id ? Color.primary : .secondary)
+                            .lineLimit(1)
                     }
                     .frame(maxWidth: .infinity)
+                    .padding(.vertical, 8)
+                    .background(
+                        RoundedRectangle(cornerRadius: 10, style: .continuous)
+                            .fill(theme.selectedTheme(for: scheme).id == item.id ? Color.primary.opacity(0.08) : Color.clear)
+                    )
                 }
                 .buttonStyle(.plain)
-                .accessibilityAddTraits(candidate.id == theme.selectedTheme(for: scheme).id ? .isSelected : [])
             }
         }
         .padding(.vertical, 6)
@@ -458,11 +411,9 @@ private struct ThemePicker: View {
 }
 
 /// Entry for the TM ID. It's typed into a secure field, saved to the Keychain
-/// (also pushed to the Watch and widgets), and from then on only ever shown as
+/// (and pushed to widgets), and from then on only ever shown as
 /// "*****" — with a barcode preview matching the official Whole Foods discount card.
 private struct TMIDField: View {
-    // The Keychain is read once when the row appears and cached here. Reading it
-    // in the property initializer or in `body` hit the Keychain on every redraw.
     @State private var isStored = false
     @State private var tmIDValue: String?
     @State private var isEditing = false
@@ -502,7 +453,6 @@ private struct TMIDField: View {
                     Spacer()
                     Button("Remove", role: .destructive) {
                         BarcodeStore.value = nil
-                        BarcodePhoneSync.shared.send(nil)
                         refresh()
                     }
                 }
@@ -523,7 +473,6 @@ private struct TMIDField: View {
                     Spacer()
                     Button("Save") {
                         BarcodeStore.value = trimmedDraft
-                        BarcodePhoneSync.shared.send(BarcodeStore.value)
                         draft = ""
                         refresh()
                         isEditing = false
@@ -535,7 +484,6 @@ private struct TMIDField: View {
         }
     }
 
-    /// The official Whole Foods Market discount card barcode matching the supermarket reader format.
     @ViewBuilder
     private var preview: some View {
         if let id = tmIDValue {
@@ -569,9 +517,6 @@ private struct TMIDField: View {
     }
 }
 
-/// Full-screen Whole Foods Market Electronic Discount Card matching the official Innerview card
-/// (IMG_1867-1). Displays the card at maximum brightness with tall UPC-A bars, extended guard bars,
-/// masked numbers, and official legal disclaimers so registers scan it effortlessly.
 struct DiscountCardModalView: View {
     let tmID: String
     @Environment(\.dismiss) private var dismiss
@@ -594,7 +539,6 @@ struct DiscountCardModalView: View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
-                    // Header matching official electronic discount card
                     VStack(spacing: 4) {
                         Text("Enrique Martin")
                             .font(.title2.weight(.bold))
@@ -605,7 +549,6 @@ struct DiscountCardModalView: View {
                     }
                     .padding(.top, 20)
 
-                    // Official Discount Card Barcode matching IMG_1867-1
                     VStack(spacing: 0) {
                         UPCABarcodeCard(input: tmID)
                             .padding(.vertical, 22)
@@ -618,7 +561,6 @@ struct DiscountCardModalView: View {
                     .shadow(color: .black.opacity(0.12), radius: 10, y: 4)
                     .padding(.horizontal, 16)
 
-                    // Help & legal disclaimer verbatim from Innerview
                     VStack(spacing: 12) {
                         Text("Please open an ASK TMS case or call 833-4ASKTMS (833-427-5867) to report the problem.")
                             .font(.footnote)

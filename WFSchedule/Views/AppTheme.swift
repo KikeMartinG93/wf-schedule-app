@@ -1,6 +1,28 @@
 import SwiftUI
 import UIKit
 
+/// A rounded square of theme color behind a white SF Symbol — the iOS Settings
+/// tile, tinted from the selected theme so every row stays in that palette.
+struct ThemedGlyph: View {
+    let symbol: String
+    var size: CGFloat = 28
+    var font: Font = .footnote.weight(.semibold)
+    var tint: Color? = nil
+
+    @ObservedObject private var theme = ThemeManager.shared
+
+    var body: some View {
+        Image(systemName: symbol)
+            .font(font)
+            .foregroundStyle(.white)
+            .frame(width: size, height: size)
+            .background(
+                (tint ?? theme.current.glyphBackground(for: symbol)).gradient,
+                in: RoundedRectangle(cornerRadius: size * 0.25, style: .continuous)
+            )
+    }
+}
+
 /// Drives the slow, organic fluid gradient morphing for every `AppBackground` on
 /// screen from a single shared, synchronized driver. Two incommensurate animation
 /// cycles (11s and 17s) produce non-repeating Lissajous drift paths for the color

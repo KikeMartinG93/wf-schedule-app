@@ -1,5 +1,4 @@
-Version 2.4 (Build 1 / Revision 19):
+Version 2.6 (Build 1 / Revision 21):
 
-• Precise Register Barcodes: Widgets and discount cards now encode the exact 0491(TM ID)00 format required by Whole Foods Market registers for effortless and instant checkout scanning.
-• Background Refresh Reliability: Resolved background watchdog timeout hangs and improved background session restoration so schedules update smoothly.
-• Performance & Stability: Enhanced complications, optimized barcode geometry, and overall performance improvements.
+• Themed Home Screen icons: Every color theme now has a matching app icon background using that theme's exact accent — including a new Rainbow icon and a Halloween orange-to-purple gradient.
+• Settings, Welcome, and What's New tiles pick distinct colors from the selected theme so neighbouring rows stay unique without leaving the palette.

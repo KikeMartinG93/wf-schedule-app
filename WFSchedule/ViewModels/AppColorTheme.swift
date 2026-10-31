@@ -29,6 +29,48 @@ struct AppColorTheme: Identifiable, Equatable {
 }
 
 extension AppColorTheme {
+    /// Distinct tile color for a settings-style glyph, still sitting in this
+    /// theme's family. Multi-accent themes (Halloween, Colorful, Rainbow) use
+    /// their own extras first so tiles actually show the palette; single-hue
+    /// themes get analogous shifts of the accent so neighbouring rows don't
+    /// all share the same square.
+    func glyphBackground(for symbol: String) -> Color {
+        if id == "highContrast" { return Color(.systemGray) }
+        let palette = glyphPalette
+        return palette[Self.stableSymbolHash(symbol) % palette.count]
+    }
+
+    var glyphPalette: [Color] {
+        var colors: [Color] = [accent]
+        if let cash = cashOfficeAccentOverride { colors.append(cash) }
+        if let supervisor = supervisorAccentOverride { colors.append(supervisor) }
+        if holidayPay != accent { colors.append(holidayPay) }
+        colors.append(contentsOf: analogousAccents)
+        return colors
+    }
+
+    private var analogousAccents: [Color] {
+        var hue: CGFloat = 0, sat: CGFloat = 0, bri: CGFloat = 0, alpha: CGFloat = 0
+        UIColor(accent).getHue(&hue, saturation: &sat, brightness: &bri, alpha: &alpha)
+        let offsets: [CGFloat] = [32, -32, 58, -58, 86, -86]
+        return offsets.map { deg in
+            var shifted = hue + deg / 360
+            shifted -= floor(shifted)
+            let nextSat = min(1, max(0.55, sat * 0.92))
+            let nextBri = min(1, max(0.58, bri))
+            return Color(hue: Double(shifted), saturation: Double(nextSat), brightness: Double(nextBri))
+        }
+    }
+
+    private static func stableSymbolHash(_ symbol: String) -> Int {
+        var hash: UInt64 = 1469598103934665603
+        for byte in symbol.utf8 {
+            hash ^= UInt64(byte)
+            hash = hash &* 1099511628211
+        }
+        return Int(hash % UInt64(Int.max))
+    }
+
     /// High contrast: plain black, white and gray, nothing else. The accent is
     /// the label color itself (black in Light, white in Dark) and the background
     /// is the flat system background.
@@ -250,7 +292,6 @@ final class ThemeManager: ObservableObject {
             FontPreference.store.set(highContrast, forKey: ContrastPreference.key)
             UserDefaults.standard.set(highContrast, forKey: ContrastPreference.key)
             WidgetCenter.shared.reloadAllTimelines()
-            BarcodePhoneSync.shared.send(BarcodeStore.value)
         }
     }
 

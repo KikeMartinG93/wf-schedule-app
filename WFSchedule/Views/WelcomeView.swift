@@ -1,10 +1,9 @@
 import SwiftUI
 
 /// First-launch welcome, laid out like Apple's own "Welcome to…" / "What's New"
-/// sheets: a big two-line title, a list of feature rows (accent-colored symbol,
+/// sheets: a big two-line title, a list of feature rows (themed glyph tile,
 /// bold headline, secondary description), and a full-width glass button pinned
-/// to the bottom. Symbols use the active theme accent instead of a rainbow so it
-/// matches whichever color theme is selected.
+/// to the bottom. Glyph tiles use the selected theme's palette.
 struct WelcomeView: View {
     var buttonTitle: LocalizedStringKey = "Continue"
     let onContinue: () -> Void
@@ -30,8 +29,8 @@ struct WelcomeView: View {
                 title: "Lives in Apple Calendar",
                 detail: "Shifts appear in their own Work Schedule calendar on all your Apple devices."),
         Feature(symbol: "barcode",
-                title: "Discount barcode on your wrist",
-                detail: "Save your TM ID in Settings and it shows up as an Apple Watch complication."),
+                title: "Discount barcode at hand",
+                detail: "Save your TM ID in Settings to display your discount card and widgets instantly."),
         Feature(symbol: "lock.rectangle.stack.fill",
                 title: "Next shift at a glance",
                 detail: "Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts."),
@@ -120,10 +119,7 @@ struct WelcomeView: View {
 
     private func row(_ feature: Feature) -> some View {
         HStack(alignment: .top, spacing: 18) {
-            Image(systemName: feature.symbol)
-                .font(.title)
-                .foregroundStyle(theme.current.readableAccent)
-                .frame(width: 44)
+            ThemedGlyph(symbol: feature.symbol, size: 36, font: .body.weight(.semibold))
                 .accessibilityHidden(true)
 
             VStack(alignment: .leading, spacing: 3) {
