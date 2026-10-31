@@ -22,17 +22,26 @@
       "tintColor": "#31D158",
       "category": "utilities",
       "version": "2.7",
-      "versionDate": "2026-10-31T17:51:00Z",
-      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
-      "size": 2085932,
+      "versionDate": "2026-10-31T18:47:00Z",
+      "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.7.ipa",
+      "size": 2085933,
       "versions": [
         {
           "version": "2.7",
-          "buildVersion": "1",
-          "date": "2026-10-31T17:51:00Z",
+          "buildVersion": "2",
+          "date": "2026-10-31T18:47:00Z",
           "localizedDescription": "Redesigned Home calendar with a day ticker, month grid, and scrolling agenda. Removed the leftover bottom bar that showed through the glass tab bar.",
-          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule.ipa",
-          "size": 2085932,
+          "downloadURL": "https://cdn.jsdelivr.net/gh/KikeMartinG93/wf-schedule-app@main/store/WFSchedule-2.7.ipa",
+          "size": 2085933,
+          "minOSVersion": "26.0"
+        },
+        {
+          "version": "2.6",
+          "buildVersion": "1",
+          "date": "2026-10-31T02:15:40Z",
+          "localizedDescription": "Home Screen icons and settings tiles now match the selected color theme, including a new Rainbow icon.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.6/WFSchedule.ipa",
+          "size": 2100662,
           "minOSVersion": "26.0"
         }
       ],
@@ -53,9 +62,9 @@
       "title": "Version 2.7",
       "identifier": "wf-schedule-2.7",
       "caption": "Redesigned Home calendar, and the leftover bottom bar is gone.",
-      "date": "2026-10-31T17:51:00Z",
+      "date": "2026-10-31T18:47:00Z",
       "tintColor": "#31D158",
-      "notify": false,
+      "notify": true,
       "appID": "com.marting.WFM"
     }
   ]
