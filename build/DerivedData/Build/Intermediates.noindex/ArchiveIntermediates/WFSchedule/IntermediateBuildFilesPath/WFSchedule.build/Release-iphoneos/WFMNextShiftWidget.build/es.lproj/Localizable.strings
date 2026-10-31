@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%lld min</key>
+	<string>%lld min</string>
+	<key>All breaks taken</key>
+	<string>Todos los descansos tomados</string>
+	<key>Available at %@</key>
+	<string>Disponible a las %@</string>
+	<key>Break</key>
+	<string>Descanso</string>
+	<key>Break %lld · %lld min</key>
+	<string>Descanso %lld · %lld min</string>
+	<key>Break Timer</key>
+	<string>Temporizador de descanso</string>
+	<key>Break in</key>
+	<string>Descanso en</string>
+	<key>Break over</key>
+	<string>Descanso terminado</string>
+	<key>Discount Barcode</key>
+	<string>Código de barras de descuento</string>
+	<key>Ends at %@</key>
+	<string>Termina a las %@</string>
+	<key>Lunch</key>
+	<string>Almuerzo</string>
+	<key>Lunch in</key>
+	<string>Almuerzo en</string>
+	<key>Lunch over</key>
+	<string>Almuerzo terminado</string>
+	<key>Next</key>
+	<string>Próximo</string>
+	<key>Next Shift</key>
+	<string>Próximo turno</string>
+	<key>No breaks set</key>
+	<string>Sin descansos</string>
+	<key>No upcoming shifts</key>
+	<string>No hay próximos turnos</string>
+	<key>Overdue</key>
+	<string>Atrasado</string>
+	<key>Set your TM ID in the app's Settings</key>
+	<string>Configura tu TM ID en los Ajustes de la app</string>
+	<key>Set your breaks in the app</key>
+	<string>Configura tus descansos en la app</string>
+	<key>Shift over</key>
+	<string>Turno terminado</string>
+	<key>Start 10 min break</key>
+	<string>Iniciar descanso de 10 min</string>
+	<key>Start 30 min lunch</key>
+	<string>Iniciar almuerzo de 30 min</string>
+	<key>Time for a break</key>
+	<string>Hora del descanso</string>
+	<key>Time for lunch</key>
+	<string>Hora del almuerzo</string>
+	<key>Time until your next break, or how long it's overdue.</key>
+	<string>Tiempo hasta tu próximo descanso, o cuánto lleva atrasado.</string>
+	<key>Your employee discount barcode, generated from your TM ID.</key>
+	<string>Tu código de barras de descuento de empleado, generado a partir de tu TM ID.</string>
+	<key>Your next shift and how long until it starts.</key>
+	<string>Tu próximo turno y cuánto falta para que empiece.</string>
+</dict>
+</plist>

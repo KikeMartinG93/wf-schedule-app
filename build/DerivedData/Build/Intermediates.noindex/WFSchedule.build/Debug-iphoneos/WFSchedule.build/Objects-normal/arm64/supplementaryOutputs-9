@@ -1,0 +1,44 @@
+{
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/AppIconManager.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/AppIconManager.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/AppIconManager.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/AppIconManager.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/AppIconManager.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/AppIconManager.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/BreakActivityManager.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakActivityManager.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakActivityManager.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakActivityManager.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakActivityManager.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakActivityManager.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/BreakCalculator.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakCalculator.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakCalculator.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakCalculator.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakCalculator.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/BreakCalculator.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ColorContrast.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ColorContrast.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ColorContrast.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ColorContrast.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ColorContrast.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ColorContrast.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/DemoMode.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/DemoMode.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/DemoMode.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/DemoMode.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/DemoMode.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/DemoMode.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ScheduleIntents.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleIntents.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleIntents.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleIntents.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleIntents.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleIntents.swiftdeps"
+  }
+}

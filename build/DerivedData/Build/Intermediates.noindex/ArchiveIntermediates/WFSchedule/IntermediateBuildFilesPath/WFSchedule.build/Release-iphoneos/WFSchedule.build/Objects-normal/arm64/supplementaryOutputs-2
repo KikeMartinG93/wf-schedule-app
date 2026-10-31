@@ -1,0 +1,12 @@
+{
+  "/Users/home/code/wf-schedule-app/WFSchedule/Models/Shift.swift" : {
+    "abi-baseline-json" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule.abi.json",
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule-primary.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule-primary.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule-primary.dia",
+    "objc-header" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule-Swift.h",
+    "swiftdoc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule.swiftdoc",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule.swiftmodule",
+    "swiftsourceinfo" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFSchedule.build/Objects-normal/arm64/WFSchedule.swiftsourceinfo"
+  }
+}

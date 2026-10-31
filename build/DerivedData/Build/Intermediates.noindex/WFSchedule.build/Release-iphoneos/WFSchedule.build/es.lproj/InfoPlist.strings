@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAlarmKitUsageDescription</key>
+	<string>WF Schedule suena una alarma cuando termina un temporizador de descanso o almuerzo que iniciaste.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>WF Schedule crea un calendario dedicado «Work Schedule» y agrega tus turnos para que se mantengan sincronizados con tus otros dispositivos Apple.</string>
+</dict>
+</plist>

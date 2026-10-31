@@ -1,0 +1,44 @@
+{
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ChangeLogStore.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChangeLogStore.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChangeLogStore.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChangeLogStore.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChangeLogStore.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChangeLogStore.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ChecklistReminderService.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistReminderService.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistReminderService.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistReminderService.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistReminderService.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistReminderService.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ChecklistStore.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistStore.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistStore.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistStore.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistStore.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ChecklistStore.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/NotificationService.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/NotificationService.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/NotificationService.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/NotificationService.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/NotificationService.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/NotificationService.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/ScheduleStore.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleStore.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleStore.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleStore.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleStore.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/ScheduleStore.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Services/UKGScheduleClient.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/UKGScheduleClient.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/UKGScheduleClient.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/UKGScheduleClient.dia",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/UKGScheduleClient.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFSchedule.build/Objects-normal/arm64/UKGScheduleClient.swiftdeps"
+  }
+}

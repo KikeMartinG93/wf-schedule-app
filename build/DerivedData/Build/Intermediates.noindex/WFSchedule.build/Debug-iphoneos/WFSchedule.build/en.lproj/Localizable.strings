@@ -1,0 +1,550 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%@ starts at %@</key>
+	<string>%@ starts at %@</string>
+	<key>%@ — %@</key>
+	<string>%@ — %@</string>
+	<key>%lld changed</key>
+	<string>%lld changed</string>
+	<key>%lld h</key>
+	<string>%lld h</string>
+	<key>%lld h %lld min</key>
+	<string>%lld h %lld min</string>
+	<key>%lld min</key>
+	<string>%lld min</string>
+	<key>%lld new</key>
+	<string>%lld new</string>
+	<key>%lld removed</key>
+	<string>%lld removed</string>
+	<key>A bigger countdown that shifts from green to red.</key>
+	<string>A bigger countdown that shifts from green to red.</string>
+	<key>A meal period is required, but you and your manager can agree to skip it since your shift is 6 hours or less.</key>
+	<string>A meal period is required, but you and your manager can agree to skip it since your shift is 6 hours or less.</string>
+	<key>A new ring design for the Home Screen and Lock Screen that shifts from green to red as your break gets close.</key>
+	<string>A new ring design for the Home Screen and Lock Screen that shifts from green to red as your break gets close.</string>
+	<key>A sleeker Breaks sheet</key>
+	<string>A sleeker Breaks sheet</string>
+	<key>A softer calendar</key>
+	<string>A softer calendar</string>
+	<key>A transparent widget with your barcode, ready at the register.</key>
+	<string>A transparent widget with your barcode, ready at the register.</string>
+	<key>Add Next Shift or Discount Barcode to your Home Screen or Lock Screen.</key>
+	<string>Add Next Shift or Discount Barcode to your Home Screen or Lock Screen.</string>
+	<key>Add note</key>
+	<string>Add note</string>
+	<key>Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts.</key>
+	<string>Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts.</string>
+	<key>Add your breaks below to start a countdown.</key>
+	<string>Add your breaks below to start a countdown.</string>
+	<key>Alerts</key>
+	<string>Alerts</string>
+	<key>Alerts clear themselves</key>
+	<string>Alerts clear themselves</string>
+	<key>All breaks taken</key>
+	<string>All breaks taken</string>
+	<key>Amazon Login</key>
+	<string>Amazon Login</string>
+	<key>Amazon Sign-In &amp; Version 2.5</key>
+	<string>Amazon Sign-In &amp; Version 2.5</string>
+	<key>Amber</key>
+	<string>Amber</string>
+	<key>Appearance</key>
+	<string>Appearance</string>
+	<key>Appearance Mode</key>
+	<string>Appearance Mode</string>
+	<key>Atmospheric Easter Eggs</key>
+	<string>Atmospheric Easter Eggs</string>
+	<key>Automatic Sign-In</key>
+	<string>Automatic Sign-In</string>
+	<key>Automatic background sign-in</key>
+	<string>Automatic background sign-in</string>
+	<key>Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.</key>
+	<string>Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.</string>
+	<key>Background Refresh Reliability</key>
+	<string>Background Refresh Reliability</string>
+	<key>Backup sign-in</key>
+	<string>Backup sign-in</string>
+	<key>Blue</key>
+	<string>Blue</string>
+	<key>Break %lld</key>
+	<string>Break %lld</string>
+	<key>Break %lld · %lld min</key>
+	<string>Break %lld · %lld min</string>
+	<key>Break Live Activity</key>
+	<string>Break Live Activity</string>
+	<key>Break Timer</key>
+	<string>Break Timer</string>
+	<key>Break calculator</key>
+	<string>Break calculator</string>
+	<key>Break chart</key>
+	<string>Break chart</string>
+	<key>Break in</key>
+	<string>Break in</string>
+	<key>Break is over</key>
+	<string>Break is over</string>
+	<key>Break overdue</key>
+	<string>Break overdue</string>
+	<key>Breaks</key>
+	<string>Breaks</string>
+	<key>Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator.</key>
+	<string>Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator.</string>
+	<key>Breaks on your Lock Screen</key>
+	<string>Breaks on your Lock Screen</string>
+	<key>Calendar access was not granted.</key>
+	<string>Calendar access was not granted.</string>
+	<key>Cancel</key>
+	<string>Cancel</string>
+	<key>Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet.</key>
+	<string>Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet.</string>
+	<key>Change</key>
+	<string>Change</string>
+	<key>Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider.</key>
+	<string>Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider.</string>
+	<key>Clearer when you're signed out</key>
+	<string>Clearer when you're signed out</string>
+	<key>Collapsible Theme Settings</key>
+	<string>Collapsible Theme Settings</string>
+	<key>Colorful</key>
+	<string>Colorful</string>
+	<key>Colors are off while High contrast is on.</key>
+	<string>Colors are off while High contrast is on.</string>
+	<key>Connect your UKG Pro account to sync your shifts.</key>
+	<string>Connect your UKG Pro account to sync your shifts.</string>
+	<key>Continue</key>
+	<string>Continue</string>
+	<key>Could not locate the sign-in form.</key>
+	<string>Could not locate the sign-in form.</string>
+	<key>Could not parse the UKG schedule response.</key>
+	<string>Could not parse the UKG schedule response.</string>
+	<key>Crimson</key>
+	<string>Crimson</string>
+	<key>Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</key>
+	<string>Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</string>
+	<key>Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</key>
+	<string>Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</string>
+	<key>Dark Mode</key>
+	<string>Dark Mode</string>
+	<key>Day</key>
+	<string>Day</string>
+	<key>Demo</key>
+	<string>Demo</string>
+	<key>Demo mode</key>
+	<string>Demo mode</string>
+	<key>Demo mode is currently active with sample data.</key>
+	<string>Demo mode is currently active with sample data.</string>
+	<key>Demo mode · sample data</key>
+	<string>Demo mode · sample data</string>
+	<key>Discount Barcode</key>
+	<string>Discount Barcode</string>
+	<key>Discount barcode at hand</key>
+	<string>Discount barcode at hand</string>
+	<key>Discount cards and widget barcodes are now formatted with the official 0491 prefix and check digits for instant, reliable scanning at Whole Foods Market registers.</key>
+	<string>Discount cards and widget barcodes are now formatted with the official 0491 prefix and check digits for instant, reliable scanning at Whole Foods Market registers.</string>
+	<key>Display &amp; Accessibility</key>
+	<string>Display &amp; Accessibility</string>
+	<key>Done</key>
+	<string>Done</string>
+	<key>Easier to read</key>
+	<string>Easier to read</string>
+	<key>End</key>
+	<string>End</string>
+	<key>Every update now opens with a summary like this one. You can find it again anytime in Settings.</key>
+	<string>Every update now opens with a summary like this one. You can find it again anytime in Settings.</string>
+	<key>Exit</key>
+	<string>Exit</string>
+	<key>Explore Demo Mode</key>
+	<string>Explore Demo Mode</string>
+	<key>Explore demo mode</key>
+	<string>Explore demo mode</string>
+	<key>Explore every feature with sample data. No UKG account needed, and nothing real is changed.</key>
+	<string>Explore every feature with sample data. No UKG account needed, and nothing real is changed.</string>
+	<key>Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons.</key>
+	<string>Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons.</string>
+	<key>Faster and smoother</key>
+	<string>Faster and smoother</string>
+	<key>Find out when your next shift starts.</key>
+	<string>Find out when your next shift starts.</string>
+	<key>Finish break</key>
+	<string>Finish break</string>
+	<key>Get notified when a shift is added, moved, or removed, plus a reminder before each one starts.</key>
+	<string>Get notified when a shift is added, moved, or removed, plus a reminder before each one starts.</string>
+	<key>Gradient vibrancy</key>
+	<string>Gradient vibrancy</string>
+	<key>Green</key>
+	<string>Green</string>
+	<key>Halloween</key>
+	<string>Halloween</string>
+	<key>Halloween Theme &amp; Ambiance</key>
+	<string>Halloween Theme &amp; Ambiance</string>
+	<key>High contrast</key>
+	<string>High contrast</string>
+	<key>High contrast and font choice</key>
+	<string>High contrast and font choice</string>
+	<key>High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.</key>
+	<string>High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.</string>
+	<key>High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice.</key>
+	<string>High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice.</string>
+	<key>Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app.</key>
+	<string>Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app.</string>
+	<key>Holiday</key>
+	<string>Holiday</string>
+	<key>Holiday Pay</key>
+	<string>Holiday Pay</string>
+	<key>Holiday Pay Eligible</key>
+	<string>Holiday Pay Eligible</string>
+	<key>Holiday pay</key>
+	<string>Holiday pay</string>
+	<key>Home</key>
+	<string>Home</string>
+	<key>Home Screen</key>
+	<string>Home Screen</string>
+	<key>Home now blurs the calendar and shows a sign-in button when your session needs attention — and only after actually checking, not on every launch.</key>
+	<string>Home now blurs the calendar and shows a sign-in button when your session needs attention — and only after actually checking, not on every launch.</string>
+	<key>Home's month view drops the hard grid lines: every day is a soft rounded blob with its number and shift dot inside, tinted by the work you have that day.</key>
+	<string>Home's month view drops the hard grid lines: every day is a soft rounded blob with its number and shift dot inside, tinted by the work you have that day.</string>
+	<key>Independent Light &amp; Dark Themes</key>
+	<string>Independent Light &amp; Dark Themes</string>
+	<key>Indigo</key>
+	<string>Indigo</string>
+	<key>Instant Demo Mode</key>
+	<string>Instant Demo Mode</string>
+	<key>Job</key>
+	<string>Job</string>
+	<key>Job changed from %@ to %@</key>
+	<string>Job changed from %@ to %@</string>
+	<key>Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active.</key>
+	<string>Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active.</string>
+	<key>Know the moment it changes</key>
+	<string>Know the moment it changes</string>
+	<key>Language</key>
+	<string>Language</string>
+	<key>Last synced %@</key>
+	<string>Last synced %@</string>
+	<key>Light Mode</key>
+	<string>Light Mode</string>
+	<key>List</key>
+	<string>List</string>
+	<key>Lives in Apple Calendar</key>
+	<string>Lives in Apple Calendar</string>
+	<key>Location</key>
+	<string>Location</string>
+	<key>Location changed from %@ to %@</key>
+	<string>Location changed from %@ to %@</string>
+	<key>Lock Screen</key>
+	<string>Lock Screen</string>
+	<key>Lunch is over</key>
+	<string>Lunch is over</string>
+	<key>Make it yours</key>
+	<string>Make it yours</string>
+	<key>Mark all as viewed</key>
+	<string>Mark all as viewed</string>
+	<key>Mark as taken</key>
+	<string>Mark as taken</string>
+	<key>Meal</key>
+	<string>Meal</string>
+	<key>My Schedule</key>
+	<string>My Schedule</string>
+	<key>NEW SHIFT</key>
+	<string>NEW SHIFT</string>
+	<key>New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font.</key>
+	<string>New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font.</string>
+	<key>New shift added</key>
+	<string>New shift added</string>
+	<key>New, changed, or removed shifts will show up here after your next sync.</key>
+	<string>New, changed, or removed shifts will show up here after your next sync.</string>
+	<key>Next</key>
+	<string>Next</string>
+	<key>Next Shift</key>
+	<string>Next Shift</string>
+	<key>Next break</key>
+	<string>Next break</string>
+	<key>Next month</key>
+	<string>Next month</string>
+	<key>Next shift at a glance</key>
+	<string>Next shift at a glance</string>
+	<key>Next shift in</key>
+	<string>Next shift in</string>
+	<key>No Alerts</key>
+	<string>No Alerts</string>
+	<key>No breaks set</key>
+	<string>No breaks set</string>
+	<key>No changes yet</key>
+	<string>No changes yet</string>
+	<key>No meal period is required for a shift this short.</key>
+	<string>No meal period is required for a shift this short.</string>
+	<key>No second 10-minute rest break for this shift.</key>
+	<string>No second 10-minute rest break for this shift.</string>
+	<key>No shift on %@</key>
+	<string>No shift on %@</string>
+	<key>No shifts yet</key>
+	<string>No shifts yet</string>
+	<key>No upcoming shifts</key>
+	<string>No upcoming shifts</string>
+	<key>Number of breaks</key>
+	<string>Number of breaks</string>
+	<key>Number of breaks: %lld</key>
+	<string>Number of breaks: %lld</string>
+	<key>Official UPC-A Barcode</key>
+	<string>Official UPC-A Barcode</string>
+	<key>Opens sign in</key>
+	<string>Opens sign in</string>
+	<key>Opens your breaks</key>
+	<string>Opens your breaks</string>
+	<key>Overdue</key>
+	<string>Overdue</string>
+	<key>Paid rest breaks (10 min)</key>
+	<string>Paid rest breaks (10 min)</string>
+	<key>Pay code change</key>
+	<string>Pay code change</string>
+	<key>Pick a color theme in Settings and the whole app follows.</key>
+	<string>Pick a color theme in Settings and the whole app follows.</string>
+	<key>Plan break schedules or track shift duties and checklists.</key>
+	<string>Plan break schedules or track shift duties and checklists.</string>
+	<key>Precise Register Barcodes</key>
+	<string>Precise Register Barcodes</string>
+	<key>Previous month</key>
+	<string>Previous month</string>
+	<key>Pull to sync your UKG schedule.</key>
+	<string>Pull to sync your UKG schedule.</string>
+	<key>Purple</key>
+	<string>Purple</string>
+	<key>Rainbow</key>
+	<string>Rainbow</string>
+	<key>Readability</key>
+	<string>Readability</string>
+	<key>Redesigned Break Timer widget</key>
+	<string>Redesigned Break Timer widget</string>
+	<key>Regular</key>
+	<string>Regular</string>
+	<key>Relative Change Times</key>
+	<string>Relative Change Times</string>
+	<key>Remove</key>
+	<string>Remove</string>
+	<key>Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date.</key>
+	<string>Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date.</string>
+	<key>Rest</key>
+	<string>Rest</string>
+	<key>Rose</key>
+	<string>Rose</string>
+	<key>Rounded Font Design</key>
+	<string>Rounded Font Design</string>
+	<key>Rounded font</key>
+	<string>Rounded font</string>
+	<key>SHIFT CHANGED</key>
+	<string>SHIFT CHANGED</string>
+	<key>SHIFT REMOVED</key>
+	<string>SHIFT REMOVED</string>
+	<key>Save</key>
+	<string>Save</string>
+	<key>Save your TM ID in Settings to display your discount card and widgets instantly.</key>
+	<string>Save your TM ID in Settings to display your discount card and widgets instantly.</string>
+	<key>Schedule for %@</key>
+	<string>Schedule for %@</string>
+	<key>Schedule for a Day</key>
+	<string>Schedule for a Day</string>
+	<key>Schedule updated</key>
+	<string>Schedule updated</string>
+	<key>Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago.</key>
+	<string>Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago.</string>
+	<key>See what shifts you have today or tomorrow.</key>
+	<string>See what shifts you have today or tomorrow.</string>
+	<key>Selected</key>
+	<string>Selected</string>
+	<key>Selects this sign-in</key>
+	<string>Selects this sign-in</string>
+	<key>Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</key>
+	<string>Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</string>
+	<key>Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</key>
+	<string>Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</string>
+	<key>Set your breaks in the app</key>
+	<string>Set your breaks in the app</string>
+	<key>Settings</key>
+	<string>Settings</string>
+	<key>Shift</key>
+	<string>Shift</string>
+	<key>Shift countdown</key>
+	<string>Shift countdown</string>
+	<key>Shift details updated</key>
+	<string>Shift details updated</string>
+	<key>Shift ends in</key>
+	<string>Shift ends in</string>
+	<key>Shift length: %@</key>
+	<string>Shift length: %@</string>
+	<key>Shift removed from your schedule</key>
+	<string>Shift removed from your schedule</string>
+	<key>Shift started</key>
+	<string>Shift started</string>
+	<key>Shift starting soon</key>
+	<string>Shift starting soon</string>
+	<key>Shifts appear in their own Work Schedule calendar on all your Apple devices.</key>
+	<string>Shifts appear in their own Work Schedule calendar on all your Apple devices.</string>
+	<key>Shifts listed as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color.</key>
+	<string>Shifts listed as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color.</string>
+	<key>Shifts: %@</key>
+	<string>Shifts: %@</string>
+	<key>Show welcome screen</key>
+	<string>Show welcome screen</string>
+	<key>Shows as Supervisor</key>
+	<string>Shows as Supervisor</string>
+	<key>Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue.</key>
+	<string>Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue.</string>
+	<key>Shows your next shift</key>
+	<string>Shows your next shift</string>
+	<key>Sign in required</key>
+	<string>Sign in required</string>
+	<key>Sign in to see your schedule</key>
+	<string>Sign in to see your schedule</string>
+	<key>Sign in with Amazon (UKG Pro)</key>
+	<string>Sign in with Amazon (UKG Pro)</string>
+	<key>Sign in with UKG Pro</key>
+	<string>Sign in with UKG Pro</string>
+	<key>Sign in with UKG once and your shifts sync in the background, on a month calendar or a simple list.</key>
+	<string>Sign in with UKG once and your shifts sync in the background, on a month calendar or a simple list.</string>
+	<key>Sign in with your Whole Foods team member account directly through Amazon SSO to keep your schedule seamlessly in sync.</key>
+	<string>Sign in with your Whole Foods team member account directly through Amazon SSO to keep your schedule seamlessly in sync.</string>
+	<key>Sign in with your Whole Foods team member account. Your credentials go directly into the sign-in page below — this app never sees them.</key>
+	<string>Sign in with your Whole Foods team member account. Your credentials go directly into the sign-in page below — this app never sees them.</string>
+	<key>Sign out</key>
+	<string>Sign out</string>
+	<key>Start</key>
+	<string>Start</string>
+	<key>Start break</key>
+	<string>Start break</string>
+	<key>Staying signed in</key>
+	<string>Staying signed in</string>
+	<key>Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires.</key>
+	<string>Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires.</string>
+	<key>Stored securely in the Keychain for quick access and widgets.</key>
+	<string>Stored securely in the Keychain for quick access and widgets.</string>
+	<key>Streamlined sign-in with your Whole Foods team member account directly through Amazon and UKG Pro, with durable session restore and automatic background sync.</key>
+	<string>Streamlined sign-in with your Whole Foods team member account directly through Amazon and UKG Pro, with durable session restore and automatic background sync.</string>
+	<key>Swapped with? (optional)</key>
+	<string>Swapped with? (optional)</string>
+	<key>Switching away from Alerts now quietly marks what you saw as read. No more tapping each one or hitting Mark all as viewed.</key>
+	<string>Switching away from Alerts now quietly marks what you saw as read. No more tapping each one or hitting Mark all as viewed.</string>
+	<key>Sync timed out. Check your connection and try again.</key>
+	<string>Sync timed out. Check your connection and try again.</string>
+	<key>System default</key>
+	<string>System default</string>
+	<key>TM ID</key>
+	<string>TM ID</string>
+	<key>Taken</key>
+	<string>Taken</string>
+	<key>Tap to start your break timers.</key>
+	<string>Tap to start your break timers.</string>
+	<key>Teal</key>
+	<string>Teal</string>
+	<key>The app now saves your session itself, so it shouldn't ask you to sign in with your Amazon account every time you open it.</key>
+	<string>The app now saves your session itself, so it shouldn't ask you to sign in with your Amazon account every time you open it.</string>
+	<key>The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm.</key>
+	<string>The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm.</string>
+	<key>The calendar, schedule and break editor do less work, so the app feels snappier and uses less battery.</key>
+	<string>The calendar, schedule and break editor do less work, so the app feels snappier and uses less battery.</string>
+	<key>The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning.</key>
+	<string>The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning.</string>
+	<key>The rounded font preference in Display settings now dynamically styles text across every screen in the app.</key>
+	<string>The rounded font preference in Display settings now dynamically styles text across every screen in the app.</string>
+	<key>The stored credentials were rejected.</key>
+	<string>The stored credentials were rejected.</string>
+	<key>The tab bar now collapses as you scroll, with a live countdown beside it: time until your next shift, or until the shift you're on ends. Tap it during a shift to open your breaks, or any other time to jump to your next shift. Breaks no longer has its own tab.</key>
+	<string>The tab bar now collapses as you scroll, with a live countdown beside it: time until your next shift, or until the shift you're on ends. Tap it during a shift to open your breaks, or any other time to jump to your next shift. Breaks no longer has its own tab.</string>
+	<key>Theme &amp; Appearance</key>
+	<string>Theme &amp; Appearance</string>
+	<key>Theme &amp; Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact.</key>
+	<string>Theme &amp; Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact.</string>
+	<key>Time changed from %@–%@ to %@–%@</key>
+	<string>Time changed from %@–%@ to %@–%@</string>
+	<key>Time off</key>
+	<string>Time off</string>
+	<key>Time until your next break, or how long it's overdue.</key>
+	<string>Time until your next break, or how long it's overdue.</string>
+	<key>Time until your next break, red and pulsing when overdue.</key>
+	<string>Time until your next break, red and pulsing when overdue.</string>
+	<key>Times repeat every day. Mark a break as taken to stop its countdown; it resets tomorrow.</key>
+	<string>Times repeat every day. Mark a break as taken to stop its countdown; it resets tomorrow.</string>
+	<key>Today</key>
+	<string>Today</string>
+	<key>Today you work %@.</key>
+	<string>Today you work %@.</string>
+	<key>Tomorrow</key>
+	<string>Tomorrow</string>
+	<key>Tomorrow you work %@.</key>
+	<string>Tomorrow you work %@.</string>
+	<key>Transfer</key>
+	<string>Transfer</string>
+	<key>Type changed from %@ to %@</key>
+	<string>Type changed from %@ to %@</string>
+	<key>UKG did not respond in time (possibly waiting on a two-factor prompt this app can't complete on its own).</key>
+	<string>UKG did not respond in time (possibly waiting on a two-factor prompt this app can't complete on its own).</string>
+	<key>UKG password</key>
+	<string>UKG password</string>
+	<key>UKG returned an unexpected response (%lld).</key>
+	<string>UKG returned an unexpected response (%lld).</string>
+	<key>UKG session expired.</key>
+	<string>UKG session expired.</string>
+	<key>UKG username</key>
+	<string>UKG username</string>
+	<key>Unified Sign-In</key>
+	<string>Unified Sign-In</string>
+	<key>Unpaid meal periods (30 min)</key>
+	<string>Unpaid meal periods (30 min)</string>
+	<key>Use my next shift</key>
+	<string>Use my next shift</string>
+	<key>Use these in my break timer</key>
+	<string>Use these in my break timer</string>
+	<key>Version</key>
+	<string>Version</string>
+	<key>Viewed (%lld)</key>
+	<string>Viewed (%lld)</string>
+	<key>WF Icon unlocked</key>
+	<string>WF Icon unlocked</string>
+	<key>WF Schedule couldn't refresh your schedule automatically. Open the app to sign in again.</key>
+	<string>WF Schedule couldn't refresh your schedule automatically. Open the app to sign in again.</string>
+	<key>Welcome to</key>
+	<string>Welcome to</string>
+	<key>What's New</key>
+	<string>What's New</string>
+	<key>What's New in</key>
+	<string>What's New in</string>
+	<key>What's new</key>
+	<string>What's new</string>
+	<key>When enabled, WF Schedule stores your UKG username and password in the device Keychain so it can sign in again on its own if your session expires while the app is in the background. Off by default — turn this on only if you're comfortable with the app holding a reusable copy of your password on this device.</key>
+	<string>When enabled, WF Schedule stores your UKG username and password in the device Keychain so it can sign in again on its own if your session expires while the app is in the background. Off by default — turn this on only if you're comfortable with the app holding a reusable copy of your password on this device.</string>
+	<key>Widgets</key>
+	<string>Widgets</string>
+	<key>You are not working today.</key>
+	<string>You are not working today.</string>
+	<key>You are not working tomorrow.</key>
+	<string>You are not working tomorrow.</string>
+	<key>You get a second 10-minute rest break.</key>
+	<string>You get a second 10-minute rest break.</string>
+	<key>You have no upcoming shifts.</key>
+	<string>You have no upcoming shifts.</string>
+	<key>You must take %lld unpaid 30-minute meal periods.</key>
+	<string>You must take %lld unpaid 30-minute meal periods.</string>
+	<key>You must take 1 unpaid 30-minute meal period.</key>
+	<string>You must take 1 unpaid 30-minute meal period.</string>
+	<key>You're all caught up</key>
+	<string>You're all caught up</string>
+	<key>Your barcode on the Lock Screen, no unlocking needed.</key>
+	<string>Your barcode on the Lock Screen, no unlocking needed.</string>
+	<key>Your break countdown now lives on the Lock Screen and in the Dynamic Island, turning red and counting up when a break is overdue.</key>
+	<string>Your break countdown now lives on the Lock Screen and in the Dynamic Island, turning red and counting up when a break is overdue.</string>
+	<key>Your breaks</key>
+	<string>Your breaks</string>
+	<key>Your credentials go directly into UKG's own sign-in page below — this app never sees them.</key>
+	<string>Your credentials go directly into UKG's own sign-in page below — this app never sees them.</string>
+	<key>Your next shift and how long until it starts.</key>
+	<string>Your next shift and how long until it starts.</string>
+	<key>Your next shift is %@ on %@.</key>
+	<string>Your next shift is %@ on %@.</string>
+	<key>Your schedule is stored only on this device.</key>
+	<string>Your schedule is stored only on this device.</string>
+	<key>Your schedule, always current</key>
+	<string>Your schedule, always current</string>
+	<key>now</key>
+	<string>now</string>
+</dict>
+</plist>

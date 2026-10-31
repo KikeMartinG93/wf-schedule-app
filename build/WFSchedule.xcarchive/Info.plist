@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>ApplicationProperties</key>
+	<dict>
+		<key>ApplicationPath</key>
+		<string>Applications/WFSchedule.app</string>
+		<key>Architectures</key>
+		<array>
+			<string>arm64</string>
+		</array>
+		<key>CFBundleIdentifier</key>
+		<string>com.marting.WFM</string>
+		<key>CFBundleShortVersionString</key>
+		<string>2.8</string>
+		<key>CFBundleVersion</key>
+		<string>3</string>
+		<key>SigningIdentity</key>
+		<string></string>
+		<key>Team</key>
+		<string></string>
+	</dict>
+	<key>ArchiveVersion</key>
+	<integer>2</integer>
+	<key>CreationDate</key>
+	<date>2026-10-31T19:35:14Z</date>
+	<key>Name</key>
+	<string>WFSchedule</string>
+	<key>SchemeName</key>
+	<string>WFSchedule</string>
+</dict>
+</plist>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Am I working ${day} in ${applicationName}</key>
+	<string>Trabajo ${day} en ${applicationName}</string>
+	<key>Next shift in ${applicationName}</key>
+	<string>Próximo turno en ${applicationName}</string>
+	<key>What is my next shift in ${applicationName}</key>
+	<string>Cuál es mi próximo turno en ${applicationName}</string>
+	<key>What is my schedule ${day} in ${applicationName}</key>
+	<string>Cuál es mi horario de ${day} en ${applicationName}</string>
+	<key>When do I work next in ${applicationName}</key>
+	<string>Cuándo trabajo próximamente en ${applicationName}</string>
+</dict>
+</plist>

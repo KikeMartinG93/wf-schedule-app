@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>%@ starts at %@</key>
+	<string>%@ empieza a las %@</string>
+	<key>%@ — %@</key>
+	<string>%@ — %@</string>
+	<key>%lld h</key>
+	<string>%lld h</string>
+	<key>%lld h %lld min</key>
+	<string>%lld h %lld min</string>
+	<key>%lld min</key>
+	<string>%lld min</string>
+	<key>A bigger countdown that shifts from green to red.</key>
+	<string>Una cuenta regresiva más grande que pasa de verde a rojo.</string>
+	<key>A meal period is required, but you and your manager can agree to skip it since your shift is 6 hours or less.</key>
+	<string>Se requiere un período de comida, pero tú y tu gerente pueden acordar omitirlo porque tu turno es de 6 horas o menos.</string>
+	<key>A new ring design for the Home Screen and Lock Screen that shifts from green to red as your break gets close.</key>
+	<string>Un nuevo diseño de anillo para la pantalla de inicio y la pantalla de bloqueo que cambia de verde a rojo a medida que se acerca tu descanso.</string>
+	<key>A sleeker Breaks sheet</key>
+	<string>Una hoja de descansos más elegante</string>
+	<key>A softer calendar</key>
+	<string>Un calendario más suave</string>
+	<key>A transparent widget with your barcode, ready at the register.</key>
+	<string>Un widget transparente con tu código de barras, listo en la caja.</string>
+	<key>Add Next Shift or Discount Barcode to your Home Screen or Lock Screen.</key>
+	<string>Añade Próximo turno o Código de descuento a tu pantalla de inicio o de bloqueo.</string>
+	<key>Add note</key>
+	<string>Agregar nota</string>
+	<key>Add the Next Shift widget to your Lock Screen to see what's coming and how long until it starts.</key>
+	<string>Agrega el widget Próximo turno a tu pantalla de bloqueo para ver qué sigue y cuánto falta para que empiece.</string>
+	<key>Add your breaks below to start a countdown.</key>
+	<string>Agrega tus descansos abajo para iniciar una cuenta regresiva.</string>
+	<key>Alerts</key>
+	<string>Alertas</string>
+	<key>Alerts clear themselves</key>
+	<string>Las alertas se limpian solas</string>
+	<key>All breaks taken</key>
+	<string>Todos los descansos tomados</string>
+	<key>Amazon Login</key>
+	<string>Inicio de sesión de Amazon</string>
+	<key>Amazon Sign-In &amp; Version 2.5</key>
+	<string>Inicio de sesión de Amazon y versión 2.5</string>
+	<key>Amber</key>
+	<string>Ámbar</string>
+	<key>Appearance</key>
+	<string>Apariencia</string>
+	<key>Appearance Mode</key>
+	<string>Modo de apariencia</string>
+	<key>Atmospheric Easter Eggs</key>
+	<string>Detalles sorpresa temáticos</string>
+	<key>Automatic Sign-In</key>
+	<string>Inicio de sesión automático</string>
+	<key>Automatic background sign-in</key>
+	<string>Inicio de sesión automático en segundo plano</string>
+	<key>Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.</key>
+	<string>El inicio automático guarda credenciales de forma segura en el llavero para mantener actualizado tu horario en segundo plano.</string>
+	<key>Background Refresh Reliability</key>
+	<string>Confiabilidad de actualización en segundo plano</string>
+	<key>Backup sign-in</key>
+	<string>Inicio de sesión alternativo</string>
+	<key>Blue</key>
+	<string>Azul</string>
+	<key>Break %lld</key>
+	<string>Descanso %lld</string>
+	<key>Break %lld · %lld min</key>
+	<string>Descanso %lld · %lld min</string>
+	<key>Break Live Activity</key>
+	<string>Ver Breaks en Pantalla</string>
+	<key>Break Timer</key>
+	<string>Temporizador de descanso</string>
+	<key>Break calculator</key>
+	<string>Calculadora de descansos</string>
+	<key>Break chart</key>
+	<string>Tabla de descansos</string>
+	<key>Break in</key>
+	<string>Descanso en</string>
+	<key>Break is over</key>
+	<string>El descanso terminó</string>
+	<key>Break overdue</key>
+	<string>Descanso atrasado</string>
+	<key>Breaks</key>
+	<string>Descansos</string>
+	<key>Breaks now opens as a compact card with your countdown and your breaks. Swipe up to reveal the break calculator.</key>
+	<string>Los descansos ahora se abren en una tarjeta compacta con tu cuenta regresiva y tus descansos. Desliza hacia arriba para ver la calculadora de descansos.</string>
+	<key>Breaks on your Lock Screen</key>
+	<string>Descansos en tu pantalla de bloqueo</string>
+	<key>Calendar access was not granted.</key>
+	<string>No se concedió el acceso al calendario.</string>
+	<key>Cancel</key>
+	<string>Cancelar</string>
+	<key>Celebrate the season with a vibrant Halloween palette: glowing pools of pumpkin orange, eerie slime green, and deep witch violet.</key>
+	<string>Celebra la temporada con una vibrante paleta de Halloween: halos brillantes en naranja calabaza, verde viscoso y violeta oscuro.</string>
+	<key>Change</key>
+	<string>Cambiar</string>
+	<key>Choose separate color themes and background vibrancies for Light and Dark modes. Control contrast with a live accessibility slider.</key>
+	<string>Elige temas de color y vivacidad de fondo independientes para los modos claro y oscuro. Ajusta el contraste con un deslizador de accesibilidad.</string>
+	<key>Clearer when you're signed out</key>
+	<string>Más claro cuando cerraste sesión</string>
+	<key>Collapsible Theme Settings</key>
+	<string>Ajustes de tema plegables</string>
+	<key>Colorful</key>
+	<string>Colorido</string>
+	<key>Colors are off while High contrast is on.</key>
+	<string>Los colores están desactivados mientras el alto contraste está activado.</string>
+	<key>Connect your UKG Pro account to sync your shifts.</key>
+	<string>Conecta tu cuenta de UKG Pro para sincronizar tus turnos.</string>
+	<key>Continue</key>
+	<string>Continuar</string>
+	<key>Could not locate the sign-in form.</key>
+	<string>No se encontró el formulario de inicio de sesión.</string>
+	<key>Could not parse the UKG schedule response.</key>
+	<string>No se pudo interpretar la respuesta del horario de UKG.</string>
+	<key>Crimson</key>
+	<string>Carmesí</string>
+	<key>Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</key>
+	<string>Personaliza la paleta y vivacidad para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad.</string>
+	<key>Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</key>
+	<string>Personaliza la paleta y vivacidad para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad.</string>
+	<key>Dark Mode</key>
+	<string>Modo oscuro</string>
+	<key>Day</key>
+	<string>Día</string>
+	<key>Demo</key>
+	<string>Demo</string>
+	<key>Demo mode</key>
+	<string>Modo demo</string>
+	<key>Demo mode is currently active with sample data.</key>
+	<string>El modo demo está activo con datos de ejemplo.</string>
+	<key>Demo mode · sample data</key>
+	<string>Modo demo · datos de ejemplo</string>
+	<key>Discount Barcode</key>
+	<string>Código de barras de descuento</string>
+	<key>Discount barcode at hand</key>
+	<string>Código de barras de descuento al instante</string>
+	<key>Discount cards and widget barcodes are now formatted with the official 0491 prefix and check digits for instant, reliable scanning at Whole Foods Market registers.</key>
+	<string>Los códigos de barras de la tarjeta de descuento y widgets ahora están formateados con el prefijo oficial 0491 y dígitos de control para un escaneo instantáneo y confiable en las cajas de Whole Foods Market.</string>
+	<key>Display &amp; Accessibility</key>
+	<string>Pantalla y accesibilidad</string>
+	<key>Done</key>
+	<string>Listo</string>
+	<key>Easier to read</key>
+	<string>Más fácil de leer</string>
+	<key>End</key>
+	<string>Fin</string>
+	<key>Every update now opens with a summary like this one. You can find it again anytime in Settings.</key>
+	<string>Cada actualización ahora comienza con un resumen como este. Puedes volver a verlo en cualquier momento en Ajustes.</string>
+	<key>Exit</key>
+	<string>Salir</string>
+	<key>Explore Demo Mode</key>
+	<string>Explorar modo demo</string>
+	<key>Explore demo mode</key>
+	<string>Explorar el modo demo</string>
+	<key>Explore every feature with sample data. No UKG account needed, and nothing real is changed.</key>
+	<string>Explora todas las funciones con datos de ejemplo. No necesitas una cuenta de UKG y no se cambia nada real.</string>
+	<key>Explore sample shifts, break tools, and role checklists right from the home and login screens with dedicated Demo buttons.</key>
+	<string>Explora turnos de muestra, herramientas de pausas y listas de tareas por función directamente desde la pantalla principal y de inicio de sesión con botones de Demo dedicados.</string>
+	<key>Faster and smoother</key>
+	<string>Más rápida y fluida</string>
+	<key>Find out when your next shift starts.</key>
+	<string>Averigua cuándo empieza tu próximo turno.</string>
+	<key>Finish break</key>
+	<string>Terminar descanso</string>
+	<key>Get notified when a shift is added, moved, or removed, plus a reminder before each one starts.</key>
+	<string>Recibe una notificación cuando se agregue, cambie o elimine un turno, además de un recordatorio antes de que empiece cada uno.</string>
+	<key>Gradient vibrancy</key>
+	<string>Vivacidad del degradado</string>
+	<key>Green</key>
+	<string>Verde</string>
+	<key>Halloween</key>
+	<string>Halloween</string>
+	<key>Halloween Theme &amp; Ambiance</key>
+	<string>Tema y ambiente de Halloween</string>
+	<key>High contrast</key>
+	<string>Alto contraste</string>
+	<key>High contrast and font choice</key>
+	<string>Alto contraste y elección de fuente</string>
+	<key>High contrast switches all screens and widgets to monochrome. Turn off Rounded font to use the standard system font.</key>
+	<string>El alto contraste cambia todas las pantallas y widgets a monocromático. Desactiva Fuente redondeada para usar la fuente estándar del sistema.</string>
+	<key>High contrast switches the whole app, widgets and Live Activity to plain black, white and gray with flat backgrounds. Turn off Rounded font to use the standard system font. Widgets follow the font choice.</key>
+	<string>El alto contraste cambia toda la app, los widgets y la actividad en vivo a negro, blanco y gris con fondos planos. Desactiva la fuente redondeada para usar la fuente estándar del sistema. Los widgets siguen la elección de fuente.</string>
+	<key>Higher-contrast colors, VoiceOver support for the calendar, and the rounded system font throughout the app.</key>
+	<string>Colores con más contraste, compatibilidad con VoiceOver en el calendario y la fuente redondeada del sistema en toda la app.</string>
+	<key>Holiday</key>
+	<string>Feriado</string>
+	<key>Holiday Pay</key>
+	<string>Pago de día festivo</string>
+	<key>Holiday Pay Eligible</key>
+	<string>Elegible para día festivo</string>
+	<key>Holiday pay</key>
+	<string>Holiday Pay</string>
+	<key>Home</key>
+	<string>Inicio</string>
+	<key>Home Screen</key>
+	<string>Pantalla de inicio</string>
+	<key>Home now blurs the calendar and shows a sign-in button when your session needs attention — and only after actually checking, not on every launch.</key>
+	<string>Ahora Inicio difumina el calendario y muestra un botón de inicio de sesión cuando tu sesión necesita atención, y solo después de comprobarlo, no en cada apertura.</string>
+	<key>Home's month view drops the hard grid lines: every day is a soft rounded blob with its number and shift dot inside, tinted by the work you have that day.</key>
+	<string>La vista mensual de Inicio deja atrás las líneas duras: cada día es una forma suave y redondeada con su número y el punto del turno dentro, teñida según el trabajo de ese día.</string>
+	<key>Independent Light &amp; Dark Themes</key>
+	<string>Temas independientes para claro y oscuro</string>
+	<key>Indigo</key>
+	<string>Índigo</string>
+	<key>Instant Demo Mode</key>
+	<string>Modo Demo instantáneo</string>
+	<key>Job</key>
+	<string>Puesto</string>
+	<key>Job changed from %@ to %@</key>
+	<string>Puesto cambiado de %@ a %@</string>
+	<key>Keep an eye out for surprise lightning flashes and dangling spiders creeping across your screen when the Halloween theme is active.</key>
+	<string>Descubre relámpagos repentinos y arañitas colgantes en tu pantalla cuando el tema de Halloween esté activo.</string>
+	<key>Know the moment it changes</key>
+	<string>Entérate al instante de los cambios</string>
+	<key>Language</key>
+	<string>Idioma</string>
+	<key>Last synced %@</key>
+	<string>Última sincronización: %@</string>
+	<key>Light Mode</key>
+	<string>Modo claro</string>
+	<key>List</key>
+	<string>Lista</string>
+	<key>Lives in Apple Calendar</key>
+	<string>Vive en el Calendario de Apple</string>
+	<key>Location</key>
+	<string>Ubicación</string>
+	<key>Location changed from %@ to %@</key>
+	<string>Ubicación cambiada de %@ a %@</string>
+	<key>Lock Screen</key>
+	<string>Pantalla de bloqueo</string>
+	<key>Lunch is over</key>
+	<string>El almuerzo terminó</string>
+	<key>Make it yours</key>
+	<string>Personalízala</string>
+	<key>Mark all as viewed</key>
+	<string>Marcar todo como visto</string>
+	<key>Mark as taken</key>
+	<string>Marcar como tomado</string>
+	<key>Meal</key>
+	<string>Comida</string>
+	<key>My Schedule</key>
+	<string>Mi horario</string>
+	<key>NEW SHIFT</key>
+	<string>TURNO NUEVO</string>
+	<key>New Readability settings: a high contrast mode that turns the whole app, widgets and Live Activity plain black, white and gray, and a switch between the rounded font and the standard system font.</key>
+	<string>Nuevos ajustes de legibilidad: un modo de alto contraste que deja toda la app, los widgets y la actividad en vivo en negro, blanco y gris, y un interruptor entre la fuente redondeada y la fuente estándar del sistema.</string>
+	<key>New shift added</key>
+	<string>Turno nuevo agregado</string>
+	<key>New, changed, or removed shifts will show up here after your next sync.</key>
+	<string>Los turnos nuevos, modificados o eliminados aparecerán aquí después de tu próxima sincronización.</string>
+	<key>Next</key>
+	<string>Próximo</string>
+	<key>Next Shift</key>
+	<string>Próximo turno</string>
+	<key>Next break</key>
+	<string>Próximo descanso</string>
+	<key>Next month</key>
+	<string>Mes siguiente</string>
+	<key>Next shift at a glance</key>
+	<string>Tu próximo turno de un vistazo</string>
+	<key>Next shift in</key>
+	<string>Próximo turno en</string>
+	<key>No Alerts</key>
+	<string>Sin Alertas</string>
+	<key>No breaks set</key>
+	<string>Sin descansos</string>
+	<key>No changes yet</key>
+	<string>Aún no hay cambios</string>
+	<key>No meal period is required for a shift this short.</key>
+	<string>No se requiere período de comida para un turno tan corto.</string>
+	<key>No second 10-minute rest break for this shift.</key>
+	<string>No hay un segundo descanso de 10 minutos en este turno.</string>
+	<key>No shift on %@</key>
+	<string>Sin turno el %@</string>
+	<key>No shifts yet</key>
+	<string>Aún no hay turnos</string>
+	<key>No upcoming shifts</key>
+	<string>No hay turnos próximos</string>
+	<key>Number of breaks</key>
+	<string>Cantidad de descansos</string>
+	<key>Number of breaks: %lld</key>
+	<string>Cantidad de descansos: %lld</string>
+	<key>Official UPC-A Barcode</key>
+	<string>Código de barras oficial UPC-A</string>
+	<key>Opens sign in</key>
+	<string>Abre el inicio de sesión</string>
+	<key>Opens your breaks</key>
+	<string>Abre tus descansos</string>
+	<key>Overdue</key>
+	<string>Atrasado</string>
+	<key>Paid rest breaks (10 min)</key>
+	<string>Descansos pagados (10 min)</string>
+	<key>Pay code change</key>
+	<string>Cambio de código de pago</string>
+	<key>Pick a color theme in Settings and the whole app follows.</key>
+	<string>Elige un tema de color en Ajustes y toda la app lo sigue.</string>
+	<key>Plan break schedules or track shift duties and checklists.</key>
+	<string>Planifica horarios de descanso o consulta tareas de turno y listas de control.</string>
+	<key>Precise Register Barcodes</key>
+	<string>Códigos de barras precisos para caja</string>
+	<key>Previous month</key>
+	<string>Mes anterior</string>
+	<key>Pull to sync your UKG schedule.</key>
+	<string>Desliza hacia abajo para sincronizar tu horario de UKG.</string>
+	<key>Purple</key>
+	<string>Morado</string>
+	<key>Rainbow</key>
+	<string>Arcoíris</string>
+	<key>Readability</key>
+	<string>Legibilidad</string>
+	<key>Redesigned Break Timer widget</key>
+	<string>Widget del temporizador de descansos rediseñado</string>
+	<key>Regular</key>
+	<string>Regular</string>
+	<key>Relative Change Times</key>
+	<string>Horas relativas de cambios</string>
+	<key>Remove</key>
+	<string>Quitar</string>
+	<key>Resolved background watchdog hangs and improved session recovery so your schedule stays seamlessly up to date.</key>
+	<string>Se resolvieron bloqueos por tiempo de espera en segundo plano y se mejoró la recuperación de sesión para mantener tu horario actualizado sin interrupciones.</string>
+	<key>Rest</key>
+	<string>Descanso</string>
+	<key>Rose</key>
+	<string>Rosa</string>
+	<key>Rounded Font Design</key>
+	<string>Diseño con fuente redondeada</string>
+	<key>Rounded font</key>
+	<string>Fuente redondeada</string>
+	<key>SHIFT CHANGED</key>
+	<string>TURNO MODIFICADO</string>
+	<key>SHIFT REMOVED</key>
+	<string>TURNO ELIMINADO</string>
+	<key>Save</key>
+	<string>Guardar</string>
+	<key>Save your TM ID in Settings to display your discount card and widgets instantly.</key>
+	<string>Guarda tu TM ID en Ajustes para ver tu tarjeta de descuento y widgets al instante.</string>
+	<key>Schedule for %@</key>
+	<string>Horario de %@</string>
+	<key>Schedule for a Day</key>
+	<string>Horario de un día</string>
+	<key>Schedule updated</key>
+	<string>Horario actualizado</string>
+	<key>Schedule updates in the Changes tab now display relative detection times like now, 5 mins ago, or 2 days ago.</key>
+	<string>Las actualizaciones en la pestaña Cambios ahora muestran tiempos de detección relativos como ahora, hace 5 minutos o hace 2 días.</string>
+	<key>See what shifts you have today or tomorrow.</key>
+	<string>Consulta qué turnos tienes hoy o mañana.</string>
+	<key>Selected</key>
+	<string>Seleccionado</string>
+	<key>Selects this sign-in</key>
+	<string>Selecciona este inicio de sesión</string>
+	<key>Set a custom theme and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.</key>
+	<string>Configura un tema y vivacidad personalizados para el modo oscuro. Bajar la barra añade una superposición negra para accesibilidad.</string>
+	<key>Set a custom theme and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility.</key>
+	<string>Configura un tema y vivacidad personalizados para el modo claro. Bajar la barra añade una superposición blanca para accesibilidad.</string>
+	<key>Set your breaks in the app</key>
+	<string>Configura tus descansos en la app</string>
+	<key>Settings</key>
+	<string>Ajustes</string>
+	<key>Shift</key>
+	<string>Turno</string>
+	<key>Shift countdown</key>
+	<string>Cuenta regresiva del turno</string>
+	<key>Shift details updated</key>
+	<string>Detalles del turno actualizados</string>
+	<key>Shift ends in</key>
+	<string>El turno termina en</string>
+	<key>Shift length: %@</key>
+	<string>Duración del turno: %@</string>
+	<key>Shift removed from your schedule</key>
+	<string>Turno eliminado de tu horario</string>
+	<key>Shift started</key>
+	<string>Turno iniciado</string>
+	<key>Shift starting soon</key>
+	<string>Tu turno empieza pronto</string>
+	<key>Shifts appear in their own Work Schedule calendar on all your Apple devices.</key>
+	<string>Tus turnos aparecen en su propio calendario Work Schedule en todos tus dispositivos Apple.</string>
+	<key>Shifts listed as Customer Service Team, Front End now show up as Supervisor, with the Supervisor color.</key>
+	<string>Los turnos listados como Customer Service Team, Front End ahora aparecen como Supervisor, con el color de Supervisor.</string>
+	<key>Shifts: %@</key>
+	<string>Turnos: %@</string>
+	<key>Show welcome screen</key>
+	<string>Mostrar pantalla de bienvenida</string>
+	<key>Shows as Supervisor</key>
+	<string>Se muestra como Supervisor</string>
+	<key>Shows your break countdown on the Lock Screen and in the Dynamic Island. It turns red and counts up when a break is overdue.</key>
+	<string>Muestra la cuenta regresiva de tu descanso en la pantalla de bloqueo y en la Dynamic Island. Se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado.</string>
+	<key>Shows your next shift</key>
+	<string>Muestra tu próximo turno</string>
+	<key>Sign in required</key>
+	<string>Se requiere iniciar sesión</string>
+	<key>Sign in to see your schedule</key>
+	<string>Inicia sesión para ver tu horario</string>
+	<key>Sign in with Amazon (UKG Pro)</key>
+	<string>Iniciar sesión con Amazon (UKG Pro)</string>
+	<key>Sign in with UKG Pro</key>
+	<string>Iniciar sesión con UKG Pro</string>
+	<key>Sign in with UKG once and your shifts sync in the background, on a month calendar or a simple list.</key>
+	<string>Inicia sesión una vez con UKG y tus turnos se sincronizan en segundo plano, en un calendario mensual o en una lista sencilla.</string>
+	<key>Sign in with your Whole Foods team member account directly through Amazon SSO to keep your schedule seamlessly in sync.</key>
+	<string>Inicia sesión con tu cuenta de miembro del equipo de Whole Foods directamente a través del inicio de sesión de Amazon para mantener tu horario sincronizado.</string>
+	<key>Sign in with your Whole Foods team member account. Your credentials go directly into the sign-in page below — this app never sees them.</key>
+	<string>Inicia sesión con tu cuenta de miembro del equipo de Whole Foods. Tus credenciales van directamente a la página de inicio de sesión de abajo; esta app nunca las ve.</string>
+	<key>Sign out</key>
+	<string>Cerrar sesión</string>
+	<key>Start</key>
+	<string>Inicio</string>
+	<key>Start break</key>
+	<string>Iniciar descanso</string>
+	<key>Staying signed in</key>
+	<string>Sesión más estable</string>
+	<key>Stored only in this device's Keychain, used only to sign back into wfminc.prd.mykronos.com when your session expires.</key>
+	<string>Se guarda solo en el llavero de este dispositivo y se usa únicamente para volver a iniciar sesión en wfminc.prd.mykronos.com cuando caduque tu sesión.</string>
+	<key>Stored securely in the Keychain for quick access and widgets.</key>
+	<string>Guardado de forma segura en el llavero para acceso rápido y widgets.</string>
+	<key>Streamlined sign-in with your Whole Foods team member account directly through Amazon and UKG Pro, with durable session restore and automatic background sync.</key>
+	<string>Inicio de sesión optimizado con tu cuenta de Whole Foods directamente a través de Amazon y UKG Pro, con restauración duradera de sesión y sincronización automática en segundo plano.</string>
+	<key>Swapped with? (optional)</key>
+	<string>¿Con quién cambiaste? (opcional)</string>
+	<key>Switching away from Alerts now quietly marks what you saw as read. No more tapping each one or hitting Mark all as viewed.</key>
+	<string>Ahora, al salir de Alertas, se marca en silencio como leído lo que viste. Ya no hace falta tocar cada una ni usar Marcar todo como visto.</string>
+	<key>Sync timed out. Check your connection and try again.</key>
+	<string>La sincronización tardó demasiado. Revisa tu conexión e inténtalo de nuevo.</string>
+	<key>System default</key>
+	<string>Idioma del dispositivo</string>
+	<key>TM ID</key>
+	<string>TM ID</string>
+	<key>Taken</key>
+	<string>Tomado</string>
+	<key>Tap to start your break timers.</key>
+	<string>Toca para iniciar tus temporizadores de descanso.</string>
+	<key>Teal</key>
+	<string>Turquesa</string>
+	<key>The app now saves your session itself, so it shouldn't ask you to sign in with your Amazon account every time you open it.</key>
+	<string>Ahora la app guarda tu sesión por su cuenta, así que no debería pedirte iniciar sesión con tu cuenta de Amazon cada vez que la abres.</string>
+	<key>The break Live Activity now only runs during your shift. Tap Start for a 10 minute break, a 30 minute lunch after four hours, and another break at six hours — each counts down on a bar that turns red near zero, then rings an alarm.</key>
+	<string>La actividad en vivo de descansos ahora solo funciona durante tu turno. Toca Iniciar para un descanso de 10 minutos, un almuerzo de 30 minutos después de cuatro horas y otro descanso a las seis horas; cada uno cuenta hacia atrás en una barra que se pone roja cerca de cero y luego suena una alarma.</string>
+	<key>The calendar, schedule and break editor do less work, so the app feels snappier and uses less battery.</key>
+	<string>El calendario, el horario y el editor de descansos trabajan menos, así que la app responde mejor y gasta menos batería.</string>
+	<key>The discount card barcode now matches the Whole Foods Market checkout format with UPC-A symbology and taller guard bars for instant register scanning.</key>
+	<string>El código de barras de la tarjeta de descuento ahora coincide con el formato de pago de Whole Foods Market con simbología UPC-A y barras de protección más altas para un escaneo instantáneo en caja.</string>
+	<key>The rounded font preference in Display settings now dynamically styles text across every screen in the app.</key>
+	<string>La preferencia de fuente redondeada en los ajustes de pantalla ahora aplica estilo dinámico a todo el texto en cada pantalla de la app.</string>
+	<key>The stored credentials were rejected.</key>
+	<string>Se rechazaron las credenciales guardadas.</string>
+	<key>The tab bar now collapses as you scroll, with a live countdown beside it: time until your next shift, or until the shift you're on ends. Tap it during a shift to open your breaks, or any other time to jump to your next shift. Breaks no longer has its own tab.</key>
+	<string>La barra de pestañas ahora se contrae al desplazarte, con una cuenta regresiva al lado: el tiempo hasta tu próximo turno, o hasta que termine el turno en curso. Tócala durante un turno para abrir tus descansos, o en cualquier otro momento para ir a tu próximo turno. Descansos ya no tiene su propia pestaña.</string>
+	<key>Theme &amp; Appearance</key>
+	<string>Tema y apariencia</string>
+	<key>Theme &amp; Appearance settings can now be expanded or collapsed to keep your Settings screen organized and compact.</key>
+	<string>Los ajustes de Tema y Apariencia ahora se pueden expandir o contraer para mantener la pantalla de Ajustes más compacta y ordenada.</string>
+	<key>Time changed from %@–%@ to %@–%@</key>
+	<string>Horario cambiado de %@–%@ a %@–%@</string>
+	<key>Time off</key>
+	<string>Tiempo libre</string>
+	<key>Time until your next break, or how long it's overdue.</key>
+	<string>Tiempo hasta tu próximo descanso, o cuánto lleva atrasado.</string>
+	<key>Time until your next break, red and pulsing when overdue.</key>
+	<string>Tiempo hasta tu próximo descanso, en rojo y pulsando cuando está atrasado.</string>
+	<key>Times repeat every day. Mark a break as taken to stop its countdown; it resets tomorrow.</key>
+	<string>Los horarios se repiten todos los días. Marca un descanso como tomado para detener su cuenta regresiva; se reinicia mañana.</string>
+	<key>Today</key>
+	<string>Hoy</string>
+	<key>Today you work %@.</key>
+	<string>Hoy trabajas: %@.</string>
+	<key>Tomorrow</key>
+	<string>Mañana</string>
+	<key>Tomorrow you work %@.</key>
+	<string>Mañana trabajas: %@.</string>
+	<key>Tools</key>
+	<string>Herramientas</string>
+	<key>Transfer</key>
+	<string>Transferencia</string>
+	<key>Type changed from %@ to %@</key>
+	<string>Tipo cambiado de %@ a %@</string>
+	<key>UKG did not respond in time (possibly waiting on a two-factor prompt this app can't complete on its own).</key>
+	<string>UKG no respondió a tiempo (posiblemente esperando una verificación en dos pasos que esta app no puede completar por sí sola).</string>
+	<key>UKG password</key>
+	<string>Contraseña de UKG</string>
+	<key>UKG returned an unexpected response (%lld).</key>
+	<string>UKG devolvió una respuesta inesperada (%lld).</string>
+	<key>UKG session expired.</key>
+	<string>La sesión de UKG caducó.</string>
+	<key>UKG username</key>
+	<string>Usuario de UKG</string>
+	<key>Unified Sign-In</key>
+	<string>Inicio de sesión unificado</string>
+	<key>Unpaid meal periods (30 min)</key>
+	<string>Períodos de comida sin pago (30 min)</string>
+	<key>Use my next shift</key>
+	<string>Usar mi próximo turno</string>
+	<key>Use these in my break timer</key>
+	<string>Usar en mi temporizador de descanso</string>
+	<key>Version</key>
+	<string>Versión</string>
+	<key>Viewed (%lld)</key>
+	<string>Vistos (%lld)</string>
+	<key>WF Icon unlocked</key>
+	<string>Ícono WF desbloqueado</string>
+	<key>WF Schedule couldn't refresh your schedule automatically. Open the app to sign in again.</key>
+	<string>WF Schedule no pudo actualizar tu horario automáticamente. Abre la app para iniciar sesión de nuevo.</string>
+	<key>Welcome to</key>
+	<string>Te damos la bienvenida a</string>
+	<key>What's New</key>
+	<string>Novedades</string>
+	<key>What's New in</key>
+	<string>Novedades de</string>
+	<key>What's new</key>
+	<string>Novedades</string>
+	<key>When enabled, WF Schedule stores your UKG username and password in the device Keychain so it can sign in again on its own if your session expires while the app is in the background. Off by default — turn this on only if you're comfortable with the app holding a reusable copy of your password on this device.</key>
+	<string>Al activarlo, WF Schedule guarda tu usuario y contraseña de UKG en el llavero del dispositivo para poder iniciar sesión por sí sola si tu sesión caduca mientras la app está en segundo plano. Está desactivado por defecto: actívalo solo si te sientes cómodo con que la app guarde una copia reutilizable de tu contraseña en este dispositivo.</string>
+	<key>Widgets</key>
+	<string>Widgets</string>
+	<key>You are not working today.</key>
+	<string>Hoy no trabajas.</string>
+	<key>You are not working tomorrow.</key>
+	<string>Mañana no trabajas.</string>
+	<key>You get a second 10-minute rest break.</key>
+	<string>Tienes un segundo descanso de 10 minutos.</string>
+	<key>You have no upcoming shifts.</key>
+	<string>No tienes próximos turnos.</string>
+	<key>You must take %lld unpaid 30-minute meal periods.</key>
+	<string>Debes tomar %lld períodos de comida de 30 minutos sin pago.</string>
+	<key>You must take 1 unpaid 30-minute meal period.</key>
+	<string>Debes tomar 1 período de comida de 30 minutos sin pago.</string>
+	<key>You're all caught up</key>
+	<string>Estás al día</string>
+	<key>Your barcode on the Lock Screen, no unlocking needed.</key>
+	<string>Tu código de barras en la pantalla de bloqueo, sin desbloquear.</string>
+	<key>Your break countdown now lives on the Lock Screen and in the Dynamic Island, turning red and counting up when a break is overdue.</key>
+	<string>La cuenta regresiva de tu descanso ahora aparece en la pantalla de bloqueo y en la Dynamic Island, y se pone en rojo y cuenta hacia arriba cuando un descanso está atrasado.</string>
+	<key>Your breaks</key>
+	<string>Tus descansos</string>
+	<key>Your credentials go directly into UKG's own sign-in page below — this app never sees them.</key>
+	<string>Tus credenciales van directamente a la página de inicio de sesión de UKG que aparece abajo; esta app nunca las ve.</string>
+	<key>Your next shift and how long until it starts.</key>
+	<string>Tu próximo turno y cuánto falta para que empiece.</string>
+	<key>Your next shift is %@ on %@.</key>
+	<string>Tu próximo turno es %@ el %@.</string>
+	<key>Your schedule is stored only on this device.</key>
+	<string>Tu horario se guarda solo en este dispositivo.</string>
+	<key>Your schedule, always current</key>
+	<string>Tu horario, siempre al día</string>
+	<key>now</key>
+	<string>ahora</string>
+</dict>
+</plist>

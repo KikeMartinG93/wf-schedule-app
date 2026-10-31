@@ -1,0 +1,89 @@
+{
+  "buildCommand" : {
+    "command" : "build",
+    "skipDependencies" : false,
+    "style" : "buildAndRun"
+  },
+  "configuredTargets" : [
+    {
+      "guid" : "72925b52e2a8fac35d9b2593ba43599205bd940345b38fe711232971e8820f8a"
+    }
+  ],
+  "containerPath" : "/Users/home/code/wf-schedule-app/WFSchedule.xcodeproj",
+  "continueBuildingAfterErrors" : false,
+  "dependencyScope" : "workspace",
+  "enableIndexBuildArena" : false,
+  "hideShellScriptEnvironment" : false,
+  "parameters" : {
+    "action" : "install",
+    "activeArchitecture" : "undefined_arch",
+    "activeRunDestination" : {
+      "disableOnlyActiveArch" : true,
+      "hostTargetedPlatform" : null,
+      "platform" : "iphoneos",
+      "sdk" : "iphoneos27.1",
+      "sdkVariant" : "iphoneos",
+      "supportedArchitectures" : [
+        "armv4t",
+        "armv5",
+        "armv6",
+        "armv7",
+        "armv7f",
+        "armv7s",
+        "armv7k",
+        "arm64",
+        "arm64e"
+      ],
+      "targetArchitecture" : "undefined_arch"
+    },
+    "arenaInfo" : {
+      "buildIntermediatesPath" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex",
+      "buildProductsPath" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Products",
+      "derivedDataPath" : "/Users/home/code/wf-schedule-app/build/DerivedData",
+      "indexDataStoreFolderPath" : "/Users/home/code/wf-schedule-app/build/DerivedData/Index.noindex/DataStore",
+      "indexEnableDataStore" : true,
+      "indexPCHPath" : "/Users/home/code/wf-schedule-app/build/DerivedData/Index.noindex/PrecompiledHeaders",
+      "pchPath" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/PrecompiledHeaders"
+    },
+    "configurationName" : "Release",
+    "overrides" : {
+      "commandLine" : {
+        "table" : {
+          "CODE_SIGNING_ALLOWED" : "NO",
+          "CODE_SIGNING_REQUIRED" : "NO"
+        }
+      },
+      "synthesized" : {
+        "table" : {
+          "ACTION" : "install",
+          "ASSET_PACK_FOLDER_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/InstallationBuildProductsLocation/OnDemandResources",
+          "ASSETCATALOG_COMPILER_FLATTENED_APP_ICON_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/ProductIcon.png",
+          "DEPLOYMENT_LOCATION" : "YES",
+          "DEPLOYMENT_POSTPROCESSING" : "YES",
+          "DSTROOT" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/InstallationBuildProductsLocation",
+          "EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE" : "NO",
+          "ENABLE_PREVIEWS" : "NO",
+          "ENABLE_SIGNATURE_AGGREGATION" : "YES",
+          "ENABLE_XOJIT_PREVIEWS" : "YES",
+          "INDEX_ENABLE_DATA_STORE" : "NO",
+          "MESSAGES_APPLICATION_EXTENSION_SUPPORT_FOLDER_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/MessagesApplicationExtensionSupport",
+          "MESSAGES_APPLICATION_SUPPORT_FOLDER_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/MessagesApplicationSupport",
+          "OBJROOT" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath",
+          "ONLY_ACTIVE_ARCH" : "YES",
+          "SHARED_PRECOMPS_DIR" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/PrecompiledHeaders",
+          "SIGNATURE_METADATA_FOLDER_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/Signatures",
+          "SWIFT_STDLIB_TOOL_UNSIGNED_DESTINATION_DIR" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/SwiftSupport",
+          "SYMROOT" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath",
+          "TOOLCHAINS" : "com.apple.dt.toolchain.Metal.32023.921.5 $(inherited)",
+          "WATCHKIT_2_SUPPORT_FOLDER_PATH" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/BuildProductsPath/WatchKitSupport2"
+        }
+      }
+    }
+  },
+  "schemeCommand" : "archive",
+  "showNonLoggedProgress" : true,
+  "useDryRun" : false,
+  "useImplicitDependencies" : true,
+  "useLegacyBuildLocations" : false,
+  "useParallelTargets" : true
+}

@@ -1,0 +1,12 @@
+{
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/NextShiftWidget.swift" : {
+    "abi-baseline-json" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget.abi.json",
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary.dia",
+    "objc-header" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-Swift.h",
+    "swiftdoc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget.swiftdoc",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget.swiftmodule",
+    "swiftsourceinfo" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/ArchiveIntermediates/WFSchedule/IntermediateBuildFilesPath/WFSchedule.build/Release-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget.swiftsourceinfo"
+  }
+}

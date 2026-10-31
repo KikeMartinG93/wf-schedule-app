@@ -1,0 +1,4 @@
+Target dependency graph (2 targets)
+Target 'WFSchedule' in project 'WFSchedule'
+➜ Explicit dependency on target 'WFMNextShiftWidget' in project 'WFSchedule'
+Target 'WFMNextShiftWidget' in project 'WFSchedule' (no dependencies)

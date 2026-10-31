@@ -1,0 +1,606 @@
+[
+  {
+    "typeName": "WFSchedule.ShiftEntity",
+    "mangledTypeName": "10WFSchedule11ShiftEntityV",
+    "kind": "struct",
+    "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+    "line": 7,
+    "conformances": [
+      "AppIntents.AppEntity",
+      "AppIntents.IndexedEntity",
+      "AppIntents.AppValue",
+      "AppIntents.DisplayRepresentable",
+      "Swift.Identifiable",
+      "AppIntents.PersistentlyIdentifiable",
+      "AppIntents.TypeDisplayRepresentable",
+      "AppIntents._IntentValue",
+      "Swift.Sendable",
+      "AppIntents.InstanceDisplayRepresentable",
+      "Swift.SendableMetatype",
+      "Foundation.CustomLocalizedStringResourceConvertible"
+    ],
+    "allConformances": [
+      {
+        "protocolName": "AppIntents.AppEntity",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.IndexedEntity",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.AppValue",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.DisplayRepresentable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.Identifiable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.PersistentlyIdentifiable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.TypeDisplayRepresentable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents._IntentValue",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.Sendable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.InstanceDisplayRepresentable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.SendableMetatype",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Foundation.CustomLocalizedStringResourceConvertible",
+        "conformanceDefiningModule": "WFSchedule"
+      }
+    ],
+    "associatedTypeAliases": [
+      {
+        "typeAliasName": "DefaultQuery",
+        "substitutedTypeName": "WFSchedule.ShiftQuery",
+        "substitutedMangledTypeName": "10WFSchedule10ShiftQueryV"
+      },
+      {
+        "typeAliasName": "ID",
+        "substitutedTypeName": "Swift.String",
+        "substitutedMangledTypeName": "SS"
+      },
+      {
+        "typeAliasName": "ValueType",
+        "substitutedTypeName": "WFSchedule.ShiftEntity",
+        "substitutedMangledTypeName": "10WFSchedule11ShiftEntityV"
+      },
+      {
+        "typeAliasName": "UnwrappedType",
+        "substitutedTypeName": "WFSchedule.ShiftEntity",
+        "substitutedMangledTypeName": "10WFSchedule11ShiftEntityV"
+      },
+      {
+        "typeAliasName": "Specification",
+        "substitutedTypeName": "AppIntents.EmptyResolverSpecification<WFSchedule.ShiftEntity>",
+        "substitutedMangledTypeName": "10AppIntents26EmptyResolverSpecificationVy10WFSchedule11ShiftEntityVG"
+      }
+    ],
+    "properties": [
+      {
+        "label": "id",
+        "type": "Swift.String",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 11,
+        "valueKind": "Runtime"
+      },
+      {
+        "label": "_job",
+        "type": "AppIntents.EntityProperty<Swift.String>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 14,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Swift.String>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Job"
+            }
+          ]
+        }
+      },
+      {
+        "label": "_start",
+        "type": "AppIntents.EntityProperty<Foundation.Date>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 17,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Foundation.Date>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Start"
+            }
+          ]
+        }
+      },
+      {
+        "label": "_end",
+        "type": "AppIntents.EntityProperty<Foundation.Date>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 20,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Foundation.Date>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "End"
+            }
+          ]
+        }
+      },
+      {
+        "label": "_location",
+        "type": "AppIntents.EntityProperty<Swift.Optional<Swift.String>>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 23,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Swift.Optional<Swift.String>>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Location"
+            }
+          ]
+        }
+      },
+      {
+        "label": "typeDisplayRepresentation",
+        "type": "AppIntents.TypeDisplayRepresentation",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "true",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 8,
+        "valueKind": "RawLiteral",
+        "value": "Shift"
+      },
+      {
+        "label": "defaultQuery",
+        "type": "WFSchedule.ShiftQuery",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "true",
+        "isComputed": "false",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 9,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "WFSchedule.ShiftQuery",
+          "arguments": []
+        }
+      },
+      {
+        "label": "job",
+        "type": "Swift.String",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 14,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Swift.String>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Job"
+            }
+          ]
+        },
+        "propertyWrappers": [
+          {
+            "type": "AppIntents.EntityProperty",
+            "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+            "line": 13,
+            "arguments": [
+              {
+                "label": "title",
+                "type": "Foundation.LocalizedStringResource",
+                "valueKind": "RawLiteral",
+                "value": "Job"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "$job",
+        "type": "AppIntents.EntityProperty<Swift.String>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 14,
+        "valueKind": "Runtime"
+      },
+      {
+        "label": "start",
+        "type": "Foundation.Date",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 17,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Foundation.Date>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Start"
+            }
+          ]
+        },
+        "propertyWrappers": [
+          {
+            "type": "AppIntents.EntityProperty",
+            "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+            "line": 16,
+            "arguments": [
+              {
+                "label": "title",
+                "type": "Foundation.LocalizedStringResource",
+                "valueKind": "RawLiteral",
+                "value": "Start"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "$start",
+        "type": "AppIntents.EntityProperty<Foundation.Date>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 17,
+        "valueKind": "Runtime"
+      },
+      {
+        "label": "end",
+        "type": "Foundation.Date",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 20,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Foundation.Date>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "End"
+            }
+          ]
+        },
+        "propertyWrappers": [
+          {
+            "type": "AppIntents.EntityProperty",
+            "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+            "line": 19,
+            "arguments": [
+              {
+                "label": "title",
+                "type": "Foundation.LocalizedStringResource",
+                "valueKind": "RawLiteral",
+                "value": "End"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "$end",
+        "type": "AppIntents.EntityProperty<Foundation.Date>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 20,
+        "valueKind": "Runtime"
+      },
+      {
+        "label": "location",
+        "type": "Swift.Optional<Swift.String>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 23,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.EntityProperty<Swift.Optional<Swift.String>>",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "RawLiteral",
+              "value": "Location"
+            }
+          ]
+        },
+        "propertyWrappers": [
+          {
+            "type": "AppIntents.EntityProperty",
+            "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+            "line": 22,
+            "arguments": [
+              {
+                "label": "title",
+                "type": "Foundation.LocalizedStringResource",
+                "valueKind": "RawLiteral",
+                "value": "Location"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "$location",
+        "type": "AppIntents.EntityProperty<Swift.Optional<Swift.String>>",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 23,
+        "valueKind": "Runtime"
+      },
+      {
+        "label": "displayRepresentation",
+        "type": "AppIntents.DisplayRepresentation",
+        "mangledTypeName": "n/a - deprecated",
+        "isStatic": "false",
+        "isComputed": "true",
+        "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+        "line": 25,
+        "valueKind": "InitCall",
+        "value": {
+          "type": "AppIntents.DisplayRepresentation",
+          "arguments": [
+            {
+              "label": "title",
+              "type": "Foundation.LocalizedStringResource",
+              "valueKind": "InterpolatedStringLiteral",
+              "value": {
+                "segments": [
+                  {
+                    "valueKind": "RawLiteral",
+                    "value": ""
+                  },
+                  {
+                    "valueKind": "Runtime"
+                  },
+                  {
+                    "valueKind": "RawLiteral",
+                    "value": ""
+                  }
+                ]
+              }
+            },
+            {
+              "label": "subtitle",
+              "type": "Swift.Optional<Foundation.LocalizedStringResource>",
+              "valueKind": "InterpolatedStringLiteral",
+              "value": {
+                "segments": [
+                  {
+                    "valueKind": "RawLiteral",
+                    "value": ""
+                  },
+                  {
+                    "valueKind": "MemberFunctionCall",
+                    "value": {
+                      "baseValue": {
+                        "valueKind": "Runtime"
+                      },
+                      "calls": [
+                        {
+                          "memberLabel": "formatted",
+                          "arguments": [
+                            {
+                              "label": "date",
+                              "type": "Foundation.Date.FormatStyle.DateStyle",
+                              "valueKind": "MemberReference",
+                              "value": {
+                                "baseType": "Foundation.Date.FormatStyle.DateStyle",
+                                "memberLabel": "abbreviated"
+                              }
+                            },
+                            {
+                              "label": "time",
+                              "type": "Foundation.Date.FormatStyle.TimeStyle",
+                              "valueKind": "MemberReference",
+                              "value": {
+                                "baseType": "Foundation.Date.FormatStyle.TimeStyle",
+                                "memberLabel": "shortened"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "valueKind": "RawLiteral",
+                    "value": " – "
+                  },
+                  {
+                    "valueKind": "MemberFunctionCall",
+                    "value": {
+                      "baseValue": {
+                        "valueKind": "Runtime"
+                      },
+                      "calls": [
+                        {
+                          "memberLabel": "formatted",
+                          "arguments": [
+                            {
+                              "label": "date",
+                              "type": "Foundation.Date.FormatStyle.DateStyle",
+                              "valueKind": "MemberReference",
+                              "value": {
+                                "baseType": "Foundation.Date.FormatStyle.DateStyle",
+                                "memberLabel": "omitted"
+                              }
+                            },
+                            {
+                              "label": "time",
+                              "type": "Foundation.Date.FormatStyle.TimeStyle",
+                              "valueKind": "MemberReference",
+                              "value": {
+                                "baseType": "Foundation.Date.FormatStyle.TimeStyle",
+                                "memberLabel": "shortened"
+                              }
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    "valueKind": "RawLiteral",
+                    "value": ""
+                  }
+                ]
+              }
+            },
+            {
+              "label": "image",
+              "type": "Swift.Optional<AppIntents.DisplayRepresentation.Image>",
+              "valueKind": "NilLiteral"
+            }
+          ]
+        }
+      }
+    ]
+  },
+  {
+    "typeName": "WFSchedule.ShiftQuery",
+    "mangledTypeName": "10WFSchedule10ShiftQueryV",
+    "kind": "struct",
+    "file": "/Users/home/code/wf-schedule-app/WFSchedule/Models/ShiftEntity.swift",
+    "line": 57,
+    "conformances": [
+      "AppIntents.EntityStringQuery",
+      "AppIntents.EntityQuery",
+      "AppIntents.DynamicOptionsProvider",
+      "AppIntents.PersistentlyIdentifiable",
+      "Swift.Sendable",
+      "AppIntents._SupportsAppDependencies",
+      "Swift.SendableMetatype",
+      "Swift.BitwiseCopyable"
+    ],
+    "allConformances": [
+      {
+        "protocolName": "AppIntents.EntityStringQuery",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.EntityQuery",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.DynamicOptionsProvider",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents.PersistentlyIdentifiable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.Sendable",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "AppIntents._SupportsAppDependencies",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.SendableMetatype",
+        "conformanceDefiningModule": "WFSchedule"
+      },
+      {
+        "protocolName": "Swift.BitwiseCopyable",
+        "conformanceDefiningModule": "WFSchedule"
+      }
+    ],
+    "associatedTypeAliases": [
+      {
+        "typeAliasName": "Entity",
+        "substitutedTypeName": "WFSchedule.ShiftEntity",
+        "substitutedMangledTypeName": "10WFSchedule11ShiftEntityV"
+      },
+      {
+        "typeAliasName": "Result",
+        "substitutedTypeName": "Swift.Array<WFSchedule.ShiftEntity>",
+        "substitutedMangledTypeName": "Say10WFSchedule11ShiftEntityVG"
+      },
+      {
+        "typeAliasName": "Result",
+        "substitutedTypeName": "Swift.Array<WFSchedule.ShiftEntity>",
+        "substitutedMangledTypeName": "Say10WFSchedule11ShiftEntityVG"
+      },
+      {
+        "typeAliasName": "DefaultValue",
+        "substitutedTypeName": "WFSchedule.ShiftEntity",
+        "substitutedMangledTypeName": "10WFSchedule11ShiftEntityV"
+      }
+    ],
+    "properties": []
+  }
+]

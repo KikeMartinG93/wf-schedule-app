@@ -1,0 +1,15 @@
+/Users/home/code/wf-schedule-app/WFMNextShiftWidget/NextShiftWidget.swift
+/Users/home/code/wf-schedule-app/WFMNextShiftWidget/NextShiftWidgetBundle.swift
+/Users/home/code/wf-schedule-app/WFSchedule/Models/Shift.swift
+/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BarcodeWidget.swift
+/Users/home/code/wf-schedule-app/Shared/Code128Barcode.swift
+/Users/home/code/wf-schedule-app/Shared/BreakModels.swift
+/Users/home/code/wf-schedule-app/Shared/BreakWidgetSupport.swift
+/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BreakWidget.swift
+/Users/home/code/wf-schedule-app/Shared/SecureTMID.swift
+/Users/home/code/wf-schedule-app/Shared/BreakActivityAttributes.swift
+/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BreakLiveActivity.swift
+/Users/home/code/wf-schedule-app/Shared/FontPreference.swift
+/Users/home/code/wf-schedule-app/Shared/BreakFlow.swift
+/Users/home/code/wf-schedule-app/Shared/BreakFlowEngine.swift
+/Users/home/code/wf-schedule-app/Shared/BreakIntents.swift

@@ -1,0 +1,159 @@
+{
+  "" : {
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary.dia",
+    "emit-module-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary-emit-module.d",
+    "emit-module-diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary-emit-module.dia",
+    "pch" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary-Bridging-header.pch",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/WFMNextShiftWidget-primary.swiftdeps"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakActivityAttributes.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakActivityAttributes~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakFlow.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlow~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakFlowEngine.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakFlowEngine~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakIntents.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakIntents~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakModels.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakModels~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/BreakWidgetSupport.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidgetSupport~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/Code128Barcode.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Code128Barcode~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/FontPreference.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/FontPreference~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/Shared/SecureTMID.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/SecureTMID~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BarcodeWidget.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BarcodeWidget~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BreakLiveActivity.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakLiveActivity~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/BreakWidget.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/BreakWidget~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/NextShiftWidget.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidget~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFMNextShiftWidget/NextShiftWidgetBundle.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/NextShiftWidgetBundle~partial.swiftmodule"
+  },
+  "/Users/home/code/wf-schedule-app/WFSchedule/Models/Shift.swift" : {
+    "const-values" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.swiftconstvalues",
+    "dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.d",
+    "diagnostics" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.dia",
+    "index-unit-output-path" : "/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.o",
+    "llvm-bc" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.bc",
+    "object" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.o",
+    "swift-dependencies" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift.swiftdeps",
+    "swiftmodule" : "/Users/home/code/wf-schedule-app/build/DerivedData/Build/Intermediates.noindex/WFSchedule.build/Debug-iphoneos/WFMNextShiftWidget.build/Objects-normal/arm64/Shift~partial.swiftmodule"
+  }
+}

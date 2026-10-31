@@ -1,0 +1,65 @@
+{
+  "source" : "\/Users\/home\/code\/wf-schedule-app\/WFSchedule\/Services\/ScheduleIntents.swift",
+  "tables" : {
+    "AppShortcuts" : [
+      {
+        "appShortcutMetadata" : [
+          {
+            "actionIdentifier" : "NextShiftIntent",
+            "index" : 0,
+            "parameterDisplayRepresentations" : {
+
+            },
+            "parameterTypes" : {
+
+            },
+            "title" : "Next Shift"
+          }
+        ],
+        "key" : "What is my next shift in ${applicationName}",
+        "location" : {
+          "startingColumn" : 0,
+          "startingLine" : 95
+        },
+        "values" : [
+          "What is my next shift in ${applicationName}",
+          "When do I work next in ${applicationName}",
+          "Next shift in ${applicationName}"
+        ]
+      },
+      {
+        "appShortcutMetadata" : [
+          {
+            "actionIdentifier" : "ScheduleForDayIntent",
+            "index" : 1,
+            "parameterDisplayRepresentations" : {
+              "DayChoice" : [
+                "Today",
+                "Tomorrow"
+              ]
+            },
+            "parameterTypes" : {
+              "day" : "DayChoice"
+            },
+            "title" : "Schedule for a Day"
+          }
+        ],
+        "key" : "Am I working ${day} in ${applicationName}",
+        "location" : {
+          "startingColumn" : 0,
+          "startingLine" : 95
+        },
+        "values" : [
+          "Am I working ${day} in ${applicationName}",
+          "What is my schedule ${day} in ${applicationName}"
+        ]
+      }
+    ],
+    "Localizable" : [
+      {
+        "key" : "Schedule for ${day}"
+      }
+    ]
+  },
+  "version" : 2
+}

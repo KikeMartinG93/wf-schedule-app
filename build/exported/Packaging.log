@@ -1,0 +1,627 @@
+2026-10-15 22:09:15 +0000 [MT] Initial pipeline context: <IDEDistributionProcessingPipelineContext: 0x75bb3b0300; archive(resolved)="<IDEArchive: 0x75bd4943f0>", distributionTask(resolved)="2", distributionDestination(resolved)="1", distributionMethod(resolved)="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team(resolved)="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	Chain (15, self inclusive):
+	<IDEDistributionProcessingPipelineContext: 0x75bb3b0300; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionProcessingPipelineContext: 0x75bb3b0000; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05b200; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05ad00; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05aa80; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05a800; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05a580; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05a300; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be05a080; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be059400; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be059180; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be058c80; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="<IDEProvisioningBasicTeam: 0x75bb2e1620; teamID='G7C5D28VAK', teamName='(null)'>">
+	<IDEDistributionContext: 0x75be058a00; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="(null)">
+	<IDEDistributionContext: 0x75be058000; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="<IDEDistributionMethodiOSAppStoreDistribution: 0x75be138d90>", team="(null)">
+	<IDEDistributionContext: 0x100c84000; archive = "<IDEArchive: 0x75bd4943f0>", distributionMethod="(null)", team="(null)">
+</IDEDistributionProcessingPipelineContext: 0x75bb3b0300>
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionCreateDestRootStep
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionCopyItemStep
+2026-10-15 22:09:15 +0000 [MT] Running /usr/bin/ditto '-V' '/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app'
+2026-10-15 22:09:15 +0000  >>> Copying /Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app 
+2026-10-15 22:09:15 +0000  copying file ./_CodeSignature/CodeResources ... 
+2026-10-15 22:09:15 +0000  hardlinked ./_CodeSignature/CodeResources
+2026-10-15 22:09:15 +0000  copying file ./en.lproj/nlu.appintents/nlu.lzfse ... 
+2026-10-15 22:09:15 +0000  hardlinked ./en.lproj/nlu.appintents/nlu.lzfse
+2026-10-15 22:09:15 +0000  copying file ./en.lproj/nlu.appintents/6303706895abfcdd2bbd1274473ead4d.version ... 
+2026-10-15 22:09:15 +0000  hardlinked ./en.lproj/nlu.appintents/6303706895abfcdd2bbd1274473ead4d.version
+2026-10-15 22:09:15 +0000  copying file ./en.lproj/AppShortcuts.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./en.lproj/AppShortcuts.strings
+2026-10-15 22:09:15 +0000  copying file ./en.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./en.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./en.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./en.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./es.lproj/nlu.appintents/nlu.lzfse ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/nlu.appintents/nlu.lzfse
+2026-10-15 22:09:15 +0000  copying file ./es.lproj/nlu.appintents/693670d27786951ab1eabe71ad25a4df.version ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/nlu.appintents/693670d27786951ab1eabe71ad25a4df.version
+2026-10-15 22:09:15 +0000  copying file ./es.lproj/AppShortcuts.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/AppShortcuts.strings
+2026-10-15 22:09:15 +0000  copying file ./es.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/Localizable.strings
+copying file ./es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./es.lproj/Localizable.stringsdict ... 
+2026-10-15 22:09:15 +0000  hardlinked ./es.lproj/Localizable.stringsdict
+2026-10-15 22:09:15 +0000  copying file ./Metadata.appintents/version.json ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Metadata.appintents/version.json
+2026-10-15 22:09:15 +0000  copying file ./Metadata.appintents/extract.actionsdata ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Metadata.appintents/extract.actionsdata
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/_CodeSignature/CodeResources
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/en.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/en.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/en.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/es.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/es.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/version.json ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/version.json
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/extract.actionsdata ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/extract.actionsdata
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/PrivacyInfo.xcprivacy
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/embedded.mobileprovision ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/embedded.mobileprovision
+2026-10-15 22:09:15 +0000  copying file ./PlugIns/WFMNextShiftWidget.appex/Info.plist ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PlugIns/WFMNextShiftWidget.appex/Info.plist
+2026-10-15 22:09:15 +0000  copying file ./AppIcon60x60@2x.png ... 
+2026-10-15 22:09:15 +0000  hardlinked ./AppIcon60x60@2x.png
+2026-10-15 22:09:15 +0000  copying file ./WFSchedule ... 
+2026-10-15 22:09:15 +0000  hardlinked ./WFSchedule
+2026-10-15 22:09:15 +0000  copying file ./Assets.car ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Assets.car
+2026-10-15 22:09:15 +0000  copying file ./AppIcon76x76@2x~ipad.png ... 
+2026-10-15 22:09:15 +0000  hardlinked ./AppIcon76x76@2x~ipad.png
+2026-10-15 22:09:15 +0000  copying file ./PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PrivacyInfo.xcprivacy
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/_CodeSignature/CodeResources
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/en.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/es.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/_CodeSignature/CodeResources
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/Localizable.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/InfoPlist.strings
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/PrivacyInfo.xcprivacy
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/embedded.mobileprovision ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/embedded.mobileprovision
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/Info.plist ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/Info.plist
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/Assets.car ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/Assets.car
+copying file ./Watch/WFMSchedule Watch App.app/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PrivacyInfo.xcprivacy
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/WFMSchedule Watch App ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/WFMSchedule Watch App
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/embedded.mobileprovision ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/embedded.mobileprovision
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/Info.plist ... 
+hardlinked ./Watch/WFMSchedule Watch App.app/Info.plist
+2026-10-15 22:09:15 +0000  copying file ./Watch/WFMSchedule Watch App.app/PkgInfo ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Watch/WFMSchedule Watch App.app/PkgInfo
+2026-10-15 22:09:15 +0000  copying file ./embedded.mobileprovision ... 
+2026-10-15 22:09:15 +0000  hardlinked ./embedded.mobileprovision
+2026-10-15 22:09:15 +0000  copying file ./Info.plist ... 
+2026-10-15 22:09:15 +0000  hardlinked ./Info.plist
+2026-10-15 22:09:15 +0000  copying file ./PkgInfo ... 
+2026-10-15 22:09:15 +0000  hardlinked ./PkgInfo
+2026-10-15 22:09:15 +0000 [MT] /usr/bin/ditto exited with 0
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionEmbedProfileStep
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionInfoPlistStep
+2026-10-15 22:09:15 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2026-10-15 22:09:15 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2026-10-15 22:09:15 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2026-10-15 22:09:15 +0000 [MT] Skipping setting DTXcodeBuildDistribution because toolsBuildVersionName was nil.
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionItemRemovalStep
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionAppThinningPlistStep
+2026-10-15 22:09:15 +0000 [MT] Skipping step: IDEDistributionAppThinningPlistStep because it said so
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionSymbolsStep
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/29C9DFCD-28AE-3AC8-BD50-E2FED6EEB24E.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/D0F31955-6A90-3C18-8FDE-02FD47195F2C.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/EFCFD337-53A6-389A-A350-0CF0B549968F.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/715F4CDA-1301-367A-B36D-D87C2AEF269F.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/EFCFD337-53A6-389A-A350-0CF0B549968F.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/715F4CDA-1301-367A-B36D-D87C2AEF269F.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/8B1934C9-8873-3472-8656-4E90E66BDA9A.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/F44488AD-E9B8-3F82-BE23-F937D5E08608.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/8B1934C9-8873-3472-8656-4E90E66BDA9A.symbols
+2026-10-15 22:09:15 +0000 [MT] Writing /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols/F44488AD-E9B8-3F82-BE23-F937D5E08608.symbols
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionCopyAppleProvidedContentStep
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionAppThinningStep
+2026-10-15 22:09:15 +0000 [MT] Skipping step: IDEDistributionAppThinningStep because it said so
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionArchThinningStep
+2026-10-15 22:09:15 +0000 [MT] Archs to thin for item /Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex are []
+2026-10-15 22:09:15 +0000 [MT] Archs to thin for item /Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex are []
+2026-10-15 22:09:15 +0000 [MT] Archs to thin for item /Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app are []
+2026-10-15 22:09:15 +0000 [MT] Archs to thin for item /Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app are []
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionODRStep
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionStripXattrsStep
+2026-10-15 22:09:15 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-10-15 22:09:15 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-10-15 22:09:15 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-10-15 22:09:15 +0000 [MT] Skipping stripping extended attributes because the codesign step will strip them.
+2026-10-15 22:09:15 +0000 [MT] Processing step: IDEDistributionCodesignStep
+2026-10-15 22:09:15 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05daa0; bundleID='com.marting.WFM.watchkitapp.WFMBarcodeComplication', path='<DVTFilePath:0x75be140d90:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c23e0; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp.WFMBarcodeComplication";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp.WFMBarcodeComplication', executablePath='<DVTFilePath:0x75be1415e0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp.WFMBarcodeComplication";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:15 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-10-15 22:09:15 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05daa0; bundleID='com.marting.WFM.watchkitapp.WFMBarcodeComplication', path='<DVTFilePath:0x75be140d90:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c23e0; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp.WFMBarcodeComplication";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp.WFMBarcodeComplication', executablePath='<DVTFilePath:0x75be1415e0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp.WFMBarcodeComplication";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:15 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x75be05daa0; bundleID='com.marting.WFM.watchkitapp.WFMBarcodeComplication', path='<DVTFilePath:0x75be140d90:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc20; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c23e0; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp.WFMBarcodeComplication";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp.WFMBarcodeComplication', executablePath='<DVTFilePath:0x75be1415e0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication'>', hardenedRuntime='0'>'> to: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~98OOaT
+2026-10-15 22:09:15 +0000 [MT] invoking codesign: <NSConcreteTask: 0x75be3c9590; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    3141C4FC83E827A1FB194F4EB114340E45B62C7E,
+    "--entitlements",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~98OOaT",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex"
+)'>
+2026-10-15 22:09:15 +0000 [MT] codesign output: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex: replacing existing signature
+/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex: signed bundle with Mach-O universal (arm64 arm64_32) [com.marting.WFM.watchkitapp.WFMBarcodeComplication]
+2026-10-15 22:09:15 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05dce0; bundleID='com.marting.WFM.NextShiftWidget', path='<DVTFilePath:0x75bdbb3950:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05da40; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3f00; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.NextShiftWidget";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.NextShiftWidget', executablePath='<DVTFilePath:0x75be1401c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.NextShiftWidget";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:15 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-10-15 22:09:15 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05dce0; bundleID='com.marting.WFM.NextShiftWidget', path='<DVTFilePath:0x75bdbb3950:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05da40; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3f00; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.NextShiftWidget";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.NextShiftWidget', executablePath='<DVTFilePath:0x75be1401c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.NextShiftWidget";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:15 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x75be05dce0; bundleID='com.marting.WFM.NextShiftWidget', path='<DVTFilePath:0x75bdbb3950:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05da40; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3f00; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.NextShiftWidget";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.NextShiftWidget', executablePath='<DVTFilePath:0x75be1401c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget'>', hardenedRuntime='0'>'> to: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~OuHKdz
+2026-10-15 22:09:15 +0000 [MT] invoking codesign: <NSConcreteTask: 0x75be3c9680; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    3141C4FC83E827A1FB194F4EB114340E45B62C7E,
+    "--entitlements",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~OuHKdz",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex"
+)'>
+2026-10-15 22:09:16 +0000 [MT] codesign output: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex: replacing existing signature
+/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex: signed bundle with Mach-O thin (arm64) [com.marting.WFM.NextShiftWidget]
+2026-10-15 22:09:16 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05dd40; bundleID='com.marting.WFM.watchkitapp', path='<DVTFilePath:0x75bcc830c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc80; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3e20; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp', executablePath='<DVTFilePath:0x75be128b00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/WFMSchedule Watch App'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:16 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-10-15 22:09:16 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05dd40; bundleID='com.marting.WFM.watchkitapp', path='<DVTFilePath:0x75bcc830c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc80; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3e20; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp', executablePath='<DVTFilePath:0x75be128b00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/WFMSchedule Watch App'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:16 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x75be05dd40; bundleID='com.marting.WFM.watchkitapp', path='<DVTFilePath:0x75bcc830c0:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dc80; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3e20; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM.watchkitapp";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM.watchkitapp', executablePath='<DVTFilePath:0x75be128b00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/Watch/WFMSchedule Watch App.app/WFMSchedule Watch App'>', hardenedRuntime='0'>'> to: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~903mCd
+2026-10-15 22:09:16 +0000 [MT] invoking codesign: <NSConcreteTask: 0x75be15fca0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    3141C4FC83E827A1FB194F4EB114340E45B62C7E,
+    "--entitlements",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~903mCd",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app"
+)'>
+2026-10-15 22:09:16 +0000 [MT] codesign output: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app: replacing existing signature
+/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app: signed app bundle with Mach-O universal (arm64 arm64_32) [com.marting.WFM.watchkitapp]
+2026-10-15 22:09:16 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05db60; bundleID='com.marting.WFM', path='<DVTFilePath:0x75bd5cc180:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dda0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3d40; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.developer.usernotifications.time-sensitive" = 1;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.example.wfschedule",
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM', executablePath='<DVTFilePath:0x75be05cf00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/WFSchedule'>', hardenedRuntime='0'>'>: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.developer.usernotifications.time-sensitive" = 1;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.example.wfschedule",
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:16 +0000 [MT] Associated App Clip Identifiers Filter: Skipping because "com.apple.developer.associated-appclip-app-identifiers" is not present
+2026-10-15 22:09:16 +0000 [MT] Entitlements for <IDEDistributionItem: 0x75be05db60; bundleID='com.marting.WFM', path='<DVTFilePath:0x75bd5cc180:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dda0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3d40; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.developer.usernotifications.time-sensitive" = 1;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.example.wfschedule",
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM', executablePath='<DVTFilePath:0x75be05cf00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/WFSchedule'>', hardenedRuntime='0'>'> are: {
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM";
+    "beta-reports-active" = 1;
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.developer.usernotifications.time-sensitive" = 1;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 0;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.example.wfschedule",
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}
+2026-10-15 22:09:16 +0000 [MT] Writing entitlements for <IDEDistributionItem: 0x75be05db60; bundleID='com.marting.WFM', path='<DVTFilePath:0x75bd5cc180:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app'>', codeSigningInfo='<_DVTCodeSigningInformation_Path: 0x75be05dda0; isSigned='1', isAdHocSigned='0', signingCertificate='<DVTSigningCertificate: 0x75bd6c3d40; name='Apple Development: Enrique Martin (WK4YUBH79C)', hash='A38A52C08D355E8F45170091E71C55EB76969A86', serialNumber='29F8D3A3E4BA052AC861A134593DFA83', certificateKinds='(
+    "1.2.840.113635.100.6.1.12",
+    "1.2.840.113635.100.6.1.2"
+), issueDate='2026-09-20 22:55:39 +0000''>', entitlements='{
+    "application-identifier" = "G7C5D28VAK.com.marting.WFM";
+    "com.apple.developer.team-identifier" = G7C5D28VAK;
+    "com.apple.developer.usernotifications.time-sensitive" = 1;
+    "com.apple.security.application-groups" =     (
+        "group.com.marting.WFM"
+    );
+    "get-task-allow" = 1;
+    "keychain-access-groups" =     (
+        "G7C5D28VAK.com.example.wfschedule",
+        "G7C5D28VAK.com.marting.WFM.shared"
+    );
+}', teamID='G7C5D28VAK', identifier='com.marting.WFM', executablePath='<DVTFilePath:0x75be05cf00:'/Users/home/code/wf-schedule-app/build/WFSchedule.xcarchive/Products/Applications/WFSchedule.app/WFSchedule'>', hardenedRuntime='0'>'> to: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~Y3WyOU
+2026-10-15 22:09:16 +0000 [MT] invoking codesign: <NSConcreteTask: 0x75be15fac0; launchPath='/usr/bin/codesign', arguments='(
+    "-f",
+    "-s",
+    3141C4FC83E827A1FB194F4EB114340E45B62C7E,
+    "--entitlements",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/entitlements~~~Y3WyOU",
+    "--preserve-metadata=identifier,flags,runtime,launch-constraints,library-constraints",
+    "--generate-entitlement-der",
+    "--strip-disallowed-xattrs",
+    "-vvv",
+    "/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app"
+)'>
+2026-10-15 22:09:16 +0000 [MT] codesign output: /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app: replacing existing signature
+/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app: signed app bundle with Mach-O thin (arm64) [com.marting.WFM]
+2026-10-15 22:09:16 +0000 [MT] Processing step: IDEDistributionZipODRItemStep
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionZipODRItemStep because it said so
+2026-10-15 22:09:16 +0000 [MT] Processing step: IDEDistributionCreateIPAStep
+2026-10-15 22:09:16 +0000 [MT] Running /usr/bin/rsync '-8aPhhE' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Symbols' '--link-dest' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root'
+2026-10-15 22:09:16 +0000  Symbols/
+Symbols/29C9DFCD-28AE-3AC8-BD50-E2FED6EEB24E.symbols
+Symbols/715F4CDA-1301-367A-B36D-D87C2AEF269F.symbols
+Symbols/8B1934C9-8873-3472-8656-4E90E66BDA9A.symbols
+Symbols/D0F31955-6A90-3C18-8FDE-02FD47195F2C.symbols
+Symbols/EFCFD337-53A6-389A-A350-0CF0B549968F.symbols
+Symbols/F44488AD-E9B8-3F82-BE23-F937D5E08608.symbols
+2026-10-15 22:09:16 +0000 [MT] /usr/bin/rsync exited with 0
+2026-10-15 22:09:16 +0000 [MT] Running /usr/bin/ditto '-V' '-c' '-k' '--norsrc' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root' '/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Packages/WFSchedule.ipa'
+2026-10-15 22:09:16 +0000  >>> Copying /var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root 
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:16 +0000  17914 bytes for ./Payload/WFSchedule.app/_CodeSignature/CodeResources
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/en.lproj/nlu.appintents/nlu.lzfse ... 
+2026-10-15 22:09:16 +0000  2472 bytes for ./Payload/WFSchedule.app/en.lproj/nlu.appintents/nlu.lzfse
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/en.lproj/nlu.appintents/6303706895abfcdd2bbd1274473ead4d.version ... 
+2026-10-15 22:09:16 +0000  1 bytes for ./Payload/WFSchedule.app/en.lproj/nlu.appintents/6303706895abfcdd2bbd1274473ead4d.version
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/en.lproj/AppShortcuts.strings ... 
+2026-10-15 22:09:16 +0000  277 bytes for ./Payload/WFSchedule.app/en.lproj/AppShortcuts.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  14475 bytes for ./Payload/WFSchedule.app/en.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/en.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:16 +0000  340 bytes for ./Payload/WFSchedule.app/en.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/nlu.appintents/nlu.lzfse ... 
+2026-10-15 22:09:16 +0000  2597 bytes for ./Payload/WFSchedule.app/es.lproj/nlu.appintents/nlu.lzfse
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/nlu.appintents/693670d27786951ab1eabe71ad25a4df.version ... 
+2026-10-15 22:09:16 +0000  1 bytes for ./Payload/WFSchedule.app/es.lproj/nlu.appintents/693670d27786951ab1eabe71ad25a4df.version
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/AppShortcuts.strings ... 
+2026-10-15 22:09:16 +0000  704 bytes for ./Payload/WFSchedule.app/es.lproj/AppShortcuts.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  38946 bytes for ./Payload/WFSchedule.app/es.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:16 +0000  517 bytes for ./Payload/WFSchedule.app/es.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/es.lproj/Localizable.stringsdict ... 
+2026-10-15 22:09:16 +0000  408 bytes for ./Payload/WFSchedule.app/es.lproj/Localizable.stringsdict
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Metadata.appintents/version.json ... 
+2026-10-15 22:09:16 +0000  53 bytes for ./Payload/WFSchedule.app/Metadata.appintents/version.json
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Metadata.appintents/extract.actionsdata ... 
+2026-10-15 22:09:16 +0000  9744 bytes for ./Payload/WFSchedule.app/Metadata.appintents/extract.actionsdata
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:16 +0000  4178 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/_CodeSignature/CodeResources
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  721 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/en.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/en.lproj/InfoPlist.strings ... 
+79 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/en.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  1754 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/es.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:16 +0000  95 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/es.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/version.json ... 
+2026-10-15 22:09:16 +0000  53 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/version.json
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/extract.actionsdata ... 
+2026-10-15 22:09:16 +0000  3544 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Metadata.appintents/extract.actionsdata
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget ... 
+2026-10-15 22:09:16 +0000  432080 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/WFMNextShiftWidget
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:16 +0000  626 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/PrivacyInfo.xcprivacy
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/embedded.mobileprovision ... 
+2026-10-15 22:09:16 +0000  18704 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/embedded.mobileprovision
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Info.plist ... 
+2026-10-15 22:09:16 +0000  898 bytes for ./Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex/Info.plist
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/AppIcon60x60@2x.png ... 
+2026-10-15 22:09:16 +0000  6796 bytes for ./Payload/WFSchedule.app/AppIcon60x60@2x.png
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/WFSchedule ... 
+2026-10-15 22:09:16 +0000  1887600 bytes for ./Payload/WFSchedule.app/WFSchedule
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Assets.car ... 
+2026-10-15 22:09:16 +0000  1294424 bytes for ./Payload/WFSchedule.app/Assets.car
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/AppIcon76x76@2x~ipad.png ... 
+2026-10-15 22:09:16 +0000  9725 bytes for ./Payload/WFSchedule.app/AppIcon76x76@2x~ipad.png
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:16 +0000  626 bytes for ./Payload/WFSchedule.app/PrivacyInfo.xcprivacy
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:16 +0000  6449 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/_CodeSignature/CodeResources
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  160 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/en.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  408 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/es.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/_CodeSignature/CodeResources ... 
+2026-10-15 22:09:16 +0000  3664 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/_CodeSignature/CodeResources
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  388 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:16 +0000  79 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/en.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/Localizable.strings ... 
+2026-10-15 22:09:16 +0000  966 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/Localizable.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/InfoPlist.strings ... 
+2026-10-15 22:09:16 +0000  87 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/es.lproj/InfoPlist.strings
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:16 +0000  626 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/PrivacyInfo.xcprivacy
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/embedded.mobileprovision ... 
+2026-10-15 22:09:16 +0000  18837 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/embedded.mobileprovision
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication ... 
+2026-10-15 22:09:16 +0000  492496 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/WFMBarcodeComplication
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/Info.plist ... 
+871 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex/Info.plist
+copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/Assets.car ... 
+2026-10-15 22:09:16 +0000  34872 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/Assets.car
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PrivacyInfo.xcprivacy ... 
+2026-10-15 22:09:16 +0000  626 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PrivacyInfo.xcprivacy
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/WFMSchedule Watch App ... 
+2026-10-15 22:09:16 +0000  406368 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/WFMSchedule Watch App
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/embedded.mobileprovision ... 
+2026-10-15 22:09:16 +0000  18676 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/embedded.mobileprovision
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/Info.plist ... 
+2026-10-15 22:09:16 +0000  1039 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/Info.plist
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PkgInfo ... 
+2026-10-15 22:09:16 +0000  8 bytes for ./Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PkgInfo
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/embedded.mobileprovision ... 
+2026-10-15 22:09:16 +0000  18757 bytes for ./Payload/WFSchedule.app/embedded.mobileprovision
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/Info.plist ... 
+2026-10-15 22:09:16 +0000  1764 bytes for ./Payload/WFSchedule.app/Info.plist
+2026-10-15 22:09:16 +0000  copying file ./Payload/WFSchedule.app/PkgInfo ... 
+2026-10-15 22:09:16 +0000  8 bytes for ./Payload/WFSchedule.app/PkgInfo
+2026-10-15 22:09:16 +0000  copying file ./Symbols/715F4CDA-1301-367A-B36D-D87C2AEF269F.symbols ... 
+2026-10-15 22:09:16 +0000  219388 bytes for ./Symbols/715F4CDA-1301-367A-B36D-D87C2AEF269F.symbols
+2026-10-15 22:09:16 +0000  copying file ./Symbols/EFCFD337-53A6-389A-A350-0CF0B549968F.symbols ... 
+2026-10-15 22:09:16 +0000  215612 bytes for ./Symbols/EFCFD337-53A6-389A-A350-0CF0B549968F.symbols
+2026-10-15 22:09:16 +0000  copying file ./Symbols/29C9DFCD-28AE-3AC8-BD50-E2FED6EEB24E.symbols ... 
+2026-10-15 22:09:16 +0000  5888764 bytes for ./Symbols/29C9DFCD-28AE-3AC8-BD50-E2FED6EEB24E.symbols
+2026-10-15 22:09:16 +0000  copying file ./Symbols/F44488AD-E9B8-3F82-BE23-F937D5E08608.symbols ... 
+2026-10-15 22:09:16 +0000  324612 bytes for ./Symbols/F44488AD-E9B8-3F82-BE23-F937D5E08608.symbols
+2026-10-15 22:09:16 +0000  copying file ./Symbols/D0F31955-6A90-3C18-8FDE-02FD47195F2C.symbols ... 
+2026-10-15 22:09:16 +0000  820572 bytes for ./Symbols/D0F31955-6A90-3C18-8FDE-02FD47195F2C.symbols
+2026-10-15 22:09:16 +0000  copying file ./Symbols/8B1934C9-8873-3472-8656-4E90E66BDA9A.symbols ... 
+2026-10-15 22:09:16 +0000  320148 bytes for ./Symbols/8B1934C9-8873-3472-8656-4E90E66BDA9A.symbols
+2026-10-15 22:09:16 +0000 [MT] /usr/bin/ditto exited with 0
+2026-10-15 22:09:16 +0000 [MT] Processing step: IDEDistributionAppStoreInformationStep
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionAppStoreInformationStep because it said so
+2026-10-15 22:09:16 +0000 [MT] Processing step: IDEDistributionGenerateProcessedDistributionItems
+2026-10-15 22:09:16 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x75be3199d0:'/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app/PlugIns/WFMBarcodeComplication.appex'>
+2026-10-15 22:09:16 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x75bcc894a0:'/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/Watch/WFMSchedule Watch App.app'>
+2026-10-15 22:09:16 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x75be31aa70:'/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app/PlugIns/WFMNextShiftWidget.appex'>
+2026-10-15 22:09:16 +0000 [MT] IDEDistributionItem init <DVTFilePath:0x75bd5ce8e0:'/var/folders/4w/14858l7d291gvg5cdxbll5pc0000gn/T/XcodeDistPipeline.~~~1Tpyu2/Root/Payload/WFSchedule.app'>
+2026-10-15 22:09:16 +0000 [MT] Processing step: IDEDistributionCreateManifestStep
+2026-10-15 22:09:16 +0000 [MT] Skipping step: IDEDistributionCreateManifestStep because it said so

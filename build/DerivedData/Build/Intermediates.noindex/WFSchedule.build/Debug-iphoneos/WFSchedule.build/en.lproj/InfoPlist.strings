@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSAlarmKitUsageDescription</key>
+	<string>WF Schedule rings an alarm when a break or lunch timer you started is over.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>WF Schedule creates a dedicated 'Work Schedule' calendar and adds your shifts to it so they stay in sync with your other Apple devices.</string>
+</dict>
+</plist>
