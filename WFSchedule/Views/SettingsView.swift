@@ -74,6 +74,17 @@ struct SettingsView: View {
                     // 3. Theme & Appearance (Collapsible)
                     Section {
                         DisclosureGroup(isExpanded: $isThemeExpanded) {
+                            NavigationLink {
+                                AppearanceSettingsView()
+                            } label: {
+                                HStack {
+                                    row("Appearance", "iphone")
+                                    Spacer()
+                                    Text(theme.currentDisplayStyle.name)
+                                        .foregroundStyle(.secondary)
+                                }
+                            }
+
                             if theme.highContrast {
                                 Label("Colors are off while High contrast is on.", systemImage: "circle.lefthalf.filled")
                                     .foregroundStyle(.secondary)
@@ -124,8 +135,8 @@ struct SettingsView: View {
                     } footer: {
                         if isThemeExpanded && !theme.highContrast {
                             Text(appearanceMode == .light
-                                 ? "Customize palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
-                                 : "Customize palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
+                                 ? "Pick Classic, Light, or Dark for the calendar, then a color palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
+                                 : "Pick Classic, Light, or Dark for the calendar, then a color palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
                         }
                     }
 
@@ -427,6 +438,162 @@ private struct ThemePicker: View {
             }
         }
         .padding(.vertical, 6)
+    }
+}
+
+/// Six-preview Appearance picker: Classic, Light, and Dark for Light Mode and
+/// for Dark Mode, matching the phone-mockup layout used by Fantastical.
+private struct AppearanceSettingsView: View {
+    @ObservedObject private var theme = ThemeManager.shared
+    @Environment(\.colorScheme) private var colorScheme
+
+    private let selectionBlue = Color(red: 0.0, green: 0.48, blue: 1.0)
+
+    var body: some View {
+        ScrollView {
+            VStack(alignment: .leading, spacing: 28) {
+                appearanceGroup(
+                    title: colorScheme == .light ? "Light Mode (Currently Active)" : "Light Mode",
+                    scheme: .light,
+                    cardFill: Color.white,
+                    labelColor: Color(red: 0.35, green: 0.35, blue: 0.38),
+                    selectedLabelColor: Color(red: 0.08, green: 0.08, blue: 0.10)
+                )
+
+                appearanceGroup(
+                    title: colorScheme == .dark ? "Dark Mode (Currently Active)" : "Dark Mode",
+                    scheme: .dark,
+                    cardFill: Color(red: 0.17, green: 0.17, blue: 0.18),
+                    labelColor: Color(white: 0.62),
+                    selectedLabelColor: Color.white
+                )
+            }
+            .padding(.horizontal, 16)
+            .padding(.top, 12)
+            .padding(.bottom, 32)
+        }
+        .background(Color(.systemGroupedBackground).ignoresSafeArea())
+        .navigationTitle("Appearance")
+        .navigationBarTitleDisplayMode(.inline)
+    }
+
+    private func appearanceGroup(
+        title: LocalizedStringKey,
+        scheme: ColorScheme,
+        cardFill: Color,
+        labelColor: Color,
+        selectedLabelColor: Color
+    ) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            Text(title)
+                .font(.subheadline.weight(.semibold))
+                .foregroundStyle(Color.secondary)
+                .padding(.horizontal, 4)
+
+            HStack(alignment: .top, spacing: 0) {
+                ForEach(CalendarDisplayStyle.allCases) { style in
+                    let selected = theme.displayStyle(for: scheme) == style
+                    Button {
+                        withAnimation(.easeInOut(duration: 0.18)) {
+                            theme.setDisplayStyle(style, for: scheme)
+                        }
+                    } label: {
+                        VStack(spacing: 10) {
+                            CalendarStylePhonePreview(style: style, selected: selected, ring: selectionBlue)
+                            Text(style.name)
+                                .font(.subheadline.weight(selected ? .semibold : .regular))
+                                .foregroundStyle(selected ? selectedLabelColor : labelColor)
+                        }
+                        .frame(maxWidth: .infinity)
+                    }
+                    .buttonStyle(.plain)
+                }
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 16)
+            .background(cardFill, in: RoundedRectangle(cornerRadius: 26, style: .continuous))
+        }
+    }
+}
+
+/// Mini phone used in the Appearance picker. Classic is the mixed white+dark
+/// calendar, Light is all white, Dark is all dark.
+private struct CalendarStylePhonePreview: View {
+    let style: CalendarDisplayStyle
+    let selected: Bool
+    let ring: Color
+
+    private var deviceFill: Color {
+        style.usesLightDeviceChrome ? Color(white: 0.97) : Color(white: 0.08)
+    }
+
+    private var islandFill: Color {
+        style.usesLightDeviceChrome ? Color.black : Color(white: 0.22)
+    }
+
+    private var contentFill: Color {
+        style.agendaIsDark ? Color(white: 0.10) : Color.white
+    }
+
+    private var lineFill: Color {
+        style.agendaIsDark ? Color(white: 0.32) : Color(white: 0.82)
+    }
+
+    private let eventDots: [Color] = [
+        Color(red: 0.20, green: 0.48, blue: 1.0),
+        Color(red: 0.20, green: 0.78, blue: 0.42),
+        Color(red: 1.00, green: 0.62, blue: 0.16),
+        Color(red: 0.95, green: 0.32, blue: 0.55),
+        Color(red: 0.55, green: 0.38, blue: 0.95)
+    ]
+
+    var body: some View {
+        ZStack {
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .fill(deviceFill)
+                .shadow(color: .black.opacity(style.usesLightDeviceChrome ? 0.08 : 0.35), radius: 3, y: 1)
+
+            VStack(spacing: 6) {
+                Capsule()
+                    .fill(islandFill)
+                    .frame(width: 26, height: 7)
+                    .padding(.top, 8)
+
+                HStack(spacing: 5) {
+                    Circle().fill(Color(red: 0.20, green: 0.48, blue: 1.0)).frame(width: 8, height: 8)
+                    ForEach(0..<3, id: \.self) { _ in
+                        Circle().fill(style.agendaIsDark ? Color(white: 0.28) : Color(white: 0.86)).frame(width: 8, height: 8)
+                    }
+                }
+                .padding(.top, 2)
+
+                VStack(spacing: 6) {
+                    ForEach(0..<5, id: \.self) { index in
+                        HStack(spacing: 5) {
+                            Circle()
+                                .fill(eventDots[index % eventDots.count])
+                                .frame(width: 6, height: 6)
+                            Capsule()
+                                .fill(lineFill)
+                                .frame(height: 3.5)
+                        }
+                    }
+                }
+                .padding(.horizontal, 8)
+                .padding(.vertical, 8)
+                .frame(maxWidth: .infinity)
+                .background(contentFill, in: RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .padding(.horizontal, 7)
+
+                Spacer(minLength: 0)
+            }
+            .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
+        }
+        .overlay {
+            RoundedRectangle(cornerRadius: 22, style: .continuous)
+                .strokeBorder(selected ? ring : Color.clear, lineWidth: 3.5)
+        }
+        .frame(width: 86, height: 148)
     }
 }
 

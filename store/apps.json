@@ -21,11 +21,20 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.10",
-      "versionDate": "2026-10-31T21:39:48Z",
-      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.10/WFSchedule-2.10.ipa",
-      "size": 2123696,
+      "version": "2.11",
+      "versionDate": "2026-10-31T22:04:41Z",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.11/WFSchedule-2.11.ipa",
+      "size": 2152085,
       "versions": [
+        {
+          "version": "2.11",
+          "buildVersion": "6",
+          "date": "2026-10-31T22:04:41Z",
+          "localizedDescription": "Settings → Appearance now has six looks: Classic, Light, and Dark for Light Mode and again for Dark Mode. Classic keeps the mixed white header and dark agenda; Light is the all-white calendar; Dark is fully dark.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.11/WFSchedule-2.11.ipa",
+          "size": 2152085,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.10",
           "buildVersion": "5",
@@ -86,10 +95,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.10",
-      "identifier": "wf-schedule-2.10",
-      "caption": "Shift labels no longer overlap the calendar handle.",
-      "date": "2026-10-31T21:39:48Z",
+      "title": "Version 2.11",
+      "identifier": "wf-schedule-2.11",
+      "caption": "Classic, Light, and Dark calendars — six looks in Settings → Appearance.",
+      "date": "2026-10-31T22:04:41Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"

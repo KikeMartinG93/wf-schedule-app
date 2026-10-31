@@ -171,6 +171,11 @@ enum WhatsNew {
                  title: "Room for the shift legend",
                  detail: "The job-color labels now sit above the calendar handle instead of overlapping it."),
         ]),
+        Release(revision: 26, items: [
+            Item(symbol: "iphone",
+                 title: "Classic, Light, and Dark calendars",
+                 detail: "Settings → Appearance now has six looks: Classic, Light, and Dark for Light Mode and again for Dark Mode. Classic keeps the mixed white header and dark agenda; Light is the all-white calendar; Dark is fully dark."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

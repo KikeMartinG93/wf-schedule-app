@@ -41,10 +41,12 @@ private struct RichAgendaItem: Identifiable {
 }
 
 /// Month-grid and Day-ticker calendar and agenda view styled identically to Fantastical's iconic iOS layout:
-/// - Light/white top card with large "Month Year" header (red year), weekday columns or day ticker strip.
-/// - Vertical drag on the white header expands the compact ticker into a full month grid, and drags it back.
-/// - Dark/black agenda feed below with weather ranges, "TODAY / Up Next", colored event dots, interactive task checkboxes,
+/// - Top card with large "Month Year" header (red year), weekday columns or day ticker strip.
+/// - Vertical drag on the header expands the compact ticker into a full month grid, and drags it back.
+/// - Agenda feed below with weather ranges, "TODAY / Up Next", colored event dots, interactive task checkboxes,
 ///   and continuous vertical scrolling across next and previous days.
+/// Classic, Light, and Dark display styles (picked independently for Light Mode
+/// and Dark Mode in Settings) swap the header and agenda chrome.
 struct HomeCalendarView: View {
     var resetToken: Int = 0
     var onSignIn: (() -> Void)? = nil
@@ -77,12 +79,16 @@ struct HomeCalendarView: View {
     @ObservedObject private var theme = ThemeManager.shared
     @ObservedObject private var weatherStore = WorkWeatherStore.shared
     @Environment(\.scenePhase) private var scenePhase
+    @Environment(\.colorScheme) private var colorScheme
     private var calendar: Calendar { Calendar.current }
+
+    private var displayStyle: CalendarDisplayStyle { theme.displayStyle(for: colorScheme) }
+    private var chrome: CalendarDisplayPalette { displayStyle.palette }
 
     var body: some View {
         NavigationStack {
             ZStack {
-                Color.black.ignoresSafeArea()
+                chrome.agendaBackground.ignoresSafeArea()
 
                 VStack(spacing: 0) {
                     calendarCard
@@ -94,7 +100,8 @@ struct HomeCalendarView: View {
                 .accessibilityHidden(needsSignIn)
 
                 if needsSignIn {
-                    Color.red.opacity(0.25)
+                    chrome.agendaBackground.opacity(0.35)
+                        .overlay(Color.red.opacity(displayStyle.agendaIsDark ? 0.25 : 0.12))
                         .ignoresSafeArea()
                         .allowsHitTesting(false)
 
@@ -103,6 +110,7 @@ struct HomeCalendarView: View {
                 }
             }
             .toolbar(.hidden, for: .navigationBar)
+            .animation(.easeInOut(duration: 0.22), value: displayStyle)
             .onAppear {
                 expansion = calendarDayTickerMode ? 0 : 1
                 reloadShifts()
@@ -195,7 +203,14 @@ struct HomeCalendarView: View {
                 dragHandle
             }
         }
-        .background(Color.white)
+        .background(chrome.calendarBackground)
+        .overlay(alignment: .bottom) {
+            if !displayStyle.agendaIsDark {
+                Rectangle()
+                    .fill(chrome.divider)
+                    .frame(height: 0.5)
+            }
+        }
         .contentShape(Rectangle())
         .simultaneousGesture(verticalExpandGesture)
     }
@@ -211,7 +226,7 @@ struct HomeCalendarView: View {
                         .frame(width: 12, height: 3.5)
                     Text(verbatim: job)
                         .font(.system(size: 11, weight: .medium))
-                        .foregroundStyle(Color(red: 0.45, green: 0.45, blue: 0.48))
+                        .foregroundStyle(chrome.calendarSecondary)
                         .lineLimit(1)
                 }
             }
@@ -220,7 +235,7 @@ struct HomeCalendarView: View {
                 SparklyStar(size: 8)
                 Text("Holiday pay")
                     .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(Color(red: 0.45, green: 0.45, blue: 0.48))
+                    .foregroundStyle(chrome.calendarSecondary)
                     .lineLimit(1)
             }
         }
@@ -237,7 +252,7 @@ struct HomeCalendarView: View {
 
     private var dragHandle: some View {
         Capsule()
-            .fill(Color(red: 0.52, green: 0.52, blue: 0.54))
+            .fill(chrome.handle)
             .frame(width: 38, height: 4.5)
             .padding(.top, 2)
             .padding(.bottom, 8)
@@ -349,11 +364,7 @@ struct HomeCalendarView: View {
 
                     Text(weekdaySymbol)
                         .font(.system(size: 11, weight: .semibold))
-                        .foregroundStyle(
-                            isToday
-                                ? Color(red: 0.0, green: 0.48, blue: 1.0)
-                                : Color(red: 0.55, green: 0.55, blue: 0.58)
-                        )
+                        .foregroundStyle(isToday ? chrome.today : chrome.calendarMuted)
                 }
                 .frame(height: 18)
                 .padding(.top, 4)
@@ -361,7 +372,7 @@ struct HomeCalendarView: View {
                 // Day number
                 Text("\(dayNumber)")
                     .font(.system(size: 24, weight: .bold))
-                    .foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.08))
+                    .foregroundStyle(chrome.calendarPrimary)
                     .padding(.top, 2)
 
                 // Selected-day bar uses the Settings theme accent. Shift bars
@@ -387,11 +398,11 @@ struct HomeCalendarView: View {
                 Spacer(minLength: 0)
             }
             .frame(width: 66)
-            .background(isSelected ? Color(white: 0.94) : Color.white)
+            .background(isSelected ? chrome.selectedColumn : chrome.calendarBackground)
 
             // Hairline vertical divider
             Rectangle()
-                .fill(Color(.systemGray4).opacity(0.8))
+                .fill(chrome.divider)
                 .frame(width: 0.5)
         }
     }
@@ -445,11 +456,11 @@ struct HomeCalendarView: View {
         HStack(alignment: .firstTextBaseline, spacing: 10) {
             Text(displayedMonth.formatted(.dateTime.month(.wide)).capitalized)
                 .font(.system(size: 38, weight: .bold))
-                .foregroundStyle(Color(red: 0.08, green: 0.08, blue: 0.08))
+                .foregroundStyle(chrome.calendarPrimary)
 
             Text(displayedMonth.formatted(.dateTime.year()))
                 .font(.system(size: 38, weight: .bold))
-                .foregroundStyle(Color(red: 0.98, green: 0.15, blue: 0.15))
+                .foregroundStyle(chrome.year)
 
             Spacer()
 
@@ -459,10 +470,10 @@ struct HomeCalendarView: View {
                 } label: {
                     Text("Today")
                         .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(Color(red: 0.0, green: 0.48, blue: 1.0))
+                        .foregroundStyle(chrome.today)
                         .padding(.horizontal, 10)
                         .padding(.vertical, 4)
-                        .background(Color(red: 0.0, green: 0.48, blue: 1.0).opacity(0.10), in: Capsule())
+                        .background(chrome.today.opacity(0.10), in: Capsule())
                 }
                 .buttonStyle(.plain)
                 .transition(.opacity.combined(with: .scale(scale: 0.92)))
@@ -484,11 +495,7 @@ struct HomeCalendarView: View {
                 Text(symbol)
                     .font(.system(size: 11, weight: .semibold))
                     .tracking(0.4)
-                    .foregroundStyle(
-                        isTodayColumn
-                            ? Color(red: 0.0, green: 0.48, blue: 1.0)
-                            : Color(red: 0.55, green: 0.55, blue: 0.58)
-                    )
+                    .foregroundStyle(isTodayColumn ? chrome.today : chrome.calendarMuted)
                     .frame(maxWidth: .infinity)
             }
         }
@@ -549,7 +556,8 @@ struct HomeCalendarView: View {
                             isInMonth: calendar.isDate(day, equalTo: displayedMonth, toGranularity: .month),
                             dots: gridDotColors(for: day),
                             hasTasks: hasChecklistTasks(on: day),
-                            isHolidayPay: isHolidayPay(day)
+                            isHolidayPay: isHolidayPay(day),
+                            chrome: chrome
                         )
                         .contentShape(Rectangle())
                         .onTapGesture {
@@ -562,7 +570,7 @@ struct HomeCalendarView: View {
                 .background {
                     if week.contains(where: { calendar.isDate($0, inSameDayAs: selectedDate) }) {
                         RoundedRectangle(cornerRadius: 10, style: .continuous)
-                            .fill(Color(white: 0.93))
+                            .fill(chrome.selectedWeek)
                     }
                 }
             }
@@ -585,11 +593,11 @@ struct HomeCalendarView: View {
                     VStack(spacing: 12) {
                         Image(systemName: "calendar.badge.exclamationmark")
                             .font(.system(size: 36))
-                            .foregroundStyle(Color(white: 0.4))
+                            .foregroundStyle(chrome.agendaTertiary)
                             .padding(.top, 40)
                         Text("No shifts scheduled for this period")
                             .font(.subheadline)
-                            .foregroundStyle(Color(white: 0.6))
+                            .foregroundStyle(chrome.agendaSecondary)
                     }
                     .frame(maxWidth: .infinity)
                 } else {
@@ -607,7 +615,7 @@ struct HomeCalendarView: View {
         .scrollIndicators(.hidden)
         .scrollPosition(id: $agendaDay, anchor: .top)
         .scrollEdgeEffectStyle(.soft, for: .bottom)
-        .background(Color.black)
+        .background(chrome.agendaBackground)
     }
 
     /// Continuous range of past and upcoming days for smooth vertical scrolling
@@ -664,29 +672,29 @@ struct HomeCalendarView: View {
                         Text(shortDate)
                             .font(.system(size: 15, weight: .bold))
                     }
-                    .foregroundStyle(Color(red: 0.0, green: 0.52, blue: 1.0))
+                    .foregroundStyle(chrome.today)
 
                     Text("Up Next")
                         .font(.system(size: 12.5, weight: .semibold))
-                        .foregroundStyle(Color(red: 0.0, green: 0.52, blue: 1.0))
+                        .foregroundStyle(chrome.today)
                 } else if isTomorrow {
                     HStack(spacing: 6) {
                         Text("TOMORROW")
                             .font(.system(size: 15, weight: .heavy))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(chrome.agendaPrimary)
                         Text(shortDate)
                             .font(.system(size: 15, weight: .medium))
-                            .foregroundStyle(Color(white: 0.62))
+                            .foregroundStyle(chrome.agendaSecondary)
                     }
                 } else {
                     let weekdayName = day.formatted(.dateTime.weekday(.wide)).uppercased()
                     HStack(spacing: 6) {
                         Text(weekdayName)
                             .font(.system(size: 15, weight: .heavy))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(chrome.agendaPrimary)
                         Text(shortDate)
                             .font(.system(size: 15, weight: .medium))
-                            .foregroundStyle(Color(white: 0.62))
+                            .foregroundStyle(chrome.agendaSecondary)
                     }
                 }
             }
@@ -697,7 +705,7 @@ struct HomeCalendarView: View {
                 HStack(spacing: 5) {
                     Text("\(weather.highTemp)°/\(weather.lowTemp)°")
                         .font(.system(size: 14, weight: .semibold))
-                        .foregroundStyle(Color(white: 0.82))
+                        .foregroundStyle(chrome.agendaWeather)
 
                     if weather.symbolName.contains("sun") {
                         Image(systemName: weather.symbolName)
@@ -706,7 +714,7 @@ struct HomeCalendarView: View {
                     } else {
                         Image(systemName: weather.symbolName)
                             .font(.system(size: 15))
-                            .foregroundStyle(.white)
+                            .foregroundStyle(chrome.agendaPrimary)
                     }
                 }
             }
@@ -714,7 +722,7 @@ struct HomeCalendarView: View {
         .padding(.horizontal, 20)
         .padding(.top, 16)
         .padding(.bottom, 6)
-        .background(Color.black.opacity(0.96))
+        .background(chrome.stickyHeader)
     }
 
     // MARK: - Rich Agenda Items
@@ -759,11 +767,11 @@ struct HomeCalendarView: View {
             VStack(alignment: .leading, spacing: 2) {
                 Text("\(formatTime(shift.startTime)) – \(formatTime(shift.endTime))")
                     .font(.system(size: 13, weight: .semibold))
-                    .foregroundStyle(Color(white: 0.70))
+                    .foregroundStyle(chrome.agendaSecondary)
 
                 Text(shift.job)
                     .font(.system(size: 16, weight: .regular))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(chrome.agendaPrimary)
 
                 if let location = shift.location {
                     HStack(spacing: 4) {
@@ -772,13 +780,13 @@ struct HomeCalendarView: View {
                         Text(location)
                             .font(.system(size: 12))
                     }
-                    .foregroundStyle(Color(white: 0.50))
+                    .foregroundStyle(chrome.agendaTertiary)
                 }
 
                 if let notes = shift.notes {
                     Text(notes)
                         .font(.system(size: 12))
-                        .foregroundStyle(Color(white: 0.50))
+                        .foregroundStyle(chrome.agendaTertiary)
                         .lineLimit(2)
                 }
 
@@ -830,12 +838,12 @@ struct HomeCalendarView: View {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(formatHourMinute(hour: task.dueHour, minute: task.dueMinute))
                         .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(Color(white: 0.70))
+                        .foregroundStyle(chrome.agendaSecondary)
 
                     Text(task.title)
                         .font(.system(size: 16, weight: .regular))
-                        .foregroundStyle(isDone ? Color(white: 0.45) : .white)
-                        .strikethrough(isDone, color: Color(white: 0.45))
+                        .foregroundStyle(isDone ? chrome.agendaTertiary : chrome.agendaPrimary)
+                        .strikethrough(isDone, color: chrome.agendaTertiary)
                 }
 
                 Spacer()
@@ -849,14 +857,14 @@ struct HomeCalendarView: View {
     private func emptyDayRow(for day: Date) -> some View {
         HStack(alignment: .top, spacing: 14) {
             Circle()
-                .strokeBorder(Color(white: 0.25), lineWidth: 1.5)
+                .strokeBorder(chrome.emptyStroke, lineWidth: 1.5)
                 .frame(width: 10, height: 10)
                 .padding(.top, 4)
 
             VStack(alignment: .leading, spacing: 2) {
                 Text("No shift scheduled")
                     .font(.system(size: 15))
-                    .foregroundStyle(Color(white: 0.45))
+                    .foregroundStyle(chrome.agendaTertiary)
 
                 if isHolidayPay(day) {
                     HStack(spacing: 4) {
@@ -1016,15 +1024,15 @@ struct HomeCalendarView: View {
                 .foregroundStyle(Color.yellow)
             Text("Demo mode · sample data")
                 .font(.footnote.weight(.semibold))
-                .foregroundStyle(.white)
+                .foregroundStyle(chrome.demoBannerText)
             Spacer()
             Button("Exit") { DemoMode.set(false) }
                 .font(.footnote.weight(.semibold))
-                .foregroundStyle(Color(red: 0.0, green: 0.58, blue: 1.0))
+                .foregroundStyle(chrome.today)
         }
         .padding(.horizontal, 16)
         .padding(.vertical, 10)
-        .background(Color(white: 0.16), in: Capsule())
+        .background(chrome.demoBannerFill, in: Capsule())
     }
 }
 
@@ -1038,6 +1046,7 @@ private struct FantasticalDayCell: View {
     let dots: [Color]
     let hasTasks: Bool
     let isHolidayPay: Bool
+    let chrome: CalendarDisplayPalette
 
     private var calendar: Calendar { Calendar.current }
     private var dayNumber: Int { calendar.component(.day, from: day) }
@@ -1047,11 +1056,11 @@ private struct FantasticalDayCell: View {
             ZStack {
                 if isToday {
                     Circle()
-                        .fill(Color(red: 0.0, green: 0.48, blue: 1.0))
+                        .fill(chrome.today)
                         .frame(width: 32, height: 32)
                 } else if isSelected {
                     Circle()
-                        .strokeBorder(Color(red: 0.0, green: 0.48, blue: 1.0), lineWidth: 2)
+                        .strokeBorder(chrome.today, lineWidth: 2)
                         .frame(width: 32, height: 32)
                 }
 
@@ -1074,7 +1083,7 @@ private struct FantasticalDayCell: View {
                 if hasTasks {
                     Image(systemName: "checkmark")
                         .font(.system(size: 6, weight: .black))
-                        .foregroundStyle(isToday ? Color.white : Color(red: 0.0, green: 0.48, blue: 1.0))
+                        .foregroundStyle(isToday ? Color.white : chrome.today)
                 }
             }
             .frame(height: 6)
@@ -1087,9 +1096,9 @@ private struct FantasticalDayCell: View {
         if isToday {
             return .white
         } else if isInMonth {
-            return Color(red: 0.08, green: 0.08, blue: 0.08)
+            return chrome.calendarPrimary
         } else {
-            return Color(red: 0.65, green: 0.70, blue: 0.76)
+            return chrome.outOfMonth
         }
     }
 }

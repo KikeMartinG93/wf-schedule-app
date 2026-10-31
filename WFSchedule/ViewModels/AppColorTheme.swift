@@ -233,6 +233,138 @@ enum AppColorThemes {
     }
 }
 
+/// How the Home calendar itself is drawn. Independent of the color theme:
+/// Classic keeps the mixed white header + dark agenda, Light is all white,
+/// Dark is all dark. Light Mode and Dark Mode each store their own choice,
+/// matching the six-preview Appearance picker.
+enum CalendarDisplayStyle: String, CaseIterable, Identifiable {
+    case classic
+    case light
+    case dark
+
+    var id: String { rawValue }
+
+    var name: LocalizedStringKey {
+        switch self {
+        case .classic: "Classic"
+        case .light: "Light"
+        case .dark: "Dark"
+        }
+    }
+
+    /// Phone chrome in the Settings preview: Classic and Light sit on a light
+    /// device, Dark sits on a dark one.
+    var usesLightDeviceChrome: Bool { self != .dark }
+
+    /// Agenda list is dark in Classic and Dark, white in Light.
+    var agendaIsDark: Bool { self != .light }
+
+    /// Calendar header card is light in Classic and Light, dark in Dark.
+    var calendarIsLight: Bool { self != .dark }
+
+    var palette: CalendarDisplayPalette {
+        switch self {
+        case .classic: .classic
+        case .light: .light
+        case .dark: .dark
+        }
+    }
+}
+
+/// Concrete colors for one `CalendarDisplayStyle`. Home reads this instead of
+/// hard-coded white/black so Classic, Light, and Dark can share one layout.
+struct CalendarDisplayPalette {
+    let calendarBackground: Color
+    let calendarPrimary: Color
+    let calendarSecondary: Color
+    let calendarMuted: Color
+    let selectedColumn: Color
+    let selectedWeek: Color
+    let divider: Color
+    let handle: Color
+    let year: Color
+    let today: Color
+    let outOfMonth: Color
+    let agendaBackground: Color
+    let agendaPrimary: Color
+    let agendaSecondary: Color
+    let agendaTertiary: Color
+    let agendaWeather: Color
+    let emptyStroke: Color
+    let stickyHeader: Color
+    let demoBannerFill: Color
+    let demoBannerText: Color
+
+    static let classic = CalendarDisplayPalette(
+        calendarBackground: .white,
+        calendarPrimary: Color(red: 0.08, green: 0.08, blue: 0.08),
+        calendarSecondary: Color(red: 0.45, green: 0.45, blue: 0.48),
+        calendarMuted: Color(red: 0.55, green: 0.55, blue: 0.58),
+        selectedColumn: Color(white: 0.94),
+        selectedWeek: Color(white: 0.93),
+        divider: Color(.systemGray4).opacity(0.8),
+        handle: Color(red: 0.52, green: 0.52, blue: 0.54),
+        year: Color(red: 0.98, green: 0.15, blue: 0.15),
+        today: Color(red: 0.0, green: 0.48, blue: 1.0),
+        outOfMonth: Color(red: 0.65, green: 0.70, blue: 0.76),
+        agendaBackground: .black,
+        agendaPrimary: .white,
+        agendaSecondary: Color(white: 0.70),
+        agendaTertiary: Color(white: 0.50),
+        agendaWeather: Color(white: 0.82),
+        emptyStroke: Color(white: 0.25),
+        stickyHeader: Color.black.opacity(0.96),
+        demoBannerFill: Color(white: 0.16),
+        demoBannerText: .white
+    )
+
+    static let light = CalendarDisplayPalette(
+        calendarBackground: .white,
+        calendarPrimary: Color(red: 0.08, green: 0.08, blue: 0.08),
+        calendarSecondary: Color(red: 0.45, green: 0.45, blue: 0.48),
+        calendarMuted: Color(red: 0.55, green: 0.55, blue: 0.58),
+        selectedColumn: Color(white: 0.94),
+        selectedWeek: Color(white: 0.93),
+        divider: Color(.systemGray4).opacity(0.8),
+        handle: Color(red: 0.52, green: 0.52, blue: 0.54),
+        year: Color(red: 0.98, green: 0.15, blue: 0.15),
+        today: Color(red: 0.0, green: 0.48, blue: 1.0),
+        outOfMonth: Color(red: 0.65, green: 0.70, blue: 0.76),
+        agendaBackground: .white,
+        agendaPrimary: Color(red: 0.08, green: 0.08, blue: 0.08),
+        agendaSecondary: Color(red: 0.42, green: 0.42, blue: 0.45),
+        agendaTertiary: Color(red: 0.55, green: 0.55, blue: 0.58),
+        agendaWeather: Color(red: 0.28, green: 0.28, blue: 0.30),
+        emptyStroke: Color(white: 0.78),
+        stickyHeader: Color.white.opacity(0.96),
+        demoBannerFill: Color(white: 0.94),
+        demoBannerText: Color(red: 0.12, green: 0.12, blue: 0.14)
+    )
+
+    static let dark = CalendarDisplayPalette(
+        calendarBackground: Color(red: 0.11, green: 0.11, blue: 0.12),
+        calendarPrimary: Color(white: 0.96),
+        calendarSecondary: Color(white: 0.62),
+        calendarMuted: Color(white: 0.50),
+        selectedColumn: Color(white: 0.20),
+        selectedWeek: Color(white: 0.18),
+        divider: Color.white.opacity(0.12),
+        handle: Color(white: 0.42),
+        year: Color(red: 0.98, green: 0.15, blue: 0.15),
+        today: Color(red: 0.0, green: 0.52, blue: 1.0),
+        outOfMonth: Color(white: 0.38),
+        agendaBackground: .black,
+        agendaPrimary: .white,
+        agendaSecondary: Color(white: 0.70),
+        agendaTertiary: Color(white: 0.50),
+        agendaWeather: Color(white: 0.82),
+        emptyStroke: Color(white: 0.25),
+        stickyHeader: Color.black.opacity(0.96),
+        demoBannerFill: Color(white: 0.16),
+        demoBannerText: .white
+    )
+}
+
 /// Single source of truth for the active color theme, persisted across
 /// launches. Views that need to redraw when it changes hold this as an
 /// `@ObservedObject` (matching the existing `BackgroundPulse.shared` pattern)
@@ -244,6 +376,8 @@ final class ThemeManager: ObservableObject {
     private static let lightThemeStorageKey = "selectedLightThemeID"
     private static let darkThemeStorageKey = "selectedDarkThemeID"
     private static let legacyThemeStorageKey = "selectedColorThemeID"
+    private static let lightDisplayStorageKey = "lightCalendarDisplayStyle"
+    private static let darkDisplayStorageKey = "darkCalendarDisplayStyle"
 
     private static let lightVibrancyStorageKey = "lightGradientVibrancy"
     private static let darkVibrancyStorageKey = "darkGradientVibrancy"
@@ -295,6 +429,14 @@ final class ThemeManager: ObservableObject {
         }
     }
 
+    @Published var lightDisplayStyle: CalendarDisplayStyle {
+        didSet { UserDefaults.standard.set(lightDisplayStyle.rawValue, forKey: Self.lightDisplayStorageKey) }
+    }
+
+    @Published var darkDisplayStyle: CalendarDisplayStyle {
+        didSet { UserDefaults.standard.set(darkDisplayStyle.rawValue, forKey: Self.darkDisplayStorageKey) }
+    }
+
     /// The active 3-color palette combination index for Rainbow theme.
     @Published var rainbowComboIndex: Int = 0
 
@@ -304,6 +446,26 @@ final class ThemeManager: ObservableObject {
         withAnimation(.easeInOut(duration: 1.4)) {
             rainbowComboIndex = (rainbowComboIndex + 1) % AppColorThemes.rainbowPalettes.count
         }
+    }
+
+    func displayStyle(for scheme: ColorScheme) -> CalendarDisplayStyle {
+        scheme == .light ? lightDisplayStyle : darkDisplayStyle
+    }
+
+    func setDisplayStyle(_ style: CalendarDisplayStyle, for scheme: ColorScheme) {
+        if scheme == .light {
+            lightDisplayStyle = style
+        } else {
+            darkDisplayStyle = style
+        }
+    }
+
+    var currentDisplayStyle: CalendarDisplayStyle {
+        displayStyle(for: activeColorScheme)
+    }
+
+    var currentChrome: CalendarDisplayPalette {
+        currentDisplayStyle.palette
     }
 
     func selectedTheme(for scheme: ColorScheme) -> AppColorTheme {
@@ -395,6 +557,13 @@ final class ThemeManager: ObservableObject {
 
         lightTheme = AppColorThemes.theme(id: lightSavedID ?? AppColorThemes.default.id)
         darkTheme = AppColorThemes.theme(id: darkSavedID ?? AppColorThemes.default.id)
+
+        lightDisplayStyle = CalendarDisplayStyle(
+            rawValue: UserDefaults.standard.string(forKey: Self.lightDisplayStorageKey) ?? ""
+        ) ?? .classic
+        darkDisplayStyle = CalendarDisplayStyle(
+            rawValue: UserDefaults.standard.string(forKey: Self.darkDisplayStorageKey) ?? ""
+        ) ?? .classic
 
         let legacyVibrancy = UserDefaults.standard.object(forKey: Self.legacyVibrancyStorageKey) != nil
             ? UserDefaults.standard.double(forKey: Self.legacyVibrancyStorageKey)
