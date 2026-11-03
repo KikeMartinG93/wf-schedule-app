@@ -181,6 +181,35 @@ enum WhatsNew {
                  title: "Clearer Light calendar",
                  detail: "When the Light calendar is on and iOS is in Light Mode, the bottom of the screen frosts and dims a little so agenda text stays readable behind the tab bar. It goes away in Dark Mode."),
         ]),
+        Release(revision: 28, items: [
+            Item(symbol: "icloud.and.arrow.up",
+                 title: "Cloud shift backup",
+                 detail: "Settings → Cloud backup lets you create an email account that stores your shift history so it survives reinstalls. Separate from Amazon sign-in; each account only sees its own shifts."),
+            Item(symbol: "clock.arrow.circlepath",
+                 title: "Past shifts stay on device",
+                 detail: "A schedule refresh no longer wipes older days. UKG only returns a few weeks ahead; everything you already synced is kept locally and can be backed up to the cloud."),
+        ]),
+        Release(revision: 29, items: [
+            Item(symbol: "dollarsign.circle.fill",
+                 title: "Payday on your calendar",
+                 detail: "Onboarding asks whether you get Direct Deposit or a check. Direct Deposit on Wednesdays or Fridays adds biweekly Payday markers on Home and all-day events on your Work Schedule calendar (next Wed 11/11 or Fri 11/13 for the 10/26–11/08 pay period)."),
+        ]),
+        Release(revision: 30, items: [
+            Item(symbol: "list.bullet.clipboard.fill",
+                 title: "Full setup on first launch",
+                 detail: "Onboarding now walks through language, TM ID, work city, color theme, font, contrast, payday, and an optional CS Supervisor unlock for the new Keys tab."),
+            Item(symbol: "key.fill",
+                 title: "Keys tab for CS Sups",
+                 detail: "CS Supervisors who enter the store passcode get a Keys tab. Safe codes and liquor case listings are coming next — the tab is ready."),
+        ]),
+        Release(revision: 31, items: [
+            Item(symbol: "hand.raised.fill",
+                 title: "Setup only on first install",
+                 detail: "The setup wizard no longer appears for people who already use the app. Returning installs go straight to Home (or What’s New). Redo setup anytime from Settings."),
+            Item(symbol: "sparkles",
+                 title: "Features up front",
+                 detail: "The first setup screen showcases schedule sync, alerts, Apple Calendar, barcode, breaks, payday, weather, themes, and widgets before the personalization questions."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

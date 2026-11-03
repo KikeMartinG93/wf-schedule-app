@@ -10,9 +10,13 @@ struct SettingsView: View {
     @State private var showingCredentialForm = false
     @State private var showingSignIn = false
     @State private var showingWelcome = false
+    @State private var showingOnboarding = false
     @State private var showingWhatsNew = false
     @State private var showingBreaks = false
     @State private var showingChecklist = false
+    @State private var showingCSPasscode = false
+    @State private var csPasscodeDraft = ""
+    @State private var csPasscodeError = false
     @AppStorage(DemoMode.storageKey) private var demoMode = false
     @ObservedObject private var theme = ThemeManager.shared
     @Environment(\.colorScheme) private var colorScheme
@@ -26,7 +30,26 @@ struct SettingsView: View {
     @AppStorage(AppLanguage.storageKey) private var language: String = AppLanguage.system.rawValue
     @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
     @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
+    @AppStorage("csSupKeysUnlocked") private var keysUnlocked = false
     @ObservedObject private var weatherStore = WorkWeatherStore.shared
+    @State private var cloudBackup = SupabaseBackupService.shared
+    @AppStorage("payPaymentMethod") private var payPaymentMethod = ""
+    @AppStorage("payPaydayWeekday") private var payPaydayWeekday = ""
+
+    private var payPreferencesSummary: String {
+        switch PayPreferences.method {
+        case .directDeposit:
+            switch PayPreferences.weekday {
+            case .wednesday: String(localized: "Wednesdays")
+            case .friday: String(localized: "Fridays")
+            case nil: String(localized: "Direct Deposit")
+            }
+        case .check:
+            String(localized: "Check")
+        case nil:
+            String(localized: "Set up")
+        }
+    }
 
     var body: some View {
         NavigationStack {
@@ -62,7 +85,28 @@ struct SettingsView: View {
                         Text("Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.")
                     }
 
-                    // 2. Discount Barcode
+                    // 2. Cloud backup (Supabase — separate from Amazon / UKG)
+                    Section {
+                        NavigationLink {
+                            CloudBackupSettingsView()
+                        } label: {
+                            HStack {
+                                row("Cloud backup", "icloud.and.arrow.up")
+                                Spacer()
+                                Text(cloudBackup.isSignedIn
+                                     ? (cloudBackup.email ?? "On")
+                                     : "Off")
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                    } header: {
+                        Text("Cloud Backup")
+                    } footer: {
+                        Text("Optional email account that backs up your shift history so it survives reinstalls. Separate from Amazon sign-in.")
+                    }
+
+                    // 3. Discount Barcode
                     Section {
                         TMIDField()
                     } header: {
@@ -159,7 +203,58 @@ struct SettingsView: View {
                         Text("Home shows the high/low forecast for the city you work in, on each day of the calendar.")
                     }
 
-                    // 5. Calendar & Display
+                    // 5. Pay day
+                    Section {
+                        NavigationLink {
+                            PaySetupView(showsSkip: false) {
+                                // Stay on Settings after saving; sync happens inside PaySetupView.
+                            }
+                        } label: {
+                            HStack {
+                                row("Payday", "dollarsign.circle")
+                                Spacer()
+                                Text(payPreferencesSummary)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+                    } header: {
+                        Text("Pay")
+                    } footer: {
+                        Text("Direct Deposit paydays are marked on Home and added as all-day events on your Work Schedule calendar.")
+                    }
+
+                    // 5b. CS Supervisor → Keys
+                    Section {
+                        if keysUnlocked {
+                            HStack {
+                                row("Keys access", "key.fill")
+                                Spacer()
+                                Text("Unlocked")
+                                    .foregroundStyle(.secondary)
+                            }
+                            Button(role: .destructive) {
+                                CSSupAccess.revokeKeysAccess()
+                                keysUnlocked = false
+                            } label: {
+                                row("Lock Keys tab", "lock.fill", tint: .red)
+                            }
+                        } else {
+                            Button {
+                                csPasscodeDraft = ""
+                                csPasscodeError = false
+                                showingCSPasscode = true
+                            } label: {
+                                row("Unlock Keys (CS Sup)", "key.fill")
+                            }
+                        }
+                    } header: {
+                        Text("CS Supervisor")
+                    } footer: {
+                        Text("CS Supervisors can unlock the Keys tab for safe codes and liquor case. Content for Keys is coming soon.")
+                    }
+
+                    // 6. Calendar & Display
                     Section {
                         Toggle(isOn: $calendarDayTickerMode) {
                             row("Day ticker & continuous scroll", "calendar.day.timeline.leading")
@@ -219,6 +314,11 @@ struct SettingsView: View {
 
                     // 7. About & Help
                     Section {
+                        Button {
+                            showingOnboarding = true
+                        } label: {
+                            row("Redo setup", "list.bullet.clipboard")
+                        }
                         Button {
                             showingWelcome = true
                         } label: {
@@ -306,7 +406,55 @@ struct SettingsView: View {
                 WhatsNewView(items: WhatsNew.latestItems(), buttonTitle: "Done") { showingWhatsNew = false }
             }
             .sheet(isPresented: $showingWelcome) {
-                WelcomeView(buttonTitle: "Done") { showingWelcome = false }
+                WelcomeView(buttonTitle: "Done", asksPaySetup: false) { showingWelcome = false }
+            }
+            .fullScreenCover(isPresented: $showingOnboarding) {
+                OnboardingWizardView {
+                    showingOnboarding = false
+                }
+            }
+            .sheet(isPresented: $showingCSPasscode) {
+                NavigationStack {
+                    Form {
+                        Section {
+                            SecureField("Passcode", text: $csPasscodeDraft)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                            if csPasscodeError {
+                                Text("That passcode didn’t work. Try again.")
+                                    .font(.footnote)
+                                    .foregroundStyle(.red)
+                            }
+                        } footer: {
+                            Text("Enter the CS Supervisor passcode to show the Keys tab.")
+                        }
+                    }
+                    .navigationTitle("Unlock Keys")
+                    .navigationBarTitleDisplayMode(.inline)
+                    .toolbar {
+                        ToolbarItem(placement: .cancellationAction) {
+                            Button("Cancel") {
+                                showingCSPasscode = false
+                                csPasscodeDraft = ""
+                                csPasscodeError = false
+                            }
+                        }
+                        ToolbarItem(placement: .confirmationAction) {
+                            Button("Unlock") {
+                                if CSSupAccess.unlock(with: csPasscodeDraft) {
+                                    keysUnlocked = true
+                                    showingCSPasscode = false
+                                    csPasscodeDraft = ""
+                                    csPasscodeError = false
+                                } else {
+                                    csPasscodeError = true
+                                }
+                            }
+                            .disabled(csPasscodeDraft.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                        }
+                    }
+                }
+                .presentationDetents([.medium])
             }
         }
     }
@@ -438,6 +586,131 @@ private struct ThemePicker: View {
             }
         }
         .padding(.vertical, 6)
+    }
+}
+
+/// Email/password Supabase backup — create account, sign in, backup, restore.
+private struct CloudBackupSettingsView: View {
+    @State private var backup = SupabaseBackupService.shared
+    @State private var email = ""
+    @State private var password = ""
+    @State private var errorText: String?
+    @ObservedObject private var theme = ThemeManager.shared
+
+    var body: some View {
+        Form {
+            if !SupabaseConfig.isConfigured {
+                Section {
+                    Label(
+                        "Add your Supabase project URL and anon key in SupabaseConfig.swift, then run store/supabase-shifts.sql in the SQL editor.",
+                        systemImage: "exclamationmark.triangle"
+                    )
+                    .foregroundStyle(.secondary)
+                    .font(.subheadline)
+                }
+            } else if backup.isSignedIn {
+                Section {
+                    LabeledContent("Account") {
+                        Text(backup.email ?? "—")
+                            .foregroundStyle(.secondary)
+                    }
+                    LabeledContent("Last backup") {
+                        Text(backup.lastBackupAt?.formatted(date: .abbreviated, time: .shortened) ?? "Never")
+                            .foregroundStyle(.secondary)
+                    }
+                } header: {
+                    Text("Signed in")
+                }
+
+                Section {
+                    Button {
+                        Task { await run { try await backup.backupNow() } }
+                    } label: {
+                        Label("Backup now", systemImage: "icloud.and.arrow.up")
+                    }
+                    .disabled(backup.isBusy)
+
+                    Button {
+                        Task { await run { try await backup.restoreAndMerge() } }
+                    } label: {
+                        Label("Restore from backup", systemImage: "icloud.and.arrow.down")
+                    }
+                    .disabled(backup.isBusy)
+
+                    Button("Sign out", role: .destructive) {
+                        backup.signOut()
+                        errorText = nil
+                    }
+                }
+
+                if let status = backup.statusMessage {
+                    Section {
+                        Text(status)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            } else {
+                Section {
+                    TextField("Email", text: $email)
+                        .textContentType(.emailAddress)
+                        .textInputAutocapitalization(.never)
+                        .keyboardType(.emailAddress)
+                        .autocorrectionDisabled()
+                    SecureField("Password", text: $password)
+                        .textContentType(.password)
+                } header: {
+                    Text("Cloud account")
+                } footer: {
+                    Text("Creates a private backup of your shifts. Not your Whole Foods / Amazon login.")
+                }
+
+                Section {
+                    Button {
+                        Task { await run { try await backup.signIn(email: email, password: password) } }
+                    } label: {
+                        Label("Sign in", systemImage: "person.crop.circle")
+                    }
+                    .disabled(!canSubmit || backup.isBusy)
+
+                    Button {
+                        Task { await run { try await backup.signUp(email: email, password: password) } }
+                    } label: {
+                        Label("Create account", systemImage: "person.crop.circle.badge.plus")
+                    }
+                    .disabled(!canSubmit || backup.isBusy)
+                }
+            }
+
+            if let errorText {
+                Section {
+                    Text(errorText)
+                        .foregroundStyle(.red)
+                        .font(.footnote)
+                }
+            }
+        }
+        .navigationTitle("Cloud Backup")
+        .navigationBarTitleDisplayMode(.inline)
+        .tint(theme.current.readableAccent)
+        .onAppear {
+            if let existing = backup.email, email.isEmpty {
+                email = existing
+            }
+        }
+    }
+
+    private var canSubmit: Bool {
+        email.contains("@") && password.count >= 6
+    }
+
+    private func run(_ work: @escaping () async throws -> Void) async {
+        errorText = nil
+        do {
+            try await work()
+        } catch {
+            errorText = error.localizedDescription
+        }
     }
 }
 

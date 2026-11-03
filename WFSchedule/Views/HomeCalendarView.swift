@@ -58,6 +58,9 @@ struct HomeCalendarView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @AppStorage(DemoMode.storageKey) private var demoMode = false
     @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
+    @AppStorage("payPreferencesConfigured") private var payPreferencesConfigured = false
+    @AppStorage("payPaymentMethod") private var payPaymentMethod = ""
+    @AppStorage("payPaydayWeekday") private var payPaydayWeekday = ""
     /// 0 = compact day ticker, 1 = full month grid. Driven by a vertical drag
     /// on the white calendar header, matching Fantastical's expand/collapse.
     @State private var expansion: CGFloat = 0
@@ -238,7 +241,21 @@ struct HomeCalendarView: View {
                     .foregroundStyle(chrome.calendarSecondary)
                     .lineLimit(1)
             }
+
+            if PayPreferences.showsPayday {
+                HStack(spacing: 4) {
+                    Image(systemName: "dollarsign.circle.fill")
+                        .font(.system(size: 10, weight: .semibold))
+                        .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
+                    Text("Payday")
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundStyle(chrome.calendarSecondary)
+                        .lineLimit(1)
+                }
+            }
         }
+        // Re-evaluate when pay preferences change.
+        .id("\(payPreferencesConfigured)-\(payPaymentMethod)-\(payPaydayWeekday)")
     }
 
     private var legendJobs: [String] {
@@ -351,15 +368,21 @@ struct HomeCalendarView: View {
         let weekdaySymbol = day.formatted(.dateTime.weekday(.abbreviated)).uppercased()
         let hasTasks = hasChecklistTasks(on: day)
         let shiftColors = tickerShiftBarColors(for: day)
+        let payday = isPayday(day)
 
         return HStack(spacing: 0) {
             VStack(spacing: 0) {
-                // Top row: optional checkbox icon + uppercase weekday
+                // Top row: optional checkbox / payday icons + uppercase weekday
                 HStack(spacing: 3) {
                     if hasTasks {
                         Image(systemName: "checkmark.square.fill")
                             .font(.system(size: 10, weight: .bold))
                             .foregroundStyle(Color(red: 0.95, green: 0.25, blue: 0.25))
+                    }
+                    if payday {
+                        Image(systemName: "dollarsign.circle.fill")
+                            .font(.system(size: 10, weight: .bold))
+                            .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
                     }
 
                     Text(weekdaySymbol)
@@ -390,6 +413,11 @@ struct HomeCalendarView: View {
                     }
                     if isHolidayPay(day) {
                         SparklyStar(size: 8)
+                    }
+                    if payday {
+                        Image(systemName: "dollarsign.circle.fill")
+                            .font(.system(size: 8, weight: .bold))
+                            .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
                     }
                 }
                 .frame(height: 22, alignment: .top)
@@ -557,6 +585,7 @@ struct HomeCalendarView: View {
                             dots: gridDotColors(for: day),
                             hasTasks: hasChecklistTasks(on: day),
                             isHolidayPay: isHolidayPay(day),
+                            isPayday: isPayday(day),
                             chrome: chrome
                         )
                         .contentShape(Rectangle())
@@ -647,6 +676,12 @@ struct HomeCalendarView: View {
 
         return Section {
             VStack(spacing: 0) {
+                if isPayday(day) {
+                    paydayBanner(for: day)
+                        .padding(.horizontal, 20)
+                        .padding(.top, 4)
+                        .padding(.bottom, 6)
+                }
                 if items.isEmpty {
                     emptyDayRow(for: day)
                 } else {
@@ -723,6 +758,27 @@ struct HomeCalendarView: View {
         .padding(.top, 16)
         .padding(.bottom, 6)
         .background(chrome.stickyHeader)
+    }
+
+    private func paydayBanner(for day: Date) -> some View {
+        HStack(spacing: 8) {
+            Image(systemName: "dollarsign.circle.fill")
+                .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
+            VStack(alignment: .leading, spacing: 1) {
+                Text("Payday")
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundStyle(chrome.agendaPrimary)
+                if let period = PaydayCalendar.periodDescription(forPayday: day) {
+                    Text("Pay period \(period)")
+                        .font(.system(size: 12))
+                        .foregroundStyle(chrome.agendaSecondary)
+                }
+            }
+            Spacer()
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 8)
+        .background(Color(red: 0.20, green: 0.72, blue: 0.40).opacity(0.14), in: RoundedRectangle(cornerRadius: 10, style: .continuous))
     }
 
     // MARK: - Rich Agenda Items
@@ -805,6 +861,10 @@ struct HomeCalendarView: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 7)
+    }
+
+    private func isPayday(_ day: Date) -> Bool {
+        PaydayCalendar.isPayday(day, calendar: calendar)
     }
 
     private func agendaTaskRow(task: ChecklistTask) -> some View {
@@ -1046,6 +1106,7 @@ private struct FantasticalDayCell: View {
     let dots: [Color]
     let hasTasks: Bool
     let isHolidayPay: Bool
+    let isPayday: Bool
     let chrome: CalendarDisplayPalette
 
     private var calendar: Calendar { Calendar.current }
@@ -1074,6 +1135,11 @@ private struct FantasticalDayCell: View {
             HStack(spacing: 2.5) {
                 if isHolidayPay {
                     SparklyStar(size: 6)
+                }
+                if isPayday {
+                    Image(systemName: "dollarsign.circle.fill")
+                        .font(.system(size: 6, weight: .bold))
+                        .foregroundStyle(isToday ? Color.white : Color(red: 0.20, green: 0.72, blue: 0.40))
                 }
                 ForEach(Array(dots.enumerated()), id: \.offset) { _, col in
                     Circle()

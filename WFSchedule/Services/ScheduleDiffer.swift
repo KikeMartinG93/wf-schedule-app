@@ -15,19 +15,47 @@ struct ScheduleDiffResult {
 /// A shift missing from the new fetch is only reported as "removed" after it has
 /// been missing on 2 consecutive successful fetches, to absorb transient UKG/network
 /// blips without firing a false removal alert.
+///
+/// UKG's single-request window is only today → a few weeks ahead, so past shifts
+/// would vanish on every login refresh if the snapshot were replaced wholesale.
+/// Shifts whose day falls outside that fetch window stay on disk as local history
+/// and are never treated as removals just because UKG didn't return them.
 enum ScheduleDiffer {
-    static func diff(previous: ScheduleSnapshot?, newShifts: [Shift], fetchedAt: Date = Date()) -> ScheduleDiffResult {
+    static func diff(
+        previous: ScheduleSnapshot?,
+        newShifts: [Shift],
+        fetchedAt: Date = Date(),
+        fetchWindowStart: Date,
+        fetchWindowEnd: Date,
+        calendar: Calendar = .current
+    ) -> ScheduleDiffResult {
         var changes: [ScheduleChangeKind] = []
 
+        let windowStart = calendar.startOfDay(for: fetchWindowStart)
+        let windowEnd = calendar.startOfDay(for: fetchWindowEnd)
+
+        func dayKey(for shift: Shift) -> Date {
+            calendar.startOfDay(for: shift.date)
+        }
+
+        func isInFetchWindow(_ shift: Shift) -> Bool {
+            let day = dayKey(for: shift)
+            return day >= windowStart && day <= windowEnd
+        }
+
         let previousShifts = previous?.shifts ?? []
+        let historyShifts = previousShifts.filter { !isInFetchWindow($0) }
+        let previousInWindow = previousShifts.filter(isInFetchWindow)
+
         // `Dictionary(uniqueKeysWithValues:)` traps (crashes the whole app,
         // uncatchable) if two shifts ever map to the same id — plausible
         // since UKG can report the same shift under both `regularShifts` and
         // `transferShifts`. `Dictionary(_:uniquingKeysWith:)` keeps this
         // resilient to that instead of turning a data quirk into a hard
         // crash that silently kills every sync from that point on.
-        let previousById = Dictionary(previousShifts.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+        let previousById = Dictionary(previousInWindow.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
         let newById = Dictionary(newShifts.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
+        let historyById = Dictionary(historyShifts.map { ($0.id, $0) }, uniquingKeysWith: { _, latest in latest })
 
         for shift in newShifts {
             if let old = previousById[shift.id], old != shift {
@@ -45,7 +73,7 @@ enum ScheduleDiffer {
         // entry, and the old calendar event would sit next to the new one
         // until that debounce finally confirmed the old id gone.
         var orphanedNew = newShifts.filter { previousById[$0.id] == nil }
-        var orphanedOld = previousShifts.filter { newById[$0.id] == nil }
+        var orphanedOld = previousInWindow.filter { newById[$0.id] == nil }
 
         // Pair same-day orphans as an edit rather than an unrelated
         // add+remove — but only when the pairing is unambiguous (exactly one
@@ -59,9 +87,6 @@ enum ScheduleDiffer {
         // kind of thing an edit can change (e.g. Cash Office reassigned to
         // Supervisor) — same as time, requiring it to match would silently
         // defeat the pairing for precisely the edits most worth catching.
-        func dayKey(for shift: Shift) -> Date {
-            Calendar.current.startOfDay(for: shift.date)
-        }
         let orphanedOldByDay = Dictionary(grouping: orphanedOld, by: dayKey)
         let orphanedNewByDay = Dictionary(grouping: orphanedNew, by: dayKey)
 
@@ -84,6 +109,12 @@ enum ScheduleDiffer {
 
         var pendingMisses = previous?.pendingRemovalMisses ?? [:]
         var confirmedRemovals: [Shift] = []
+
+        // History outside the fetch window is kept locally on purpose — never
+        // count it as a "miss" just because UKG's short window omitted it.
+        for id in historyById.keys {
+            pendingMisses.removeValue(forKey: id)
+        }
 
         for old in orphanedOld {
             let misses = (pendingMisses[old.id] ?? 0) + 1
@@ -108,9 +139,26 @@ enum ScheduleDiffer {
             changes.append(.removed(shift))
         }
 
+        // Keep one-miss in-window shifts so a single flaky fetch doesn't wipe
+        // them; drop them only after the second consecutive miss above.
+        let pendingKept = orphanedOld.filter { pendingMisses[$0.id] != nil }
+
+        // Local history first, then the live window (new fetch + still-pending
+        // misses). If UKG ever returns a shift that overlaps a history id,
+        // the fresh copy wins.
+        var mergedById = historyById
+        for shift in newShifts {
+            mergedById[shift.id] = shift
+        }
+        for shift in pendingKept {
+            if mergedById[shift.id] == nil {
+                mergedById[shift.id] = shift
+            }
+        }
+
         let nextSnapshot = ScheduleSnapshot(
             fetchedAt: fetchedAt,
-            shifts: newShifts,
+            shifts: mergedById.values.sorted { $0.startTime < $1.startTime },
             pendingRemovalMisses: pendingMisses
         )
 

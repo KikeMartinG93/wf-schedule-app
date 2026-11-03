@@ -4,19 +4,27 @@ struct RootView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("hasSeenWelcome") private var hasSeenWelcome = false
-    @State private var showingWelcome = false
+    @State private var showingOnboarding = false
+    @State private var showingPaySetup = false
     @State private var whatsNewItems: [WhatsNew.Item] = []
     @State private var showingWhatsNew = false
 
     var body: some View {
         MainTabView()
         .onAppear {
-            if hasSeenWelcome {
+            // Returning installs must never get the first-run wizard again —
+            // even if `hasSeenWelcome` was cleared by a reinstall-adjacent
+            // container quirk. Only a truly empty install opens setup.
+            if Self.isReturningInstall() {
+                if !hasSeenWelcome { hasSeenWelcome = true }
                 // An update: summarize what changed since the last build they opened.
                 let pending = WhatsNew.pendingItems()
                 if !pending.isEmpty {
                     whatsNewItems = pending
                     showingWhatsNew = true
+                } else if !PayPreferences.isConfigured {
+                    // Existing installs that never answered the pay questions.
+                    showingPaySetup = true
                 }
                 // A fresh process always starts logged out (the webview can't
                 // survive relaunch) — try to resume silently from cookies saved
@@ -26,35 +34,62 @@ struct RootView: View {
                     Task { await sessionManager.attemptCookieRestore() }
                 }
             } else {
-                // A fresh install gets the welcome, which already covers everything.
-                showingWelcome = true
+                // Brand-new install only: full setup wizard.
+                showingOnboarding = true
                 WhatsNew.markSeen()
             }
         }
-        .sheet(isPresented: $showingWelcome) {
-            WelcomeView {
+        .fullScreenCover(isPresented: $showingOnboarding) {
+            OnboardingWizardView {
                 hasSeenWelcome = true
-                showingWelcome = false
+                showingOnboarding = false
                 Task { await AppBootstrap.run() }
             }
+        }
+        .sheet(isPresented: $showingPaySetup) {
+            PaySetupView(showsSkip: true) {
+                showingPaySetup = false
+            }
+            .presentationDragIndicator(.visible)
         }
         .sheet(isPresented: $showingWhatsNew) {
             WhatsNewView(items: whatsNewItems) {
                 WhatsNew.markSeen()
                 showingWhatsNew = false
+                if !PayPreferences.isConfigured {
+                    showingPaySetup = true
+                }
             }
         }
+    }
+
+    /// True when this device already used the app — welcome, sign-in, pay,
+    /// barcode, city, What's New, or CS Sup answers all count. Fresh installs
+    /// have none of these.
+    private static func isReturningInstall() -> Bool {
+        let defaults = UserDefaults.standard
+        if defaults.bool(forKey: "hasSeenWelcome") { return true }
+        if SessionManager.hasSignedInBefore { return true }
+        if PayPreferences.isConfigured { return true }
+        if CSSupAccess.hasAnswered { return true }
+        if defaults.object(forKey: "workCity") != nil { return true }
+        if let seen = defaults.object(forKey: "whatsNewSeenRevision") as? Int, seen > 6 {
+            return true
+        }
+        if let tm = BarcodeStore.value, !tm.isEmpty, !DemoMode.isEnabled { return true }
+        return false
     }
 }
 
 private enum AppTab: Hashable {
-    case home, timeline, alerts, settings
+    case home, timeline, alerts, keys, settings
 }
 
 private struct MainTabView: View {
     @EnvironmentObject private var sessionManager: SessionManager
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("hasSeenWelcome") private var hasSeenWelcome = false
+    @AppStorage("csSupKeysUnlocked") private var keysUnlocked = false
     @State private var selectedTab: AppTab = .home
     @State private var homeResetToken = 0
     @State private var showingLogin = false
@@ -105,6 +140,11 @@ private struct MainTabView: View {
             Tab("Alerts", systemImage: "bell.fill", value: AppTab.alerts) {
                 AlertsView(isActive: selectedTab == .alerts, filter: $alertsFilter)
             }
+            if keysUnlocked {
+                Tab("Keys", systemImage: "key.fill", value: AppTab.keys) {
+                    KeysView()
+                }
+            }
             Tab("Settings", systemImage: "gearshape.fill", value: AppTab.settings) {
                 SettingsView()
             }
@@ -150,6 +190,11 @@ private struct MainTabView: View {
         }
         .onChange(of: colorScheme, initial: true) { _, newScheme in
             ThemeManager.shared.updateActiveColorScheme(newScheme)
+        }
+        .onChange(of: keysUnlocked) { _, unlocked in
+            if !unlocked && selectedTab == .keys {
+                selectedTab = .home
+            }
         }
         // Breaks has no tab of its own: it opens from the countdown pill during a
         // shift, and from tapping a break widget or Live Activity.
@@ -261,7 +306,7 @@ private struct MainTabView: View {
                     badgeText: "90"
                 )
             }
-        case .settings:
+        case .keys, .settings:
             rightConfig = nil
         }
 

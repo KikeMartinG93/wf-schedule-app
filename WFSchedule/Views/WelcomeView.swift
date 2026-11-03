@@ -6,10 +6,13 @@ import SwiftUI
 /// to the bottom. Glyph tiles use the selected theme's palette.
 struct WelcomeView: View {
     var buttonTitle: LocalizedStringKey = "Continue"
+    /// When true (first launch), Continue opens the pay setup before finishing.
+    var asksPaySetup: Bool = true
     let onContinue: () -> Void
 
     @ObservedObject private var theme = ThemeManager.shared
     @State private var appeared = false
+    @State private var showingPaySetup = false
 
     private struct Feature: Identifiable {
         let id = UUID()
@@ -88,7 +91,7 @@ struct WelcomeView: View {
                 Text("Your schedule is stored only on this device.")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
-                Button(action: onContinue) {
+                Button(action: continueTapped) {
                     Text(buttonTitle)
                         .font(.headline)
                         .frame(maxWidth: .infinity)
@@ -115,6 +118,20 @@ struct WelcomeView: View {
         }
         .interactiveDismissDisabled()
         .onAppear { appeared = true }
+        .fullScreenCover(isPresented: $showingPaySetup) {
+            PaySetupView(showsSkip: true) {
+                showingPaySetup = false
+                onContinue()
+            }
+        }
+    }
+
+    private func continueTapped() {
+        if asksPaySetup && !PayPreferences.isConfigured {
+            showingPaySetup = true
+        } else {
+            onContinue()
+        }
     }
 
     private func row(_ feature: Feature) -> some View {

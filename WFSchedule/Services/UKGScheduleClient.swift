@@ -47,13 +47,18 @@ enum UKGClientError: LocalizedError {
 /// the one exception.
 @MainActor
 final class UKGScheduleClient {
+    /// How far ahead the single `/myschedule/events` request reaches. Kept in
+    /// sync with `ScheduleSyncCoordinator` so local history outside this
+    /// window is retained across refreshes instead of being wiped.
+    static let defaultDaysAhead = 21
+
     private let webView: WKWebView
 
     init(webView: WKWebView) {
         self.webView = webView
     }
 
-    func fetchSchedule(daysAhead: Int = 21) async throws -> [Shift] {
+    func fetchSchedule(daysAhead: Int = UKGScheduleClient.defaultDaysAhead) async throws -> [Shift] {
         let cookies = try await waitForXSRFCookie()
         let xsrfToken = cookies.first(where: { $0.name == "XSRF-TOKEN" })!.value
 

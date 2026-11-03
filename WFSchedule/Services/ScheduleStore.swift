@@ -40,7 +40,9 @@ final class ScheduleStore {
         return snapshot
     }
 
-    func save(_ snapshot: ScheduleSnapshot) {
+    /// Persists the snapshot locally. When `triggerCloudBackup` is true (default)
+    /// and the user is signed into Supabase backup, upserts shifts in the background.
+    func save(_ snapshot: ScheduleSnapshot, triggerCloudBackup: Bool = true) {
         if DemoMode.isEnabled { return }
         guard let data = try? JSONEncoder().encode(snapshot) else { return }
         do {
@@ -58,6 +60,11 @@ final class ScheduleStore {
         publishToSharedContainer(data)
         ShiftIndexer.reindex()
         NotificationCenter.default.post(name: Self.didChangeNotification, object: nil)
+        if triggerCloudBackup {
+            Task { @MainActor in
+                SupabaseBackupService.shared.backupAfterLocalSaveIfSignedIn()
+            }
+        }
     }
 
     /// Copy for the Next Shift widget, which runs in its own process and can't

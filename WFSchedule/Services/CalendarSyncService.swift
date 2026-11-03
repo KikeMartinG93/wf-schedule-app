@@ -14,10 +14,12 @@ enum CalendarSyncError: LocalizedError {
 /// Maintains a dedicated "Work Schedule" Apple Calendar and keeps it in sync with
 /// detected shift changes. Only ever touches events it created itself (tracked by
 /// storing the Shift's match-key id in the event's notes as a hidden marker), and
-/// never modifies the user's other calendars.
+/// never modifies the user's other calendars. Also upserts all-day Payday events
+/// when Direct Deposit preferences are set.
 final class CalendarSyncService {
     static let calendarTitle = "Work Schedule"
     private static let markerPrefix = "wfschedule-id:"
+    private static let paydayMarkerPrefix = "wfschedule-payday:"
 
     private let store = EKEventStore()
 
@@ -209,5 +211,89 @@ final class CalendarSyncService {
         if let payCode = shift.payCode { notes += "\npay code: \(payCode)" }
         if let extra = shift.notes { notes += "\n\(extra)" }
         event.notes = notes
+    }
+
+    // MARK: - Payday (Direct Deposit)
+
+    private func paydayMarker(for day: Date, calendar: Calendar) -> String {
+        let comps = calendar.dateComponents([.year, .month, .day], from: day)
+        let y = comps.year ?? 0
+        let m = comps.month ?? 0
+        let d = comps.day ?? 0
+        return String(format: "%@%04d-%02d-%02d", Self.paydayMarkerPrefix, y, m, d)
+    }
+
+    /// Upserts biweekly all-day Payday events (~1 year back / 2 years ahead) and
+    /// removes any leftover payday markers when Direct Deposit is off or the
+    /// weekday changed.
+    func syncPaydayEvents() throws {
+        let calendar = workScheduleCalendar()
+        let cal = Calendar.current
+        let today = cal.startOfDay(for: Date())
+        let rangeStart = cal.date(byAdding: .year, value: -1, to: today) ?? today
+        let rangeEnd = cal.date(byAdding: .year, value: 2, to: today) ?? today
+
+        let desired = Set(PaydayCalendar.paydays(from: rangeStart, through: rangeEnd, calendar: cal))
+        let desiredMarkers = Set(desired.map { paydayMarker(for: $0, calendar: cal) })
+
+        let predicate = store.predicateForEvents(withStart: rangeStart, end: rangeEnd.addingTimeInterval(86_400), calendars: [calendar])
+        let existingPayday = store.events(matching: predicate).filter {
+            $0.notes?.contains(Self.paydayMarkerPrefix) == true
+        }
+
+        var byMarker: [String: EKEvent] = [:]
+        for event in existingPayday {
+            guard let notes = event.notes,
+                  let range = notes.range(of: Self.paydayMarkerPrefix) else { continue }
+            let key = Self.paydayMarkerPrefix + notes[range.upperBound...].prefix { $0 != "\n" }
+            byMarker[String(key)] = event
+        }
+
+        var didChange = false
+
+        for day in desired {
+            let marker = paydayMarker(for: day, calendar: cal)
+            let title = String(localized: "Payday")
+            var notes = marker
+            if let period = PaydayCalendar.periodDescription(forPayday: day, calendar: cal) {
+                notes += "\nPay period \(period)"
+            }
+
+            if let event = byMarker[marker] {
+                let needsUpdate = event.title != title
+                    || event.isAllDay == false
+                    || event.notes != notes
+                    || !cal.isDate(event.startDate, inSameDayAs: day)
+                if needsUpdate {
+                    event.calendar = calendar
+                    event.title = title
+                    event.isAllDay = true
+                    event.startDate = day
+                    event.endDate = day
+                    event.notes = notes
+                    try store.save(event, span: .thisEvent)
+                    didChange = true
+                }
+            } else {
+                let event = EKEvent(eventStore: store)
+                event.calendar = calendar
+                event.title = title
+                event.isAllDay = true
+                event.startDate = day
+                event.endDate = day
+                event.notes = notes
+                try store.save(event, span: .thisEvent)
+                didChange = true
+            }
+        }
+
+        for (marker, event) in byMarker where !desiredMarkers.contains(marker) {
+            try store.remove(event, span: .thisEvent)
+            didChange = true
+        }
+
+        if didChange {
+            try store.commit()
+        }
     }
 }

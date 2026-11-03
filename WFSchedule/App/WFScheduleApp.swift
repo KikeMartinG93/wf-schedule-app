@@ -55,11 +55,13 @@ enum AppBootstrap {
         if let shifts = ScheduleStore.shared.load()?.shifts {
             try? calendarSync.reconcileTitles(for: shifts)
         }
+        try? calendarSync.syncPaydayEvents()
 
         _ = await NotificationService.requestAuthorization()
         BackgroundRefreshManager.scheduleNext()
         ChecklistReminderService.refreshAllReminders()
         ScheduleStore.shared.republishExistingSnapshot()
         if let tmID = BarcodeStore.value { BarcodeStore.value = tmID }
+        await SupabaseBackupService.shared.restoreSessionIfNeeded()
     }
 }

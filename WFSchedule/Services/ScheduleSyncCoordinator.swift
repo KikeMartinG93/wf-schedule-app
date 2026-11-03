@@ -200,8 +200,22 @@ enum ScheduleSyncCoordinator {
     }
 
     private static func applyFetchedSchedule(_ newShifts: [Shift]) async throws {
+        let calendar = Calendar.current
+        let windowStart = calendar.startOfDay(for: Date())
+        let windowEnd = calendar.date(
+            byAdding: .day,
+            value: UKGScheduleClient.defaultDaysAhead,
+            to: windowStart
+        ) ?? windowStart
+
         let previous = ScheduleStore.shared.load()
-        let result = ScheduleDiffer.diff(previous: previous, newShifts: newShifts)
+        let result = ScheduleDiffer.diff(
+            previous: previous,
+            newShifts: newShifts,
+            fetchWindowStart: windowStart,
+            fetchWindowEnd: windowEnd,
+            calendar: calendar
+        )
 
         ScheduleStore.shared.save(result.nextSnapshot)
 
@@ -214,15 +228,18 @@ enum ScheduleSyncCoordinator {
             ChangeLogStore.shared.append(result.changes.map { ChangeLogEntry(change: $0) })
         }
         // Runs every sync, not just when there are diff-detected changes — see
-        // reconcileTitles' doc comment for why.
-        try? calendarSync.reconcileTitles(for: newShifts)
+        // reconcileTitles' doc comment for why. Use the merged snapshot so
+        // titles for retained past shifts stay correct too.
+        try? calendarSync.reconcileTitles(for: result.nextSnapshot.shifts)
         // Also every sync (cheap, scoped to one calendar) — cleans up any
         // duplicate events left over from a reinstall wiping the on-disk
         // snapshot before this upsert logic existed, and is a harmless no-op
         // once there's nothing left to collapse.
         try? calendarSync.deduplicateEvents()
 
-        NotificationService.rescheduleShiftReminders(for: newShifts)
+        NotificationService.rescheduleShiftReminders(for: result.nextSnapshot.shifts)
+        // Keep Direct Deposit Payday all-day events aligned with preferences.
+        try? calendarSync.syncPaydayEvents()
         // A sync can reveal that a shift is on right now (or that it's been removed).
         BreakActivityManager.sync()
     }

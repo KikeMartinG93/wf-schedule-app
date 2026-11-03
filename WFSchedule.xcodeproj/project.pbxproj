@@ -92,6 +92,13 @@
 		F9195372534ADE26B6A42646 /* ShiftCountdownAccessory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1B5ED505E0E82B19B1C718C /* ShiftCountdownAccessory.swift */; };
 		FDBC5810731A0E0B9698B3D3 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8023DAB827C445CBC5A0494F /* LoginView.swift */; };
 		FECA18803177FE460FA731F8 /* UKGScheduleClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E6217A572E40F4084FF2D88 /* UKGScheduleClient.swift */; };
+		A11C0F16B7E24D0A9C3E5F01 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C0F16B7E24D0A9C3E5F02 /* SupabaseConfig.swift */; };
+		A11C0F16B7E24D0A9C3E5F03 /* SupabaseBackupService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11C0F16B7E24D0A9C3E5F04 /* SupabaseBackupService.swift */; };
+		B22D1E27C8F35E1B0A4D6C01 /* PayPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D1E27C8F35E1B0A4D6C02 /* PayPreferences.swift */; };
+		B22D1E27C8F35E1B0A4D6C03 /* PaySetupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B22D1E27C8F35E1B0A4D6C04 /* PaySetupView.swift */; };
+		C33D2F38D9A46F2C1B5E7A01 /* CSSupAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */; };
+		C33D2F38D9A46F2C1B5E7A03 /* OnboardingWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A04 /* OnboardingWizardView.swift */; };
+		C33D2F38D9A46F2C1B5E7A05 /* KeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A06 /* KeysView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -153,6 +160,13 @@
 		78DF67DB688A6180AB8956C1 /* ScheduleIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleIntents.swift; sourceTree = "<group>"; };
 		78EA7CFB1A1DAC4BDF81541F /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7C9ADFD1BC124F0AC343EF39 /* ScheduleStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleStore.swift; sourceTree = "<group>"; };
+		A11C0F16B7E24D0A9C3E5F02 /* SupabaseConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		A11C0F16B7E24D0A9C3E5F04 /* SupabaseBackupService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SupabaseBackupService.swift; sourceTree = "<group>"; };
+		B22D1E27C8F35E1B0A4D6C02 /* PayPreferences.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PayPreferences.swift; sourceTree = "<group>"; };
+		B22D1E27C8F35E1B0A4D6C04 /* PaySetupView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = PaySetupView.swift; sourceTree = "<group>"; };
+		C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CSSupAccess.swift; sourceTree = "<group>"; };
+		C33D2F38D9A46F2C1B5E7A04 /* OnboardingWizardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingWizardView.swift; sourceTree = "<group>"; };
+		C33D2F38D9A46F2C1B5E7A06 /* KeysView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeysView.swift; sourceTree = "<group>"; };
 		8023DAB827C445CBC5A0494F /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		812B551B9A10EBCD810B2593 /* AlertsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
 		819515A93063B0DC67764680 /* HolidayPayCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayPayCalendar.swift; sourceTree = "<group>"; };
@@ -236,6 +250,8 @@
 				3E6217A572E40F4084FF2D88 /* UKGScheduleClient.swift */,
 				0F94E6F636ED3CD150A5D675 /* NotificationService.swift */,
 				7C9ADFD1BC124F0AC343EF39 /* ScheduleStore.swift */,
+				A11C0F16B7E24D0A9C3E5F02 /* SupabaseConfig.swift */,
+				A11C0F16B7E24D0A9C3E5F04 /* SupabaseBackupService.swift */,
 				1E602C3C6AFD3D324A70DBAF /* AppIconManager.swift */,
 				5FAC965D27A7AD117F567181 /* ColorContrast.swift */,
 				78DF67DB688A6180AB8956C1 /* ScheduleIntents.swift */,
@@ -297,6 +313,9 @@
 				812B551B9A10EBCD810B2593 /* AlertsView.swift */,
 				0CF88ADDE662C89D268A640D /* ChecklistView.swift */,
 				A9A1094A52DD175A35ACD26F /* WelcomeView.swift */,
+				C33D2F38D9A46F2C1B5E7A04 /* OnboardingWizardView.swift */,
+				B22D1E27C8F35E1B0A4D6C04 /* PaySetupView.swift */,
+				C33D2F38D9A46F2C1B5E7A06 /* KeysView.swift */,
 				510B04AFA7E917D8F650FA7C /* BreaksView.swift */,
 				2A47E3BC291F11585DCA193D /* WidgetShowcase.swift */,
 				B1C5C85945A05B92150D20F9 /* WhatsNew.swift */,
@@ -372,6 +391,8 @@
 			children = (
 				4D2008148A020323FA2D1EC5 /* Shift.swift */,
 				819515A93063B0DC67764680 /* HolidayPayCalendar.swift */,
+				B22D1E27C8F35E1B0A4D6C02 /* PayPreferences.swift */,
+				C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */,
 				EDF1E27880C32632EA869FA7 /* UKGScheduleModels.swift */,
 				86F01ADAA65510A017B62815 /* ChecklistModels.swift */,
 				9B5C8965B5AFEE9F245A6E51 /* ChangeLogEntry.swift */,
@@ -486,6 +507,8 @@
 			files = (
 				8BC78402F8D25F5943043091 /* Shift.swift in Sources */,
 				2438A404A3AD6373A777E051 /* HolidayPayCalendar.swift in Sources */,
+				B22D1E27C8F35E1B0A4D6C01 /* PayPreferences.swift in Sources */,
+				C33D2F38D9A46F2C1B5E7A01 /* CSSupAccess.swift in Sources */,
 				4ECC50BCBA50DA82D3B63C9D /* WFScheduleApp.swift in Sources */,
 				5E44EEF3DD5E9D50C12E1457 /* BreakModels.swift in Sources */,
 				464EB74C452789596447F78D /* SecureTMID.swift in Sources */,
@@ -504,6 +527,9 @@
 				2E69C3623FC0748DB2B396F0 /* AlertsView.swift in Sources */,
 				59F4BFD6C53B137180F1D467 /* ChecklistView.swift in Sources */,
 				CF32F5B4ED3A6593CF00413B /* WelcomeView.swift in Sources */,
+				C33D2F38D9A46F2C1B5E7A03 /* OnboardingWizardView.swift in Sources */,
+				B22D1E27C8F35E1B0A4D6C03 /* PaySetupView.swift in Sources */,
+				C33D2F38D9A46F2C1B5E7A05 /* KeysView.swift in Sources */,
 				8A109E9F4AAD600929F1CF52 /* BreaksView.swift in Sources */,
 				CD42F8D8BFBE461079931E44 /* WidgetShowcase.swift in Sources */,
 				85FF0A41F79FBADA2DF552E0 /* WhatsNew.swift in Sources */,
@@ -533,6 +559,8 @@
 				FECA18803177FE460FA731F8 /* UKGScheduleClient.swift in Sources */,
 				3726D1E45F2CFD978153122C /* NotificationService.swift in Sources */,
 				CB65BD58373F681FC9E5C3B1 /* ScheduleStore.swift in Sources */,
+				A11C0F16B7E24D0A9C3E5F01 /* SupabaseConfig.swift in Sources */,
+				A11C0F16B7E24D0A9C3E5F03 /* SupabaseBackupService.swift in Sources */,
 				48C1FCCC0846C8CEE6D9CD4D /* AppIconManager.swift in Sources */,
 				7D230EA5D9136F667E2E3253 /* ColorContrast.swift in Sources */,
 				69D52B79792308750C9315B9 /* ScheduleIntents.swift in Sources */,
@@ -663,7 +691,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.12;
+				MARKETING_VERSION = 2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -676,7 +704,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -684,7 +712,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.12;
+				MARKETING_VERSION = 2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -701,7 +729,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -709,7 +737,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.12;
+				MARKETING_VERSION = 2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -733,7 +761,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.12;
+				MARKETING_VERSION = 2.13;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
