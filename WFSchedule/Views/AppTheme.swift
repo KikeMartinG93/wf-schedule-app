@@ -17,9 +17,11 @@ struct ThemedGlyph: View {
             .foregroundStyle(.white)
             .frame(width: size, height: size)
             .background(
-                (tint ?? theme.current.glyphBackground(for: symbol)).gradient,
+                (tint ?? theme.current.glyphBackground(for: symbol)),
                 in: RoundedRectangle(cornerRadius: size * 0.25, style: .continuous)
             )
+            // Keep settings tiles on liquid glass–friendly solid fills (no extra
+            // gradient wash) so they match the Home Screen icon accent.
     }
 }
 

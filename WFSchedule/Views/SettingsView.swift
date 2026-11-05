@@ -35,6 +35,7 @@ struct SettingsView: View {
     @State private var cloudBackup = SupabaseBackupService.shared
     @AppStorage("payPaymentMethod") private var payPaymentMethod = ""
     @AppStorage("payPaydayWeekday") private var payPaydayWeekday = ""
+    @AppStorage(PayPreferences.showPayPeriodMarkersKey) private var showPayPeriodMarkers = false
 
     private var payPreferencesSummary: String {
         switch PayPreferences.method {
@@ -60,7 +61,7 @@ struct SettingsView: View {
                 // scrolls up under it and fades out softly instead of being cut off
                 // in a hard line.
                 Form {
-                    // 1. Account & Security
+                    // 1. Account — schedule sync + optional cloud history
                     Section {
                         if sessionManager.state == .authenticated {
                             Button(role: .destructive) {
@@ -79,14 +80,7 @@ struct SettingsView: View {
                             row("Automatic background sign-in", "arrow.triangle.2.circlepath")
                         }
                         .tint(theme.current.toggleTint)
-                    } header: {
-                        Text("Account")
-                    } footer: {
-                        Text("Automatic sign-in securely stores credentials in Keychain to keep your schedule refreshed in the background.")
-                    }
 
-                    // 2. Cloud backup (Supabase — separate from Amazon / UKG)
-                    Section {
                         NavigationLink {
                             CloudBackupSettingsView()
                         } label: {
@@ -94,28 +88,68 @@ struct SettingsView: View {
                                 row("Cloud backup", "icloud.and.arrow.up")
                                 Spacer()
                                 Text(cloudBackup.isSignedIn
-                                     ? (cloudBackup.email ?? "On")
-                                     : "Off")
+                                     ? (cloudBackup.email ?? String(localized: "On"))
+                                     : String(localized: "Off"))
                                     .foregroundStyle(.secondary)
                                     .lineLimit(1)
                             }
                         }
                     } header: {
-                        Text("Cloud Backup")
+                        Text("Account")
                     } footer: {
-                        Text("Optional email account that backs up your shift history so it survives reinstalls. Separate from Amazon sign-in.")
+                        Text("Sign-in, backup, and schedule sync.")
                     }
 
-                    // 3. Discount Barcode
+                    // 2. Your store — identity used across Home, barcode, pay
                     Section {
                         TMIDField()
+
+                        NavigationLink {
+                            WorkCityPicker()
+                        } label: {
+                            HStack {
+                                row("Work city", "building.2")
+                                Spacer()
+                                Text(weatherStore.city?.displayName ?? String(localized: "Choose a city"))
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+
+                        NavigationLink {
+                            PaySetupView(showsSkip: false) {}
+                        } label: {
+                            HStack {
+                                row("Payday", "dollarsign.circle")
+                                Spacer()
+                                Text(payPreferencesSummary)
+                                    .foregroundStyle(.secondary)
+                                    .lineLimit(1)
+                            }
+                        }
+
+                        Toggle(isOn: $showPayPeriodMarkers) {
+                            row("Pay period start & end", "flag.fill")
+                        }
+                        .tint(theme.current.toggleTint)
+                        .disabled(!PayPreferences.showsPayday)
+
+                        Picker(selection: languageBinding) {
+                            Text("System default").tag(AppLanguage.system)
+                            Text(verbatim: "English").tag(AppLanguage.en)
+                            Text(verbatim: "Español").tag(AppLanguage.es)
+                        } label: {
+                            row("Language", "globe")
+                        }
+                        .tint(theme.current.readableAccent)
+                        .id(theme.highContrast)
                     } header: {
-                        Text("Discount Barcode")
+                        Text("Your store")
                     } footer: {
-                        Text("Stored securely in the Keychain for quick access and widgets.")
+                        Text("TM ID, work city, payday, and language.")
                     }
 
-                    // 3. Theme & Appearance (Collapsible)
+                    // 3. Look & feel — theme + calendar chrome + readability
                     Section {
                         DisclosureGroup(isExpanded: $isThemeExpanded) {
                             NavigationLink {
@@ -174,57 +208,26 @@ struct SettingsView: View {
                                 }
                             }
                         }
-                    } header: {
-                        Text("Theme & Appearance")
-                    } footer: {
-                        if isThemeExpanded && !theme.highContrast {
-                            Text(appearanceMode == .light
-                                 ? "Pick Classic, Light, or Dark for the calendar, then a color palette and vibrancy for Light mode. Lowering the bar adds a white overlay for accessibility."
-                                 : "Pick Classic, Light, or Dark for the calendar, then a color palette and vibrancy for Dark mode. Lowering the bar adds a black overlay for accessibility.")
+
+                        Toggle(isOn: $calendarDayTickerMode) {
+                            row("Day ticker & continuous scroll", "calendar.day.timeline.leading")
                         }
+                        .tint(theme.current.toggleTint)
+                        Toggle(isOn: $theme.highContrast) {
+                            row("High contrast", "circle.lefthalf.filled")
+                        }
+                        .tint(theme.current.toggleTint)
+                        Toggle(isOn: roundedFontBinding) {
+                            row("Rounded font", "textformat")
+                        }
+                        .tint(theme.current.toggleTint)
+                    } header: {
+                        Text("Look & Feel")
+                    } footer: {
+                        Text("Colors, calendar style, and readability.")
                     }
 
-                    // 4. Work city (forecast on Home)
-                    Section {
-                        NavigationLink {
-                            WorkCityPicker()
-                        } label: {
-                            HStack {
-                                row("Work city", "building.2")
-                                Spacer()
-                                Text(weatherStore.city?.displayName ?? "Choose a city")
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(1)
-                            }
-                        }
-                    } header: {
-                        Text("Work Location")
-                    } footer: {
-                        Text("Home shows the high/low forecast for the city you work in, on each day of the calendar.")
-                    }
-
-                    // 5. Pay day
-                    Section {
-                        NavigationLink {
-                            PaySetupView(showsSkip: false) {
-                                // Stay on Settings after saving; sync happens inside PaySetupView.
-                            }
-                        } label: {
-                            HStack {
-                                row("Payday", "dollarsign.circle")
-                                Spacer()
-                                Text(payPreferencesSummary)
-                                    .foregroundStyle(.secondary)
-                                    .lineLimit(1)
-                            }
-                        }
-                    } header: {
-                        Text("Pay")
-                    } footer: {
-                        Text("Direct Deposit paydays are marked on Home and added as all-day events on your Work Schedule calendar.")
-                    }
-
-                    // 5b. CS Supervisor → Keys
+                    // 4. Supervisor — Keys gate
                     Section {
                         if keysUnlocked {
                             HStack {
@@ -251,39 +254,10 @@ struct SettingsView: View {
                     } header: {
                         Text("CS Supervisor")
                     } footer: {
-                        Text("CS Supervisors can unlock the Keys tab for safe codes and liquor case. Content for Keys is coming soon.")
+                        Text("Supervisor access for the Keys tab.")
                     }
 
-                    // 6. Calendar & Display
-                    Section {
-                        Toggle(isOn: $calendarDayTickerMode) {
-                            row("Day ticker & continuous scroll", "calendar.day.timeline.leading")
-                        }
-                        .tint(theme.current.toggleTint)
-                        Toggle(isOn: $theme.highContrast) {
-                            row("High contrast", "circle.lefthalf.filled")
-                        }
-                        .tint(theme.current.toggleTint)
-                        Toggle(isOn: roundedFontBinding) {
-                            row("Rounded font", "textformat")
-                        }
-                        .tint(theme.current.toggleTint)
-                        Picker(selection: languageBinding) {
-                            Text("System default").tag(AppLanguage.system)
-                            Text(verbatim: "English").tag(AppLanguage.en)
-                            Text(verbatim: "Español").tag(AppLanguage.es)
-                        } label: {
-                            row("Language", "globe")
-                        }
-                        .tint(theme.current.readableAccent)
-                        .id(theme.highContrast)
-                    } header: {
-                        Text("Display & Calendar")
-                    } footer: {
-                        Text("Day ticker shows a compact horizontal day strip and lets you continuously scroll vertically through past and upcoming days.")
-                    }
-
-                    // 5. Tools & Quick Actions
+                    // 5. Shortcuts
                     Section {
                         Button {
                             showingBreaks = true
@@ -296,12 +270,11 @@ struct SettingsView: View {
                             row("Daily Role Checklist", "checklist")
                         }
                     } header: {
-                        Text("Tools")
+                        Text("Shortcuts")
                     } footer: {
-                        Text("Plan break schedules or track shift duties and checklists.")
+                        Text("Breaks, checklist, and widgets.")
                     }
 
-                    // 6. Widgets & Lock Screen
                     Section {
                         WidgetShowcase()
                             .listRowInsets(EdgeInsets())
@@ -312,7 +285,7 @@ struct SettingsView: View {
                         Text("Add Next Shift or Discount Barcode to your Home Screen or Lock Screen.")
                     }
 
-                    // 7. About & Help
+                    // 6. Help
                     Section {
                         Button {
                             showingOnboarding = true
@@ -355,10 +328,12 @@ struct SettingsView: View {
                             .tint(theme.current.toggleTint)
                         }
                     } header: {
-                        Text("About")
+                        Text("Help")
                     } footer: {
                         if demoMode {
                             Text("Demo mode is currently active with sample data.")
+                        } else {
+                            Text("Setup, what’s new, and demo.")
                         }
                     }
                 }

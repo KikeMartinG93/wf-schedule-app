@@ -21,11 +21,20 @@
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.13",
-      "versionDate": "2026-11-03T05:07:10Z",
-      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.13/WFSchedule-2.13.ipa",
-      "size": 2302135,
+      "version": "2.14",
+      "versionDate": "2026-11-05T00:50:57Z",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.14/WFSchedule-2.14.ipa",
+      "size": 2323370,
       "versions": [
+        {
+          "version": "2.14",
+          "buildVersion": "9",
+          "date": "2026-11-05T00:50:57Z",
+          "localizedDescription": "Keys with Face ID for CS Sup safe codes, regrouped Settings, full Spanish translations, clearer Light calendar chrome, and Home Screen icons matched to each theme accent.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.14/WFSchedule-2.14.ipa",
+          "size": 2323370,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.13",
           "buildVersion": "8",
@@ -113,10 +122,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.13",
-      "identifier": "wf-schedule-2.13",
-      "caption": "Full first-launch setup with feature showcase; returning users skip straight in. CS Sup Keys tab unlock included.",
-      "date": "2026-11-03T05:07:10Z",
+      "title": "Version 2.14",
+      "identifier": "wf-schedule-2.14",
+      "caption": "Keys with Face ID, regrouped Settings, Spanish translations, and a clearer Light calendar.",
+      "date": "2026-11-05T00:50:57Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"

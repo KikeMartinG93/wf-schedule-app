@@ -210,6 +210,17 @@ enum WhatsNew {
                  title: "Features up front",
                  detail: "The first setup screen showcases schedule sync, alerts, Apple Calendar, barcode, breaks, payday, weather, themes, and widgets before the personalization questions."),
         ]),
+        Release(revision: 32, items: [
+            Item(symbol: "key.fill",
+                 title: "Keys with Face ID",
+                 detail: "CS Supervisors unlock Cash Office and safe codes on the Keys tab. Tap a row and authenticate with Face ID to reveal."),
+            Item(symbol: "slider.horizontal.3",
+                 title: "Clearer Settings",
+                 detail: "Settings is regrouped into Account, Your store, Look & Feel, CS Supervisor, Shortcuts, Widgets, and Help — and Spanish translations are filled in throughout the app."),
+            Item(symbol: "sun.max.fill",
+                 title: "Light calendar readability",
+                 detail: "Tab bar labels, the shift countdown, and theme icons stay readable on the all-white Light calendar, with Home Screen icons matched to each accent color."),
+        ]),
     ]
 
     static var latestRevision: Int { releases.last?.revision ?? 0 }

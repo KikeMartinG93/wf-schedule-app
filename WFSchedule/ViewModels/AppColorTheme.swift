@@ -321,24 +321,24 @@ struct CalendarDisplayPalette {
     static let light = CalendarDisplayPalette(
         calendarBackground: .white,
         calendarPrimary: Color(red: 0.08, green: 0.08, blue: 0.08),
-        calendarSecondary: Color(red: 0.45, green: 0.45, blue: 0.48),
-        calendarMuted: Color(red: 0.55, green: 0.55, blue: 0.58),
+        calendarSecondary: Color(red: 0.32, green: 0.32, blue: 0.35),
+        calendarMuted: Color(red: 0.42, green: 0.42, blue: 0.45),
         selectedColumn: Color(white: 0.94),
         selectedWeek: Color(white: 0.93),
         divider: Color(.systemGray4).opacity(0.8),
-        handle: Color(red: 0.52, green: 0.52, blue: 0.54),
-        year: Color(red: 0.98, green: 0.15, blue: 0.15),
-        today: Color(red: 0.0, green: 0.48, blue: 1.0),
-        outOfMonth: Color(red: 0.65, green: 0.70, blue: 0.76),
+        handle: Color(red: 0.40, green: 0.40, blue: 0.43),
+        year: Color(red: 0.85, green: 0.08, blue: 0.08),
+        today: Color(red: 0.0, green: 0.40, blue: 0.90),
+        outOfMonth: Color(red: 0.52, green: 0.55, blue: 0.60),
         agendaBackground: .white,
         agendaPrimary: Color(red: 0.08, green: 0.08, blue: 0.08),
-        agendaSecondary: Color(red: 0.42, green: 0.42, blue: 0.45),
-        agendaTertiary: Color(red: 0.55, green: 0.55, blue: 0.58),
-        agendaWeather: Color(red: 0.28, green: 0.28, blue: 0.30),
-        emptyStroke: Color(white: 0.78),
-        stickyHeader: Color.white.opacity(0.96),
-        demoBannerFill: Color(white: 0.94),
-        demoBannerText: Color(red: 0.12, green: 0.12, blue: 0.14)
+        agendaSecondary: Color(red: 0.30, green: 0.30, blue: 0.33),
+        agendaTertiary: Color(red: 0.42, green: 0.42, blue: 0.45),
+        agendaWeather: Color(red: 0.22, green: 0.22, blue: 0.24),
+        emptyStroke: Color(white: 0.70),
+        stickyHeader: Color.white.opacity(0.98),
+        demoBannerFill: Color(white: 0.92),
+        demoBannerText: Color(red: 0.10, green: 0.10, blue: 0.12)
     )
 
     static let dark = CalendarDisplayPalette(
@@ -539,7 +539,11 @@ final class ThemeManager: ObservableObject {
     func updateActiveColorScheme(_ scheme: ColorScheme) {
         guard activeColorScheme != scheme else { return }
         activeColorScheme = scheme
-        AppIconManager.apply(themeID: current.id)
+        // Use the stored theme id (not `current`, which becomes monochrome in
+        // high contrast) so the Home Screen icon always tracks the accent.
+        if !highContrast {
+            AppIconManager.apply(themeID: selectedTheme(for: scheme).id)
+        }
     }
 
     private init() {

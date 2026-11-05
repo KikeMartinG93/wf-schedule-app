@@ -50,10 +50,12 @@ extension Color {
     static func readable(_ base: Color, minimumContrast: CGFloat = 4.5) -> Color {
         Color(uiColor: UIColor { traits in
             let strict = traits.accessibilityContrast == .high
-            // Worst-case surfaces the app draws on: grouped light gray / elevated dark gray.
+            // Worst-case surfaces: near-black elevated chrome in Dark, pure white
+            // (Light calendar / liquid glass) in Light — bright accents (teal, green,
+            // amber, sky) must darken enough to stay readable on glass.
             let background: UIColor = traits.userInterfaceStyle == .dark
                 ? UIColor(white: 0.14, alpha: 1)
-                : UIColor(white: 0.95, alpha: 1)
+                : .white
             let target = strict ? max(minimumContrast, 7) : minimumContrast
             return UIColor(base).resolvedColor(with: traits).meeting(contrast: target, against: background)
         })

@@ -1,6 +1,10 @@
 #!/usr/bin/env python3
-"""Paint each alternate app icon's background with that theme's exact accent,
-leaving the calendar/clock artwork untouched."""
+"""Paint each alternate app icon's background with that theme's exact accent
+from AppColorTheme.swift, leaving the calendar/clock artwork untouched.
+
+Run from repo root:
+  python3 scripts/recolor_app_icons.py
+"""
 
 from __future__ import annotations
 
@@ -12,83 +16,69 @@ from PIL import Image, ImageChops, ImageFilter
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "WFSchedule/App/Assets.xcassets"
 SOURCES = ROOT / "scripts/icon_sources"
+# Neutral green master — flood-fill is reliable; we replace its background.
+MASTER = SOURCES / "AppIcon.png"
 
+# Accents / deep tints must stay in lockstep with AppColorTheme.swift.
 THEMES = {
     "green": {
         "accent": (0x31, 0xD1, 0x58),
         "deep": (0x00, 0x4E, 0x36),
-        "source": SOURCES / "AppIcon.png",
         "path": ASSETS / "AppIcon.appiconset/icon-1024.png",
     },
     "blue": {
         "accent": (0x3A, 0xA8, 0xE0),
         "deep": (0x0B, 0x2A, 0x4A),
-        "source": SOURCES / "AppIcon-blue.png",
         "path": ASSETS / "AppIcon-blue.appiconset/icon-1024.png",
     },
     "purple": {
         "accent": (0xA8, 0x55, 0xF7),
         "deep": (0x3B, 0x1E, 0x5E),
-        "source": SOURCES / "AppIcon-purple.png",
         "path": ASSETS / "AppIcon-purple.appiconset/icon-1024.png",
     },
     "rose": {
         "accent": (0xF4, 0x3F, 0x87),
         "deep": (0x5E, 0x1E, 0x3A),
-        "source": SOURCES / "AppIcon-rose.png",
         "path": ASSETS / "AppIcon-rose.appiconset/icon-1024.png",
     },
     "amber": {
         "accent": (0xFF, 0x9F, 0x1C),
         "deep": (0x5E, 0x35, 0x10),
-        "source": SOURCES / "AppIcon-amber.png",
         "path": ASSETS / "AppIcon-amber.appiconset/icon-1024.png",
     },
     "teal": {
         "accent": (0x2D, 0xD4, 0xBF),
         "deep": (0x07, 0x3B, 0x3A),
-        "source": SOURCES / "AppIcon-teal.png",
         "path": ASSETS / "AppIcon-teal.appiconset/icon-1024.png",
     },
     "crimson": {
         "accent": (0xEF, 0x44, 0x44),
         "deep": (0x5A, 0x14, 0x20),
-        "source": SOURCES / "AppIcon-crimson.png",
         "path": ASSETS / "AppIcon-crimson.appiconset/icon-1024.png",
     },
     "indigo": {
         "accent": (0x63, 0x66, 0xF1),
         "deep": (0x24, 0x1B, 0x5E),
-        "source": SOURCES / "AppIcon-indigo.png",
         "path": ASSETS / "AppIcon-indigo.appiconset/icon-1024.png",
     },
     "halloween": {
-        "accent": (0xFF, 0x7A, 0x0D),
+        # Pumpkin accent fills the icon; purple deep only shades the bottom.
+        "accent": (0xFF, 0x7A, 0x0D),  # 1.00, 0.48, 0.05
         "deep": (0xA5, 0x2D, 0xF2),
-        "source": SOURCES / "AppIcon-halloween.png",
         "path": ASSETS / "AppIcon-halloween.appiconset/icon-1024.png",
-        "gradient": [(0xFF, 0x7A, 0x0D), (0xA5, 0x2D, 0xF2)],
     },
     "colorful": {
+        # Primary selection accent (sky blue) — matches ThemeManager tint.
         "accent": (0x4F, 0xC3, 0xF7),
-        "deep": (0x5A, 0x57, 0x9A),
-        "source": SOURCES / "AppIcon-colorful.png",
+        "deep": (0x1A, 0x5A, 0x8A),
         "path": ASSETS / "AppIcon-colorful.appiconset/icon-1024.png",
-        "gradient": [(0x4F, 0xC3, 0xF7), (0xA6, 0xB1, 0xE1), (0xF0, 0x60, 0x9E)],
     },
     "rainbow": {
-        "accent": (0xFF, 0x85, 0x1E),
+        # Same rule as every other theme: Home Screen icon fill = selection accent.
+        # In-app Rainbow still morphs gradients; the icon stays identifiable.
+        "accent": (0xFF, 0x85, 0x1E),  # 1.00, 0.52, 0.12
         "deep": (0x5B, 0x3A, 0xC9),
-        "source": SOURCES / "AppIcon-colorful.png",
         "path": ASSETS / "AppIcon-rainbow.appiconset/icon-1024.png",
-        "gradient": [
-            (0xF2, 0x38, 0x51),
-            (0xFF, 0x85, 0x1E),
-            (0xFF, 0xD1, 0x29),
-            (0x2D, 0xD4, 0xBF),
-            (0x3A, 0xA8, 0xE0),
-            (0xA8, 0x55, 0xF7),
-        ],
     },
 }
 
@@ -153,16 +143,18 @@ def make_gradient(size: int, stops: list[tuple[int, int, int]]) -> Image.Image:
             f = t * n
             i = min(n - 1, int(f))
             px[x, y] = mix(stops[i], stops[i + 1], f - i)
-    return img.filter(ImageFilter.GaussianBlur(radius=10))
+    return img.filter(ImageFilter.GaussianBlur(radius=8))
 
 
 def shaded_background(size: int, accent, deep) -> Image.Image:
+    """Mostly the accent; only a light bottom shade so Home Screen icons read
+    as that theme's selection color."""
     img = Image.new("RGB", (size, size))
     px = img.load()
-    bottom = mix(accent, deep, 0.22)
+    bottom = mix(accent, deep, 0.18)
     for y in range(size):
-        t = (y / (size - 1)) ** 2
-        row = mix(accent, bottom, t)
+        t = (y / (size - 1)) ** 2.4
+        row = mix(accent, bottom, t * 0.55)
         for x in range(size):
             px[x, y] = row
     return img
@@ -199,25 +191,31 @@ def ensure_appiconset(path: Path) -> None:
         )
 
 
-def render(theme: dict) -> Image.Image:
-    src = Image.open(theme["source"]).convert("RGB")
-    mask = flood_background(src)
-    size = src.size[0]
+def render(theme: dict, master: Image.Image, mask: Image.Image) -> Image.Image:
+    size = master.size[0]
     if "gradient" in theme:
         background = make_gradient(size, theme["gradient"])
     else:
         background = shaded_background(size, theme["accent"], theme["deep"])
-    return composite(background, src, mask)
+    return composite(background, master, mask)
 
 
 def main() -> None:
+    master = Image.open(MASTER).convert("RGB")
+    mask = flood_background(master)
     for name, theme in THEMES.items():
         ensure_appiconset(theme["path"])
-        print(f"rendering {name} ← {theme['source'].name}")
-        img = render(theme)
+        print(f"rendering {name}")
+        img = render(theme, master, mask)
         img.save(theme["path"], "PNG")
+        # Also refresh icon_sources for non-green themes so the next pass stays aligned.
+        if name != "green":
+            src = SOURCES / f"AppIcon-{name}.png"
+            img.save(src, "PNG")
         sample = img.getpixel((12, 12))
-        print(f"  corner #{sample[0]:02X}{sample[1]:02X}{sample[2]:02X}")
+        accent = theme["accent"]
+        delta = dist(sample, accent)
+        print(f"  corner #{sample[0]:02X}{sample[1]:02X}{sample[2]:02X}  accent=#{accent[0]:02X}{accent[1]:02X}{accent[2]:02X}  Δ={delta:.1f}")
 
 
 if __name__ == "__main__":

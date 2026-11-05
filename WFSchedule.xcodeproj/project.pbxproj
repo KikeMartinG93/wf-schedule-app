@@ -99,6 +99,9 @@
 		C33D2F38D9A46F2C1B5E7A01 /* CSSupAccess.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */; };
 		C33D2F38D9A46F2C1B5E7A03 /* OnboardingWizardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A04 /* OnboardingWizardView.swift */; };
 		C33D2F38D9A46F2C1B5E7A05 /* KeysView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C33D2F38D9A46F2C1B5E7A06 /* KeysView.swift */; };
+		D44E3A49E0B57A3D2C6F8B01 /* StoreKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = D44E3A49E0B57A3D2C6F8B02 /* StoreKeys.swift */; };
+		E55F4B50F1C68B4E3D7A9C01 /* BiometricAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = E55F4B50F1C68B4E3D7A9C02 /* BiometricAuth.swift */; };
+		F66A5C61A2D79C5F4E8B0D01 /* TabBarChrome.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66A5C61A2D79C5F4E8B0D02 /* TabBarChrome.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -167,6 +170,9 @@
 		C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CSSupAccess.swift; sourceTree = "<group>"; };
 		C33D2F38D9A46F2C1B5E7A04 /* OnboardingWizardView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OnboardingWizardView.swift; sourceTree = "<group>"; };
 		C33D2F38D9A46F2C1B5E7A06 /* KeysView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = KeysView.swift; sourceTree = "<group>"; };
+		D44E3A49E0B57A3D2C6F8B02 /* StoreKeys.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StoreKeys.swift; sourceTree = "<group>"; };
+		E55F4B50F1C68B4E3D7A9C02 /* BiometricAuth.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BiometricAuth.swift; sourceTree = "<group>"; };
+		F66A5C61A2D79C5F4E8B0D02 /* TabBarChrome.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TabBarChrome.swift; sourceTree = "<group>"; };
 		8023DAB827C445CBC5A0494F /* LoginView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		812B551B9A10EBCD810B2593 /* AlertsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AlertsView.swift; sourceTree = "<group>"; };
 		819515A93063B0DC67764680 /* HolidayPayCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HolidayPayCalendar.swift; sourceTree = "<group>"; };
@@ -252,6 +258,8 @@
 				7C9ADFD1BC124F0AC343EF39 /* ScheduleStore.swift */,
 				A11C0F16B7E24D0A9C3E5F02 /* SupabaseConfig.swift */,
 				A11C0F16B7E24D0A9C3E5F04 /* SupabaseBackupService.swift */,
+				E55F4B50F1C68B4E3D7A9C02 /* BiometricAuth.swift */,
+				F66A5C61A2D79C5F4E8B0D02 /* TabBarChrome.swift */,
 				1E602C3C6AFD3D324A70DBAF /* AppIconManager.swift */,
 				5FAC965D27A7AD117F567181 /* ColorContrast.swift */,
 				78DF67DB688A6180AB8956C1 /* ScheduleIntents.swift */,
@@ -393,6 +401,7 @@
 				819515A93063B0DC67764680 /* HolidayPayCalendar.swift */,
 				B22D1E27C8F35E1B0A4D6C02 /* PayPreferences.swift */,
 				C33D2F38D9A46F2C1B5E7A02 /* CSSupAccess.swift */,
+				D44E3A49E0B57A3D2C6F8B02 /* StoreKeys.swift */,
 				EDF1E27880C32632EA869FA7 /* UKGScheduleModels.swift */,
 				86F01ADAA65510A017B62815 /* ChecklistModels.swift */,
 				9B5C8965B5AFEE9F245A6E51 /* ChangeLogEntry.swift */,
@@ -509,6 +518,9 @@
 				2438A404A3AD6373A777E051 /* HolidayPayCalendar.swift in Sources */,
 				B22D1E27C8F35E1B0A4D6C01 /* PayPreferences.swift in Sources */,
 				C33D2F38D9A46F2C1B5E7A01 /* CSSupAccess.swift in Sources */,
+				D44E3A49E0B57A3D2C6F8B01 /* StoreKeys.swift in Sources */,
+				E55F4B50F1C68B4E3D7A9C01 /* BiometricAuth.swift in Sources */,
+				F66A5C61A2D79C5F4E8B0D01 /* TabBarChrome.swift in Sources */,
 				4ECC50BCBA50DA82D3B63C9D /* WFScheduleApp.swift in Sources */,
 				5E44EEF3DD5E9D50C12E1457 /* BreakModels.swift in Sources */,
 				464EB74C452789596447F78D /* SecureTMID.swift in Sources */,
@@ -691,7 +703,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -704,7 +716,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -712,7 +724,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -729,7 +741,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 8;
+				CURRENT_PROJECT_VERSION = 9;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -737,7 +749,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -761,7 +773,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.13;
+				MARKETING_VERSION = 2.14;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;

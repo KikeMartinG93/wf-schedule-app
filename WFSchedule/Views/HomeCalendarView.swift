@@ -61,6 +61,7 @@ struct HomeCalendarView: View {
     @AppStorage("payPreferencesConfigured") private var payPreferencesConfigured = false
     @AppStorage("payPaymentMethod") private var payPaymentMethod = ""
     @AppStorage("payPaydayWeekday") private var payPaydayWeekday = ""
+    @AppStorage(PayPreferences.showPayPeriodMarkersKey) private var showPayPeriodMarkers = false
     /// 0 = compact day ticker, 1 = full month grid. Driven by a vertical drag
     /// on the white calendar header, matching Fantastical's expand/collapse.
     @State private var expansion: CGFloat = 0
@@ -167,7 +168,7 @@ struct HomeCalendarView: View {
 
     // MARK: - Expandable Calendar Card
 
-    private static let tickerBodyHeight: CGFloat = 118
+    private static let tickerBodyHeight: CGFloat = 96
     private static let gridBodyHeight: CGFloat = 308
 
     private var calendarBodyHeight: CGFloat {
@@ -188,8 +189,8 @@ struct HomeCalendarView: View {
                     .allowsHitTesting(expansion > 0.5)
 
                 dayTickerStrip
-                    .padding(.top, 10)
-                    .padding(.bottom, 4)
+                    .padding(.top, 4)
+                    .padding(.bottom, 0)
                     .opacity(1 - expansion)
                     .allowsHitTesting(expansion < 0.5)
             }
@@ -200,8 +201,8 @@ struct HomeCalendarView: View {
                 shiftLegend
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(.horizontal, 14)
-                    .padding(.top, 6)
-                    .padding(.bottom, 6)
+                    .padding(.top, 2)
+                    .padding(.bottom, 2)
 
                 dragHandle
             }
@@ -218,44 +219,61 @@ struct HomeCalendarView: View {
         .simultaneousGesture(verticalExpandGesture)
     }
 
-    /// Tiny color keys for the bars on the day strip: the jobs on this
-    /// schedule, plus holiday pay. Same colors as the ticker marks.
+    /// Job colors on the first row; holiday / payday / pay-period on the second.
     private var shiftLegend: some View {
-        FlowLayout(spacing: 12, rowSpacing: 4) {
-            ForEach(legendJobs, id: \.self) { job in
-                HStack(spacing: 5) {
-                    Capsule()
-                        .fill(colorForJob(job))
-                        .frame(width: 12, height: 3.5)
-                    Text(verbatim: job)
+        VStack(alignment: .leading, spacing: 4) {
+            FlowLayout(spacing: 12, rowSpacing: 4) {
+                ForEach(legendJobs, id: \.self) { job in
+                    HStack(spacing: 5) {
+                        Capsule()
+                            .fill(colorForJob(job))
+                            .frame(width: 12, height: 3.5)
+                        Text(verbatim: job)
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundStyle(chrome.calendarSecondary)
+                            .lineLimit(1)
+                    }
+                }
+            }
+
+            HStack(spacing: 12) {
+                HStack(spacing: 4) {
+                    SparklyStar(size: 8)
+                    Text("Holiday pay")
                         .font(.system(size: 11, weight: .medium))
                         .foregroundStyle(chrome.calendarSecondary)
                         .lineLimit(1)
                 }
-            }
 
-            HStack(spacing: 4) {
-                SparklyStar(size: 8)
-                Text("Holiday pay")
-                    .font(.system(size: 11, weight: .medium))
-                    .foregroundStyle(chrome.calendarSecondary)
-                    .lineLimit(1)
-            }
+                if PayPreferences.showsPayday {
+                    HStack(spacing: 4) {
+                        Image(systemName: "dollarsign.circle.fill")
+                            .font(.system(size: 10, weight: .semibold))
+                            .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
+                        Text("Payday")
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundStyle(chrome.calendarSecondary)
+                            .lineLimit(1)
+                    }
+                }
 
-            if PayPreferences.showsPayday {
-                HStack(spacing: 4) {
-                    Image(systemName: "dollarsign.circle.fill")
-                        .font(.system(size: 10, weight: .semibold))
-                        .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
-                    Text("Payday")
-                        .font(.system(size: 11, weight: .medium))
-                        .foregroundStyle(chrome.calendarSecondary)
-                        .lineLimit(1)
+                if PayPreferences.showsPayday && showPayPeriodMarkers {
+                    HStack(spacing: 4) {
+                        Image(systemName: "flag.fill")
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundStyle(PayPeriodMarkerStyle.start)
+                        Image(systemName: "flag.checkered")
+                            .font(.system(size: 9, weight: .semibold))
+                            .foregroundStyle(PayPeriodMarkerStyle.end)
+                        Text("Pay period")
+                            .font(.system(size: 11, weight: .medium))
+                            .foregroundStyle(chrome.calendarSecondary)
+                            .lineLimit(1)
+                    }
                 }
             }
         }
-        // Re-evaluate when pay preferences change.
-        .id("\(payPreferencesConfigured)-\(payPaymentMethod)-\(payPaydayWeekday)")
+        .id("\(payPreferencesConfigured)-\(payPaymentMethod)-\(payPaydayWeekday)-\(showPayPeriodMarkers)")
     }
 
     private var legendJobs: [String] {
@@ -271,9 +289,9 @@ struct HomeCalendarView: View {
         Capsule()
             .fill(chrome.handle)
             .frame(width: 38, height: 4.5)
-            .padding(.top, 2)
-            .padding(.bottom, 8)
-            .padding(.horizontal, 28)
+            .frame(maxWidth: .infinity)
+            .padding(.top, 8)
+            .padding(.bottom, 10)
             .contentShape(Rectangle())
             .onTapGesture {
                 setCalendarExpanded(expansion < 0.5)
@@ -336,7 +354,7 @@ struct HomeCalendarView: View {
             .scrollPosition(id: $tickerDay, anchor: .center)
             .contentMargins(.horizontal, max(0, (geo.size.width - 66) / 2), for: .scrollContent)
         }
-        .frame(height: 104)
+        .frame(height: Self.tickerBodyHeight)
     }
 
     /// Stable day span shared by the ticker and agenda so they can scroll
@@ -369,6 +387,8 @@ struct HomeCalendarView: View {
         let hasTasks = hasChecklistTasks(on: day)
         let shiftColors = tickerShiftBarColors(for: day)
         let payday = isPayday(day)
+        let periodStart = isPayPeriodStart(day)
+        let periodEnd = isPayPeriodEnd(day)
 
         return HStack(spacing: 0) {
             VStack(spacing: 0) {
@@ -400,7 +420,7 @@ struct HomeCalendarView: View {
 
                 // Selected-day bar uses the Settings theme accent. Shift bars
                 // under it use the same job colors as the legend.
-                VStack(spacing: 3) {
+                VStack(spacing: 2) {
                     if isSelected {
                         Capsule()
                             .fill(theme.current.readableAccent)
@@ -411,21 +431,32 @@ struct HomeCalendarView: View {
                             .fill(color)
                             .frame(width: 48, height: 4)
                     }
-                    if isHolidayPay(day) {
-                        SparklyStar(size: 8)
+                    HStack(spacing: 3) {
+                        if isHolidayPay(day) {
+                            SparklyStar(size: 8)
+                        }
+                        if payday {
+                            Image(systemName: "dollarsign.circle.fill")
+                                .font(.system(size: 8, weight: .bold))
+                                .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
+                        }
+                        if periodStart {
+                            Image(systemName: "flag.fill")
+                                .font(.system(size: 7, weight: .bold))
+                                .foregroundStyle(PayPeriodMarkerStyle.start)
+                        }
+                        if periodEnd {
+                            Image(systemName: "flag.checkered")
+                                .font(.system(size: 7, weight: .bold))
+                                .foregroundStyle(PayPeriodMarkerStyle.end)
+                        }
                     }
-                    if payday {
-                        Image(systemName: "dollarsign.circle.fill")
-                            .font(.system(size: 8, weight: .bold))
-                            .foregroundStyle(Color(red: 0.20, green: 0.72, blue: 0.40))
-                    }
+                    .frame(height: 10)
                 }
-                .frame(height: 22, alignment: .top)
-                .padding(.top, 3)
-
-                Spacer(minLength: 0)
+                .frame(height: 28, alignment: .top)
+                .padding(.top, 2)
             }
-            .frame(width: 66)
+            .frame(width: 66, height: Self.tickerBodyHeight, alignment: .top)
             .background(isSelected ? chrome.selectedColumn : chrome.calendarBackground)
 
             // Hairline vertical divider
@@ -586,6 +617,8 @@ struct HomeCalendarView: View {
                             hasTasks: hasChecklistTasks(on: day),
                             isHolidayPay: isHolidayPay(day),
                             isPayday: isPayday(day),
+                            isPayPeriodStart: isPayPeriodStart(day),
+                            isPayPeriodEnd: isPayPeriodEnd(day),
                             chrome: chrome
                         )
                         .contentShape(Rectangle())
@@ -867,6 +900,14 @@ struct HomeCalendarView: View {
         PaydayCalendar.isPayday(day, calendar: calendar)
     }
 
+    private func isPayPeriodStart(_ day: Date) -> Bool {
+        PaydayCalendar.isPayPeriodStart(day, calendar: calendar)
+    }
+
+    private func isPayPeriodEnd(_ day: Date) -> Bool {
+        PaydayCalendar.isPayPeriodEnd(day, calendar: calendar)
+    }
+
     private func agendaTaskRow(task: ChecklistTask) -> some View {
         let isDone = completedTaskIDs.contains(task.id)
         let taskColor = colorForTaskCategory(task.category)
@@ -1107,6 +1148,8 @@ private struct FantasticalDayCell: View {
     let hasTasks: Bool
     let isHolidayPay: Bool
     let isPayday: Bool
+    let isPayPeriodStart: Bool
+    let isPayPeriodEnd: Bool
     let chrome: CalendarDisplayPalette
 
     private var calendar: Calendar { Calendar.current }
@@ -1140,6 +1183,16 @@ private struct FantasticalDayCell: View {
                     Image(systemName: "dollarsign.circle.fill")
                         .font(.system(size: 6, weight: .bold))
                         .foregroundStyle(isToday ? Color.white : Color(red: 0.20, green: 0.72, blue: 0.40))
+                }
+                if isPayPeriodStart {
+                    Image(systemName: "flag.fill")
+                        .font(.system(size: 5.5, weight: .bold))
+                        .foregroundStyle(isToday ? Color.white : PayPeriodMarkerStyle.start)
+                }
+                if isPayPeriodEnd {
+                    Image(systemName: "flag.checkered")
+                        .font(.system(size: 5.5, weight: .bold))
+                        .foregroundStyle(isToday ? Color.white : PayPeriodMarkerStyle.end)
                 }
                 ForEach(Array(dots.enumerated()), id: \.offset) { _, col in
                     Circle()

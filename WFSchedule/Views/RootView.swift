@@ -154,14 +154,18 @@ private struct MainTabView: View {
         // `.tint()` on TabView is the standard way to color its selected-item
         // state; it also becomes the default tint for each tab's own content
         // (buttons, toggles, etc.) unless that view sets its own tint.
-        .tint(theme.current.readableAccent)
+        .tint(showsLightBottomScrim ? theme.current.buttonFill : theme.current.readableAccent)
+        .onAppear { refreshTabBarChrome() }
+        .onChange(of: showsLightBottomScrim) { _, _ in refreshTabBarChrome() }
+        .onChange(of: theme.current.id) { _, _ in refreshTabBarChrome() }
+        .onChange(of: theme.highContrast) { _, _ in refreshTabBarChrome() }
         // One bar shared by every tab (so it can morph between them), floated above
         // the tab bar. The lift is the floating tab bar's height.
         .overlay(alignment: .bottom) {
             ZStack(alignment: .bottom) {
                 if showsLightBottomScrim {
                     LightModeBottomScrim()
-                        .frame(height: 168)
+                        .frame(height: 188)
                         .ignoresSafeArea(edges: .bottom)
                         .transition(.opacity)
                         .allowsHitTesting(false)
@@ -238,6 +242,13 @@ private struct MainTabView: View {
                 break
             }
         }
+    }
+
+    private func refreshTabBarChrome() {
+        TabBarChrome.apply(
+            accent: theme.current.accent,
+            lightSurface: showsLightBottomScrim || (colorScheme == .light && !theme.highContrast)
+        )
     }
 
     /// The bar above the tab bar: morphs between arrows, refresh, and check/history buttons.
@@ -344,18 +355,18 @@ private struct MainTabView: View {
     }
 }
 
-/// Progressive frost and a light dim behind the tab bar so white agenda text
-/// stays readable in the Light calendar. Only drawn while iOS Light Mode is on.
+/// Progressive frost and a stronger dim behind the tab bar / countdown so
+/// white agenda content doesn’t wash out the glass chrome in Light calendar.
 private struct LightModeBottomScrim: View {
     var body: some View {
         ZStack(alignment: .bottom) {
             Rectangle()
-                .fill(.regularMaterial)
+                .fill(.thickMaterial)
                 .mask {
                     LinearGradient(
                         stops: [
                             .init(color: .clear, location: 0),
-                            .init(color: .black.opacity(0.45), location: 0.42),
+                            .init(color: .black.opacity(0.55), location: 0.36),
                             .init(color: .black, location: 1)
                         ],
                         startPoint: .top,
@@ -366,8 +377,8 @@ private struct LightModeBottomScrim: View {
             LinearGradient(
                 stops: [
                     .init(color: .clear, location: 0),
-                    .init(color: Color.black.opacity(0.05), location: 0.38),
-                    .init(color: Color.black.opacity(0.16), location: 1)
+                    .init(color: Color.black.opacity(0.08), location: 0.34),
+                    .init(color: Color.black.opacity(0.22), location: 1)
                 ],
                 startPoint: .top,
                 endPoint: .bottom

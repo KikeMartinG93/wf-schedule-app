@@ -30,6 +30,35 @@ struct ShiftCountdownAccessory: View {
     @Namespace private var glass
     @State private var shifts: [Shift] = []
     @AppStorage(DemoMode.storageKey) private var demoMode = false
+    @ObservedObject private var theme = ThemeManager.shared
+    @Environment(\.colorScheme) private var colorScheme
+
+    /// Light calendar + iOS Light Mode: glass sits on white agenda, so system
+    /// `.secondary` washes out — use inkier labels instead.
+    private var usesLightChrome: Bool {
+        colorScheme == .light && theme.displayStyle(for: .light) == .light
+    }
+
+    private var secondaryLabel: Color {
+        usesLightChrome
+            ? Color(red: 0.28, green: 0.28, blue: 0.30)
+            : Color.secondary
+    }
+
+    private var primaryLabel: Color {
+        usesLightChrome
+            ? Color(red: 0.08, green: 0.08, blue: 0.10)
+            : Color.primary
+    }
+
+    /// Liquid glass with a light accent tint (iOS 26 / 27). Skipped on the
+    /// all-white Light calendar so frost stays neutral and text stays ink-dark.
+    private var countdownGlass: Glass {
+        if usesLightChrome {
+            return .regular.interactive()
+        }
+        return .regular.interactive().tint(theme.current.accent.opacity(0.20))
+    }
 
     init(
         onTap: @escaping (Target) -> Void,
@@ -74,7 +103,7 @@ struct ShiftCountdownAccessory: View {
                 }
                 .frame(maxWidth: .infinity)
                 .frame(height: Self.height)
-                .glassEffect(.regular.interactive(), in: .capsule)
+                .glassEffect(countdownGlass, in: .capsule)
                 .glassEffectID("countdown", in: glass)
 
                 if let rightButton {
@@ -113,11 +142,12 @@ struct ShiftCountdownAccessory: View {
         Button(action: action) {
             Image(systemName: symbol)
                 .font(.headline)
+                .foregroundStyle(primaryLabel)
                 .frame(width: Self.height, height: Self.height)
                 .contentShape(Circle())
         }
         .buttonStyle(.plain)
-        .glassEffect(.regular.interactive(), in: .circle)
+        .glassEffect(countdownGlass, in: .circle)
         .accessibilityLabel(label)
     }
 
@@ -129,12 +159,13 @@ struct ShiftCountdownAccessory: View {
             } else {
                 Image(systemName: config.symbol)
                     .font(.headline)
+                    .foregroundStyle(primaryLabel)
                     .frame(width: Self.height, height: Self.height)
                     .contentShape(Circle())
             }
         }
         .buttonStyle(.plain)
-        .glassEffect(.regular.interactive(), in: .circle)
+        .glassEffect(countdownGlass, in: .circle)
         .disabled(config.isDisabled || config.isLoading)
         .accessibilityLabel(config.label)
     }
@@ -190,8 +221,10 @@ struct ShiftCountdownAccessory: View {
         case .none:
             HStack(spacing: 8) {
                 Image(systemName: "calendar")
+                    .foregroundStyle(primaryLabel)
                 Text("No upcoming shifts")
                     .font(.subheadline.weight(.medium))
+                    .foregroundStyle(primaryLabel)
             }
             .padding(.horizontal, 16)
             .frame(maxWidth: .infinity)
@@ -204,21 +237,24 @@ struct ShiftCountdownAccessory: View {
             Image(systemName: symbol)
                 .font(.title3)
                 .symbolRenderingMode(.hierarchical)
+                .foregroundStyle(primaryLabel)
             if isInline {
                 remaining(target, now: now)
                     .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(primaryLabel)
             } else {
                 VStack(alignment: .leading, spacing: 0) {
                     Text(label)
-                        .font(.caption2.weight(.medium))
-                        .foregroundStyle(.secondary)
+                        .font(.caption2.weight(.semibold))
+                        .foregroundStyle(secondaryLabel)
                     remaining(target, now: now)
                         .font(.headline)
+                        .foregroundStyle(primaryLabel)
                 }
                 Spacer(minLength: 8)
                 Text(verbatim: job)
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
+                    .font(.caption.weight(.semibold))
+                    .foregroundStyle(secondaryLabel)
                     .lineLimit(1)
             }
         }

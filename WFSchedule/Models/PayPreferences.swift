@@ -64,9 +64,19 @@ enum PayPreferences {
     private static let methodKey = "payPaymentMethod"
     private static let weekdayKey = "payPaydayWeekday"
     private static let configuredKey = "payPreferencesConfigured"
+    static let showPayPeriodMarkersKey = "showPayPeriodMarkers"
 
     static var isConfigured: Bool {
         UserDefaults.standard.bool(forKey: configuredKey)
+    }
+
+    /// When on (and Direct Deposit is set), Home marks pay-period start and end days.
+    static var showsPayPeriodMarkers: Bool {
+        get { UserDefaults.standard.bool(forKey: showPayPeriodMarkersKey) }
+        set {
+            UserDefaults.standard.set(newValue, forKey: showPayPeriodMarkersKey)
+            NotificationCenter.default.post(name: .payPreferencesDidChange, object: nil)
+        }
     }
 
     static var method: PaymentMethod? {
@@ -174,4 +184,36 @@ enum PaydayCalendar {
         let style = Date.FormatStyle().month(.defaultDigits).day().year(.twoDigits)
         return "\(period.start.formatted(style)) – \(period.end.formatted(style))"
     }
+
+    /// Biweekly boundary matching the period that ends on the Sunday before payday.
+    static func isPayPeriodStart(_ date: Date, calendar: Calendar = .current) -> Bool {
+        guard PayPreferences.showsPayday,
+              PayPreferences.showsPayPeriodMarkers,
+              let weekday = PayPreferences.weekday,
+              let period = payPeriod(forPayday: weekday.anchorPayday, calendar: calendar)
+        else { return false }
+        return isBiweekly(from: period.start, to: date, calendar: calendar)
+    }
+
+    static func isPayPeriodEnd(_ date: Date, calendar: Calendar = .current) -> Bool {
+        guard PayPreferences.showsPayday,
+              PayPreferences.showsPayPeriodMarkers,
+              let weekday = PayPreferences.weekday,
+              let period = payPeriod(forPayday: weekday.anchorPayday, calendar: calendar)
+        else { return false }
+        return isBiweekly(from: period.end, to: date, calendar: calendar)
+    }
+
+    private static func isBiweekly(from anchor: Date, to date: Date, calendar: Calendar) -> Bool {
+        let day = calendar.startOfDay(for: date)
+        let start = calendar.startOfDay(for: anchor)
+        let delta = calendar.dateComponents([.day], from: start, to: day).day ?? 0
+        return delta % biweeklyDays == 0
+    }
+}
+
+/// Shared colors for pay-period boundary marks on Home.
+enum PayPeriodMarkerStyle {
+    static let start = Color(red: 0.20, green: 0.55, blue: 0.95)
+    static let end = Color(red: 0.95, green: 0.45, blue: 0.15)
 }

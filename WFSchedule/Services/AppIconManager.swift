@@ -26,17 +26,33 @@ enum AppIconManager {
         setIcon(enabled ? classicName : themeIconName(themeID))
     }
 
+    /// Primary green icon is the catalog default (`AppIcon`). Every other
+    /// selectable theme maps to `AppIcon-<id>`. Unknown / high-contrast IDs
+    /// leave the Home Screen icon alone.
+    private static let alternateThemeIDs: Set<String> = [
+        "halloween", "blue", "purple", "rose", "amber",
+        "teal", "crimson", "indigo", "colorful", "rainbow",
+    ]
+
     private static func themeIconName(_ themeID: String) -> String? {
         if themeID == "green" { return nil }
-        if themeID == "halloween" { return "AppIcon-halloween" }
-        if themeID == "rainbow" { return "AppIcon-rainbow" }
+        guard alternateThemeIDs.contains(themeID) else { return nil }
         return "AppIcon-\(themeID)"
     }
 
     @MainActor
     private static func setIcon(_ name: String?) {
         let application = UIApplication.shared
-        guard application.supportsAlternateIcons, application.alternateIconName != name else { return }
-        application.setAlternateIconName(name)
+        guard application.supportsAlternateIcons else { return }
+        // Compare after normalizing: primary icon is reported as `nil`.
+        let current = application.alternateIconName
+        guard current != name else { return }
+        application.setAlternateIconName(name) { error in
+            if let error {
+                #if DEBUG
+                print("AppIconManager: failed to set icon \(name ?? "primary"): \(error)")
+                #endif
+            }
+        }
     }
 }
