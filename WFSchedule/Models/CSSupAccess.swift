@@ -1,7 +1,8 @@
 import Foundation
 
 /// CS Supervisor gate for the Keys tab (safe codes, liquor case, etc.).
-/// Onboarding asks whether the user is a CS Sup; if so they enter a passcode.
+/// Keys is only offered when the local schedule includes Supervisor work.
+/// Eligible people unlock with a store passcode (onboarding or Settings).
 /// Access is local to this device — not synced.
 enum CSSupAccess {
     private static let isCSSupKey = "csSupIsSupervisor"
@@ -23,10 +24,28 @@ enum CSSupAccess {
         UserDefaults.standard.bool(forKey: isCSSupKey)
     }
 
-    /// Passcode accepted — Keys tab is available.
+    /// Passcode accepted — Keys tab may show when the schedule still has Supervisor work.
     static var isUnlocked: Bool {
         UserDefaults.standard.bool(forKey: unlockedKey)
     }
+
+    /// Supervisor (and Cash Office — remapped from Supervisor 6/7am starts).
+    static func isSupervisorJob(_ job: String) -> Bool {
+        job.caseInsensitiveCompare("Supervisor") == .orderedSame
+            || job.caseInsensitiveCompare("Cash Office") == .orderedSame
+    }
+
+    /// True when the saved schedule includes at least one Supervisor shift.
+    static var hasSupervisorShifts: Bool {
+        let shifts = ScheduleStore.shared.load()?.shifts ?? []
+        return shifts.contains { isSupervisorJob($0.job) }
+    }
+
+    /// Show unlock UI / onboarding CS steps / Keys mentions.
+    static var shouldOfferKeys: Bool { hasSupervisorShifts }
+
+    /// Keys tab: passcode unlocked and schedule still has Supervisor work.
+    static var shouldShowKeysTab: Bool { isUnlocked && hasSupervisorShifts }
 
     static func saveAnswer(isCSSup: Bool) {
         UserDefaults.standard.set(true, forKey: answeredKey)

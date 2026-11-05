@@ -89,9 +89,25 @@ struct OnboardingWizardView: View {
 
     // MARK: - Chrome
 
+    /// CS Sup / Keys steps only when the schedule already has Supervisor shifts
+    /// (returning setup from Settings after sync). Fresh installs skip them.
+    private var offersKeysSteps: Bool { CSSupAccess.shouldOfferKeys }
+
+    private var progressSteps: [Step] {
+        var steps: [Step] = [
+            .intro, .language, .tmID, .workCity, .theme, .font, .contrast, .payMethod, .payWeekday
+        ]
+        if offersKeysSteps {
+            steps.append(contentsOf: [.csSup, .csPasscode])
+        }
+        return steps
+    }
+
     private var progressBar: some View {
         GeometryReader { geo in
-            let fraction = CGFloat(step.rawValue + 1) / CGFloat(Step.allCases.count)
+            let steps = progressSteps
+            let index = steps.firstIndex(of: step) ?? 0
+            let fraction = CGFloat(index + 1) / CGFloat(max(steps.count, 1))
             ZStack(alignment: .leading) {
                 Capsule().fill(Color.primary.opacity(0.08))
                 Capsule()
@@ -101,6 +117,15 @@ struct OnboardingWizardView: View {
         }
         .frame(height: 4)
         .accessibilityLabel("Setup progress")
+    }
+
+    /// After pay setup: Keys unlock only for Supervisor schedules; otherwise done.
+    private func advancePastPay() {
+        if offersKeysSteps {
+            withAnimation { step = .csSup }
+        } else {
+            finishWizard(markPaySkipped: false)
+        }
     }
 
     @ViewBuilder
@@ -571,7 +596,7 @@ struct OnboardingWizardView: View {
             if payMethod == .check {
                 PayPreferences.save(method: .check, weekday: nil)
                 Task { try? CalendarSyncService().syncPaydayEvents() }
-                withAnimation { step = .csSup }
+                advancePastPay()
             } else {
                 withAnimation { step = .payWeekday }
             }
@@ -583,7 +608,7 @@ struct OnboardingWizardView: View {
                 try? await sync.requestAccess()
                 try? sync.syncPaydayEvents()
             }
-            withAnimation { step = .csSup }
+            advancePastPay()
         case .csSup:
             guard let isCSSup else { return }
             CSSupAccess.saveAnswer(isCSSup: isCSSup)
@@ -613,13 +638,19 @@ struct OnboardingWizardView: View {
             case .contrast: step = .payMethod
             case .payMethod:
                 if fromPaySkip {
-                    step = .csSup
+                    if offersKeysSteps { step = .csSup }
+                    else { finishWizard(markPaySkipped: true); return }
                 } else if payMethod == .directDeposit {
                     step = .payWeekday
-                } else {
+                } else if offersKeysSteps {
                     step = .csSup
+                } else {
+                    finishWizard(markPaySkipped: false)
+                    return
                 }
-            case .payWeekday: step = .csSup
+            case .payWeekday:
+                if offersKeysSteps { step = .csSup }
+                else { finishWizard(markPaySkipped: false); return }
             case .csSup: step = isCSSup == true ? .csPasscode : step
             case .csPasscode: break
             }
@@ -653,8 +684,11 @@ struct OnboardingWizardView: View {
         if markPaySkipped && !PayPreferences.isConfigured {
             PayPreferences.markSkipped()
         }
-        if !CSSupAccess.hasAnswered {
-            CSSupAccess.saveAnswer(isCSSup: false)
+        // Only record a CS Sup answer when Keys was actually offered.
+        if offersKeysSteps {
+            if !CSSupAccess.hasAnswered {
+                CSSupAccess.saveAnswer(isCSSup: false)
+            }
         }
         onFinished()
     }

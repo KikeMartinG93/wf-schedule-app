@@ -31,6 +31,7 @@ struct SettingsView: View {
     @AppStorage(FontPreference.key, store: FontPreference.store) private var roundedFont = true
     @AppStorage("calendarDayTickerMode") private var calendarDayTickerMode = true
     @AppStorage("csSupKeysUnlocked") private var keysUnlocked = false
+    @State private var offersKeys = CSSupAccess.shouldOfferKeys
     @ObservedObject private var weatherStore = WorkWeatherStore.shared
     @State private var cloudBackup = SupabaseBackupService.shared
     @AppStorage("payPaymentMethod") private var payPaymentMethod = ""
@@ -227,34 +228,36 @@ struct SettingsView: View {
                         Text("Colors, calendar style, and readability.")
                     }
 
-                    // 4. Supervisor — Keys gate
-                    Section {
-                        if keysUnlocked {
-                            HStack {
-                                row("Keys access", "key.fill")
-                                Spacer()
-                                Text("Unlocked")
-                                    .foregroundStyle(.secondary)
+                    // 4. Supervisor — Keys gate (only when schedule has Supervisor shifts)
+                    if offersKeys {
+                        Section {
+                            if keysUnlocked {
+                                HStack {
+                                    row("Keys access", "key.fill")
+                                    Spacer()
+                                    Text("Unlocked")
+                                        .foregroundStyle(.secondary)
+                                }
+                                Button(role: .destructive) {
+                                    CSSupAccess.revokeKeysAccess()
+                                    keysUnlocked = false
+                                } label: {
+                                    row("Lock Keys tab", "lock.fill", tint: .red)
+                                }
+                            } else {
+                                Button {
+                                    csPasscodeDraft = ""
+                                    csPasscodeError = false
+                                    showingCSPasscode = true
+                                } label: {
+                                    row("Unlock Keys (CS Sup)", "key.fill")
+                                }
                             }
-                            Button(role: .destructive) {
-                                CSSupAccess.revokeKeysAccess()
-                                keysUnlocked = false
-                            } label: {
-                                row("Lock Keys tab", "lock.fill", tint: .red)
-                            }
-                        } else {
-                            Button {
-                                csPasscodeDraft = ""
-                                csPasscodeError = false
-                                showingCSPasscode = true
-                            } label: {
-                                row("Unlock Keys (CS Sup)", "key.fill")
-                            }
+                        } header: {
+                            Text("CS Supervisor")
+                        } footer: {
+                            Text("Supervisor access for the Keys tab.")
                         }
-                    } header: {
-                        Text("CS Supervisor")
-                    } footer: {
-                        Text("Supervisor access for the Keys tab.")
                     }
 
                     // 5. Shortcuts
@@ -355,6 +358,10 @@ struct SettingsView: View {
             .toolbar(.hidden, for: .navigationBar)
             .onAppear {
                 appearanceMode = colorScheme
+                offersKeys = CSSupAccess.shouldOfferKeys
+            }
+            .onReceive(NotificationCenter.default.publisher(for: ScheduleStore.didChangeNotification)) { _ in
+                offersKeys = CSSupAccess.shouldOfferKeys
             }
             .onChange(of: colorScheme) { _, newScheme in
                 appearanceMode = newScheme

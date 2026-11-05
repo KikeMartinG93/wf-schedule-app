@@ -1,12 +1,12 @@
 import UIKit
 
-/// Keeps the Home Screen icon in step with the chosen color theme: each theme
-/// except the default green has an alternate icon with that theme's color as the
-/// background. iOS shows its own "You have changed the icon" notice when this runs.
+/// Keeps the Home Screen icon in step with the chosen color theme.
 ///
-/// There's also one hidden extra, the classic icon. Ten quick taps on the version
-/// number in Settings unlock a "WF Icon" toggle that switches it on and off. While
-/// it's on, changing themes leaves the icon alone.
+/// - Default: calendar icon whose background (and deep chrome) match the theme.
+/// - "WF Icon" (classic wordmark): same accent backgrounds on the Whole Foods
+///   wordmark. Ten quick taps on the version number in Settings unlocks that mode.
+///
+/// iOS shows its own "You have changed the icon" notice when this runs.
 enum AppIconManager {
     static let classicName = "AppIcon-classic"
     static let classicKey = "classicIconActive"
@@ -14,27 +14,31 @@ enum AppIconManager {
 
     static var isClassicActive: Bool { UserDefaults.standard.bool(forKey: classicKey) }
 
-    @MainActor
-    static func apply(themeID: String) {
-        guard !isClassicActive else { return }
-        setIcon(themeIconName(themeID))
-    }
-
-    @MainActor
-    static func setClassic(_ enabled: Bool, themeID: String) {
-        UserDefaults.standard.set(enabled, forKey: classicKey)
-        setIcon(enabled ? classicName : themeIconName(themeID))
-    }
-
-    /// Primary green icon is the catalog default (`AppIcon`). Every other
-    /// selectable theme maps to `AppIcon-<id>`. Unknown / high-contrast IDs
-    /// leave the Home Screen icon alone.
+    /// Themes that ship an alternate icon (everything except the catalog primary green).
     private static let alternateThemeIDs: Set<String> = [
         "halloween", "blue", "purple", "rose", "amber",
         "teal", "crimson", "indigo", "colorful", "rainbow",
     ]
 
-    private static func themeIconName(_ themeID: String) -> String? {
+    @MainActor
+    static func apply(themeID: String) {
+        setIcon(iconName(themeID: themeID, classic: isClassicActive))
+    }
+
+    @MainActor
+    static func setClassic(_ enabled: Bool, themeID: String) {
+        UserDefaults.standard.set(enabled, forKey: classicKey)
+        setIcon(iconName(themeID: themeID, classic: enabled))
+    }
+
+    /// Calendar: primary `AppIcon` for green, else `AppIcon-<id>`.
+    /// Classic wordmark: `AppIcon-classic` for green, else `AppIcon-classic-<id>`.
+    private static func iconName(themeID: String, classic: Bool) -> String? {
+        if classic {
+            if themeID == "green" { return classicName }
+            guard alternateThemeIDs.contains(themeID) else { return classicName }
+            return "AppIcon-classic-\(themeID)"
+        }
         if themeID == "green" { return nil }
         guard alternateThemeIDs.contains(themeID) else { return nil }
         return "AppIcon-\(themeID)"

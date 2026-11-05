@@ -90,6 +90,8 @@ private struct MainTabView: View {
     @Environment(\.scenePhase) private var scenePhase
     @AppStorage("hasSeenWelcome") private var hasSeenWelcome = false
     @AppStorage("csSupKeysUnlocked") private var keysUnlocked = false
+    /// Schedule-driven: Keys UI only for people with Supervisor shifts.
+    @State private var offersKeys = CSSupAccess.shouldOfferKeys
     @State private var selectedTab: AppTab = .home
     @State private var homeResetToken = 0
     @State private var showingLogin = false
@@ -105,9 +107,8 @@ private struct MainTabView: View {
 
     private static let tabBarHeight: CGFloat = 49
 
-    /// Frost + slight darken behind the tab bar only for the all-white Light
-    /// calendar while iOS itself is in Light Mode. Hidden in Dark Mode so the
-    /// glass tab bar sits on the dark agenda as-is.
+    /// Light calendar on a light system appearance — tab tint / chrome need
+    /// stronger contrast on the white agenda (the old bottom material scrim is gone).
     private var showsLightBottomScrim: Bool {
         colorScheme == .light && theme.displayStyle(for: .light) == .light
     }
@@ -140,9 +141,9 @@ private struct MainTabView: View {
             Tab("Alerts", systemImage: "bell.fill", value: AppTab.alerts) {
                 AlertsView(isActive: selectedTab == .alerts, filter: $alertsFilter)
             }
-            if keysUnlocked {
+            if keysUnlocked && offersKeys {
                 Tab("Keys", systemImage: "key.fill", value: AppTab.keys) {
-                    KeysView()
+                    KeysView(isActive: selectedTab == .keys)
                 }
             }
             Tab("Settings", systemImage: "gearshape.fill", value: AppTab.settings) {
@@ -160,22 +161,16 @@ private struct MainTabView: View {
         .onChange(of: theme.current.id) { _, _ in refreshTabBarChrome() }
         .onChange(of: theme.highContrast) { _, _ in refreshTabBarChrome() }
         // One bar shared by every tab (so it can morph between them), floated above
-        // the tab bar. The lift is the floating tab bar's height.
+        // the tab bar. Hidden on Settings/Keys — those screens have their own
+        // footers (e.g. Payday Done) and the pill would cover them.
         .overlay(alignment: .bottom) {
-            ZStack(alignment: .bottom) {
-                if showsLightBottomScrim {
-                    LightModeBottomScrim()
-                        .frame(height: 188)
-                        .ignoresSafeArea(edges: .bottom)
-                        .transition(.opacity)
-                        .allowsHitTesting(false)
-                }
-
+            if selectedTab != .settings && selectedTab != .keys {
                 shiftBar(for: selectedTab)
                     .padding(.bottom, Self.tabBarHeight)
+                    .transition(.move(edge: .bottom).combined(with: .opacity))
             }
-            .animation(.easeInOut(duration: 0.22), value: showsLightBottomScrim)
         }
+        .animation(.easeInOut(duration: 0.22), value: selectedTab)
         // Background-refresh the schedule when entering the foreground with an
         // active session, so it's fresh right away; gated on `isAuthenticated` so
         // this can't burn the auto-sync throttle window before login.
@@ -195,8 +190,16 @@ private struct MainTabView: View {
         .onChange(of: colorScheme, initial: true) { _, newScheme in
             ThemeManager.shared.updateActiveColorScheme(newScheme)
         }
+        .onAppear { refreshKeysEligibility() }
+        .onReceive(NotificationCenter.default.publisher(for: ScheduleStore.didChangeNotification)) { _ in
+            refreshKeysEligibility()
+        }
+        .onReceive(NotificationCenter.default.publisher(for: CSSupAccess.didChange)) { _ in
+            refreshKeysEligibility()
+        }
         .onChange(of: keysUnlocked) { _, unlocked in
-            if !unlocked && selectedTab == .keys {
+            refreshKeysEligibility()
+            if (!unlocked || !offersKeys) && selectedTab == .keys {
                 selectedTab = .home
             }
         }
@@ -249,6 +252,16 @@ private struct MainTabView: View {
             accent: theme.current.accent,
             lightSurface: showsLightBottomScrim || (colorScheme == .light && !theme.highContrast)
         )
+    }
+
+    private func refreshKeysEligibility() {
+        let eligible = CSSupAccess.shouldOfferKeys
+        if offersKeys != eligible {
+            offersKeys = eligible
+        }
+        if (!keysUnlocked || !eligible) && selectedTab == .keys {
+            selectedTab = .home
+        }
     }
 
     /// The bar above the tab bar: morphs between arrows, refresh, and check/history buttons.
@@ -355,34 +368,3 @@ private struct MainTabView: View {
     }
 }
 
-/// Progressive frost and a stronger dim behind the tab bar / countdown so
-/// white agenda content doesn’t wash out the glass chrome in Light calendar.
-private struct LightModeBottomScrim: View {
-    var body: some View {
-        ZStack(alignment: .bottom) {
-            Rectangle()
-                .fill(.thickMaterial)
-                .mask {
-                    LinearGradient(
-                        stops: [
-                            .init(color: .clear, location: 0),
-                            .init(color: .black.opacity(0.55), location: 0.36),
-                            .init(color: .black, location: 1)
-                        ],
-                        startPoint: .top,
-                        endPoint: .bottom
-                    )
-                }
-
-            LinearGradient(
-                stops: [
-                    .init(color: .clear, location: 0),
-                    .init(color: Color.black.opacity(0.08), location: 0.34),
-                    .init(color: Color.black.opacity(0.22), location: 1)
-                ],
-                startPoint: .top,
-                endPoint: .bottom
-            )
-        }
-    }
-}

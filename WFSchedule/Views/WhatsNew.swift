@@ -10,6 +10,8 @@ enum WhatsNew {
         let symbol: String
         let title: LocalizedStringKey
         let detail: LocalizedStringKey
+        /// Hidden from non-Supervisor schedules (Keys / CS Sup unlock notes).
+        var requiresSupervisor: Bool = false
     }
 
     struct Release {
@@ -197,10 +199,11 @@ enum WhatsNew {
         Release(revision: 30, items: [
             Item(symbol: "list.bullet.clipboard.fill",
                  title: "Full setup on first launch",
-                 detail: "Onboarding now walks through language, TM ID, work city, color theme, font, contrast, payday, and an optional CS Supervisor unlock for the new Keys tab."),
+                 detail: "Onboarding now walks through language, TM ID, work city, color theme, font, contrast, and payday."),
             Item(symbol: "key.fill",
                  title: "Keys tab for CS Sups",
-                 detail: "CS Supervisors who enter the store passcode get a Keys tab. Safe codes and liquor case listings are coming next — the tab is ready."),
+                 detail: "CS Supervisors who enter the store passcode get a Keys tab. Safe codes and liquor case listings are coming next — the tab is ready.",
+                 requiresSupervisor: true),
         ]),
         Release(revision: 31, items: [
             Item(symbol: "hand.raised.fill",
@@ -213,13 +216,29 @@ enum WhatsNew {
         Release(revision: 32, items: [
             Item(symbol: "key.fill",
                  title: "Keys with Face ID",
-                 detail: "CS Supervisors unlock Cash Office and safe codes on the Keys tab. Tap a row and authenticate with Face ID to reveal."),
+                 detail: "CS Supervisors unlock Cash Office and safe codes on the Keys tab. Tap a row and authenticate with Face ID to reveal.",
+                 requiresSupervisor: true),
             Item(symbol: "slider.horizontal.3",
                  title: "Clearer Settings",
-                 detail: "Settings is regrouped into Account, Your store, Look & Feel, CS Supervisor, Shortcuts, Widgets, and Help — and Spanish translations are filled in throughout the app."),
+                 detail: "Settings is regrouped into Account, Your store, Look & Feel, Shortcuts, Widgets, and Help — and Spanish translations are filled in throughout the app."),
             Item(symbol: "sun.max.fill",
                  title: "Light calendar readability",
                  detail: "Tab bar labels, the shift countdown, and theme icons stay readable on the all-white Light calendar, with Home Screen icons matched to each accent color."),
+        ]),
+        Release(revision: 33, items: [
+            Item(symbol: "key.horizontal",
+                 title: "Keys for Supervisors only",
+                 detail: "The Keys tab and CS Supervisor unlock only appear when your schedule includes Supervisor shifts. Codes hide when you leave, unlock another key, or after 25 seconds — and flip-clock tiles make them easy to read.",
+                 requiresSupervisor: true),
+            Item(symbol: "paintbrush.pointed.fill",
+                 title: "Home Screen icons follow your accent",
+                 detail: "Theme accents tint both the calendar icon and the classic Whole Foods wordmark. Changing color in Settings updates the icon on your Home Screen."),
+            Item(symbol: "line.3.horizontal",
+                 title: "High contrast shift marks",
+                 detail: "In high contrast, jobs use solid, dashed, dotted, wavy, or zigzag bars instead of color so every role stays easy to tell apart."),
+            Item(symbol: "gauge.with.needle",
+                 title: "Snappier calendar scrolling",
+                 detail: "The day strip and agenda do less work while you scroll, so flipping through the schedule feels quicker."),
         ]),
     ]
 
@@ -232,11 +251,20 @@ enum WhatsNew {
     /// Items from every release newer than the last one shown, newest first.
     static func pendingItems() -> [Item] {
         let seen = UserDefaults.standard.object(forKey: seenKey) as? Int ?? legacyRevision
-        return releases.filter { $0.revision > seen }.reversed().flatMap(\.items)
+        return filterForAudience(
+            releases.filter { $0.revision > seen }.reversed().flatMap(\.items)
+        )
     }
 
     /// Items from the most recent release, for reopening from Settings.
-    static func latestItems() -> [Item] { releases.last?.items ?? [] }
+    static func latestItems() -> [Item] {
+        filterForAudience(releases.last?.items ?? [])
+    }
+
+    private static func filterForAudience(_ items: [Item]) -> [Item] {
+        guard !CSSupAccess.shouldOfferKeys else { return items }
+        return items.filter { !$0.requiresSupervisor }
+    }
 
     static func markSeen() {
         UserDefaults.standard.set(latestRevision, forKey: seenKey)

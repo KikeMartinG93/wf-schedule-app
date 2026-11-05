@@ -1,6 +1,11 @@
 #!/usr/bin/env python3
 """Paint each alternate app icon's background with that theme's exact accent
-from AppColorTheme.swift, leaving the calendar/clock artwork untouched.
+from AppColorTheme.swift, leaving the calendar/clock (or classic wordmark)
+artwork untouched — except the calendar's deep-green chrome, which is remapped
+to the theme's deep tint so accents read cleanly.
+
+Also builds AppIcon-classic-<theme> so the WF wordmark icon follows accent
+while "WF Icon" mode is on.
 
 Run from repo root:
   python3 scripts/recolor_app_icons.py
@@ -16,8 +21,9 @@ from PIL import Image, ImageChops, ImageFilter
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "WFSchedule/App/Assets.xcassets"
 SOURCES = ROOT / "scripts/icon_sources"
-# Neutral green master — flood-fill is reliable; we replace its background.
+# Neutral green calendar master — flood-fill is reliable; we replace its background.
 MASTER = SOURCES / "AppIcon.png"
+CLASSIC_MASTER = SOURCES / "AppIcon-classic.png"
 
 # Accents / deep tints must stay in lockstep with AppColorTheme.swift.
 THEMES = {
@@ -25,53 +31,63 @@ THEMES = {
         "accent": (0x31, 0xD1, 0x58),
         "deep": (0x00, 0x4E, 0x36),
         "path": ASSETS / "AppIcon.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic.appiconset/icon-1024.png",
     },
     "blue": {
         "accent": (0x3A, 0xA8, 0xE0),
         "deep": (0x0B, 0x2A, 0x4A),
         "path": ASSETS / "AppIcon-blue.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-blue.appiconset/icon-1024.png",
     },
     "purple": {
         "accent": (0xA8, 0x55, 0xF7),
         "deep": (0x3B, 0x1E, 0x5E),
         "path": ASSETS / "AppIcon-purple.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-purple.appiconset/icon-1024.png",
     },
     "rose": {
         "accent": (0xF4, 0x3F, 0x87),
         "deep": (0x5E, 0x1E, 0x3A),
         "path": ASSETS / "AppIcon-rose.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-rose.appiconset/icon-1024.png",
     },
     "amber": {
         "accent": (0xFF, 0x9F, 0x1C),
         "deep": (0x5E, 0x35, 0x10),
         "path": ASSETS / "AppIcon-amber.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-amber.appiconset/icon-1024.png",
     },
     "teal": {
         "accent": (0x2D, 0xD4, 0xBF),
         "deep": (0x07, 0x3B, 0x3A),
         "path": ASSETS / "AppIcon-teal.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-teal.appiconset/icon-1024.png",
     },
     "crimson": {
         "accent": (0xEF, 0x44, 0x44),
         "deep": (0x5A, 0x14, 0x20),
         "path": ASSETS / "AppIcon-crimson.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-crimson.appiconset/icon-1024.png",
     },
     "indigo": {
         "accent": (0x63, 0x66, 0xF1),
         "deep": (0x24, 0x1B, 0x5E),
         "path": ASSETS / "AppIcon-indigo.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-indigo.appiconset/icon-1024.png",
     },
     "halloween": {
         # Pumpkin accent fills the icon; purple deep only shades the bottom.
         "accent": (0xFF, 0x7A, 0x0D),  # 1.00, 0.48, 0.05
         "deep": (0xA5, 0x2D, 0xF2),
         "path": ASSETS / "AppIcon-halloween.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-halloween.appiconset/icon-1024.png",
     },
     "colorful": {
         # Primary selection accent (sky blue) — matches ThemeManager tint.
         "accent": (0x4F, 0xC3, 0xF7),
         "deep": (0x1A, 0x5A, 0x8A),
         "path": ASSETS / "AppIcon-colorful.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-colorful.appiconset/icon-1024.png",
     },
     "rainbow": {
         # Same rule as every other theme: Home Screen icon fill = selection accent.
@@ -79,8 +95,14 @@ THEMES = {
         "accent": (0xFF, 0x85, 0x1E),  # 1.00, 0.52, 0.12
         "deep": (0x5B, 0x3A, 0xC9),
         "path": ASSETS / "AppIcon-rainbow.appiconset/icon-1024.png",
+        "classic_path": ASSETS / "AppIcon-classic-rainbow.appiconset/icon-1024.png",
     },
 }
+
+# Deep green chrome in the calendar master (header, selected day, clock).
+MASTER_DEEP = (0x00, 0x4E, 0x36)
+# Classic wordmark background (forest green).
+CLASSIC_BG = (59, 125, 85)
 
 
 def lerp(a: float, b: float, t: float) -> float:
@@ -97,7 +119,7 @@ def dist(a, b) -> float:
 
 def flood_background(img: Image.Image, step: float = 4.0) -> Image.Image:
     """Walk the smooth background from the corners. A hard edge (calendar
-    header, clock) stops the walk so artwork is preserved."""
+    header, clock, or wordmark) stops the walk so artwork is preserved."""
     px = img.load()
     w, h = img.size
     mask = Image.new("L", (w, h), 0)
@@ -168,6 +190,24 @@ def composite(background: Image.Image, artwork: Image.Image, mask: Image.Image) 
     return Image.alpha_composite(bg, art).convert("RGB")
 
 
+def remap_near(img: Image.Image, src, dst, threshold: float = 42.0) -> Image.Image:
+    """Replace pixels near `src` with `dst` (keeps white / light cells intact)."""
+    out = img.convert("RGB")
+    px = out.load()
+    w, h = out.size
+    for y in range(h):
+        for x in range(w):
+            c = px[x, y]
+            # Skip near-white / pale cells so the calendar body stays light.
+            if c[0] > 200 and c[1] > 200 and c[2] > 200:
+                continue
+            if dist(c, src) <= threshold:
+                # Blend by how close we are so soft edges don't posterize.
+                t = 1.0 - dist(c, src) / threshold
+                px[x, y] = mix(c, dst, 0.55 + 0.45 * t)
+    return out
+
+
 def ensure_appiconset(path: Path) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     contents = path.parent / "Contents.json"
@@ -191,31 +231,51 @@ def ensure_appiconset(path: Path) -> None:
         )
 
 
-def render(theme: dict, master: Image.Image, mask: Image.Image) -> Image.Image:
+def render_calendar(theme: dict, master: Image.Image, mask: Image.Image) -> Image.Image:
     size = master.size[0]
     if "gradient" in theme:
         background = make_gradient(size, theme["gradient"])
     else:
         background = shaded_background(size, theme["accent"], theme["deep"])
-    return composite(background, master, mask)
+    composed = composite(background, master, mask)
+    # Swap the calendar's deep-green chrome for this theme's deep tint.
+    if theme["deep"] != MASTER_DEEP:
+        composed = remap_near(composed, MASTER_DEEP, theme["deep"], threshold=48.0)
+    return composed
+
+
+def render_classic(theme: dict, master: Image.Image, mask: Image.Image) -> Image.Image:
+    size = master.size[0]
+    background = shaded_background(size, theme["accent"], theme["deep"])
+    composed = composite(background, master, mask)
+    # Letter counters (O holes) are closed islands the flood fill never reaches —
+    # remap leftover forest green to the accent so holes match the new background.
+    return remap_near(composed, CLASSIC_BG, theme["accent"], threshold=55.0)
 
 
 def main() -> None:
     master = Image.open(MASTER).convert("RGB")
     mask = flood_background(master)
+    classic = Image.open(CLASSIC_MASTER).convert("RGB")
+    classic_mask = flood_background(classic, step=6.0)
+
     for name, theme in THEMES.items():
         ensure_appiconset(theme["path"])
-        print(f"rendering {name}")
-        img = render(theme, master, mask)
+        print(f"rendering calendar {name}")
+        img = render_calendar(theme, master, mask)
         img.save(theme["path"], "PNG")
-        # Also refresh icon_sources for non-green themes so the next pass stays aligned.
         if name != "green":
-            src = SOURCES / f"AppIcon-{name}.png"
-            img.save(src, "PNG")
+            (SOURCES / f"AppIcon-{name}.png").write_bytes(theme["path"].read_bytes())
         sample = img.getpixel((12, 12))
         accent = theme["accent"]
-        delta = dist(sample, accent)
-        print(f"  corner #{sample[0]:02X}{sample[1]:02X}{sample[2]:02X}  accent=#{accent[0]:02X}{accent[1]:02X}{accent[2]:02X}  Δ={delta:.1f}")
+        print(f"  corner #{sample[0]:02X}{sample[1]:02X}{sample[2]:02X}  accent=#{accent[0]:02X}{accent[1]:02X}{accent[2]:02X}  Δ={dist(sample, accent):.1f}")
+
+        ensure_appiconset(theme["classic_path"])
+        print(f"rendering classic {name}")
+        cimg = render_classic(theme, classic, classic_mask)
+        cimg.save(theme["classic_path"], "PNG")
+        csample = cimg.getpixel((12, 12))
+        print(f"  corner #{csample[0]:02X}{csample[1]:02X}{csample[2]:02X}  Δ={dist(csample, accent):.1f}")
 
 
 if __name__ == "__main__":

@@ -17,15 +17,24 @@
       "bundleIdentifier": "com.marting.WFM",
       "developerName": "Enrique Martin",
       "subtitle": "Your Whole Foods schedule on iPhone.",
-      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n• Day strip and agenda scroll together like a dial\n• Shift color legend for Cash Office, Supervisor, and holiday pay\n• Weather on Home for the city you work in\n• Break timer and Live Activity\n• Discount barcode for the register",
+      "localizedDescription": "Sign in with your Whole Foods account to keep your schedule, breaks, widgets, and discount barcode on your iPhone.\n\n\u2022 Day strip and agenda scroll together like a dial\n\u2022 Shift color legend for Cash Office, Supervisor, and holiday pay\n\u2022 Weather on Home for the city you work in\n\u2022 Break timer and Live Activity\n\u2022 Discount barcode for the register",
       "iconURL": "https://raw.githubusercontent.com/KikeMartinG93/wf-schedule-app/main/store/icon.png",
       "tintColor": "#31D158",
       "category": "utilities",
-      "version": "2.14",
-      "versionDate": "2026-11-05T00:50:57Z",
-      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.14/WFSchedule-2.14.ipa",
-      "size": 2323370,
+      "version": "2.15",
+      "versionDate": "2026-11-05T01:56:26Z",
+      "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.15/WFSchedule-2.15.ipa",
+      "size": 4159331,
       "versions": [
+        {
+          "version": "2.15",
+          "buildVersion": "10",
+          "date": "2026-11-05T01:56:26Z",
+          "localizedDescription": "Supervisor-only Keys with flip-clock codes and auto-hide, Home Screen icons that follow your accent (including classic WF), high-contrast shift stroke patterns, and snappier calendar scrolling.",
+          "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.15/WFSchedule-2.15.ipa",
+          "size": 4159331,
+          "minOSVersion": "26.0"
+        },
         {
           "version": "2.14",
           "buildVersion": "9",
@@ -39,7 +48,7 @@
           "version": "2.13",
           "buildVersion": "8",
           "date": "2026-11-03T05:07:10Z",
-          "localizedDescription": "First-launch setup covers language, TM ID, work city, theme, font, contrast, payday, and CS Sup Keys unlock — with a feature showcase up front. Returning users no longer see the wizard; use Settings → Redo setup anytime.",
+          "localizedDescription": "First-launch setup covers language, TM ID, work city, theme, font, contrast, payday, and CS Sup Keys unlock \u2014 with a feature showcase up front. Returning users no longer see the wizard; use Settings \u2192 Redo setup anytime.",
           "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.13/WFSchedule-2.13.ipa",
           "size": 2302135,
           "minOSVersion": "26.0"
@@ -57,7 +66,7 @@
           "version": "2.11",
           "buildVersion": "6",
           "date": "2026-10-31T22:04:41Z",
-          "localizedDescription": "Settings → Appearance now has six looks: Classic, Light, and Dark for Light Mode and again for Dark Mode. Classic keeps the mixed white header and dark agenda; Light is the all-white calendar; Dark is fully dark.",
+          "localizedDescription": "Settings \u2192 Appearance now has six looks: Classic, Light, and Dark for Light Mode and again for Dark Mode. Classic keeps the mixed white header and dark agenda; Light is the all-white calendar; Dark is fully dark.",
           "downloadURL": "https://github.com/KikeMartinG93/wf-schedule-app/releases/download/v2.11/WFSchedule-2.11.ipa",
           "size": 2152085,
           "minOSVersion": "26.0"
@@ -122,10 +131,10 @@
   ],
   "news": [
     {
-      "title": "Version 2.14",
-      "identifier": "wf-schedule-2.14",
-      "caption": "Keys with Face ID, regrouped Settings, Spanish translations, and a clearer Light calendar.",
-      "date": "2026-11-05T00:50:57Z",
+      "title": "Version 2.15",
+      "identifier": "wf-schedule-2.15",
+      "caption": "Supervisor-only Keys, accent-matched icons, high-contrast shift marks, and faster calendar scrolling.",
+      "date": "2026-11-05T01:56:26Z",
       "tintColor": "#31D158",
       "notify": true,
       "appID": "com.marting.WFM"

@@ -47,6 +47,7 @@
 		5B0A4B7D46646E67FD9CE15C /* FontPreference.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C3A9AD6FF56BCCCA060987F /* FontPreference.swift */; };
 		5E44EEF3DD5E9D50C12E1457 /* BreakModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA33B1EBA14EA7D9CF3BF7DA /* BreakModels.swift */; };
 		627D0B3287B2DF00DA8A0DEF /* HomeCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E02A19DAF473896B334FB3 /* HomeCalendarView.swift */; };
+		8D8E783BAC364E139DF01FE9 /* ShiftIndicatorPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AE1BB45C500440B9EF48F77 /* ShiftIndicatorPattern.swift */; };
 		62AD1F38ED9A24019A3C74D6 /* NextShiftWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C45A71E9094DC2BBE992C20 /* NextShiftWidgetBundle.swift */; };
 		6758B289B78F1993205FF069 /* ScheduleDiffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F492D73A9EE9E5CB026EE126 /* ScheduleDiffer.swift */; };
 		69D52B79792308750C9315B9 /* ScheduleIntents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DF67DB688A6180AB8956C1 /* ScheduleIntents.swift */; };
@@ -160,6 +161,7 @@
 		701A032C7A5B9D1FA789AE56 /* Localizable.xcstrings */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		71B83C45D42DE67764B97770 /* BarcodeWidget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = BarcodeWidget.swift; sourceTree = "<group>"; };
 		76E02A19DAF473896B334FB3 /* HomeCalendarView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = HomeCalendarView.swift; sourceTree = "<group>"; };
+		6AE1BB45C500440B9EF48F77 /* ShiftIndicatorPattern.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ShiftIndicatorPattern.swift; sourceTree = "<group>"; };
 		78DF67DB688A6180AB8956C1 /* ScheduleIntents.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleIntents.swift; sourceTree = "<group>"; };
 		78EA7CFB1A1DAC4BDF81541F /* RootView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7C9ADFD1BC124F0AC343EF39 /* ScheduleStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ScheduleStore.swift; sourceTree = "<group>"; };
@@ -318,6 +320,7 @@
 				226EE6F2E01E96F268B3A8E7 /* SettingsView.swift */,
 				282F7429FF8261580F06E157 /* AppTheme.swift */,
 				76E02A19DAF473896B334FB3 /* HomeCalendarView.swift */,
+				6AE1BB45C500440B9EF48F77 /* ShiftIndicatorPattern.swift */,
 				812B551B9A10EBCD810B2593 /* AlertsView.swift */,
 				0CF88ADDE662C89D268A640D /* ChecklistView.swift */,
 				A9A1094A52DD175A35ACD26F /* WelcomeView.swift */,
@@ -536,6 +539,7 @@
 				94AF69FF43EE3AA4E937A1EB /* SettingsView.swift in Sources */,
 				1D4516AA2E205EF119EF124B /* AppTheme.swift in Sources */,
 				627D0B3287B2DF00DA8A0DEF /* HomeCalendarView.swift in Sources */,
+				8D8E783BAC364E139DF01FE9 /* ShiftIndicatorPattern.swift in Sources */,
 				2E69C3623FC0748DB2B396F0 /* AlertsView.swift in Sources */,
 				59F4BFD6C53B137180F1D467 /* ChecklistView.swift in Sources */,
 				CF32F5B4ED3A6593CF00413B /* WelcomeView.swift in Sources */,
@@ -692,7 +696,7 @@
 		65E38382D854C312733BCD95 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-blue AppIcon-purple AppIcon-rose AppIcon-amber AppIcon-teal AppIcon-crimson AppIcon-indigo AppIcon-colorful AppIcon-classic AppIcon-halloween AppIcon-rainbow";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-blue AppIcon-purple AppIcon-rose AppIcon-amber AppIcon-teal AppIcon-crimson AppIcon-indigo AppIcon-colorful AppIcon-halloween AppIcon-rainbow AppIcon-classic AppIcon-classic-blue AppIcon-classic-purple AppIcon-classic-rose AppIcon-classic-amber AppIcon-classic-teal AppIcon-classic-crimson AppIcon-classic-indigo AppIcon-classic-colorful AppIcon-classic-halloween AppIcon-classic-rainbow";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WFSchedule/App/WFSchedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -703,7 +707,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.14;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -716,7 +720,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -724,7 +728,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.14;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -741,7 +745,7 @@
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_ENTITLEMENTS = WFMNextShiftWidget/WFMNextShiftWidget.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 9;
+				CURRENT_PROJECT_VERSION = 10;
 				INFOPLIST_FILE = WFMNextShiftWidget/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -749,7 +753,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 2.14;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM.NextShiftWidget;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
@@ -762,7 +766,7 @@
 		DF041BABCF70AE8653948679 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-blue AppIcon-purple AppIcon-rose AppIcon-amber AppIcon-teal AppIcon-crimson AppIcon-indigo AppIcon-colorful AppIcon-classic AppIcon-halloween AppIcon-rainbow";
+				ASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "AppIcon-blue AppIcon-purple AppIcon-rose AppIcon-amber AppIcon-teal AppIcon-crimson AppIcon-indigo AppIcon-colorful AppIcon-halloween AppIcon-rainbow AppIcon-classic AppIcon-classic-blue AppIcon-classic-purple AppIcon-classic-rose AppIcon-classic-amber AppIcon-classic-teal AppIcon-classic-crimson AppIcon-classic-indigo AppIcon-classic-colorful AppIcon-classic-halloween AppIcon-classic-rainbow";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = WFSchedule/App/WFSchedule.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -773,7 +777,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.14;
+				MARKETING_VERSION = 2.15;
 				PRODUCT_BUNDLE_IDENTIFIER = com.marting.WFM;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
